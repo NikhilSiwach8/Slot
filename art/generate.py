@@ -78,8 +78,9 @@ def main():
                 continue
         else:
             print("generating", key)
+            data = generate(prompt, size, args.model, transparent)
             with open(raw_path, "wb") as f:
-                f.write(generate(prompt, size, args.model, transparent))
+                f.write(data)
         print("processing", key)
         img = humanise(Image.open(raw_path), seed=i)
         if key in spec["symbols"]:
