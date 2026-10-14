@@ -58,6 +58,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", default="")
     ap.add_argument("--model", default="gpt-image-2")
+    ap.add_argument("--process", action="store_true")
     args = ap.parse_args()
     spec = json.load(open(os.path.join(HERE, "prompts.json")))
     os.makedirs(RAW, exist_ok=True)
@@ -70,10 +71,16 @@ def main():
     for i, (key, prompt, size, transparent) in enumerate(jobs):
         if only and key not in only:
             continue
-        print("generating", key)
         raw_path = os.path.join(RAW, f"{key}.png")
-        with open(raw_path, "wb") as f:
-            f.write(generate(prompt, size, args.model, transparent))
+        if args.process:
+            if not os.path.exists(raw_path):
+                print("missing", raw_path)
+                continue
+        else:
+            print("generating", key)
+            with open(raw_path, "wb") as f:
+                f.write(generate(prompt, size, args.model, transparent))
+        print("processing", key)
         img = humanise(Image.open(raw_path), seed=i)
         if key in spec["symbols"]:
             img.thumbnail((300, 300), Image.LANCZOS)

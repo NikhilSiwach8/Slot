@@ -1,3 +1,4 @@
 math/*/library/
 __pycache__/
-art/raw/
+art/raw/*
+!art/raw/.gitkeep
