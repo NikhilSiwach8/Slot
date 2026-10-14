@@ -17,3 +17,4 @@ web-sdk/apps/dumpster-duke/static/assets/*
 !web-sdk/apps/dumpster-duke/static/assets/sprites/
 web-sdk/apps/dumpster-duke/static/assets/sprites/*
 !web-sdk/apps/dumpster-duke/static/assets/sprites/dukeSymbols/
+!web-sdk/apps/dumpster-duke/static/assets/sprites/dukeBackgrounds/

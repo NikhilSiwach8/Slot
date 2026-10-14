@@ -44,4 +44,5 @@ python art/slice_sheet.py art/source/symbols_sheet.webp   # cut tiles, remove ba
 python art/blank_cap.py                                   # clear the cap centre for the value
 python art/generate.py --process                          # finishing pass → art/final/
 python art/build_atlas.py                                 # pack into the client sprite sheet
+python art/make_backgrounds.py art/source/backgrounds_sheet.webp   # backgrounds + free-spins splash
 ```
