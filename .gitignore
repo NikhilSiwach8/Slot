@@ -2,3 +2,18 @@ math/*/library/
 __pycache__/
 art/raw/*
 !art/raw/.gitkeep
+node_modules/
+.svelte-kit/
+build/
+.turbo/
+# Upstream SDKs are restored by scripts/setup.sh; only our game folders are tracked.
+web-sdk/*
+!web-sdk/apps/
+web-sdk/apps/*
+!web-sdk/apps/dumpster-duke/
+math-sdk/
+# Template art is restored from upstream by scripts/setup.sh; only our own assets are tracked.
+web-sdk/apps/dumpster-duke/static/assets/*
+!web-sdk/apps/dumpster-duke/static/assets/sprites/
+web-sdk/apps/dumpster-duke/static/assets/sprites/*
+!web-sdk/apps/dumpster-duke/static/assets/sprites/dukeSymbols/

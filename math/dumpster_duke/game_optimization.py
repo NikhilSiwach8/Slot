@@ -17,12 +17,12 @@ class OptimizationSetup:
         self.game_config.opt_params = {
             "base": {
                 "conditions": {
-                    "wincap": ConstructConditions(rtp=0.001, av_win=5000, search_conditions=5000).return_dict(),
+                    "wincap": ConstructConditions(rtp=0.002, av_win=10000, search_conditions=10000).return_dict(),
                     "0": ConstructConditions(rtp=0, av_win=0, search_conditions=0).return_dict(),
                     "freegame": ConstructConditions(
-                        rtp=0.376, hr=200, search_conditions={"symbol": "scatter"}
+                        rtp=0.370, hr=210, search_conditions={"symbol": "scatter"}
                     ).return_dict(),
-                    "basegame": ConstructConditions(hr=3.5, rtp=0.59).return_dict(),
+                    "basegame": ConstructConditions(hr=3.5, rtp=0.593).return_dict(),
                 },
                 "scaling": ConstructScaling(
                     [
@@ -41,13 +41,13 @@ class OptimizationSetup:
                         {
                             "criteria": "freegame",
                             "scale_factor": 0.8,
-                            "win_range": (1000, 2000),
+                            "win_range": (2000, 5000),
                             "probability": 1.0,
                         },
                         {
                             "criteria": "freegame",
                             "scale_factor": 1.2,
-                            "win_range": (3000, 4000),
+                            "win_range": (5000, 9000),
                             "probability": 1.0,
                         },
                     ]
@@ -72,15 +72,15 @@ class OptimizationSetup:
             },
             "bonus": {
                 "conditions": {
-                    "wincap": ConstructConditions(rtp=0.001, av_win=5000, search_conditions=5000).return_dict(),
-                    "freegame": ConstructConditions(rtp=0.966, hr="x").return_dict(),
+                    "wincap": ConstructConditions(rtp=0.001, av_win=10000, search_conditions=10000).return_dict(),
+                    "freegame": ConstructConditions(rtp=0.964, hr="x").return_dict(),
                 },
                 "scaling": ConstructScaling(
                     [
                         {
                             "criteria": "freegame",
                             "scale_factor": 1.2,
-                            "win_range": (3000, 4000),
+                            "win_range": (5000, 9000),
                             "probability": 1.0,
                         },
                     ]

@@ -31,3 +31,9 @@ class GameStateOverride(GameExecutables):
             win_criteria = self.get_current_betmode_distributions().get_win_criteria()
             if win_criteria is not None and self.final_win != win_criteria:
                 self.repeat = True
+
+    def check_repeat(self):
+        """A Midnight Raid must always pay something: redraw bonus rounds that win 0."""
+        super().check_repeat()
+        if not self.repeat and self.criteria == "freegame" and self.final_win == 0:
+            self.repeat = True

@@ -75,13 +75,22 @@ values are fixed once the math is signed off.)
 | `base` | 1× | Normal play |
 | `bonus` | 100× | Buy the Midnight Raid (4–6 scatters guaranteed) |
 
-## 8. Math targets
+## 8. Math (current model)
 
-- RTP **96.50%** for every mode (Stake: 90–98%, modes within 0.5%).
-- Max win **10,000×** bet (round ends immediately when reached).
-- Base hit rate better than 1 in 4 (Stake minimum: 1 in 20).
-- Bonus frequency ≈ 1 in 250–400 spins.
-- 100k+ simulated outcomes per mode; max win must be reachable.
+Measured from the optimized lookup tables (`math/dumpster_duke/analyze.py`):
+
+| | Base (1×) | Bonus buy (100×) |
+|---|---|---|
+| RTP | 96.50% | 96.50% |
+| Hit rate | 1 in 3.44 | every buy pays |
+| Bonus trigger | 1 in 210 spins | — |
+| Max win 10,000× | 1 in 5.0M spins | 1 in 100k buys |
+| Std dev (per unit cost) | 8.7 | 1.6 |
+| Simulations | 200,000 | 100,000 |
+
+Stake rules met: RTP 90–98% and modes within 0.5%; max win more often than
+1 in 10M; hit rate better than 1 in 20; 100k+ simulations; no gaps between small
+and max wins. The round ends immediately when the 10,000× cap is reached.
 
 ## 9. Animation & feedback plan
 

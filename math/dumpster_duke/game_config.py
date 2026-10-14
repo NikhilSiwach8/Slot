@@ -90,8 +90,8 @@ class GameConfig(Config):
         self.padding_reels[self.basegame_type] = self.reels["BR0"]
         self.padding_reels[self.freegame_type] = self.reels["FR0"]
 
-        base_caps = {2: 200, 3: 120, 4: 80, 5: 50, 8: 20, 10: 12, 15: 6, 20: 4, 25: 2, 50: 1, 100: 0.5}
-        fs_caps = {2: 200, 3: 120, 4: 80, 5: 60, 8: 30, 10: 20, 15: 10, 20: 6, 25: 4, 50: 2, 100: 1}
+        base_caps = {2: 300, 3: 150, 4: 80, 5: 40, 8: 15, 10: 8, 15: 4, 20: 2, 25: 1, 50: 0.4, 100: 0.1}
+        fs_caps = {2: 200, 3: 120, 4: 80, 5: 60, 8: 30, 10: 20, 15: 12, 20: 8, 25: 6, 50: 3, 100: 1.5}
         wincap_caps = {10: 20, 15: 20, 20: 30, 25: 30, 50: 40, 100: 30}
 
         mode_maxwins = {"base": 10000, "bonus": 10000}
@@ -120,7 +120,8 @@ class GameConfig(Config):
                 conditions={
                     "reel_weights": {
                         self.basegame_type: {"BR0": 1},
-                        self.freegame_type: {"FR0": 1},
+                        # The rich WCAP strip shows up now and then so huge raids are reachable.
+                        self.freegame_type: {"FR0": 40, "WCAP": 1},
                     },
                     "scatter_triggers": scatter_triggers,
                     "mult_values": {self.basegame_type: base_caps, self.freegame_type: fs_caps},
