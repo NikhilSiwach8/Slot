@@ -10,10 +10,14 @@ scripts/package_release.sh            # -> dist/math, dist/frontend
 
 | Folder | Contents | Upload to |
 |---|---|---|
-| `dist/math` | `index.json`, `books_base.jsonl.zst`, `books_bonus.jsonl.zst`, `lookUpTable_base_0.csv`, `lookUpTable_bonus_0.csv` | Stake Engine dashboard → Math |
+| `dist/math` | `index.json`, `books_{base,ante,bonus}.jsonl.zst`, `lookUpTable_{base,ante,bonus}_0.csv` | Stake Engine dashboard → Math |
 | `dist/frontend` | Static SvelteKit build (`index.html`, `_app/`, `assets/`) | Stake Engine dashboard → Front End |
 
 The math folder was checked with `validate-books-index.mjs` and passed.
+
+Ready-made copies live in `release/`: `dumpster_duke_frontend.zip`, and the math split in two
+(`dumpster_duke_math_1of2.zip`, `dumpster_duke_math_2of2.zip`) because GitHub refuses files over
+100 MB. Unzip both math zips into one folder to get all 7 math files.
 
 ## 2. Math summary
 
