@@ -1,19 +1,18 @@
 <!--
-	Same as components-ui-html's <Modals>, but with our own rules/paytable screen
-	in place of the template's empty "ADD YOUR GAME RULES" placeholders.
+	Same as components-ui-html's <Modals>, but with our own rules/paytable screen and
+	buy-feature menu in place of the template's empty "ADD YOUR GAME RULES" placeholders.
 -->
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 
 	import ModalError from 'components-ui-html/src/components/ModalError.svelte';
 	import ModalBetMenu from 'components-ui-html/src/components/ModalBetMenu.svelte';
-	import ModalBuyBonus from 'components-ui-html/src/components/ModalBuyBonus.svelte';
-	import ModalBuyBonusConfirm from 'components-ui-html/src/components/ModalBuyBonusConfirm.svelte';
 	import ModalAutoSpin from 'components-ui-html/src/components/ModalAutoSpin.svelte';
 	import ModalAutoSpinMessage from 'components-ui-html/src/components/ModalAutoSpinMessage.svelte';
 	import ModalSettings from 'components-ui-html/src/components/ModalSettings.svelte';
 
 	import ModalGameInfo from './info/ModalGameInfo.svelte';
+	import ModalBuyFeature from './buy/ModalBuyFeature.svelte';
 
 	type Props = { version: Snippet };
 	const props: Props = $props();
@@ -21,8 +20,7 @@
 
 <ModalError />
 <ModalBetMenu />
-<ModalBuyBonus />
-<ModalBuyBonusConfirm />
+<ModalBuyFeature />
 <ModalAutoSpin />
 <ModalAutoSpinMessage />
 <ModalGameInfo version={props.version} />

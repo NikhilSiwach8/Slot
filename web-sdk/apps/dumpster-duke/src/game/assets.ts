@@ -43,6 +43,11 @@ export default {
 		src: new URL('../../assets/sprites/dukeBackgrounds/fs_splash_portrait.webp', import.meta.url).href,
 		preload: true,
 	},
+	dukeUi: {
+		type: 'sprites',
+		src: new URL('../../assets/sprites/dukeUi/dukeUi.json', import.meta.url).href,
+		preload: true,
+	},
 	dukeSymbols: {
 		type: 'sprites',
 		src: new URL('../../assets/sprites/dukeSymbols/dukeSymbols.json', import.meta.url).href,
@@ -66,7 +71,7 @@ export default {
 	},
 	goldFont: {
 		type: 'font',
-		src: new URL('../../assets/fonts/goldFont/mm_gold.xml', import.meta.url).href,
+		src: new URL('../../assets/fonts/goldFont/duke_gold.xml', import.meta.url).href,
 	},
 	goldBlur: {
 		type: 'font',

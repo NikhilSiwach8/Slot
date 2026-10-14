@@ -4,10 +4,10 @@
 	import { EnablePixiExtension } from 'components-pixi';
 	import { EnableHotkey } from 'components-shared';
 	import { MainContainer } from 'components-layout';
-	import { App, Text, REM } from 'pixi-svelte';
+	import { App, BitmapText, REM } from 'pixi-svelte';
 	import { stateModal } from 'state-shared';
 
-	import { UI, UiGameName } from 'components-ui-pixi';
+	import { UI, UiGameName } from '../ui';
 	import { GameVersion } from 'components-ui-html';
 	import GameModals from './GameModals.svelte';
 
@@ -87,20 +87,11 @@
 
 		<UI>
 			{#snippet gameName()}
-				<UiGameName name="SCATTER GAME" />
+				<UiGameName name="DUMPSTER DUKE" />
 			{/snippet}
 			{#snippet logo()}
-				<Text
-					anchor={{ x: 1, y: 0 }}
-					text="ADD YOUR LOGO"
-					style={{
-						fontFamily: 'proxima-nova',
-						fontSize: REM * 1.5,
-						fontWeight: '600',
-						lineHeight: REM * 2,
-						fill: 0xffffff,
-					}}
-				/>
+				<!-- until the logo plate art arrives: the title in the game font -->
+				<BitmapText anchor={{ x: 1, y: 0 }} y={8} text="DUMPSTER DUKE" style={{ fontFamily: 'gold', fontSize: Math.min(REM * 2.2, context.stateLayoutDerived.canvasSizes().width * 0.04) }} />
 			{/snippet}
 		</UI>
 		<Win />

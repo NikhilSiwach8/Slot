@@ -1,0 +1,58 @@
+{
+ "bar_frame": {
+  "width": 368,
+  "height": 129
+ },
+ "bar_minus": {
+  "width": 76,
+  "height": 76
+ },
+ "bar_panel": {
+  "width": 163,
+  "height": 90
+ },
+ "bar_plus": {
+  "width": 74,
+  "height": 76
+ },
+ "btn_back": {
+  "width": 183,
+  "height": 77
+ },
+ "btn_blank": {
+  "width": 114,
+  "height": 113
+ },
+ "btn_info": {
+  "width": 177,
+  "height": 78
+ },
+ "btn_menu": {
+  "width": 115,
+  "height": 114
+ },
+ "btn_spin": {
+  "width": 120,
+  "height": 118
+ },
+ "btn_turbo": {
+  "width": 114,
+  "height": 113
+ },
+ "card": {
+  "width": 278,
+  "height": 543
+ },
+ "icon_bonus": {
+  "width": 117,
+  "height": 115
+ },
+ "icon_cart": {
+  "width": 119,
+  "height": 114
+ },
+ "panel": {
+  "width": 558,
+  "height": 637
+ }
+}

@@ -45,4 +45,9 @@ python art/blank_cap.py                                   # clear the cap centre
 python art/generate.py --process                          # finishing pass → art/final/
 python art/build_atlas.py                                 # pack into the client sprite sheet
 python art/make_backgrounds.py art/source/backgrounds_sheet.webp   # backgrounds + free-spins splash
+python art/make_font.py art/source/ui_sheet.webp          # "gold" bitmap font from the sheet's letters
+python art/slice_ui.py art/source/ui_sheet.webp           # bottom-bar buttons, bonus panel and card
 ```
+
+The bottom bar is our own copy of the web-sdk UI package in
+`web-sdk/apps/dumpster-duke/src/ui/` (restyled with the art above).

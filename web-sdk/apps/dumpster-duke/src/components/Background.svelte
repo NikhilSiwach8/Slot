@@ -8,7 +8,9 @@
 
 	const context = getContext();
 	const showBaseBackground = $derived(context.stateGame.gameType === 'basegame');
-	const showFeatureBackground = $derived(context.stateGame.gameType === 'freeSpins');
+	// reveal events set gameType to the math's name ('freegame') while the trigger
+	// handler uses 'freeSpins', so treat anything but the base game as the raid
+	const showFeatureBackground = $derived(context.stateGame.gameType !== 'basegame');
 </script>
 
 <Rectangle {...context.stateLayoutDerived.canvasSizes()} backgroundColor={0x000000} zIndex={-3} />

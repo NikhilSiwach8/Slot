@@ -18,3 +18,10 @@ web-sdk/apps/dumpster-duke/static/assets/*
 web-sdk/apps/dumpster-duke/static/assets/sprites/*
 !web-sdk/apps/dumpster-duke/static/assets/sprites/dukeSymbols/
 !web-sdk/apps/dumpster-duke/static/assets/sprites/dukeBackgrounds/
+!web-sdk/apps/dumpster-duke/static/assets/sprites/dukeUi/
+!web-sdk/apps/dumpster-duke/static/assets/fonts/
+web-sdk/apps/dumpster-duke/static/assets/fonts/*
+!web-sdk/apps/dumpster-duke/static/assets/fonts/goldFont/
+web-sdk/apps/dumpster-duke/static/assets/fonts/goldFont/*
+!web-sdk/apps/dumpster-duke/static/assets/fonts/goldFont/duke_gold.*
+!web-sdk/apps/dumpster-duke/static/assets/ui/
