@@ -49,5 +49,10 @@ python art/make_font.py art/source/ui_sheet.webp          # "gold" bitmap font f
 python art/slice_ui.py art/source/ui_sheet.webp           # bottom-bar buttons, bonus panel and card
 ```
 
+Reel spin: logic in `src/game/reelSpin/` (deterministic — the reels always land on
+the server's board), rendering in `src/components/ReelSpinner.svelte`. All feel
+values (speed, durations, stagger, overshoot, bounce, blur, stretch, shake) are in
+`src/game/reelSpin/config.ts`, with turbo overrides.
+
 The bottom bar is our own copy of the web-sdk UI package in
 `web-sdk/apps/dumpster-duke/src/ui/` (restyled with the art above).

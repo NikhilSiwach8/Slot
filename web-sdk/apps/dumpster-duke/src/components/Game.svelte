@@ -20,6 +20,8 @@
 	import LoadingScreen from './LoadingScreen.svelte';
 	import BoardFrame from './BoardFrame.svelte';
 	import Board from './Board.svelte';
+	import ReelSpinner from './ReelSpinner.svelte';
+	import BoardContainer from './BoardContainer.svelte';
 	import Anticipations from './Anticipations.svelte';
 	import ClusterWinAmounts from './ClusterWinAmounts.svelte';
 	import TumbleBoard from './TumbleBoard.svelte';
@@ -65,6 +67,12 @@
 
 		<MainContainer>
 			<BoardFrame />
+		</MainContainer>
+
+		<MainContainer>
+			<BoardContainer>
+				<ReelSpinner />
+			</BoardContainer>
 		</MainContainer>
 
 		<MainContainer>

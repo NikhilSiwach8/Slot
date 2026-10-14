@@ -17,6 +17,7 @@
 	import { BoardContext } from 'components-shared';
 
 	import { getContext } from '../game/context';
+	import { stateReelSpin } from '../game/reelSpin/controller.svelte';
 	import BoardContainer from './BoardContainer.svelte';
 	import BoardMask from './BoardMask.svelte';
 	import BoardBase from './BoardBase.svelte';
@@ -31,6 +32,7 @@
 		boardShow: () => (show = true),
 		boardHide: () => (show = false),
 		boardWithAnimateSymbols: async ({ symbolPositions }) => {
+			stateReelSpin.dimNonWinning = true;
 			const getPromises = () =>
 				symbolPositions.map(async (position) => {
 					const reelSymbol = context.stateGame.board[position.reel].reelState.symbols[position.row];
@@ -40,6 +42,7 @@
 				});
 
 			await Promise.all(getPromises());
+			stateReelSpin.dimNonWinning = false;
 		},
 		boardWithMovingMultiplierTexts: () => {
 			context.stateGame.board.forEach((reel) => {

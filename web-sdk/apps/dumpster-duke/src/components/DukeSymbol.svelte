@@ -16,6 +16,7 @@
 	import { Container, Sprite, Text } from 'pixi-svelte';
 
 	import { SYMBOL_SIZE } from '../game/constants';
+	import WinSparks from './WinSparks.svelte';
 
 	type Props = {
 		x?: number;
@@ -23,6 +24,7 @@
 		symbolInfo: DukeSymbolInfo;
 		oncomplete?: () => void;
 		loop?: boolean;
+		dimmed?: boolean;
 	};
 
 	const props: Props = $props();
@@ -71,8 +73,9 @@
 				return { sx: 1 + squash, sy: 1 - squash, rot: 0, alpha: 1, dy: squash * SYMBOL_SIZE * 0.1 };
 			}
 			case 'win': {
-				const pulse = Math.abs(Math.sin(t * Math.PI * 2)) * 0.16;
-				const wiggle = Math.sin(t * Math.PI * 6) * 0.08 * (1 - t);
+				// one strong pulse up front, a small wiggle, then hold while the glow fades
+				const pulse = t < 0.35 ? Math.sin((t / 0.35) * Math.PI) * 0.2 : 0;
+				const wiggle = Math.sin(t * Math.PI * 5) * 0.06 * (1 - t);
 				return { sx: 1 + pulse, sy: 1 + pulse, rot: wiggle, alpha: 1, dy: 0 };
 			}
 			case 'explode': {
@@ -86,6 +89,13 @@
 		}
 	});
 
+	// gold outline glow behind winning symbols: flashes in fast, then breathes out
+	const glow = $derived.by(() => {
+		if (props.symbolInfo.animation !== 'win') return 0;
+		const t = elapsed;
+		return t < 0.2 ? t / 0.2 : 0.55 + 0.45 * Math.cos((t - 0.2) * Math.PI * 2.5) * (1 - t);
+	});
+
 	const width = $derived(SYMBOL_SIZE * props.symbolInfo.sizeRatios.width);
 	const height = $derived(SYMBOL_SIZE * props.symbolInfo.sizeRatios.height);
 </script>
@@ -97,7 +107,27 @@
 	rotation={transform.rot}
 	alpha={transform.alpha}
 >
-	<Sprite anchor={0.5} key={props.symbolInfo.assetKey} {width} {height} />
+	{#if glow > 0}
+		<Sprite
+			anchor={0.5}
+			key={props.symbolInfo.assetKey}
+			width={width * 1.16}
+			height={height * 1.16}
+			tint={0xffc23a}
+			alpha={glow * 0.85}
+			blendMode="add"
+		/>
+	{/if}
+	<Sprite
+		anchor={0.5}
+		key={props.symbolInfo.assetKey}
+		{width}
+		{height}
+		tint={props.dimmed ? 0x6c6478 : 0xffffff}
+	/>
+	{#if props.symbolInfo.animation === 'win'}
+		<WinSparks />
+	{/if}
 	{#if props.symbolInfo.multiplier !== undefined}
 		<Text
 			anchor={0.5}

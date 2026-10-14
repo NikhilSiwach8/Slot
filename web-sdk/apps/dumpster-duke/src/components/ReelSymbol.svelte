@@ -3,6 +3,7 @@
 	import SymbolWrap from './SymbolWrap.svelte';
 	import { getSymbolInfo, getSymbolX } from '../game/utils';
 	import type { ReelSymbol } from '../game/stateGame.svelte';
+	import { stateReelSpin } from '../game/reelSpin/controller.svelte';
 
 	type Props = {
 		reelIndex: number;
@@ -24,6 +25,7 @@
 	<Symbol
 		state={props.reelSymbol.symbolState}
 		rawSymbol={props.reelSymbol.rawSymbol}
+		dimmed={stateReelSpin.dimNonWinning && props.reelSymbol.symbolState !== 'win'}
 		oncomplete={() => {
 			if (props.reelSymbol.symbolState === 'win') props.reelSymbol.oncomplete();
 			if (props.reelSymbol.symbolState === 'land') props.reelSymbol.symbolState = 'static';

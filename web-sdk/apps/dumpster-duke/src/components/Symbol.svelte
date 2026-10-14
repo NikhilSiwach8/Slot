@@ -13,6 +13,7 @@
 		rawSymbol: RawSymbol;
 		oncomplete?: () => void;
 		loop?: boolean;
+		dimmed?: boolean;
 	};
 
 	const props: Props = $props();
@@ -28,6 +29,7 @@
 		y={props.y}
 		oncomplete={props.oncomplete}
 		loop={props.loop}
+		dimmed={props.dimmed}
 	/>
 {:else if isSprite}
 	<SymbolSprite {symbolInfo} x={props.x} y={props.y} oncomplete={props.oncomplete} />
