@@ -36,9 +36,12 @@ pnpm build           # static build in ./build
 
 ## Art
 
-Images go in `art/raw/<KEY>.png` (prompts in `docs/ART_PROMPTS.md`), then:
+Symbol art comes from the ChatGPT sheet in `art/source/symbols_sheet.webp`
+(prompts in `docs/ART_PROMPTS.md`):
 
 ```bash
-python art/generate.py --process   # finishing pass → art/final/
-python art/build_atlas.py          # pack into the client sprite sheet
+python art/slice_sheet.py art/source/symbols_sheet.webp   # cut tiles, remove background → art/raw/
+python art/blank_cap.py                                   # clear the cap centre for the value
+python art/generate.py --process                          # finishing pass → art/final/
+python art/build_atlas.py                                 # pack into the client sprite sheet
 ```

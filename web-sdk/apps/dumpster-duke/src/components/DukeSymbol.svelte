@@ -101,6 +101,7 @@
 	{#if props.symbolInfo.multiplier !== undefined}
 		<Text
 			anchor={0.5}
+			y={-SYMBOL_SIZE * props.symbolInfo.sizeRatios.height * 0.05}
 			text={`${props.symbolInfo.multiplier}x`}
 			style={{
 				fontFamily: 'Arial Black, Arial, sans-serif',

@@ -4,8 +4,8 @@
 
 ## 1. Concept
 
-Under the neon glow of a back-alley junkyard, **the Dumpster Duke** — a pompous raccoon
-in a bottle-cap crown and a tin-foil cape — rules a kingdom of trash. His court of
+Under the neon glow of a back-alley junkyard, **the Dumpster Duke** — a grinning,
+slime-dripping dumpster with a lot of attitude — rules a kingdom of trash. His court of
 alley critters guards the night's haul. Every tumble digs deeper into the pile; land
 enough **Golden Trash Cans** and the Duke leads a **Midnight Raid**, stuffing bottle-cap
 multipliers into his ever-growing **Loot Bag**.
@@ -34,7 +34,7 @@ Reference *feel*: chunky, cel-shaded cartoon slots (e.g. the Meta Gaming style o
 
 | Symbol | Code | 8–9 | 10–11 | 12–14 | 15+ |
 |---|---|---|---|---|---|
-| The Dumpster Duke (raccoon king) | H1 | 10 | 25 | 50 | 100 |
+| The Dumpster Duke (grinning dumpster) | H1 | 10 | 25 | 50 | 100 |
 | Possum Bruiser | H2 | 2.5 | 10 | 25 | 50 |
 | Bling Pigeon | H3 | 2 | 5 | 15 | 40 |
 | Golden Pizza Slice | H4 | 1.5 | 2 | 12 | 30 |

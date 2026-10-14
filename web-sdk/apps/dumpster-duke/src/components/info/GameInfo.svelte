@@ -32,7 +32,7 @@
 	<section>
 		<h2>About the game</h2>
 		<p>
-			The Dumpster Duke, a raccoon king in a bottle-cap crown, rules the junkyard after dark. Land
+			The Dumpster Duke, a grinning, slime-dripping dumpster, rules the junkyard after dark with his alley crew. Land
 			{MIN_CLUSTER} or more matching symbols anywhere on the 6×5 screen to win, tumble for more wins,
 			and lead the <strong>Midnight Raid</strong> to fill the Duke's <strong>Loot Bag</strong>.
 		</p>

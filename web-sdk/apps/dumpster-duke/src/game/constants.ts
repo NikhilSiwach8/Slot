@@ -124,7 +124,7 @@ const dukeStates = (
 const multiplierEntries = (prefix: string, taken: boolean) =>
 	Object.fromEntries(
 		MULTIPLIER_VALUES.map((value) => {
-			const states = dukeStates('duke_m.png', 0.9, value);
+			const states = dukeStates('duke_m.png', 1.05, value);
 			if (taken) {
 				for (const key of Object.keys(states) as SymbolState[]) {
 					states[key] = { ...states[key], animation: 'taken' };
