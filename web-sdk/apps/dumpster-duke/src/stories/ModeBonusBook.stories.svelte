@@ -51,3 +51,19 @@
 	})}
 	{template}
 />
+
+<Story
+	name="retrigger"
+	args={templateArgs({
+		skipLoadingScreen: true,
+		data: {},
+		action: async () => {
+			// a Midnight Raid that retriggers (3+ Golden Trash Cans during free spins)
+			const data =
+				books.find((book) => book.events.some((event) => event.type === 'freeSpinRetrigger')) ??
+				books[0];
+			await playBet({ ...data, state: data.events });
+		},
+	})}
+	{template}
+/>

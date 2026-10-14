@@ -47,6 +47,13 @@ type BookEventFreeSpinTrigger = {
 	positions: Position[];
 };
 
+type BookEventFreeSpinRetrigger = {
+	index: number;
+	type: 'freeSpinRetrigger';
+	totalFs: number;
+	positions: Position[];
+};
+
 type BookEventUpdateFreeSpin = {
 	index: number;
 	type: 'updateFreeSpin';
@@ -114,6 +121,7 @@ export type BookEvent =
 	| BookEventSetTumbleWin
 	| BookEventSetTotalWin
 	| BookEventFreeSpinTrigger
+	| BookEventFreeSpinRetrigger
 	| BookEventUpdateFreeSpin
 	| BookEventUpdateGlobalMult
 	| BookEventTumbleBoard

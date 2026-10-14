@@ -15,6 +15,7 @@
 		SpineProvider,
 		SpineSlot,
 		SpineTrack,
+		Text,
 	} from 'pixi-svelte';
 	import { FadeContainer } from 'components-pixi';
 	import { stateBetDerived } from 'state-shared';
@@ -110,6 +111,19 @@
 					</SpineSlot>
 				</SpineEventEmitterProvider>
 			</SpineProvider>
+			<!-- In this game the global multiplier is the Duke's persistent Loot Bag. -->
+			<Text
+				anchor={0.5}
+				y={-SYMBOL_SIZE * 0.42}
+				text="LOOT BAG"
+				style={{
+					fontFamily: 'Arial Black, Arial, sans-serif',
+					fontWeight: '900',
+					fontSize: SYMBOL_SIZE * 0.16,
+					fill: '#ffcf3a',
+					stroke: { color: '#2d1914', width: SYMBOL_SIZE * 0.04 },
+				}}
+			/>
 		</Container>
 	</BoardContainer>
 </FadeContainer>

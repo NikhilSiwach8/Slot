@@ -124,6 +124,18 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		await eventEmitter.broadcastAsync({ type: 'drawerButtonShow' });
 		eventEmitter.broadcast({ type: 'drawerFold' });
 	},
+	freeSpinRetrigger: async (bookEvent: BookEventOfType<'freeSpinRetrigger'>) => {
+		// 3+ Golden Trash Cans during the Midnight Raid: celebrate them and add the spins
+		// to the counter (the next updateFreeSpin event carries the same total).
+		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_scatter_win_v2' });
+		await animateSymbols({ positions: bookEvent.positions });
+		eventEmitter.broadcast({ type: 'freeSpinCounterShow' });
+		eventEmitter.broadcast({
+			type: 'freeSpinCounterUpdate',
+			current: undefined,
+			total: bookEvent.totalFs,
+		});
+	},
 	updateFreeSpin: async (bookEvent: BookEventOfType<'updateFreeSpin'>) => {
 		eventEmitter.broadcast({ type: 'freeSpinCounterShow' });
 		eventEmitter.broadcast({

@@ -94,6 +94,9 @@ class GameConfig(Config):
         fs_caps = {2: 200, 3: 120, 4: 80, 5: 60, 8: 30, 10: 20, 15: 12, 20: 8, 25: 6, 50: 3, 100: 1.5}
         wincap_caps = {10: 20, 15: 20, 20: 30, 25: 30, 50: 40, 100: 30}
 
+        # Every bottle-cap value a player can see, for the rules screen.
+        self.cap_values = sorted(set(base_caps) | set(fs_caps) | set(wincap_caps))
+
         mode_maxwins = {"base": 10000, "bonus": 10000}
 
         def wincap_dist(scatter_triggers):

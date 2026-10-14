@@ -8,7 +8,8 @@
 	import { stateModal } from 'state-shared';
 
 	import { UI, UiGameName } from 'components-ui-pixi';
-	import { GameVersion, Modals } from 'components-ui-html';
+	import { GameVersion } from 'components-ui-html';
+	import GameModals from './GameModals.svelte';
 
 	import { getContext } from '../game/context';
 	import EnableSound from './EnableSound.svelte';
@@ -31,7 +32,6 @@
 	import FreeSpinCounter from './FreeSpinCounter.svelte';
 	import FreeSpinOutro from './FreeSpinOutro.svelte';
 	import Transition from './Transition.svelte';
-	import I18nTest from './I18nTest.svelte';
 
 	const context = getContext();
 
@@ -111,12 +111,11 @@
 		<FreeSpinOutro />
 		<Transition />
 
-		<I18nTest />
 	{/if}
 </App>
 
-<Modals>
+<GameModals>
 	{#snippet version()}
 		<GameVersion version="0.0.0" />
 	{/snippet}
-</Modals>
+</GameModals>
