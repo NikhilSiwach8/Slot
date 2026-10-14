@@ -15,6 +15,8 @@ done
 
 rm -rf "$DIST" && mkdir -p "$DIST/math"
 cp "$PUBLISH"/index.json "$PUBLISH"/books_*.jsonl.zst "$PUBLISH"/lookUpTable_*_0.csv "$DIST/math/"
+# smaller upload, identical data (verified inside the script)
+(cd "$ROOT" && math-sdk/env/bin/python scripts/recompress_books.py "$DIST/math")
 
 # keep the client in sync with the math before building
 (cd "$ROOT" && math-sdk/env/bin/python scripts/sync_fe_config.py)
