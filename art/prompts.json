@@ -1,0 +1,20 @@
+{
+  "style": "Original hand-drawn cartoon slot-game symbol. Chunky, bold silhouette with thick dark-brown ink outlines whose weight varies like a real brush pen (thicker on shadow side, tapering at tips). Flat cel shading in 2-3 tones painted with a slightly textured gouache brush, one hard white highlight, subtle hand-made imperfections: tiny wobble in lines, uneven colour fill near edges, faint paper grain. Saturated night-time palette: teal, purple, neon pink, acid green and warm gold. Expressive, mischievous, comedic. Centered, full object visible, no text, no border, no tile, transparent background. Must NOT look like 3D render, glossy AI art or stock vector; should look like an illustrator's finished game asset. No logos or existing characters.",
+  "symbols": {
+    "H1": "The Dumpster Duke: a pompous fat raccoon king with a crown made of bent bottle caps, a tin-foil cape, a gold chain, one eyebrow raised, toothy smug grin, holding a half-eaten donut like a sceptre. Bust portrait.",
+    "H2": "Possum Bruiser: a tough grey possum bodyguard with a dented traffic-cone helmet, a sticking-plaster on the nose, cracking knuckles, sly squint. Bust portrait.",
+    "H3": "Bling Pigeon: a strutting city pigeon wearing oversized gold sunglasses and a chunky gold chain, chest puffed out, iridescent purple-green neck feathers.",
+    "H4": "Golden Pizza Slice: a single gooey pizza slice that glows gold like treasure, cheese stretching, pepperoni coins, little sparkles.",
+    "L1": "A dented neon-pink soda can with a bent ring pull, fizz droplets popping out.",
+    "L2": "A cartoon fish skeleton (fish bone) in pale aqua with a cheeky stitched-x eye.",
+    "L3": "A bright yellow banana peel splayed open, slightly bruised, with comic shine.",
+    "L4": "A chewed acid-green apple core with two seeds and a single leaf.",
+    "S": "Scatter symbol: a battered golden trash can with its lid popping open, gold coins and light beams bursting out, glowing aura. Iconic and slightly larger presence than other symbols.",
+    "M": "Multiplier symbol: a big shiny bottle cap in red and gold with crimped edges, empty flat centre where a number will be printed later, sparkling rim."
+  },
+  "backgrounds": {
+    "bg_base": "Wide 16:9 game background, original illustration: a back-alley junkyard kingdom at night, stacked garbage bags and broken furniture forming a throne-like hill, neon signs (no readable text) in pink and green, puddles reflecting lights, string lights, a fat moon. Painterly hand-drawn cartoon style with thick ink outlines and visible brush texture; slightly darker in the centre where the reels sit. No characters, no text.",
+    "bg_raid": "Same junkyard alley at midnight during a raid: purple and pink searchlights, flying trash, glowing gold spilling from bins, dramatic and energetic. Painterly hand-drawn cartoon style with thick ink outlines and brush texture. No characters, no text.",
+    "logo_plate": "Ornate game-title plate made of a rusty sheet-metal sign with bottle-cap rivets, neon tube trim and a tiny bottle-cap crown on top, empty centre for title text. Hand-drawn cartoon style, transparent background."
+  }
+}
