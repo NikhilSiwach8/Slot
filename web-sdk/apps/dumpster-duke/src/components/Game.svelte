@@ -95,7 +95,7 @@
 
 		<UI>
 			{#snippet gameName()}
-				<UiGameName name="DUMPSTER DUKE" />
+				<UiGameName name="" />
 			{/snippet}
 			{#snippet logo()}
 				<!-- until the logo plate art arrives: the title in the game font -->
@@ -115,6 +115,6 @@
 
 <GameModals>
 	{#snippet version()}
-		<GameVersion version="0.0.0" />
+		<GameVersion version="1.0.0" />
 	{/snippet}
 </GameModals>

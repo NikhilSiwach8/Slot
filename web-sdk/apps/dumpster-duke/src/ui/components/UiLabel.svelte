@@ -3,6 +3,7 @@
 	import { WHITE } from 'constants-shared/colors';
 
 	import UiArt from './UiArt.svelte';
+	import { socialText } from '../../game/social';
 	import { UI_BASE_FONT_SIZE } from '../constants';
 
 	type Props = {
@@ -29,7 +30,7 @@
 	{#if props.tiled}
 		<UiArt name="bar_panel" stretch width={PANEL.width} height={PANEL.height} y={UI_BASE_FONT_SIZE * 0.95} />
 	{/if}
-	<BitmapText anchor={{ x: 0.5, y: 0 }} text={props.label.toUpperCase()} style={labelStyle} />
+	<BitmapText anchor={{ x: 0.5, y: 0 }} text={socialText(props.label).toUpperCase()} style={labelStyle} />
 	<Text anchor={{ x: 0.5, y: 0 }} text={props.value} style={valueStyle} y={UI_BASE_FONT_SIZE * 0.85} />
 {:else}
 	{#if props.tiled}
@@ -41,6 +42,6 @@
 			x={UI_BASE_FONT_SIZE * 5}
 		/>
 	{/if}
-	<BitmapText anchor={{ x: 0, y: 0.5 }} text={props.label.toUpperCase()} style={labelStyle} />
+	<BitmapText anchor={{ x: 0, y: 0.5 }} text={socialText(props.label).toUpperCase()} style={labelStyle} />
 	<Text anchor={{ x: 1, y: 0.5 }} text={props.value} style={valueStyle} x={UI_BASE_FONT_SIZE * 10} />
 {/if}

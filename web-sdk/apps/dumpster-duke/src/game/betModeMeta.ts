@@ -39,7 +39,7 @@ export const BET_MODE_META: BetModeMeta = {
 				`The Loot Bag multiplier never resets during the raid.`,
 			dialog: `RTP ${formatRtp(bonus.rtp)} · Max win ${bonus.max_win.toLocaleString('en-US')}x`,
 			button: 'BUY',
-			betAmountLabel: 'BONUS BUY',
+			betAmountLabel: 'BONUS BUY', // shown as "BONUS" in social mode (see UiLabel)
 			tickerIdle: '',
 			tickerSpin: '',
 		},

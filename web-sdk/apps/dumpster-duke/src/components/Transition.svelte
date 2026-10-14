@@ -11,6 +11,7 @@
 	const context = getContext();
 
 	let transitioning = $state(false);
+	let opening = $state(false);
 	let oncomplete = $state(() => {});
 
 	context.eventEmitter.subscribeOnMount({
@@ -24,8 +25,14 @@
 {#if transitioning}
 	<TransitionAnimation
 		oncomplete={() => {
+			// covered: let the scene switch underneath, then open the curtain
 			oncomplete();
 			transitioning = false;
+			opening = true;
 		}}
 	/>
+{/if}
+
+{#if opening}
+	<TransitionAnimation opening oncomplete={() => (opening = false)} />
 {/if}

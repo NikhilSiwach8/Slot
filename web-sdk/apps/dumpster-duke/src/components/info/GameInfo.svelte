@@ -12,6 +12,7 @@
 		formatRtp,
 		formatX,
 	} from '../../game/rules';
+	import { socialWording } from '../../game/social';
 
 	type Props = { start?: 'rules' | 'payTable' };
 	const props: Props = $props();
@@ -26,7 +27,7 @@
 	};
 </script>
 
-<article class="info">
+<article class="info" use:socialWording>
 	<h1>Dumpster Duke</h1>
 
 	<section>
@@ -129,8 +130,7 @@
 		{#if buy}
 			<p>
 				Buy the Midnight Raid for <strong>{buy.cost}× the bet</strong>. The bought round starts with
-				4, 5 or 6 Golden Trash Cans and is then played exactly like a triggered raid. A bought raid
-				always pays something. RTP of the bonus buy: {formatRtp(buy.rtp)}. Maximum win:
+				4, 5 or 6 Golden Trash Cans and is then played exactly like a triggered raid. Bought raids always pay something. RTP of the bonus buy: {formatRtp(buy.rtp)}. Maximum win:
 				{formatX(buy.maxWin)} the bet.
 			</p>
 		{:else}

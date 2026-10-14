@@ -74,6 +74,3 @@ export const getSymbolInfo = ({
 	const symbolKey = getSymbolKey({ rawSymbol });
 	return SYMBOL_INFO_MAP[symbolKey][state];
 };
-
-// Kept for API compatibility with the template; Duke symbols have no separate background layer.
-export const getSymbolBackgroundInfo = (_: { rawSymbol: RawSymbol; state: SymbolState }) => null;

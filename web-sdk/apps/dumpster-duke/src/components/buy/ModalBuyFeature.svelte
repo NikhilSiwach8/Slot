@@ -14,6 +14,8 @@
 	import { stateBonus, stateBonusDerived } from 'components-ui-html/src/stateBonus.svelte';
 	import type { EmitterEventModal } from 'components-ui-html';
 
+	import { socialWording } from '../../game/social';
+
 	const { eventEmitter } = getContextEventEmitter<EmitterEventModal>();
 
 	// literal paths so Vite can resolve them
@@ -52,7 +54,7 @@
 		<div class="panel" style="background-image: url({PANEL});" onclick={(event) => event.stopPropagation()}>
 			<button class="close" aria-label="Close" onclick={close}></button>
 
-			<div class="content">
+			<div class="content" use:socialWording>
 				{#if !confirming}
 					{#each buyList as mode}
 						<div class="offer">

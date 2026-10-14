@@ -7,69 +7,49 @@
 </script>
 
 <script lang="ts">
-	import { BitmapText, SpineProvider, SpineSlot, SpineTrack } from 'pixi-svelte';
-	import { waitForResolve } from 'utils-shared/wait';
+	import { BitmapText, Container } from 'pixi-svelte';
+	import Rays from './fx/Rays.svelte';
+	import { createTween01, type Tween01, easeOutBack } from './fx/timeline.svelte';
 	import { stateBetDerived } from 'state-shared';
 
 	import { getContext } from '../game/context';
 	import { SYMBOL_SIZE } from '../game/constants';
 	import BoardContainer from './BoardContainer.svelte';
 
-	type Animation = 'explosion' | 'static';
 
 	const context = getContext();
 
 	let show = $state(false);
-	let animationName = $state<Animation>('static');
+	let slam = $state<Tween01 | null>(null);
 	let totalMultiplier = $state(0);
-	let oncomplete = $state(() => {});
 
 	context.eventEmitter.subscribeOnMount({
 		multiplierTotalShow: () => (show = true),
 		multiplierTotalHide: () => (show = false),
 		multiplierTotalUpdate: (emitterEvent) => (totalMultiplier = emitterEvent.totalMultiplier),
 		multiplierTotalAnimate: async () => {
-			animationName = 'explosion';
-			await waitForResolve((resolve) => (oncomplete = resolve));
+			slam = createTween01(900 / stateBetDerived.timeScale());
+			await slam.done;
 		},
 	});
 </script>
 
-{#snippet multiplierSnippet()}
-	<BitmapText
-		scale={3}
-		anchor={0.5}
-		text={`${totalMultiplier} X`}
-		style={{
-			fontFamily: 'gold',
-			fontSize: SYMBOL_SIZE,
-			letterSpacing: -5,
-		}}
-	/>
-{/snippet}
-
+<!-- total bottle-cap multiplier: slams onto the middle of the board over gold rays -->
 {#if show}
 	<BoardContainer>
-		<SpineProvider
+		<Container
 			x={context.stateGameDerived.boardLayout().width * 0.5}
 			y={context.stateGameDerived.boardLayout().height * 0.5}
-			key="tumble_multiplier"
-			width={context.stateGameDerived.boardLayout().width * 4}
+			alpha={slam ? Math.min(1, slam.t * 4) * (slam.t > 0.8 ? (1 - slam.t) * 5 : 1) : 1}
 		>
-			<SpineTrack
-				trackIndex={0}
-				{animationName}
-				timeScale={stateBetDerived.timeScale()}
-				listener={{
-					complete: oncomplete,
-				}}
-			/>
-			<SpineSlot slotName="tumblemultiplier">
-				{@render multiplierSnippet()}
-			</SpineSlot>
-			<SpineSlot slotName="tumblemultiplier_add">
-				{@render multiplierSnippet()}
-			</SpineSlot>
-		</SpineProvider>
+			<Rays radius={SYMBOL_SIZE * 2.2} count={12} />
+			<Container scale={slam ? 1.8 - 0.8 * easeOutBack(Math.min(1, slam.t * 2.5), 2.5) : 1}>
+				<BitmapText
+					anchor={0.5}
+					text={`${totalMultiplier}x`}
+					style={{ fontFamily: 'gold', fontSize: SYMBOL_SIZE * 1.6 }}
+				/>
+			</Container>
+		</Container>
 	</BoardContainer>
 {/if}

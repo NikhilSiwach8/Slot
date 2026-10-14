@@ -8,25 +8,25 @@
 </script>
 
 <script lang="ts">
-	import { Sprite, SpineProvider, SpineTrack, SpineSlot } from 'pixi-svelte';
+	import { BitmapText, Container } from 'pixi-svelte';
 	import { FadeContainer, WinCountUpProvider, ResponsiveBitmapText } from 'components-pixi';
 	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
 	import { waitForResolve } from 'utils-shared/wait';
-	import { CanvasSizeRectangle } from 'components-layout';
+	import { CanvasSizeRectangle, MainContainer } from 'components-layout';
 	import { OnMount } from 'components-shared';
-	import { stateUrlDerived } from 'state-shared';
 
 	import { getContext } from '../game/context';
-	import FreeSpinAnimation from './FreeSpinAnimation.svelte';
+	import Plaque from './fx/Plaque.svelte';
+	import Rays from './fx/Rays.svelte';
+	import { createTween01, type Tween01, easeOutBack } from './fx/timeline.svelte';
 	import PressToContinue from './PressToContinue.svelte';
 	import WinCoins from './WinCoins.svelte';
-
-	type AnimationName = 'intro' | 'idle';
 
 	const context = getContext();
 
 	let show = $state(true);
-	let animationName = $state<AnimationName>('intro');
+	const PANEL = { width: 1100, height: 620 };
+	let intro = $state(createTween01(1));
 	let amount = $state(0);
 	let winLevelData = $state<WinLevelData>();
 	let oncomplete = $state(() => {});
@@ -38,6 +38,7 @@
 		freeSpinOutroCountUp: async (emitterEvent) => {
 			amount = emitterEvent.amount;
 			winLevelData = emitterEvent.winLevelData;
+			intro = createTween01(500);
 			await waitForResolve((resolve) => (oncomplete = resolve));
 		},
 	});
@@ -53,54 +54,26 @@
 
 				<CanvasSizeRectangle backgroundColor={0x000000} backgroundAlpha={0.5} />
 
-				<FreeSpinAnimation>
-					{#snippet children({ sizes })}
-						{#if isBigWin}
-							<Sprite
-								anchor={{ x: 0.5, y: 1.2 }}
-								width={500 * 2.2}
-								height={156 * 2.2}
-								key="freespins_{stateUrlDerived.lang()}.png"
-							/>
-						{:else}
-							<Sprite
-								anchor={{ x: 0.5, y: 1.2 }}
-								width={500 * 4.5}
-								height={80 * 4.5}
-								key="winsmall_{stateUrlDerived.lang()}.png"
-							/>
-						{/if}
-
-						<SpineProvider key="fsOutroNumber" width={sizes.width * 0.4}>
-							<SpineTrack
-								trackIndex={0}
-								{animationName}
-								loop={animationName === 'idle'}
-								listener={{
-									complete: () => (animationName = 'idle'),
-								}}
-							/>
-							<SpineSlot slotName="slot_number">
-								<ResponsiveBitmapText
-									anchor={0.5}
-									style={{
-										fontFamily: 'gold',
-										fontSize: sizes.width * 0.15,
-									}}
-									text={bookEventAmountToCurrencyString(countUpAmount)}
-									maxWidth={sizes.width}
-								/>
-							</SpineSlot>
-						</SpineProvider>
-
-						<Sprite
-							anchor={{ x: 0.5, y: isBigWin ? -3.2 : -2 }}
-							width={177 * (isBigWin ? 2.2 : 3)}
-							height={42 * (isBigWin ? 2.2 : 3)}
-							key="totalwin.png"
+				<!-- end of the Midnight Raid: total win on a plaque over gold rays -->
+				<MainContainer>
+					<Container
+						x={context.stateLayoutDerived.mainLayout().width * 0.5}
+						y={context.stateLayoutDerived.mainLayout().height * 0.5}
+						scale={easeOutBack(Math.min(1, intro.t), 1.8)}
+					>
+						<Rays radius={PANEL.width * 0.95} />
+						<Plaque width={PANEL.width} height={PANEL.height} glow={1} />
+						<BitmapText anchor={0.5} y={-PANEL.height * 0.3} text="MIDNIGHT RAID" style={{ fontFamily: 'gold', fontSize: PANEL.height * 0.16 }} />
+						<BitmapText anchor={0.5} y={-PANEL.height * 0.12} text="TOTAL WIN" style={{ fontFamily: 'gold', fontSize: PANEL.height * 0.11 }} />
+						<ResponsiveBitmapText
+							anchor={0.5}
+							y={PANEL.height * 0.14}
+							style={{ fontFamily: 'gold', fontSize: PANEL.height * (isBigWin ? 0.28 : 0.24) }}
+							text={bookEventAmountToCurrencyString(countUpAmount)}
+							maxWidth={PANEL.width * 0.85}
 						/>
-					{/snippet}
-				</FreeSpinAnimation>
+					</Container>
+				</MainContainer>
 
 				<WinCoins emit={!countUpCompleted} levelAlias={winLevelData?.alias} />
 
