@@ -20,6 +20,7 @@ class GameConfig(Config):
         super().__init__()
         self.game_id = "dumpster_duke"
         self.game_name = "dumpster_duke"
+        self.provider_name = "nyxhilx"
         self.provider_number = 0
         self.working_name = "Dumpster Duke"
         self.wincap = 10000.0

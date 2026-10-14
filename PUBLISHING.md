@@ -54,10 +54,11 @@ Every bonus buy triggers free spins and always pays, so the bonus mode has no lo
 
 ## 5. Manual steps (need your account)
 
-1. **Provider name.** Replace `sample_provider` in `web-sdk/apps/dumpster-duke/src/game/config.ts` with your provider slug. Then rerun `scripts/package_release.sh`.
-2. **Dashboard art.** Upload the following in the Tile Editor:
-   - the game tile: bright background plus foreground character, no text;
-   - your provider logo.
+1. **Provider name** is `nyxhilx` (set in `math/dumpster_duke/game_config.py`; `sync_fe_config.py` copies it to the client).
+2. **Dashboard art** (made by `python art/make_tile.py nyxhilx`, files in `art/tile/`):
+   - Tile Editor → Background: `tile_background.png`; Foreground element: `tile_foreground.png`; title text "Dumpster Duke" is typed in the editor.
+   - Team Settings → Branding: `provider_logo.png`.
+   - `tile_preview.png` is only a mock of the finished tile; `tile_logo.png` is the full logo for marketing.
 3. **Test on the real RGS.**
    - Play both modes from the dashboard preview.
    - Open a replay link with `?replay=true` for each event id above.

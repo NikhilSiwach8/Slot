@@ -27,6 +27,7 @@ os.chdir(MATH_SDK)
 from game_config import GameConfig  # noqa: E402
 
 gc = GameConfig()
+config["providerName"] = gc.provider_name  # also correct when the books predate a rename
 config["dukeRules"] = {
     "minCluster": min(n for n, _ in gc.paytable),
     "scatterAwards": [{"scatters": k, "spins": v} for k, v in sorted(gc.freespin_triggers[gc.basegame_type].items())],
