@@ -20,9 +20,11 @@ The math folder was checked with `validate-books-index.mjs` and passed.
 | Mode | Cost | RTP | Max win | Max win frequency |
 |---|---|---|---|---|
 | base | 1x | 96.50% | 10,000x | 1 in 5.0M |
+| ante (Double Chance) | 1.25x | 96.50% | 10,000x | 1 in 4.0M |
 | bonus (buy Midnight Raid) | 100x | 96.50% | 10,000x | 1 in 100k |
 
 Base game: hits 1 in 3.44, triggers the bonus 1 in 210, std dev 8.7.
+Double Chance (ante): hits 1 in 4.32, triggers the bonus 1 in 105 (2x base), same average raid (~78x), std dev 9.0.
 
 ## 3. What was done to meet the approval checklist
 
@@ -46,6 +48,12 @@ Base game: hits 1 in 3.44, triggers the bonus 1 in 210, std dev 8.7.
 | base | bonus trigger | 0 | 51.6x |
 | base | big bonus | 5 | 130x |
 | base | win cap | 629 | 10,000x |
+| ante | normal win | 0 | 1.7x |
+| ante | big win | 1028 | 28.5x |
+| ante | loss | 1 | 0x |
+| ante | bonus trigger | 4 | 13x |
+| ante | big bonus | 58 | 144.2x |
+| ante | win cap | 701 | 10,000x |
 | bonus | bonus (every buy triggers) | 0 | 51.6x |
 | bonus | big bonus | 1 | 633.6x |
 | bonus | win cap | 1875 | 10,000x |

@@ -18,6 +18,7 @@
 	import Game from '../components/Game.svelte';
 	import { setContext } from '../game/context';
 	import { eventEmitter } from '../game/eventEmitter';
+	import { stateBet } from 'state-shared';
 
 	
 	setContext();
@@ -61,6 +62,19 @@
 		data: {},
 		action: async () => {
 			eventEmitter.broadcast({ type: 'boardHide' });
+		},
+	})}
+	{template}
+/>
+
+<Story
+	name="double chance on"
+	args={templateArgs({
+		skipLoadingScreen: true,
+		data: {},
+		action: async () => {
+			stateBet.betAmount = 1;
+			stateBet.activeBetModeKey = 'ANTE';
 		},
 	})}
 	{template}

@@ -1,3 +1,4 @@
+import os
 """Main file for generating results for sample ways-pay game."""
 
 from gamestate import GameState
@@ -17,18 +18,24 @@ if __name__ == "__main__":
     compression = True
     profiling = False
 
-    num_sim_args = {
+    all_sims = {
         "base": int(2e5),
+        "ante": int(2e5),
         "bonus": int(1e5),
     }
+    # optional: python run.py ante   (only re-simulate/optimise the named modes)
+    import sys
+
+    chosen = sys.argv[1:] or list(all_sims)
+    num_sim_args = {m: all_sims[m] for m in chosen}
 
     run_conditions = {
-        "run_sims": True,
+        "run_sims": os.environ.get("SKIP_SIMS") != "1",  # SKIP_SIMS=1: re-optimise existing books
         "run_optimization": True,
         "run_analysis": True,
         "run_format_checks": True,
     }
-    target_modes = ["base", "bonus"]
+    target_modes = chosen
 
     config = GameConfig()
     gamestate = GameState(config)

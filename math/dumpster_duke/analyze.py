@@ -4,7 +4,7 @@ import csv, math, os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 LIB = os.path.join(HERE, "library")
-COST = {"base": 1.0, "bonus": 100.0}
+COST = {"base": 1.0, "ante": 1.25, "bonus": 100.0}
 WINCAP = 10000.0
 
 

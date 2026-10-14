@@ -19,6 +19,12 @@
 	{/snippet}
 </Story>
 
+<Story name="ante on">
+	{#snippet template()}
+		<StoryLocale lang="en"><BuyFeatureScene modal="buyBonus" ante /></StoryLocale>
+	{/snippet}
+</Story>
+
 <Story name="confirm">
 	{#snippet template()}
 		<StoryLocale lang="en"><BuyFeatureScene modal="buyBonusConfirm" /></StoryLocale>

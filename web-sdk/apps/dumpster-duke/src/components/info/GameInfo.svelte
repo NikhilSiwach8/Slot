@@ -17,8 +17,10 @@
 	type Props = { start?: 'rules' | 'payTable' };
 	const props: Props = $props();
 
-	const base = BET_MODES.find((mode) => !mode.buyBonus)!;
+	const base = BET_MODES.find((mode) => mode.name === 'base')!;
+	const ante = BET_MODES.find((mode) => mode.name === 'ante');
 	const buy = BET_MODES.find((mode) => mode.buyBonus);
+	const MODE_NAMES: Record<string, string> = { base: 'Base game', ante: 'Double Chance', bonus: 'Bonus buy' };
 	const retrigger = RETRIGGER[0];
 	const range = (from: number, to: number) => (to >= 30 ? `${from}+` : from === to ? `${from}` : `${from}–${to}`);
 
@@ -138,6 +140,19 @@
 		{/if}
 	</section>
 
+	{#if ante}
+		<section>
+			<h2>Double Chance</h2>
+			<p>
+				Switch on Double Chance in the bonus menu to bet <strong>{ante.cost}× the bet</strong> per spin. While
+				it is on, the Midnight Raid triggers twice as often as in the base game. Base-game wins are a little
+				less frequent to balance the extra raids. Wins are calculated on the base bet. RTP with
+				Double Chance: {formatRtp(ante.rtp)}. Maximum win: {formatX(ante.maxWin)} the bet. Double Chance stays
+				on until you switch it off; the bonus buy is not available while it is on.
+			</p>
+		</section>
+	{/if}
+
 	<section>
 		<h2>General rules</h2>
 		<table>
@@ -145,7 +160,7 @@
 			<tbody>
 				{#each BET_MODES as mode}
 					<tr>
-						<td>{mode.buyBonus ? 'Bonus buy' : 'Base game'}</td>
+						<td>{MODE_NAMES[mode.name] ?? mode.name}</td>
 						<td>{formatX(mode.cost)}</td>
 						<td>{formatRtp(mode.rtp)}</td>
 						<td>{formatX(mode.maxWin)}</td>
@@ -167,7 +182,7 @@
 			<li><strong>+ / −</strong> — change the bet. Available bet levels are set by the casino.</li>
 			<li><strong>Auto spin</strong> — play several rounds automatically after you confirm the settings.</li>
 			<li><strong>Turbo</strong> — faster animations; results are unchanged.</li>
-			<li><strong>Buy bonus</strong> — buy the Midnight Raid (see Bonus buy).</li>
+			<li><strong>Buy bonus</strong> — open the bonus menu: buy the Midnight Raid or switch Double Chance on. While Double Chance is on, this button switches it off.</li>
 			<li><strong>Menu</strong> — rules, paytable, sound and settings. Sound can be muted at any time.</li>
 		</ul>
 	</section>

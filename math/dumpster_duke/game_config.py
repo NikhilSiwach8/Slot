@@ -98,7 +98,7 @@ class GameConfig(Config):
         # Every bottle-cap value a player can see, for the rules screen.
         self.cap_values = sorted(set(base_caps) | set(fs_caps) | set(wincap_caps))
 
-        mode_maxwins = {"base": 10000, "bonus": 10000}
+        mode_maxwins = {"base": 10000, "ante": 10000, "bonus": 10000}
 
         def wincap_dist(scatter_triggers):
             return Distribution(
@@ -134,18 +134,10 @@ class GameConfig(Config):
                 },
             )
 
-        self.bet_modes = [
-            BetMode(
-                name="base",
-                cost=1.0,
-                rtp=self.rtp,
-                max_win=mode_maxwins["base"],
-                auto_close_disabled=False,
-                is_feature=True,
-                is_buybonus=False,
-                distributions=[
+        def base_dists(freegame_quota=0.1):
+            return [
                     wincap_dist({5: 1, 6: 2}),
-                    freegame_dist(0.1, {4: 20, 5: 4, 6: 1}),
+                    freegame_dist(freegame_quota, {4: 20, 5: 4, 6: 1}),
                     Distribution(
                         criteria="0",
                         quota=0.4,
@@ -167,7 +159,29 @@ class GameConfig(Config):
                             "force_freegame": False,
                         },
                     ),
-                ],
+                ]
+
+        self.bet_modes = [
+            BetMode(
+                name="base",
+                cost=1.0,
+                rtp=self.rtp,
+                max_win=mode_maxwins["base"],
+                auto_close_disabled=False,
+                is_feature=True,
+                is_buybonus=False,
+                distributions=base_dists(),
+            ),
+            # Ante: 25% extra stake, Midnight Raid lands twice as often (hit rates set in game_optimization.py)
+            BetMode(
+                name="ante",
+                cost=1.25,
+                rtp=self.rtp,
+                max_win=mode_maxwins["ante"],
+                auto_close_disabled=False,
+                is_feature=True,
+                is_buybonus=False,
+                distributions=base_dists(freegame_quota=0.15),
             ),
             BetMode(
                 name="bonus",

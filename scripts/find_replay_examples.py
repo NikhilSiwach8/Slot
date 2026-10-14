@@ -46,7 +46,7 @@ def examples(mode):
 
 
 if __name__ == "__main__":
-    for mode in ("base", "bonus"):
+    for mode in ("base", "ante", "bonus"):
         print(mode)
         for name, (book_id, payout) in examples(mode).items():
             print(f"  {name:14s} event {book_id:>7}  pays {payout:g}x")

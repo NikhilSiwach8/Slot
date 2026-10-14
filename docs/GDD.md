@@ -79,14 +79,17 @@ values are fixed once the math is signed off.)
 
 Measured from the optimized lookup tables (`math/dumpster_duke/analyze.py`):
 
-| | Base (1×) | Bonus buy (100×) |
-|---|---|---|
-| RTP | 96.50% | 96.50% |
-| Hit rate | 1 in 3.44 | every buy pays |
-| Bonus trigger | 1 in 210 spins | — |
-| Max win 10,000× | 1 in 5.0M spins | 1 in 100k buys |
-| Std dev (per unit cost) | 8.7 | 1.6 |
-| Simulations | 200,000 | 100,000 |
+| | Base (1×) | Double Chance / ante (1.25×) | Bonus buy (100×) |
+|---|---|---|---|
+| RTP | 96.50% | 96.50% | 96.50% |
+| Hit rate | 1 in 3.44 | 1 in 4.32 | every buy pays |
+| Bonus trigger | 1 in 210 spins | 1 in 105 spins | — |
+| Max win 10,000× | 1 in 5.0M spins | 1 in 4.0M spins | 1 in 100k buys |
+| Std dev (per unit cost) | 8.7 | 9.0 | 1.6 |
+| Simulations | 200,000 | 200,000 | 100,000 |
+
+Double Chance keeps the raid's average size (~78× bet) and doubles its frequency. The extra
+stake pays for that: base-game wins keep the same size spread but land a bit less often.
 
 Stake rules met: RTP 90–98% and modes within 0.5%; max win more often than
 1 in 10M; hit rate better than 1 in 20; 100k+ simulations; no gaps between small
