@@ -1,6 +1,6 @@
 """Generate Dumpster Duke art with OpenAI's image model, then 'humanise' it.
 
-Needs OPENAI_API_KEY and network access to api.openai.com.
+Needs OPENAI_API_KEY (env var or network secret) and network access to api.openai.com.
 Usage: python art/generate.py [--only H1,S] [--model gpt-image-1]
 Outputs: art/raw/<key>.png (as generated) and art/final/<key>.webp (processed).
 """
@@ -21,7 +21,8 @@ RAW, FINAL = os.path.join(HERE, "raw"), os.path.join(HERE, "final")
 def generate(prompt, size, model, transparent):
     resp = requests.post(
         "https://api.openai.com/v1/images/generations",
-        headers={"Authorization": f"Bearer {os.environ['OPENAI_API_KEY']}"},
+        # The key may be injected by the environment's network proxy instead of the shell.
+        headers={"Authorization": f"Bearer {os.environ['OPENAI_API_KEY']}"} if os.environ.get("OPENAI_API_KEY") else {},
         json={
             "model": model,
             "prompt": prompt,
@@ -32,7 +33,8 @@ def generate(prompt, size, model, transparent):
         },
         timeout=300,
     )
-    resp.raise_for_status()
+    if not resp.ok:
+        raise SystemExit(f"OpenAI error {resp.status_code}: {resp.text[:500]}")
     return base64.b64decode(resp.json()["data"][0]["b64_json"])
 
 
@@ -55,7 +57,7 @@ def humanise(img, seed):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", default="")
-    ap.add_argument("--model", default="gpt-image-1")
+    ap.add_argument("--model", default="gpt-image-2")
     args = ap.parse_args()
     spec = json.load(open(os.path.join(HERE, "prompts.json")))
     os.makedirs(RAW, exist_ok=True)
