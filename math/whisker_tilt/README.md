@@ -23,8 +23,17 @@ python3 make_reels.py                              # regenerate reels/*.csv
 | `game_executables.py` | the Tilt Tumble loop, coin banking, Snowstorm, feature entry, Off the Shelf zeroing |
 | `game_events.py` | the new book events (below) |
 | `gamestate.py` | base spin and free-spin flow |
-| `game_optimization.py` | optimizer targets per mode |
+| `game_optimization.py` | Rust-optimizer targets for the buy modes (bonus, super, mystery, max_or_nothing) |
+| `natural_weights.py` | weights for base, ante and feature: every book in a criteria weighs the same, criteria shares set the trigger rate, max-win rate and RTP |
 | `make_reels.py` | reel strips: `BR0` base, `BRA` Catnip, `FR0` Snow Day, `FRS` Super, `WCAP` max-win builder |
+
+## Why base modes skip the optimizer
+
+The Rust optimizer builds each criteria's distribution from random bell curves around the
+target average. For this game that bunched base-mode bonuses around ~85× and squeezed base
+wins of 1–5× from 1 in 4 spins to 1 in 218. `natural_weights.py` keeps the simulated spread
+and only sets how often each criteria happens. The buy modes keep the optimizer, which left
+their shape close to the simulations.
 
 ## How the tilt is simulated
 

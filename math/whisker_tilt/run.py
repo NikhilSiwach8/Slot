@@ -3,7 +3,7 @@
     python run.py                    # every mode at full size
     python run.py bonus super        # only the named modes
     SIM_SCALE=0.05 python run.py     # quick smoke run at 5% of the sims
-    SKIP_SIMS=1 python run.py        # re-optimise existing books
+    SKIP_SIMS=1 python run.py        # re-weight existing books
 """
 
 import os
@@ -14,9 +14,16 @@ from game_config import GameConfig
 from game_optimization import OptimizationSetup
 from optimization_program.run_script import OptimizationExecution
 from utils.game_analytics.run_analysis import create_stat_sheet
-from utils.rgs_verification import execute_all_tests
 from src.state.run_sims import create_books
 from src.write_data.write_configs import generate_configs
+import utils.rgs_verification as rgs_verification
+from natural_weights import MODES as NATURAL_MODES, weight_mode
+
+# The SDK's payout-spacing statistic needs 3+ distinct payouts; Off the Shelf has two (0 and the cap).
+_min_dist_difference = rgs_verification.min_dist_difference
+rgs_verification.min_dist_difference = lambda dist: (
+    _min_dist_difference(dist) if len(dist) > 2 else int(round((max(dist) - min(dist)) * 100))
+)
 
 if __name__ == "__main__":
 
@@ -58,7 +65,13 @@ if __name__ == "__main__":
     generate_configs(gamestate)
 
     if run_conditions["run_optimization"]:
-        OptimizationExecution().run_all_modes(config, target_modes, rust_threads)
+        # Base, Catnip and Paw Spins keep their natural win spread (natural_weights.py);
+        # the buy modes go through the Rust optimizer.
+        for mode in target_modes:
+            if mode in NATURAL_MODES:
+                weight_mode(mode)
+        optimised = [m for m in target_modes if m not in NATURAL_MODES]
+        OptimizationExecution().run_all_modes(config, optimised, rust_threads)
         generate_configs(gamestate)
 
     if run_conditions["run_analysis"]:
@@ -70,4 +83,4 @@ if __name__ == "__main__":
             print(f"Skipped the xlsx stat sheet ({err}); run analyze.py for the mode summary.")
 
     if run_conditions["run_format_checks"]:
-        execute_all_tests(config)
+        rgs_verification.execute_all_tests(config)
