@@ -1,5 +1,7 @@
-<!-- Halloween atmosphere over the background art (behind the reels): a dark purple vignette,
-     drifting fog and rising sparks. `layer="front"` draws the bats instead (above the reels). -->
+<!-- Halloween atmosphere. layer "back" (behind the reels): dark purple vignette, fog banks over
+     the whole screen plus thick ground fog, drifting ghosts and rising sparks. layer "front"
+     (over the reels, under the HUD): a thin fog veil kept light so symbols stay readable, bats
+     and the odd lightning flicker. -->
 <script lang="ts">
 	import type * as PIXI from 'pixi.js';
 	import { Graphics } from 'pixi-svelte';
@@ -8,6 +10,8 @@
 	import Fog from './Fog.svelte';
 	import Embers from './Embers.svelte';
 	import Bats from './Bats.svelte';
+	import Ghosts from './Ghosts.svelte';
+	import Lightning from './Lightning.svelte';
 
 	type Props = { layer?: 'back' | 'front' };
 	const props: Props = $props();
@@ -33,8 +37,12 @@
 
 {#if (props.layer ?? 'back') === 'back'}
 	<Graphics draw={drawVignette} />
-	<Fog width={canvas.width} height={canvas.height} alpha={0.55} />
+	<Fog width={canvas.width} height={canvas.height} variant="full" alpha={0.9} />
+	<Ghosts width={canvas.width} height={canvas.height} />
+	<Fog width={canvas.width} height={canvas.height} variant="ground" alpha={0.9} />
 	<Embers width={canvas.width} height={canvas.height} />
 {:else}
+	<Fog width={canvas.width} height={canvas.height} variant="veil" alpha={0.55} />
 	<Bats width={canvas.width} height={canvas.height} />
+	<Lightning width={canvas.width} height={canvas.height} />
 {/if}
