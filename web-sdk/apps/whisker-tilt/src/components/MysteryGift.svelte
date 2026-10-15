@@ -41,7 +41,7 @@
 	<MainContainer>
 		<Container x={main.width / 2} y={main.height * 0.42}>
 			{#if opened > 0}
-				<Rays radius={420 * opened} />
+				<Rays radius={420 * opened} colour={0xffd36b} alpha={0.6} />
 			{/if}
 			<Container y={-500 * (1 - drop)} rotation={wobble * 0.12}>
 				<Sprite
