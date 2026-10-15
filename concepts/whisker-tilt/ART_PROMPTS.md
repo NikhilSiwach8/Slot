@@ -4,18 +4,18 @@
 
 ## Status
 
-Sheet 1 (`art/whisker_tilt/source/sheet_1.webp`) is cut into `art/whisker_tilt/raw/` by
-`python art/whisker_tilt/slice_sheet.py art/whisker_tilt/source/sheet_1.webp`
-(preview: `art/whisker_tilt/contact_sheet.png`).
+Cut into `art/whisker_tilt/raw/` by
+`python art/whisker_tilt/slice_sheet.py art/whisker_tilt/source/{sheet_1,sheet_2,paw}.webp`
+(preview: `python art/whisker_tilt/contact_sheet.py` → `art/whisker_tilt/contact_sheet.png`).
 
-| Done (19) | Still needed (8) |
+| Done (20) | Still needed (7) |
 |---|---|
-| H1–H4, L1–L4, S, C, the four keepers, `box_frame`, `gift_closed`, `gift_open`, `crack_overlay`, `logo_plate` | `mitten.png`, `mitten_paw.png` (the sheet drew a knitted glove, not a cat — use prompts 11b / 12b below), backgrounds 22–27 |
+| H1–H4, L1–L4, S, C and the four keepers (sheet 1); `box_frame`, `gift_closed`, `gift_open`, `crack_overlay`, `logo_plate` (sheet 2); `mitten_paw` | `mitten.png` — use prompt **11b**, which now matches the paw (grey cat, white socks, red collar with a gold bell); backgrounds 22–27 |
 
-Fixed in code from sheet 1: the star was red like the round bauble, so it's recoloured pine
-green; the frame was wide, so it's narrowed to the square board; the red bauble's right edge
-was hidden behind the blue one, so it's rebuilt from its mirror image. The coin's centre has a
-snowflake instead of being empty: the game prints its value on a small plaque over it.
+Fixed in code: sheet 1's checkerboard background is removed; its star was red like the round
+bauble, so it's recoloured pine green; its red bauble's right edge was hidden behind the blue
+one, so it's rebuilt from its mirror image. Frames are narrowed to the square board. The coin's
+centre has a snowflake instead of being empty: the game prints its value on a small plaque over it.
 
 ## How to use
 
@@ -132,10 +132,11 @@ Character: Mitten, a fluffy ginger tabby cat with white socks, big round amber e
 
 ### 11b. Mitten the cat, retry → `mitten.png`
 
-If ChatGPT draws a glove or mitten, use this one instead:
+Use this one: it matches the paw you already made (`mitten_paw.png`), so cat and paw look
+like the same animal.
 
 ```
-Character: a CAT named Mitten (an animal, NOT a glove or mitten). A fluffy orange ginger tabby house cat with white fur on her paws and chest, pointed cat ears, long whiskers, big round amber eyes, a long striped tail and a mischievous grin, sitting upright with one front paw raised as if about to bat something. Full body, three-quarter view facing left. Portrait 1024×1536, transparent background PNG, same style as set up above.
+Character: a CAT named Mitten (an animal, NOT a glove or mitten). A fluffy smoky-grey house cat with cream-white fur on all four paws and her chest, pink toe beans, a red collar with a small gold jingle bell, pointed cat ears, long whiskers, big round amber eyes, a long fluffy grey tail and a mischievous grin. She sits upright with one front paw raised as if about to bat something. Full body, three-quarter view facing left. Portrait 1024×1536, transparent background PNG, same style as set up above.
 ```
 
 ### 12b. Mitten's paw, retry → `mitten_paw.png`

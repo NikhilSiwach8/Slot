@@ -1,7 +1,11 @@
-"""Cut a ChatGPT sheet whose "transparent" background is a painted grey/white checkerboard
-into transparent PNGs in art/whisker_tilt/raw/.
+"""Cut ChatGPT art sheets into transparent PNGs in art/whisker_tilt/raw/.
 
-Usage: python art/whisker_tilt/slice_sheet.py art/whisker_tilt/source/sheet_1.webp
+Usage: python art/whisker_tilt/slice_sheet.py art/whisker_tilt/source/<sheet>.webp ...
+Each sheet has its own boxes in SHEETS. Later sheets replace earlier cuts of the same name,
+so run them in order: sheet_1, sheet_2, paw.
+
+sheet_2 and paw come with real transparency: they are only cropped and their alpha cleaned.
+sheet_1's "transparent" background is a painted grey/white checkerboard instead:
 
 How the background is removed:
 - checker-like pixels (near-neutral and bright) connected to the sheet edge are background;
@@ -26,7 +30,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 RAW = os.path.join(HERE, "raw")
 
 # name: (left, top, right, bottom) on the 1536x1024 sheet_1
-BOXES = {
+SHEET_1 = {
     "H1": (4, 60, 280, 345),
     "H2": (279, 60, 518, 342),
     "H3": (518, 8, 655, 358),
@@ -46,6 +50,19 @@ BOXES = {
     "gift_open": (646, 698, 892, 995),
     "crack_overlay": (896, 724, 1214, 1012),
     "logo_plate": (1216, 722, 1536, 986),
+}
+# sheet_2 (1125x750, real alpha): the props again, with a squarer frame. These replace sheet_1's.
+SHEET_2 = {
+    "box_frame": (0, 40, 470, 424),
+    "gift_closed": (450, 60, 776, 430),
+    "gift_open": (778, 0, 1102, 440),
+    "crack_overlay": (10, 415, 562, 750),
+    "logo_plate": (565, 405, 1088, 742),
+}
+SHEETS = {
+    "sheet_1": ("checker", SHEET_1),
+    "sheet_2": ("alpha", SHEET_2),
+    "paw": ("alpha", {"mitten_paw": (395, 135, 1126, 1222)}),
 }
 PER_PIXEL = {"crack_overlay"}
 # The three baubles touch on the sheet: drop the neighbour's colour from each crop
@@ -108,6 +125,11 @@ def cut_object(rgb):
     # Eat the light fringe left by the checker, then soften the edge.
     alpha = alpha.filter(ImageFilter.MinFilter(3)).filter(ImageFilter.GaussianBlur(0.7))
     return np.asarray(alpha)
+
+
+def clean_alpha(alpha):
+    """Real-alpha sheets keep the background at 0-16 and the art at ~252: snap both ends."""
+    return (np.clip((alpha.astype(float) - 24) / (250 - 24), 0, 1) * 255).astype(np.uint8)
 
 
 def cut_per_pixel(rgb):
@@ -209,25 +231,38 @@ def trim(img, pad=6):
     return img.crop((max(0, l - pad), max(0, t - pad), min(img.width, r + pad), min(img.height, b + pad)))
 
 
-def main():
-    sheet = Image.open(sys.argv[1]).convert("RGB")
-    os.makedirs(RAW, exist_ok=True)
-    for name, box in BOXES.items():
-        rgb = np.asarray(sheet.crop(box)).astype(int)
-        alpha = cut_per_pixel(rgb) if name in PER_PIXEL else cut_object(rgb)
-        if name in PURGE:
+def cut_sheet(path):
+    stem = os.path.splitext(os.path.basename(path))[0]
+    kind, boxes = SHEETS[stem]
+    sheet = Image.open(path).convert("RGBA")
+    for name, box in boxes.items():
+        crop = np.asarray(sheet.crop(box)).astype(int)
+        rgb = crop[..., :3]
+        if kind == "alpha":
+            alpha = clean_alpha(crop[..., 3])
+        elif name in PER_PIXEL:
+            alpha = cut_per_pixel(rgb)
+        else:
+            alpha = cut_object(rgb)
+        if name in PURGE and kind == "checker":
             alpha = purge_colour(rgb, alpha, PURGE[name])
         img = Image.fromarray(np.dstack([rgb, alpha]).astype(np.uint8), "RGBA")
         if name not in PER_PIXEL:
             img = drop_neighbours(img)
         img = trim(img)
-        if name in PURGE:
+        if name in PURGE and kind == "checker":
             img = trim(tidy_bauble(img, mirror_fill=name == "L1"))
         fix = FIXES.get(name)
-        if fix:
+        if fix and (kind == "checker" or fix == "make_square"):
             img = globals()[fix](img)
         img.save(os.path.join(RAW, f"{name}.png"))
-        print(f"{name:14} {img.size[0]}x{img.size[1]}" + (f"  ({fix})" if fix else ""))
+        print(f"{stem:8} {name:14} {img.size[0]}x{img.size[1]}" + (f"  ({fix})" if fix else ""))
+
+
+def main():
+    os.makedirs(RAW, exist_ok=True)
+    for path in sys.argv[1:]:
+        cut_sheet(path)
 
 
 if __name__ == "__main__":
