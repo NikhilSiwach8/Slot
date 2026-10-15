@@ -18,6 +18,8 @@
 	// width / height of each keeper's art
 	const KEEPER_ASPECT = [237 / 320, 247 / 320, 205 / 320, 235 / 320];
 	const KEEPER_HEIGHT = SYMBOL_SIZE * 1.55;
+	const KEEPER_FONT = { fontFamily: 'gold', fontSize: SYMBOL_SIZE * 0.36 };
+	const COIN_FONT = { fontFamily: 'gold', fontSize: SYMBOL_SIZE * 0.32 };
 	const floorWall = $derived(GRAVITIES.indexOf(stateBoard.gravity));
 
 	const cells = $derived([
@@ -89,7 +91,8 @@
 					<BitmapText
 						anchor={0.5}
 						text={`x${cell.raw.multiplier}`}
-						style={{ fontFamily: 'gold', fontSize: SYMBOL_SIZE * (cell.raw.multiplier >= 10 ? 0.27 : 0.32) }}
+						scale={cell.raw.multiplier >= 10 ? 0.85 : 1}
+						style={COIN_FONT}
 					/>
 				{/if}
 			</Container>
@@ -142,11 +145,13 @@
 							.fill({ color: lit ? 0x7a3b0c : 0x23324d, alpha: 0.92 })
 							.stroke({ color: lit ? 0xffd36b : 0x7f8fa8, width: 3 })}
 				/>
+				<!-- the font style stays fixed (changing it re-renders bitmap glyphs dark); size via scale -->
 				<BitmapText
 					anchor={0.5}
-					text={lit ? `x${value}` : 'x0'}
+					text={`x${value}`}
 					alpha={lit ? 1 : 0.55}
-					style={{ fontFamily: 'gold', fontSize: SYMBOL_SIZE * (value >= 100 ? 0.3 : 0.36) }}
+					scale={value >= 100 ? 0.82 : 1}
+					style={KEEPER_FONT}
 				/>
 			</Container>
 		</Container>
@@ -164,19 +169,6 @@
 			height={W * 1.05 * 0.617 * (0.55 + 0.45 * crack)}
 			alpha={0.25 + 0.75 * crack}
 		/>
-		<Container x={W / 2} y={H + SYMBOL_SIZE * 2.15}>
-			<Graphics
-				draw={(g) => {
-					g.roundRect(-210, -22, 420, 44, 22).fill({ color: 0x0f2547, alpha: 0.9 }).stroke({ color: 0xbfe3ff, width: 3 });
-					if (crack > 0) g.roundRect(-204, -16, 408 * crack, 32, 16).fill({ color: 0x9fe6ff });
-				}}
-			/>
-			<BitmapText
-				anchor={0.5}
-				text={`MAX WIN ${Math.floor(crack * 100)}%`}
-				style={{ fontFamily: 'gold', fontSize: SYMBOL_SIZE * 0.32 }}
-			/>
-		</Container>
 	{/if}
 
 	{#if stateBoard.flash > 0}

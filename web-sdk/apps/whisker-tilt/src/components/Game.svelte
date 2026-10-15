@@ -23,6 +23,7 @@
 	import WinLabels from './WinLabels.svelte';
 	import MysteryGift from './MysteryGift.svelte';
 	import ShelfResult from './ShelfResult.svelte';
+	import CrackMeter from './CrackMeter.svelte';
 	import TumbleWinAmount from './TumbleWinAmount.svelte';
 	import Win from './Win.svelte';
 	import FreeSpinIntro from './FreeSpinIntro.svelte';
@@ -65,6 +66,7 @@
 			<TiltBoard />
 			<WinLabels />
 			<TumbleWinAmount />
+			<CrackMeter />
 		</MainContainer>
 
 		<UI>
