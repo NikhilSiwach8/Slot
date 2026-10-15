@@ -208,6 +208,28 @@ What this says:
 `python prototype/tilt.py --demo 158` shows a two-tilt spin: the first tilt slides an x10
 coin onto the West wall, and the cluster after it touches that wall and pays ×10.
 
+## 7b. Math results (math-sdk model, `math/whisker_tilt/`)
+
+1.1M simulated rounds; all 7 modes pass the SDK's RGS format checks.
+
+| Mode | Cost | RTP | Hit rate | Bonus | Max win 10,000× | Std dev / cost |
+|---|---|---|---|---|---|---|
+| Base | 1× | 96.50% | 1 in 2.9 | 1 in 240 | 1 in 2.4M | 14.7 |
+| Catnip (ante) | 1.25× | 96.50% | 1 in 4.4 | 1 in 120 | 1 in 1.2M | 17.5 |
+| Paw Spins | 5× | 96.50% | every spin | 1 in 189 | 1 in 790k | 3.8 |
+| Snow Day buy | 100× | 96.50% | every buy | — | 1 in 100k | 1.5 |
+| Super Snow Day buy | 250× | 96.50% | every buy | — | 1 in 10k | 1.3 |
+| Mitten's Gift | 140× | 96.50% | every buy | — | 1 in 36k | 1.3 |
+| Off the Shelf | 200× | 96.50% | 1 in 52 | — | 1 in 52 | 6.9 |
+
+- Snow Day averages ~92× bet in the base game, Super ~250×, Mitten's Gift ~136× raw.
+- Base, Catnip and Paw Spins keep the simulated win spread (`natural_weights.py`); the
+  optimizer's curve fit had squeezed 1–5× base wins to 1 in 218 spins (now 1 in 6).
+- The SDK flags Super and Off the Shelf against its *3-star volatility* limits. That's a
+  rating warning, not an approval failure: both are high-volatility buys by design.
+- Book files: ~1 GB compressed in total (buy modes ~200 MB each), so the release zips need
+  splitting like Dumpster Duke's.
+
 ## 8. Implementation notes
 
 ### Math (StakeEngine math-sdk)
@@ -254,8 +276,7 @@ coin onto the West wall, and the cluster after it touches that wall and pays ×1
   so it's OK, but the bonus with the Paw adds a turn per spin: keep the Paw quick.
 - **Off the Shelf presentation:** showing progress that isn't paid can read as a lost win.
   Rules and UI must say clearly that only 10,000× pays; check with Stake before building.
-- **Paw Spins price:** guaranteeing a win changes the whole distribution; the ~10× price is a
-  guess until the first simulation.
+- **Paw Spins price:** settled at 5× by simulation (an average Paw Spin pays ~4.4×).
 - Should a cluster touching the floor wall get a small bonus (x2) even with unlit keepers,
   to make edges matter in the base game? Test after first math run.
 
