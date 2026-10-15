@@ -16,9 +16,10 @@
 {#if stateBet.autoSpinsCounter > 0}
 	<Rectangle
 		anchor={0.5}
-		width={UI_BASE_SIZE * 0.9}
-		height={UI_BASE_SIZE * 0.9}
-		borderRadius={50}
+		width={UI_BASE_SIZE * 0.5}
+		height={UI_BASE_SIZE * 0.5}
+		borderRadius={UI_BASE_SIZE * 0.1}
+		backgroundColor={0x1d1033}
 	/>
 	<Text
 		anchor={0.5}
@@ -27,7 +28,7 @@
 			fontFamily: 'proxima-nova, Arial, sans-serif',
 			fill: WHITE,
 			fontWeight: 'bold',
-			fontSize: fontSizeMultiplier * UI_BASE_SIZE * 0.2,
+			fontSize: fontSizeMultiplier * UI_BASE_SIZE * 0.12,
 		}}
 	/>
 {/if}

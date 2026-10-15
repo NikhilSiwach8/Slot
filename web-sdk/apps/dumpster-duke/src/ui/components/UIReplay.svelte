@@ -79,45 +79,5 @@
 		</Container>
 	</MainContainer>
 
-	{#if stateUi.menuOpen}
-		<Rectangle
-			eventMode="static"
-			cursor="pointer"
-			alpha={0.5}
-			anchor={0.5}
-			backgroundColor={BLACK}
-			width={context.stateLayoutDerived.canvasSizes().width}
-			height={context.stateLayoutDerived.canvasSizes().height}
-			x={context.stateLayoutDerived.canvasSizes().width * 0.5}
-			y={context.stateLayoutDerived.canvasSizes().height * 0.5}
-			onpointerup={() => (stateUi.menuOpen = false)}
-		/>
-
-		<MainContainer standard alignVertical="bottom">
-			<Container
-				x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 - 350}
-				y={context.stateLayoutDerived.mainLayoutStandard().height - 270 - 15}
-			>
-				<Container scale={0.8} y={0 * 0.5 - 150 - 170 * 3}>
-					<ButtonPayTable anchor={0.5} />
-				</Container>
-
-				<Container scale={0.8} y={0 * 0.5 - 150 - 170 * 2}>
-					<ButtonGameRules anchor={0.5} />
-				</Container>
-
-				<Container scale={0.8} y={0 * 0.5 - 150 - 170 * 1}>
-					<ButtonSettings anchor={0.5} />
-				</Container>
-
-				<Container scale={0.8} y={0 * 0.5 - 150}>
-					<ButtonSoundSwitch anchor={0.5} />
-				</Container>
-
-				<Container scale={0.8} y={0 * 0.5}>
-					<ButtonMenuClose anchor={0.5} />
-				</Container>
-			</Container>
-		</MainContainer>
-	{/if}
+	<!-- menu: see components/MenuPopup.svelte -->
 </UiFadeContainer>

@@ -1,21 +1,21 @@
 <script lang="ts" module>
 	import type { ButtonIcon } from '../types';
-	import type { ArtName } from './UiArt.svelte';
+	import type { HudIconName } from './hud/HudIcon.svelte';
 
-	// Art for each button; buttons without their own icon use the blank round button
-	// with a short label in the game font.
-	const ICON_ART: Record<ButtonIcon, { art: ArtName; label?: string }> = {
-		decrease: { art: 'bar_minus' },
-		increase: { art: 'bar_plus' },
-		menu: { art: 'btn_menu' },
-		turbo: { art: 'btn_turbo' },
-		autoSpin: { art: 'btn_blank', label: 'AUTO' },
-		payTable: { art: 'btn_blank', label: 'PAYS' },
-		info: { art: 'btn_info' },
-		settings: { art: 'btn_blank', label: 'SET' },
-		soundOn: { art: 'btn_blank', label: 'SOUND' },
-		soundOff: { art: 'btn_blank', label: 'MUTED' },
-		menuExit: { art: 'btn_back' },
+	// How each button looks: a drawn icon on a HUD card, a bare chevron (bet − / +), or a
+	// short label in the game font on a card.
+	const LOOK: Record<ButtonIcon, { icon?: HudIconName; label?: string; bare?: boolean }> = {
+		decrease: { icon: 'left', bare: true },
+		increase: { icon: 'right', bare: true },
+		menu: { icon: 'menu' },
+		menuExit: { icon: 'close' },
+		turbo: { icon: 'bolt' },
+		autoSpin: { icon: 'auto' },
+		payTable: { label: 'PAYS' },
+		info: { label: 'INFO' },
+		settings: { label: 'SET' },
+		soundOn: { label: 'SOUND' },
+		soundOff: { label: 'MUTED' },
 	};
 </script>
 
@@ -24,7 +24,8 @@
 	import { BitmapText, Container } from 'pixi-svelte';
 	import { Button, type ButtonProps } from 'components-pixi';
 
-	import UiArt from './UiArt.svelte';
+	import HudCard from './hud/HudCard.svelte';
+	import HudIcon from './hud/HudIcon.svelte';
 
 	type Props = Omit<ButtonProps, 'children'> & {
 		icon: ButtonIcon;
@@ -35,9 +36,10 @@
 	};
 
 	const { icon, active, variant: _variant, children: childrenFromParent, ...buttonProps }: Props = $props();
-	const look = $derived(ICON_ART[icon]);
-	const size = $derived(buttonProps.sizes.width);
-	const wide = $derived(look.art === 'btn_info' || look.art === 'btn_back');
+	const look = $derived(LOOK[icon]);
+	const w = $derived(buttonProps.sizes.width);
+	const h = $derived(buttonProps.sizes.height);
+	const iconSize = $derived(Math.min(w, h) * (look.bare ? 0.9 : 0.62));
 </script>
 
 <Button {...buttonProps}>
@@ -47,16 +49,21 @@
 			scale={pressed ? 0.93 : hovered && !buttonProps.disabled ? 1.05 : 1}
 			alpha={buttonProps.disabled ? 0.45 : 1}
 		>
-			{#if active}
-				<!-- "on" state (turbo, auto spin): a warm glow behind the button -->
-				<UiArt name={look.art} width={size * 1.18} height={size * 1.18} tint={0xffc23a} alpha={0.55} />
+			{#if !look.bare}
+				<HudCard width={w} height={h} {active} />
 			{/if}
-			<UiArt name={look.art} width={wide ? size * 1.6 : size} height={size} />
+			{#if look.icon}
+				<HudIcon
+					name={look.icon}
+					size={iconSize}
+					color={look.bare ? 0xffcf3a : active ? 0xffcf3a : 0xffffff}
+				/>
+			{/if}
 			{#if look.label}
 				<BitmapText
 					anchor={0.5}
 					text={look.label}
-					style={{ fontFamily: 'gold', fontSize: size * (look.label.length > 4 ? 0.17 : 0.22) }}
+					style={{ fontFamily: 'gold', fontSize: Math.min(w, h) * (look.label.length > 4 ? 0.2 : 0.26) }}
 				/>
 			{/if}
 		</Container>

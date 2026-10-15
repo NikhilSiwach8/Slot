@@ -1,16 +1,20 @@
 <script lang="ts">
-	import { BitmapText, Container } from 'pixi-svelte';
+	import { Container } from 'pixi-svelte';
 	import { Button, type ButtonProps } from 'components-pixi';
 	import { stateModal, stateBet, stateBetDerived } from 'state-shared';
 
-	import UiArt from './UiArt.svelte';
+	import { Sprite } from 'pixi-svelte';
+	import HudCard from './hud/HudCard.svelte';
+	import { SYMBOL_INFO_MAP } from '../../game/constants';
 	import { UI_BASE_SIZE } from '../constants';
 	import { getContext } from '../context';
 	import { i18nDerived } from '../i18n/i18nDerived';
 
 	const props: Partial<Omit<ButtonProps, 'children'>> = $props();
 	const { stateXstateDerived, eventEmitter } = getContext();
-	const sizes = { width: UI_BASE_SIZE, height: UI_BASE_SIZE };
+	// a big BONUS card with the Duke on it, as tall as the SPIN card
+	const sizes = { width: UI_BASE_SIZE * 1.6, height: UI_BASE_SIZE * 1.6 };
+	const DUKE = SYMBOL_INFO_MAP.H1.static.assetKey;
 	const disabled = $derived(!stateXstateDerived.isIdle());
 	const active = $derived(stateBetDerived.activeBetMode()?.type === 'activate');
 
@@ -48,13 +52,14 @@
 			scale={pressed ? 0.93 : hovered && !disabled ? 1.05 : 1}
 			alpha={disabled ? 0.45 : 1}
 		>
-			<UiArt name="icon_cart" width={sizes.width} height={sizes.height * 0.8} y={-sizes.height * 0.08} />
-			<BitmapText
-				anchor={0.5}
-				y={sizes.height * 0.4}
-				text={(state === 'active' ? i18nDerived.disable() : i18nDerived.buyBonus()).toUpperCase()}
-				style={{ fontFamily: 'gold', fontSize: sizes.width * 0.16 }}
+			<HudCard
+				width={sizes.width}
+				height={sizes.height}
+				tab={state === 'active' ? i18nDerived.disable().toUpperCase() : 'BONUS'}
+				active={state === 'active'}
+				face={0x3a1650}
 			/>
+			<Sprite key={DUKE} anchor={0.5} width={sizes.width * 0.78} height={sizes.width * 0.75} y={sizes.height * 0.04} />
 		</Container>
 	{/snippet}
 </Button>

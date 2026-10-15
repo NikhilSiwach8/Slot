@@ -1,19 +1,18 @@
 <!--
-	Bonus menu in the Dumpster Duke art style (BONUS panel from the UI sheet).
-	Replaces the template's buyBonus / buyBonusConfirm modals.
+	Bonus menu ("BONUS GAMES"): one card per real mode (game/betModeMeta.ts) in a row,
+	like a feature-buy shop. Each card has a header picture, a volatility meter, the price
+	at the current bet and a button: BUY for the bonus buys (Midnight Raid, Super Bonus,
+	Mystery Bonus, Max or Nothing; they ask for confirmation first) and ACTIVATE / ON for
+	the spin modes that stay on (Double Chance, Feature Spin). Tapping the picture shows
+	the mode's description. Underneath: balance, and the bet with ‹ › arrows and a slider.
 
-	Menu: a grid of tiles, one per real mode (game/betModeMeta.ts): the bonus buys
-	(Midnight Raid, Super Bonus, Mystery Bonus, Max or Nothing) and the spin modes that
-	stay on (Double Chance, Feature Spin), plus a bet stepper. Tapping a tile opens its
-	detail screen, where the player buys the bonus or switches the spin mode on/off.
-
-	Everything is sized in container-query units of the panel (cqw), so the layout
-	keeps the same proportions inside the panel art at every viewport size.
+	Sizes use a card unit (--cw = 1/100 of a card's width) so the layout scales with the
+	panel: 6 cards in a row on wide screens, 3 x 2 on narrow ones.
 -->
 <script lang="ts">
 	import '@fontsource/lilita-one/400.css';
 
-	import { OnHotkey, OptionsToggle } from 'components-shared';
+	import { OnHotkey } from 'components-shared';
 	import { stateBet, stateConfig, stateModal, stateMetaDerived, stateBetDerived } from 'state-shared';
 	import { getContextEventEmitter } from 'utils-event-emitter';
 	import { numberToCurrencyString } from 'utils-shared/amount';
@@ -25,22 +24,20 @@
 	const { eventEmitter } = getContextEventEmitter<EmitterEventModal>();
 
 	// literal paths so Vite can resolve them
-	const PANEL = new URL('../../../assets/ui/panel.webp', import.meta.url).href;
-	const BACK = new URL('../../../assets/ui/btn_back.webp', import.meta.url).href;
 	const ICON_CAN = new URL('../../../assets/ui/icon_s.webp', import.meta.url).href;
 	const ICON_CAP = new URL('../../../assets/ui/icon_m.webp', import.meta.url).href;
 	const ICON_DUKE = new URL('../../../assets/ui/icon_h1.webp', import.meta.url).href;
 
-	type Icon = { image?: string; text?: string; tag?: string };
-	const ICONS: Record<string, Icon> = {
-		BONUS: { image: ICON_CAN },
-		SUPER: { image: ICON_CAP, tag: 'x10' },
-		MYSTERY: { text: '?' },
-		MAX: { image: ICON_DUKE, tag: 'MAX' },
-		ANTE: { text: '2×' },
-		FEATURE: { image: ICON_CAN, tag: '3' },
+	type Look = { images: string[]; badge?: string; text?: string; sky: string; volatility: number };
+	const LOOK: Record<string, Look> = {
+		ANTE: { images: [ICON_CAN, ICON_CAN], badge: '2×', sky: '#6a3fb5, #2b1450', volatility: 2 },
+		FEATURE: { images: [ICON_CAN, ICON_CAN, ICON_CAN], badge: 'CAP', sky: '#7b3f9e, #2b1450', volatility: 3 },
+		BONUS: { images: [ICON_CAN], sky: '#b8641c, #3b1648', volatility: 3 },
+		SUPER: { images: [ICON_CAP], badge: 'x10', sky: '#c23a5c, #3b1648', volatility: 3 },
+		MYSTERY: { images: [], text: '?', sky: '#2f7a8f, #1d1033', volatility: 4 },
+		MAX: { images: [ICON_DUKE], badge: 'MAX', sky: '#d1a21c, #4a1d06', volatility: 5 },
 	};
-	const ORDER = ['BONUS', 'SUPER', 'MYSTERY', 'MAX', 'ANTE', 'FEATURE'];
+	const ORDER = ['ANTE', 'FEATURE', 'BONUS', 'SUPER', 'MYSTERY', 'MAX'];
 
 	const modes = $derived(
 		stateMetaDerived
@@ -53,6 +50,8 @@
 	const selected = $derived(stateBonusDerived.selectedBetModeData());
 	const activeMode = $derived(stateBetDerived.activeBetMode());
 	const spinModeOn = $derived(activeMode?.type === 'activate');
+	const betOptions = $derived(stateConfig.betAmountOptions);
+	const betIndex = $derived(Math.max(0, betOptions.indexOf(stateBet.betAmount)));
 
 	const price = (costMultiplier: number) => numberToCurrencyString(stateBet.betAmount * costMultiplier);
 	const affordable = (costMultiplier: number) =>
@@ -61,7 +60,14 @@
 
 	const press = () => eventEmitter.broadcast({ type: 'soundPressGeneral' });
 	const close = () => (stateModal.modal = null);
-	const openDetail = (mode: string) => {
+	const setBet = (index: number) => {
+		const value = betOptions[Math.max(0, Math.min(betOptions.length - 1, index))];
+		if (value !== undefined && value !== stateBet.betAmount) {
+			stateBet.betAmount = value;
+			press();
+		}
+	};
+	const showDetail = (mode: string) => {
 		stateBonus.selectedBetModeKey = mode;
 		press();
 		stateModal.modal = { name: 'buyBonusConfirm' };
@@ -72,23 +78,34 @@
 		eventEmitter.broadcast({ type: 'bet' });
 		stateModal.modal = null;
 	};
-	const toggleSpinMode = () => {
+	const toggleSpinMode = (mode: string) => {
 		press();
-		const mode = stateBonus.selectedBetModeKey;
 		stateBet.activeBetModeKey = isOn(mode) ? 'BASE' : mode;
 		close();
 	};
 </script>
 
-{#snippet icon(mode: string)}
-	{@const art = ICONS[mode] ?? { text: '★' }}
-	<div class="icon" class:coin={!art.image}>
-		{#if art.image}
-			<img src={art.image} alt="" />
-		{:else}
-			<span>{art.text}</span>
-		{/if}
-		{#if art.tag}<b class="tag">{art.tag}</b>{/if}
+{#snippet art(mode: string, big = false)}
+	{@const look = LOOK[mode] ?? { images: [], text: '★', sky: '#6a3fb5, #2b1450', volatility: 3 }}
+	<div class="art" class:big style="--sky: {look.sky}">
+		<div class="rays"></div>
+		<div class="stack">
+			{#each look.images as image, i}
+				<img src={image} alt="" style="--i: {i - (look.images.length - 1) / 2}" />
+			{/each}
+			{#if look.text}<span class="mark">{look.text}</span>{/if}
+		</div>
+		{#if look.badge}<b class="badge">{look.badge}</b>{/if}
+	</div>
+{/snippet}
+
+{#snippet meter(mode: string)}
+	{@const level = LOOK[mode]?.volatility ?? 3}
+	<div class="meter">
+		<span>VOLATILITY</span>
+		<span class="bar">
+			{#each [1, 2, 3, 4, 5] as step}<i class:lit={step <= level} class:hot={level >= 5}></i>{/each}
+		</span>
 	</div>
 {/snippet}
 
@@ -97,82 +114,112 @@
 	<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
 	<div class="overlay" onclick={close}>
 		<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
-		<div class="panel" style="background-image: url({PANEL});" onclick={(event) => event.stopPropagation()}>
-			<button class="close" aria-label="Close" onclick={close}></button>
+		<div class="panel" onclick={(event) => event.stopPropagation()} use:socialWording>
+			<div class="inner">
+			<header>
+				<h1>BONUS GAMES</h1>
+				<button class="close" aria-label="Close" onclick={close}>✕</button>
+			</header>
 
-			<div class="content" use:socialWording>
-				{#if !detail}
-					<div class="grid">
-						{#each modes as mode}
-							{@const on = isOn(mode.mode)}
-							{@const blocked = mode.type === 'buy' && spinModeOn}
-							<button
-								class="tile"
-								class:on
-								class:spin={mode.type === 'activate'}
-								disabled={blocked}
-								onclick={() => openDetail(mode.mode)}
-							>
-								{@render icon(mode.mode)}
-								<span class="info">
-									<span class="title">{mode.text.title}</span>
-									<span class="price">
-										{price(mode.costMultiplier)}{#if mode.type === 'activate'}<small> /spin</small>{/if}
-									</span>
-									<span class="state">
-										{#if on}ON{:else if blocked}{activeMode?.text.title} IS ON{:else}{mode.costMultiplier}x bet{/if}
-									</span>
-								</span>
+			{#if !detail}
+				<div class="cards">
+					{#each modes as mode}
+						{@const on = isOn(mode.mode)}
+						{@const blocked = mode.type === 'buy' && spinModeOn}
+						<div class="card" class:on class:blocked>
+							<button class="pic" onclick={() => showDetail(mode.mode)} aria-label="About {mode.text.title}">
+								<span class="title">{mode.text.title}</span>
+								{@render art(mode.mode)}
 							</button>
-						{/each}
-					</div>
-
-					<OptionsToggle
-						value={stateBet.betAmount}
-						options={stateConfig.betAmountOptions}
-						onchange={(value) => {
-							stateBet.betAmount = value;
-							press();
-						}}
-					>
-						{#snippet children({ disabledDown, disabledUp, toggleDown, toggleUp })}
-							<div class="bet">
-								<span class="label">BET</span>
-								<button class="step" disabled={disabledDown} onclick={toggleDown} aria-label="Lower bet">−</button>
-								<span class="amount">{numberToCurrencyString(stateBet.betAmount)}</span>
-								<button class="step" disabled={disabledUp} onclick={toggleUp} aria-label="Raise bet">+</button>
+							<div class="foot">
+								{@render meter(mode.mode)}
+								<div class="price">
+									{price(mode.costMultiplier)}{#if mode.type === 'activate'}<small>/spin</small>{/if}
+								</div>
+								{#if mode.type === 'activate'}
+									<button class="act" class:on onclick={() => toggleSpinMode(mode.mode)}>
+										{on ? 'ON' : 'ACTIVATE'}
+									</button>
+								{:else}
+									<button
+										class="buy"
+										disabled={blocked || !affordable(mode.costMultiplier)}
+										onclick={() => showDetail(mode.mode)}
+									>
+										BUY
+									</button>
+								{/if}
 							</div>
-						{/snippet}
-					</OptionsToggle>
-				{:else}
-					{@const spinMode = selected.type === 'activate'}
-					<div class="detail">
-						{@render icon(selected.mode)}
+						</div>
+					{/each}
+				</div>
+
+				<div class="wallet">
+					<div class="stat">
+						<span class="tag">BALANCE</span>
+						<span class="value">{numberToCurrencyString(stateBet.balanceAmount)}</span>
+					</div>
+					<button class="chev" disabled={betIndex <= 0} onclick={() => setBet(betIndex - 1)} aria-label="Lower bet">‹</button>
+					<div class="stat">
+						<span class="tag">BET</span>
+						<span class="value">{numberToCurrencyString(stateBet.betAmount)}</span>
+					</div>
+					<button
+						class="chev"
+						disabled={betIndex >= betOptions.length - 1}
+						onclick={() => setBet(betIndex + 1)}
+						aria-label="Raise bet">›</button
+					>
+					<input
+						class="slider"
+						type="range"
+						min="0"
+						max={Math.max(0, betOptions.length - 1)}
+						value={betIndex}
+						style="--fill: {betOptions.length > 1 ? (betIndex / (betOptions.length - 1)) * 100 : 0}%"
+						oninput={(event) => setBet(Number((event.target as HTMLInputElement).value))}
+						aria-label="Bet"
+					/>
+				</div>
+			{:else}
+				{@const spinMode = selected.type === 'activate'}
+				<div class="detail">
+					{@render art(selected.mode, true)}
+					<div class="text">
 						<h2>{selected.text.title}</h2>
 						<p>{selected.text.description}</p>
+						{@render meter(selected.mode)}
 						<p class="small">{selected.text.dialog}</p>
-						<div class="amount big">
+						<div class="price big">
 							{price(selected.costMultiplier)}{#if spinMode}<small> per spin</small>{/if}
 						</div>
-						<p class="small">{selected.costMultiplier}x the bet{spinMode ? ', stays on until you switch it off' : ''}</p>
-						{#if spinMode}
-							<button class="gold wide" class:off={isOn(selected.mode)} onclick={toggleSpinMode}>
-								{isOn(selected.mode) ? 'SWITCH OFF' : 'ACTIVATE'}
-							</button>
-						{:else}
-							<button class="gold wide" disabled={!affordable(selected.costMultiplier)} onclick={buy}>BUY</button>
-							{#if !affordable(selected.costMultiplier)}
-								<p class="small warn">Not enough balance for this bet.</p>
+						<p class="small">
+							{selected.costMultiplier}x the bet{spinMode ? ', stays on until you switch it off' : ''}
+						</p>
+						<div class="actions">
+							<button class="back" onclick={() => (stateModal.modal = { name: 'buyBonus' })}>BACK</button>
+							{#if spinMode}
+								<button class="act" class:on={isOn(selected.mode)} onclick={() => toggleSpinMode(selected.mode)}>
+									{isOn(selected.mode) ? 'SWITCH OFF' : 'ACTIVATE'}
+								</button>
+							{:else}
+								<button
+									class="buy"
+									disabled={spinModeOn || !affordable(selected.costMultiplier)}
+									onclick={buy}
+								>
+									CONFIRM BUY
+								</button>
 							{/if}
+						</div>
+						{#if !spinMode && spinModeOn}
+							<p class="small warn">Switch off {activeMode?.text.title} to buy.</p>
+						{:else if !spinMode && !affordable(selected.costMultiplier)}
+							<p class="small warn">Not enough balance for this bet.</p>
 						{/if}
-						<button
-							class="back"
-							style="background-image: url({BACK});"
-							aria-label="Back"
-							onclick={() => (stateModal.modal = { name: 'buyBonus' })}
-						></button>
 					</div>
-				{/if}
+				</div>
+			{/if}
 			</div>
 		</div>
 	</div>
@@ -186,247 +233,373 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background: rgba(8, 4, 20, 0.72);
+		background: rgba(8, 4, 20, 0.75);
 		font-family: 'Lilita One', 'Arial Black', sans-serif;
 		color: #f6efe2;
 	}
-	/* panel art is 558 x 637; its dark inner window spans x 42-510 and y 88-592,
-	   and the lantern hangs over the right edge between y 100 and 260 */
+	/* the panel is the size container; everything inside is measured in --u, one
+	   hundredth of a card's width (6 cards per row, or 3 on tall screens) */
 	.panel {
-		position: relative;
-		width: min(94vw, 86vh * 558 / 637, 600px);
-		aspect-ratio: 558 / 637;
-		background-size: 100% 100%;
 		container-type: inline-size;
-	}
-	.close {
-		position: absolute;
-		top: 4%;
-		right: 2.5%;
-		width: 9%;
-		aspect-ratio: 1;
-		border: 0;
-		border-radius: 50%;
-		background: transparent;
-		cursor: pointer;
-	}
-	.content {
-		position: absolute;
-		left: 10%;
-		right: 11.5%;
-		top: 15%;
-		bottom: 8%;
+		position: relative;
+		width: min(96vw, 1320px, 170vh);
+		max-height: 96vh;
 		overflow-y: auto;
-		display: flex;
-		flex-direction: column;
-		justify-content: safe center;
-		gap: 2.4cqw;
+		box-sizing: border-box;
+		border-radius: 18px;
+		background: linear-gradient(#2a1745, #170b2a);
+		border: 4px solid #f2b33d;
+		box-shadow: 0 0 0 3px #2a1208, 0 10px 40px rgba(0, 0, 0, 0.7);
 		scrollbar-width: thin;
 	}
-	.grid {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 2cqw;
+	.inner {
+		--cw: calc(100cqw / 6.9);
+		--u: calc(var(--cw) / 100);
+		padding: calc(var(--u) * 14) calc(var(--u) * 16);
 	}
-	.tile {
+	@media (max-aspect-ratio: 1/1) {
+		.panel {
+			width: min(96vw, 600px);
+		}
+		.inner {
+			--cw: calc(100cqw / 3.45);
+		}
+	}
+	header {
 		display: flex;
+		justify-content: space-between;
 		align-items: center;
-		gap: 1.8cqw;
-		padding: 1.6cqw;
+		margin-bottom: calc(var(--u) * 12);
+	}
+	h1 {
+		margin: 0;
+		font-weight: 400;
+		font-size: calc(var(--u) * 26);
+		color: #ffcf3a;
+		text-shadow: 0 calc(var(--u) * 2.5) 0 #5a2a0a;
+		border-bottom: calc(var(--u) * 3) solid #c23a8a;
+		padding-bottom: calc(var(--u) * 2);
+	}
+	.close {
+		width: calc(var(--u) * 34);
+		height: calc(var(--u) * 34);
+		border-radius: 50%;
+		border: calc(var(--u) * 2.5) solid #f2b33d;
+		background: #1d1033;
+		color: #ffcf3a;
+		font-size: calc(var(--u) * 16);
+		cursor: pointer;
+	}
+	.cards {
+		display: grid;
+		grid-template-columns: repeat(6, 1fr);
+		gap: calc(var(--u) * 10);
+	}
+	@media (max-aspect-ratio: 1/1) {
+		.cards {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+	.card {
+		display: flex;
+		flex-direction: column;
+		border-radius: calc(var(--u) * 10);
+		border: calc(var(--u) * 3) solid #f2b33d;
+		background: #120822;
+		overflow: hidden;
+		box-shadow: 0 calc(var(--u) * 4) 0 #2a1208;
+		transition: transform 0.12s;
+	}
+	.card:hover {
+		transform: translateY(calc(var(--u) * -3));
+	}
+	.card.on {
+		border-color: #ffe27a;
+		box-shadow: 0 0 calc(var(--u) * 14) rgba(255, 190, 60, 0.6), 0 calc(var(--u) * 4) 0 #2a1208;
+	}
+	.card.blocked {
+		filter: grayscale(0.7) brightness(0.7);
+	}
+	.pic {
+		position: relative;
+		padding: 0;
 		border: 0;
-		border-radius: 2.6cqw;
-		background: rgba(255, 255, 255, 0.06);
-		box-shadow: inset 0 0 0 0.35cqw rgba(255, 207, 58, 0.22);
+		background: none;
 		color: inherit;
 		font-family: inherit;
-		text-align: left;
 		cursor: pointer;
-		transition: transform 0.12s, background 0.12s;
 	}
-	.tile:hover:not(:disabled) {
-		transform: translateY(-0.4cqw);
-		background: rgba(255, 207, 58, 0.12);
+	.title {
+		position: absolute;
+		z-index: 2;
+		top: calc(var(--u) * 5);
+		left: 0;
+		right: 0;
+		font-size: calc(var(--u) * 12.5);
+		line-height: 1;
+		text-shadow: 0 calc(var(--u) * 1.5) 0 #2a1208, 0 0 calc(var(--u) * 4) #000;
 	}
-	.tile.spin {
-		background: rgba(140, 90, 255, 0.1);
-	}
-	.tile.on {
-		box-shadow: inset 0 0 0 0.5cqw #ffcf3a, 0 0 3cqw rgba(255, 190, 60, 0.4);
-	}
-	.tile:disabled {
-		filter: grayscale(0.7) brightness(0.7);
-		cursor: not-allowed;
-	}
-	.icon {
+	.art {
 		position: relative;
-		flex: 0 0 13cqw;
-		aspect-ratio: 1;
+		aspect-ratio: 1 / 0.82;
+		overflow: hidden;
+		background: radial-gradient(circle at 50% 60%, var(--sky));
+		border-bottom: calc(var(--u) * 3) solid #f2b33d;
+	}
+	.art.big {
+		width: 100%;
+		border: calc(var(--u) * 3) solid #f2b33d;
+		border-radius: calc(var(--u) * 10);
+	}
+	.rays {
+		position: absolute;
+		inset: -50%;
+		background: repeating-conic-gradient(rgba(255, 220, 120, 0.16) 0 8deg, transparent 8deg 22deg);
+		animation: spin 18s linear infinite;
+	}
+	@keyframes spin {
+		to {
+			transform: rotate(360deg);
+		}
+	}
+	.stack {
+		position: absolute;
+		inset: 18% 0 0 0;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 	}
-	.icon img {
-		width: 100%;
-		height: 100%;
-		object-fit: contain;
-		filter: drop-shadow(0 0.5cqw 0.6cqw rgba(0, 0, 0, 0.5));
-	}
-	.icon.coin {
-		border-radius: 50%;
-		background: radial-gradient(circle at 35% 30%, #ffe680, #f4a21e 55%, #9a4a0a);
-		box-shadow: 0 0 0 0.6cqw #5a2a0a, 0 0 3cqw rgba(255, 190, 60, 0.4);
-		color: #4a1d06;
-		font-size: 6.5cqw;
-		line-height: 1;
-	}
-	.tag {
+	.stack img {
 		position: absolute;
-		right: -1cqw;
-		bottom: -0.6cqw;
-		padding: 0.2cqw 1cqw;
-		border-radius: 1.4cqw;
-		background: #5a2a0a;
-		color: #ffcf3a;
-		font-weight: 400;
-		font-size: 2.6cqw;
+		width: 52%;
+		transform: translateX(calc(var(--i) * 46%)) rotate(calc(var(--i) * 10deg)) scale(calc(1 - (var(--i) * var(--i)) * 0.12));
+		filter: drop-shadow(0 calc(var(--u) * 3) calc(var(--u) * 3) rgba(0, 0, 0, 0.55));
 	}
-	.info {
+	.mark {
+		font-size: calc(var(--u) * 58);
+		color: #ffcf3a;
+		text-shadow: 0 calc(var(--u) * 4) 0 #5a2a0a, 0 0 calc(var(--u) * 20) rgba(255, 207, 58, 0.6);
+	}
+	.badge {
+		position: absolute;
+		left: calc(var(--u) * 6);
+		bottom: calc(var(--u) * 6);
+		padding: calc(var(--u) * 1) calc(var(--u) * 6);
+		border-radius: calc(var(--u) * 6);
+		background: #c23a8a;
+		color: #fff;
+		font-weight: 400;
+		font-size: calc(var(--u) * 13);
+		box-shadow: 0 calc(var(--u) * 2) 0 #4a0d2e;
+	}
+	.foot {
 		display: flex;
 		flex-direction: column;
-		min-width: 0;
-		gap: 0.3cqw;
+		align-items: center;
+		gap: calc(var(--u) * 5);
+		padding: calc(var(--u) * 7) calc(var(--u) * 8) calc(var(--u) * 9);
 	}
-	.title {
-		color: #ffcf3a;
-		font-size: 3.6cqw;
-		line-height: 1.05;
-		text-shadow: 0 0.3cqw 0 #5a2a0a;
+	.meter {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		font-family: Arial, Helvetica, sans-serif;
+		font-weight: 700;
+		gap: calc(var(--u) * 4);
+		font-size: calc(var(--u) * 6.5);
+		letter-spacing: 0.06em;
+		color: #c9bde0;
+	}
+	.text .meter {
+		width: fit-content;
+		gap: calc(var(--u) * 8);
+		font-size: calc(var(--u) * 9);
+	}
+	.bar {
+		display: flex;
+		gap: calc(var(--u) * 1.5);
+		padding: calc(var(--u) * 2);
+		border-radius: calc(var(--u) * 6);
+		border: calc(var(--u) * 1.5) solid #c9bde0;
+	}
+	.bar i {
+		width: calc(var(--u) * 7);
+		height: calc(var(--u) * 6);
+		border-radius: calc(var(--u) * 1.5);
+		background: #2c1d44;
+	}
+	.bar i.lit {
+		background: #f4a21e;
+	}
+	.bar i.lit.hot {
+		background: #ff4d5e;
 	}
 	.price {
-		font-size: 4.2cqw;
+		font-size: calc(var(--u) * 19);
 		white-space: nowrap;
 	}
 	.price small {
-		font-size: 2.4cqw;
+		font-size: calc(var(--u) * 9);
 		opacity: 0.8;
 	}
-	.state {
-		font-family: Arial, Helvetica, sans-serif;
-		font-weight: 700;
-		font-size: 2.2cqw;
-		opacity: 0.85;
-	}
-	.tile.on .state {
+	.price.big {
+		font-size: calc(var(--u) * 28);
 		color: #ffcf3a;
-		opacity: 1;
+		text-shadow: 0 calc(var(--u) * 2.5) 0 #5a2a0a;
+	}
+	button.buy,
+	button.act,
+	button.back {
+		width: 100%;
+		padding: calc(var(--u) * 6) 0;
+		border-radius: calc(var(--u) * 7);
+		font-family: inherit;
+		font-size: calc(var(--u) * 14);
+		cursor: pointer;
+	}
+	button.buy {
+		border: calc(var(--u) * 2.5) solid #5a2a0a;
+		background: linear-gradient(#ffe066, #f39a1c);
+		color: #4a1d06;
+		box-shadow: 0 calc(var(--u) * 3) 0 #5a2a0a;
+	}
+	button.act {
+		border: calc(var(--u) * 2.5) solid #2a0f4a;
+		background: linear-gradient(#b48cff, #7a3fe0);
+		color: #fff;
+		box-shadow: 0 calc(var(--u) * 3) 0 #2a0f4a;
+	}
+	button.act.on {
+		background: linear-gradient(#ffe27a, #f4a21e);
+		color: #4a1d06;
+		border-color: #5a2a0a;
+	}
+	button.back {
+		border: calc(var(--u) * 2.5) solid #f2b33d;
+		background: #1d1033;
+		color: #ffcf3a;
+	}
+	button:disabled {
+		filter: grayscale(0.85) brightness(0.65);
+		cursor: not-allowed;
+	}
+	.wallet {
+		display: grid;
+		grid-template-columns: auto auto auto auto;
+		grid-template-areas: 'bal down bet up' 'slider slider slider slider';
+		align-items: center;
+		justify-content: center;
+		column-gap: calc(var(--u) * 16);
+		row-gap: calc(var(--u) * 8);
+		width: fit-content;
+		margin: calc(var(--u) * 14) auto 0;
+		padding: calc(var(--u) * 10) calc(var(--u) * 24);
+		border-radius: calc(var(--u) * 12);
+		border: calc(var(--u) * 3) solid #f2b33d;
+		background: #120822;
+	}
+	.wallet .stat:first-child {
+		grid-area: bal;
+		margin-right: calc(var(--u) * 20);
+	}
+	.stat {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: calc(var(--u) * 3);
+	}
+	.tag {
+		padding: calc(var(--u) * 1.5) calc(var(--u) * 10);
+		border-radius: calc(var(--u) * 5);
+		border: calc(var(--u) * 1.5) solid #f2b33d;
+		background: #1d1033;
+		color: #ffcf3a;
+		font-size: calc(var(--u) * 11);
+	}
+	.value {
+		font-size: calc(var(--u) * 20);
+	}
+	.chev {
+		border: 0;
+		background: none;
+		color: #ffcf3a;
+		font-family: Arial, Helvetica, sans-serif;
+		font-weight: 900;
+		font-size: calc(var(--u) * 42);
+		line-height: 1;
+		cursor: pointer;
+		text-shadow: 0 calc(var(--u) * 2) 0 #5a2a0a;
+	}
+	.slider {
+		grid-area: slider;
+		width: 100%;
+		height: calc(var(--u) * 8);
+		appearance: none;
+		border-radius: calc(var(--u) * 6);
+		background: linear-gradient(90deg, #c23a8a, #ff6fb5) 0 / var(--fill, 0%) 100% no-repeat, #2c1d44;
+		cursor: pointer;
+	}
+	.slider::-webkit-slider-thumb {
+		appearance: none;
+		width: calc(var(--u) * 18);
+		height: calc(var(--u) * 18);
+		border-radius: 50%;
+		background: #fff3c4;
+		border: calc(var(--u) * 3) solid #5a2a0a;
+	}
+	.slider::-moz-range-thumb {
+		width: calc(var(--u) * 14);
+		height: calc(var(--u) * 14);
+		border-radius: 50%;
+		background: #fff3c4;
+		border: calc(var(--u) * 3) solid #5a2a0a;
+	}
+	.detail {
+		display: grid;
+		grid-template-columns: 1fr 1.4fr;
+		gap: calc(var(--u) * 20);
+		align-items: center;
+		max-width: calc(var(--cw) * 4.4);
+		margin: 0 auto;
+	}
+	@media (max-aspect-ratio: 1/1) {
+		.detail {
+			grid-template-columns: 1fr;
+			max-width: none;
+		}
+	}
+	.text {
+		display: flex;
+		flex-direction: column;
+		gap: calc(var(--u) * 8);
+		text-align: left;
 	}
 	h2 {
 		margin: 0;
-		color: #ffcf3a;
 		font-weight: 400;
-		font-size: 6.4cqw;
-		line-height: 1.05;
-		letter-spacing: 0.02em;
-		text-shadow: 0 0.5cqw 0 #5a2a0a;
+		font-size: calc(var(--u) * 26);
+		color: #ffcf3a;
+		text-shadow: 0 calc(var(--u) * 2.5) 0 #5a2a0a;
 	}
 	p {
 		margin: 0;
 		font-family: Arial, Helvetica, sans-serif;
 		font-weight: 700;
-		font-size: 3.2cqw;
-		line-height: 1.3;
+		font-size: calc(var(--u) * 12);
+		line-height: 1.35;
 	}
 	.small {
-		font-size: 2.6cqw;
+		font-size: calc(var(--u) * 10);
 		opacity: 0.85;
 	}
 	.warn {
 		color: #ff9a8a;
+		opacity: 1;
 	}
-	.label {
-		color: #ffcf3a;
-		font-size: 3.4cqw;
-	}
-	.amount {
-		font-size: 4.6cqw;
-		white-space: nowrap;
-	}
-	.amount.big {
-		font-size: 8.5cqw;
-		color: #ffcf3a;
-		text-shadow: 0 0.6cqw 0 #5a2a0a;
-	}
-	.amount.big small {
-		font-size: 3.4cqw;
-		color: #f6efe2;
-		text-shadow: none;
-	}
-	button.gold {
-		padding: 1.2cqw 0;
-		border: 0.6cqw solid #5a2a0a;
-		border-radius: 2.4cqw;
-		background: linear-gradient(#ffe066, #f39a1c);
-		color: #4a1d06;
-		font-family: inherit;
-		font-size: 4.8cqw;
-		cursor: pointer;
-		box-shadow: 0 0.8cqw 0 #5a2a0a, 0 0 3cqw rgba(255, 190, 60, 0.45);
-	}
-	button.gold.off {
-		background: linear-gradient(#d9d0e8, #9c8fb5);
-	}
-	button.gold.wide {
-		width: 70%;
-	}
-	button.gold:disabled {
-		filter: grayscale(0.8) brightness(0.7);
-		cursor: not-allowed;
-	}
-	.bet {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: 3cqw;
-	}
-	.bet .amount {
-		min-width: 22cqw;
-		text-align: center;
-	}
-	button.step {
-		width: 8cqw;
-		aspect-ratio: 1;
-		border: 0.5cqw solid #5a2a0a;
-		border-radius: 50%;
-		background: linear-gradient(#ffe066, #f39a1c);
-		color: #4a1d06;
-		font-family: inherit;
-		font-size: 6cqw;
-		line-height: 1;
-		cursor: pointer;
-	}
-	button.step:disabled {
-		filter: grayscale(0.8) brightness(0.6);
-		cursor: not-allowed;
-	}
-	.detail {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		text-align: center;
-		gap: 1.8cqw;
-	}
-	.detail .icon {
-		flex: none;
-		width: 18cqw;
-	}
-	.detail .icon.coin {
-		font-size: 9cqw;
-	}
-	button.back {
-		width: 34%;
-		aspect-ratio: 183 / 77;
-		border: 0;
-		background: transparent center / 100% 100% no-repeat;
-		cursor: pointer;
+	.actions {
+		display: grid;
+		grid-template-columns: 1fr 2fr;
+		gap: calc(var(--u) * 10);
 	}
 </style>

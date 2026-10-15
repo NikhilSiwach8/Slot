@@ -4,15 +4,16 @@
 	import { OnHotkey } from 'components-shared';
 	import { stateBetDerived } from 'state-shared';
 
-	import UiArt from './UiArt.svelte';
+	import HudCard from './hud/HudCard.svelte';
+	import HudIcon from './hud/HudIcon.svelte';
 	import ButtonBetProvider from './ButtonBetProvider.svelte';
 	import { UI_BASE_SIZE } from '../constants';
 	import { i18nDerived } from '../i18n/i18nDerived';
 
 	const props: Partial<Omit<ButtonProps, 'children'>> = $props();
 	const disabled = $derived(!stateBetDerived.isBetCostAvailable());
-	// the spin button is the hero of the bar, like on the art sheet
-	const sizes = { width: UI_BASE_SIZE * 1.35, height: UI_BASE_SIZE * 1.35 };
+	// the SPIN card is the hero of the HUD
+	const sizes = { width: UI_BASE_SIZE * 1.6, height: UI_BASE_SIZE * 1.6 };
 </script>
 
 <ButtonBetProvider>
@@ -27,9 +28,11 @@
 					scale={pressed ? 0.93 : hovered && !dimmed ? 1.04 : 1}
 					alpha={dimmed ? 0.5 : 1}
 				>
-					<UiArt name={stopping ? 'btn_blank' : 'btn_spin'} width={sizes.width} height={sizes.height} />
+					<HudCard width={sizes.width} height={sizes.height} tab="SPIN" />
 					{#if stopping}
 						<BitmapText anchor={0.5} text={i18nDerived.stop().toUpperCase()} style={{ fontFamily: 'gold', fontSize: sizes.width * 0.2 }} />
+					{:else}
+						<HudIcon name="spin" size={sizes.width * 0.62} />
 					{/if}
 				</Container>
 			{/snippet}

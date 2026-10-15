@@ -13,6 +13,7 @@
 
 	import ModalGameInfo from './info/ModalGameInfo.svelte';
 	import ModalBuyFeature from './buy/ModalBuyFeature.svelte';
+	import MenuPopup from './MenuPopup.svelte';
 
 	type Props = { version: Snippet };
 	const props: Props = $props();
@@ -20,6 +21,7 @@
 
 <ModalError />
 <ModalBetMenu />
+<MenuPopup />
 <ModalBuyFeature />
 <ModalAutoSpin />
 <ModalAutoSpinMessage />

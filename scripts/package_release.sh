@@ -3,6 +3,7 @@
 #   dist/math/      index.json + books_*.jsonl.zst + lookUpTable_*_0.csv   (upload as the math files)
 #   dist/frontend/  static build of the game client                         (upload as the frontend)
 # Run scripts/setup.sh once first, and the math run (see README) if library/ is missing.
+#   FRONTEND_ONLY=1 scripts/package_release.sh   rebuild only dist/frontend (math unchanged)
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -13,10 +14,14 @@ for f in index.json books_base.jsonl.zst books_bonus.jsonl.zst lookUpTable_base_
   [ -f "$PUBLISH/$f" ] || { echo "missing math output: $PUBLISH/$f (run the math first)" >&2; exit 1; }
 done
 
-rm -rf "$DIST" && mkdir -p "$DIST/math"
-cp "$PUBLISH"/index.json "$PUBLISH"/books_*.jsonl.zst "$PUBLISH"/lookUpTable_*_0.csv "$DIST/math/"
-# smaller upload, identical data (verified inside the script)
-(cd "$ROOT" && math-sdk/env/bin/python scripts/recompress_books.py "$DIST/math")
+if [ "${FRONTEND_ONLY:-0}" = "1" ]; then
+  rm -rf "$DIST/frontend"
+else
+  rm -rf "$DIST" && mkdir -p "$DIST/math"
+  cp "$PUBLISH"/index.json "$PUBLISH"/books_*.jsonl.zst "$PUBLISH"/lookUpTable_*_0.csv "$DIST/math/"
+  # smaller upload, identical data (verified inside the script)
+  (cd "$ROOT" && math-sdk/env/bin/python scripts/recompress_books.py "$DIST/math")
+fi
 
 # keep the client in sync with the math before building
 (cd "$ROOT" && math-sdk/env/bin/python scripts/sync_fe_config.py)
@@ -41,5 +46,5 @@ if grep -rqE "typekit\.net/[a-z0-9]+\.(css|js)\"" "$DIST/frontend/index.html"; t
 fi
 
 echo
-echo "dist/math:"; ls -la "$DIST/math"
+[ -d "$DIST/math" ] && { echo "dist/math:"; ls -la "$DIST/math"; }
 echo "dist/frontend: $(du -sh "$DIST/frontend" | cut -f1)"

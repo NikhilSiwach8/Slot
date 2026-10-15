@@ -78,42 +78,42 @@
 	<!-- drawer container -->
 	<Container y={drawerTween.current}>
 		<Container
-			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 - 440}
-			y={context.stateLayoutDerived.mainLayoutStandard().height - 400}
+			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 - 470}
+			y={context.stateLayoutDerived.mainLayoutStandard().height - 430}
 		>
 			{@render props.buttonMenu({ anchor: 0.5 })}
 		</Container>
 
 		<Container
-			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 + 440}
-			y={context.stateLayoutDerived.mainLayoutStandard().height - 400}
+			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 - 300}
+			y={context.stateLayoutDerived.mainLayoutStandard().height - 430}
 		>
 			{@render props.buttonBuyBonus({ anchor: 0.5 })}
 		</Container>
 
 		<Container
-			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5}
-			y={context.stateLayoutDerived.mainLayoutStandard().height - 400}
+			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 + 290}
+			y={context.stateLayoutDerived.mainLayoutStandard().height - 430}
 		>
 			{@render props.buttonBet({ anchor: 0.5 })}
 		</Container>
 
 		<Container
-			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 - 180}
-			y={context.stateLayoutDerived.mainLayoutStandard().height - 400}
+			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 + 470}
+			y={context.stateLayoutDerived.mainLayoutStandard().height - 490}
 		>
 			{@render props.buttonAutoSpin({ anchor: 0.5 })}
 		</Container>
 
 		<Container
-			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 + 180}
-			y={context.stateLayoutDerived.mainLayoutStandard().height - 400}
+			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 + 470}
+			y={context.stateLayoutDerived.mainLayoutStandard().height - 370}
 		>
 			{@render props.buttonTurbo({ anchor: 0.5 })}
 		</Container>
 
 		<Container
-			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5}
+			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 - 300}
 			y={context.stateLayoutDerived.mainLayoutStandard().height - 270}
 		>
 			{@render props.amountBalance({ stacked: true })}
@@ -123,7 +123,7 @@
 	<Container y={Math.min(drawerTween.current, 350)}>
 		<Container
 			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5}
-			y={context.stateLayoutDerived.mainLayoutStandard().height - 640}
+			y={context.stateLayoutDerived.mainLayoutStandard().height - 470}
 		>
 			{@render props.amountWin({ stacked: true })}
 		</Container>
@@ -133,29 +133,29 @@
 <MainContainer standard alignVertical="bottom">
 	{#if stateUi.freeSpinCounterShow}
 		<Container
-			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5}
-			y={context.stateLayoutDerived.mainLayoutStandard().height - 130}
+			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 + 290}
+			y={context.stateLayoutDerived.mainLayoutStandard().height - 270}
 		>
 			<LabelFreeSpinCounter stacked />
 		</Container>
 	{:else}
 		<Container
-			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5}
-			y={context.stateLayoutDerived.mainLayoutStandard().height - 130}
+			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 + 290}
+			y={context.stateLayoutDerived.mainLayoutStandard().height - 270}
 		>
 			{@render props.amountBet({ stacked: true })}
 		</Container>
 
 		<Container
-			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 - 390}
-			y={context.stateLayoutDerived.mainLayoutStandard().height - 85}
+			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 + 90}
+			y={context.stateLayoutDerived.mainLayoutStandard().height - 198}
 		>
 			{@render props.buttonDecrease({ anchor: 0.5 })}
 		</Container>
 
 		<Container
-			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 + 390}
-			y={context.stateLayoutDerived.mainLayoutStandard().height - 85}
+			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 + 490}
+			y={context.stateLayoutDerived.mainLayoutStandard().height - 198}
 		>
 			{@render props.buttonIncrease({ anchor: 0.5 })}
 		</Container>
@@ -177,44 +177,4 @@
 	</FadeContainer>
 </MainContainer>
 
-{#if stateUi.menuOpen}
-	<Rectangle
-		eventMode="static"
-		cursor="pointer"
-		alpha={0.5}
-		anchor={0.5}
-		backgroundColor={BLACK}
-		width={context.stateLayoutDerived.canvasSizes().width}
-		height={context.stateLayoutDerived.canvasSizes().height}
-		x={context.stateLayoutDerived.canvasSizes().width * 0.5}
-		y={context.stateLayoutDerived.canvasSizes().height * 0.5}
-		onpointerup={() => (stateUi.menuOpen = false)}
-	/>
-
-	<MainContainer standard alignVertical="bottom">
-		<Container
-			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 - 440}
-			y={context.stateLayoutDerived.mainLayoutStandard().height - 400}
-		>
-			<Container y={-190 - 210 * 3}>
-				{@render props.buttonPayTable({ anchor: 0.5 })}
-			</Container>
-
-			<Container y={-190 - 210 * 2}>
-				{@render props.buttonGameRules({ anchor: 0.5 })}
-			</Container>
-
-			<Container y={-190 - 210 * 1}>
-				{@render props.buttonSettings({ anchor: 0.5 })}
-			</Container>
-
-			<Container y={-190}>
-				{@render props.buttonSoundSwitch({ anchor: 0.5 })}
-			</Container>
-
-			<Container>
-				{@render props.buttonMenuClose({ anchor: 0.5 })}
-			</Container>
-		</Container>
-	</MainContainer>
-{/if}
+<!-- menu: see components/MenuPopup.svelte -->

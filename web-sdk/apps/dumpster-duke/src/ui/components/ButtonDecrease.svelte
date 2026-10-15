@@ -8,7 +8,7 @@
 
 	const props: Partial<Omit<ButtonProps, 'children'>> = $props();
 	const context = getContext();
-	const sizes = { width: UI_BASE_SIZE, height: UI_BASE_SIZE };
+	const sizes = { width: UI_BASE_SIZE * 0.6, height: UI_BASE_SIZE * 0.7 };
 	const smallest = $derived(stateConfig.betAmountOptions[0]);
 	const disabled = $derived(
 		!context.stateXstateDerived.isIdle() || stateBet.betAmount === smallest,

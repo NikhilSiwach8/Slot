@@ -8,7 +8,7 @@
 
 	const props: Partial<Omit<ButtonProps, 'children'>> = $props();
 	const context = getContext();
-	const sizes = { width: UI_BASE_SIZE, height: UI_BASE_SIZE };
+	const sizes = { width: UI_BASE_SIZE * 0.68, height: UI_BASE_SIZE * 0.68 };
 	const active = $derived(stateBet.isTurbo);
 	const disabled = $derived(stateBet.isSpaceHold);
 
