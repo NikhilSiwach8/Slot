@@ -1,7 +1,7 @@
 <!--
 	Bonus menu ("BONUS GAMES"): one card per real mode (game/betModeMeta.ts) in a row,
 	like a feature-buy shop. Each card has a header picture, a volatility meter, the price
-	at the current bet and a button: BUY for the bonus buys (Midnight Raid, Super Bonus,
+	at the current bet and a button: BUY for the bonus buys (Haunted Raid, Super Bonus,
 	Mystery Bonus, Max or Nothing; they ask for confirmation first) and ACTIVATE / ON for
 	the spin modes that stay on (Double Chance, Feature Spin). Tapping the picture shows
 	the mode's description. Underneath: balance, and the bet with ‹ › arrows and a slider.

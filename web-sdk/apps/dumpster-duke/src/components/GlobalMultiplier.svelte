@@ -5,8 +5,8 @@
 		| { type: 'globalMultiplierUpdate'; multiplier: number };
 </script>
 
-<!-- The Loot Bag (persistent free-spin multiplier): a plaque above the reels whose
-     value pops and glows each time bottle caps are added. -->
+<!-- The Trick-or-Treat Bag (persistent free-spin multiplier): a plaque above the reels whose
+     value pops and glows each time candy caps are added. -->
 <script lang="ts">
 	import { BitmapText, Container } from 'pixi-svelte';
 	import { FadeContainer } from 'components-pixi';
@@ -54,7 +54,7 @@
 			<BitmapText
 				anchor={0.5}
 				y={-PANEL.height * 0.78}
-				text="LOOT BAG"
+				text="TREAT BAG"
 				style={{ fontFamily: 'gold', fontSize: SYMBOL_SIZE * 0.17 }}
 			/>
 			<Container scale={popScale * (pop ? easeOutBack(Math.min(1, pop.t * 2)) * 0.2 + 0.8 : 1)}>

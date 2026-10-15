@@ -4,7 +4,7 @@
 
 <!--
 	Mystery Bonus: before the raid starts, the Duke's chest "rolls" the number of free spins
-	and the starting Loot Bag like two slot reels, then lands them one after the other.
+	and the starting Trick-or-Treat Bag like two slot reels, then lands them one after the other.
 -->
 <script lang="ts">
 	import { BitmapText, Container } from 'pixi-svelte';
@@ -24,7 +24,7 @@
 	const SPIN_FACES = [5, 8, 10, 12, 15, 20, 25];
 	const BAG_FACES = [0, 2, 3, 5, 8, 10, 15, 20];
 	const ROLL_SPINS = 1.3; // seconds the spins reel rolls
-	const ROLL_BAG = 2.1; // the Loot Bag reel lands a beat later
+	const ROLL_BAG = 2.1; // the Trick-or-Treat Bag reel lands a beat later
 
 	let show = $state(false);
 	let spins = $state(0);
@@ -84,14 +84,14 @@
 				<BitmapText anchor={0.5} y={PANEL.height * 0.14} text="FREE SPINS" style={{ fontFamily: 'gold', fontSize: PANEL.height * 0.07 }} />
 			</Container>
 
-			<!-- starting Loot Bag reel -->
+			<!-- starting Trick-or-Treat Bag reel -->
 			<Container x={PANEL.width * 0.22} y={PANEL.height * 0.06}>
 				<Plaque width={PANEL.width * 0.36} height={PANEL.height * 0.42} alpha={0.9} />
 				<Container scale={pop(ROLL_BAG)}>
 					<BitmapText anchor={0.5} y={-PANEL.height * 0.03} text={`x${face(BAG_FACES, ROLL_BAG, lootBag)}`}
 						alpha={landed(ROLL_BAG) ? 1 : 0.75} style={{ fontFamily: 'gold', fontSize: PANEL.height * 0.2 }} />
 				</Container>
-				<BitmapText anchor={0.5} y={PANEL.height * 0.14} text="LOOT BAG" style={{ fontFamily: 'gold', fontSize: PANEL.height * 0.07 }} />
+				<BitmapText anchor={0.5} y={PANEL.height * 0.14} text="TREAT BAG" style={{ fontFamily: 'gold', fontSize: PANEL.height * 0.07 }} />
 			</Container>
 		</Container>
 	</MainContainer>

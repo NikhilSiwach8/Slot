@@ -54,7 +54,7 @@
 
 				<CanvasSizeRectangle backgroundColor={0x000000} backgroundAlpha={0.5} />
 
-				<!-- end of the Midnight Raid: total win on a plaque over gold rays -->
+				<!-- end of the Haunted Raid: total win on a plaque over gold rays -->
 				<MainContainer>
 					<Container
 						x={context.stateLayoutDerived.mainLayout().width * 0.5}
@@ -63,7 +63,7 @@
 					>
 						<Rays radius={PANEL.width * 0.95} />
 						<Plaque width={PANEL.width} height={PANEL.height} glow={1} />
-						<BitmapText anchor={0.5} y={-PANEL.height * 0.3} text="MIDNIGHT RAID" style={{ fontFamily: 'gold', fontSize: PANEL.height * 0.16 }} />
+						<BitmapText anchor={0.5} y={-PANEL.height * 0.3} text="HAUNTED RAID" style={{ fontFamily: 'gold', fontSize: PANEL.height * 0.16 }} />
 						<BitmapText anchor={0.5} y={-PANEL.height * 0.12} text="TOTAL WIN" style={{ fontFamily: 'gold', fontSize: PANEL.height * 0.11 }} />
 						<ResponsiveBitmapText
 							anchor={0.5}

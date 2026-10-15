@@ -47,7 +47,7 @@ type BookEventFreeSpinTrigger = {
 	positions: Position[];
 };
 
-// Mystery Bonus: free spins and starting Loot Bag revealed before the raid
+// Mystery Bonus: free spins and starting Trick-or-Treat Bag revealed before the raid
 type BookEventMysteryReveal = {
 	index: number;
 	type: 'mysteryReveal';

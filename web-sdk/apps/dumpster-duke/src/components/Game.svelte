@@ -18,6 +18,8 @@
 	import Sound from './Sound.svelte';
 	import Background from './Background.svelte';
 	import LoadingScreen from './LoadingScreen.svelte';
+	import HalloweenScene from './fx/halloween/HalloweenScene.svelte';
+	import HalloweenFrame from './fx/halloween/HalloweenFrame.svelte';
 	import BoardFrame from './BoardFrame.svelte';
 	import Board from './Board.svelte';
 	import ReelSpinner from './ReelSpinner.svelte';
@@ -54,6 +56,7 @@
 	<EnablePixiExtension />
 
 	<Background />
+	<HalloweenScene />
 
 	{#if context.stateLayout.showLoadingScreen}
 		<LoadingScreen onloaded={() => (context.stateLayout.showLoadingScreen = false)} />
@@ -90,9 +93,15 @@
 		</MainContainer>
 
 		<MainContainer>
+			<HalloweenFrame />
+		</MainContainer>
+
+		<MainContainer>
 			<MultiplierBoard />
 			<MultiplierTotal />
 		</MainContainer>
+
+		<HalloweenScene layer="front" />
 
 		<UI>
 			{#snippet gameName()}

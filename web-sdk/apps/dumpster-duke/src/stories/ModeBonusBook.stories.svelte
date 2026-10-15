@@ -58,7 +58,7 @@
 		skipLoadingScreen: true,
 		data: {},
 		action: async () => {
-			// a Midnight Raid that retriggers (3+ Golden Trash Cans during free spins)
+			// a Haunted Raid that retriggers (3+ Cursed Trash Cans during free spins)
 			const data =
 				books.find((book) => book.events.some((event) => event.type === 'freeSpinRetrigger')) ??
 				books[0];

@@ -5,7 +5,7 @@
 </script>
 
 <!-- Code-drawn reel house: wooden frame with bronze trim and rivets around a dark
-     glass window, plus separators between the reels. In the Midnight Raid the frame
+     glass window, plus separators between the reels. In the Haunted Raid the frame
      gets a pulsing purple glow. -->
 <script lang="ts">
 	import type * as PIXI from 'pixi.js';

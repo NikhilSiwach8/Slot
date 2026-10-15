@@ -38,7 +38,7 @@
 
 <FadeContainer {show}>
 	<CanvasSizeRectangle backgroundColor={0x000000} backgroundAlpha={0.5} />
-	<!-- Midnight Raid splash: the art carries the FREE SPINS sign; we add the spin count. -->
+	<!-- Haunted Raid splash: the art carries the FREE SPINS sign; we add the spin count. -->
 	<CoverImage name="fs_splash" />
 	{@const canvas = context.stateLayoutDerived.canvasSizes()}
 	{@const height = Math.max(canvas.height, (canvas.width / 1920) * 1080)}

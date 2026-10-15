@@ -43,7 +43,7 @@ export const BET_MODE_META: BetModeMeta = {
 		assets: noAssets,
 		text: {
 			title: 'DOUBLE CHANCE',
-			description: 'The Midnight Raid triggers twice as often on every spin.',
+			description: 'The Haunted Raid triggers twice as often on every spin.',
 			dialog: `RTP ${formatRtp(ante.rtp)} · Max win ${ante.max_win.toLocaleString('en-US')}x`,
 			button: 'ACTIVATE',
 			betAmountLabel: 'DOUBLE CHANCE',
@@ -60,11 +60,11 @@ export const BET_MODE_META: BetModeMeta = {
 		maxWin: bonus.max_win,
 		assets: noAssets,
 		text: {
-			title: 'MIDNIGHT RAID',
+			title: 'HAUNTED RAID',
 			description:
 				`Starts with ${SCATTER_AWARDS[0].scatters}–${SCATTER_AWARDS[SCATTER_AWARDS.length - 1].scatters} ` +
-				`Golden Trash Cans for ${Math.min(...spins)}–${Math.max(...spins)} free spins. ` +
-				`The Loot Bag multiplier never resets during the raid.`,
+				`Cursed Trash Cans for ${Math.min(...spins)}–${Math.max(...spins)} free spins. ` +
+				`The Trick-or-Treat Bag multiplier never resets during the raid.`,
 			dialog: `RTP ${formatRtp(bonus.rtp)} · Max win ${bonus.max_win.toLocaleString('en-US')}x`,
 			button: 'BUY',
 			betAmountLabel: 'BONUS BUY', // shown as "BONUS" in social mode (see UiLabel)
@@ -87,7 +87,7 @@ Object.assign(BET_MODE_META, {
 		text: {
 			title: 'FEATURE SPIN',
 			description:
-				'Every spin lands 3 Golden Trash Cans and at least one Bottle Cap. One more can starts the Midnight Raid.',
+				'Every spin lands 3 Cursed Trash Cans and at least one Candy Cap. One more can starts the Haunted Raid.',
 			dialog: rtpLine(feature),
 			button: 'ACTIVATE',
 			betAmountLabel: 'FEATURE SPIN',
@@ -106,7 +106,7 @@ Object.assign(BET_MODE_META, {
 		text: {
 			title: 'SUPER BONUS',
 			description:
-				'A Midnight Raid where the Loot Bag starts at x10 and every free spin lands at least one Bottle Cap.',
+				'A Haunted Raid where the Trick-or-Treat Bag starts at x10 and every free spin lands at least one Candy Cap.',
 			dialog: rtpLine(superRaid),
 			button: 'BUY',
 			betAmountLabel: 'SUPER BONUS',
@@ -125,7 +125,7 @@ Object.assign(BET_MODE_META, {
 		text: {
 			title: 'MYSTERY BONUS',
 			description:
-				'The Duke\'s chest reveals a surprise Midnight Raid: 5 to 25 free spins and a Loot Bag starting anywhere from x0 to x20.',
+				'The Duke\'s chest reveals a surprise Haunted Raid: 5 to 25 free spins and a Trick-or-Treat Bag starting anywhere from x0 to x20.',
 			dialog: rtpLine(mystery),
 			button: 'BUY',
 			betAmountLabel: 'MYSTERY BONUS',

@@ -4,6 +4,7 @@
 	import { Sprite } from 'pixi-svelte';
 
 	import { getContext } from '../game/context';
+	import { nightGrade } from './fx/halloween/grade';
 
 	type Props = { name: string };
 	const props: Props = $props();
@@ -22,4 +23,5 @@
 	y={canvas.height / 2}
 	width={image.w * scale}
 	height={image.h * scale}
+	filters={[nightGrade]}
 />

@@ -14,8 +14,8 @@ export const SYMBOL_NAMES: Record<string, string> = {
 	L2: 'Fish Bone',
 	L3: 'Banana Peel',
 	L4: 'Apple Core',
-	S: 'Golden Trash Can',
-	M: 'Bottle Cap',
+	S: 'Cursed Trash Can',
+	M: 'Candy Cap',
 };
 
 // Order of frames in the dukeSymbols sprite sheet (see art/build_atlas.py).

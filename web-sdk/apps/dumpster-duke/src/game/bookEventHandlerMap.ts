@@ -128,11 +128,11 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		eventEmitter.broadcast({ type: 'drawerFold' });
 	},
 	mysteryReveal: async (bookEvent: BookEventOfType<'mysteryReveal'>) => {
-		// Mystery Bonus: the chest rolls the raid's spins and starting Loot Bag first
+		// Mystery Bonus: the chest rolls the raid's spins and starting Trick-or-Treat Bag first
 		await eventEmitter.broadcastAsync({ type: 'mysteryReveal', spins: bookEvent.spins, lootBag: bookEvent.lootBag });
 	},
 	freeSpinRetrigger: async (bookEvent: BookEventOfType<'freeSpinRetrigger'>) => {
-		// 3+ Golden Trash Cans during the Midnight Raid: celebrate them and add the spins
+		// 3+ Cursed Trash Cans during the Haunted Raid: celebrate them and add the spins
 		// to the counter (the next updateFreeSpin event carries the same total).
 		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_scatter_win_v2' });
 		await animateSymbols({ positions: bookEvent.positions });

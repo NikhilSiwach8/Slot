@@ -2,8 +2,8 @@
 	Intro screen shown after loading ("press anywhere to continue"): the DUMPSTER DUKE logo
 	over the mine background and three feature panels drawn as little dumpsters with
 	slime-dripping lids:
-	  1. Bottle Caps up to 100x multiply every win
-	  2. 4+ Golden Trash Cans trigger the Midnight Raid (Loot Bag never resets)
+	  1. Candy Caps up to 100x multiply every win
+	  2. 4+ Cursed Trash Cans trigger the Haunted Raid (Trick-or-Treat Bag never resets)
 	  3. Max win 10,000x
 	Landscape: panels in a row. Portrait: wide panels stacked, icons left of the text.
 -->
@@ -18,6 +18,8 @@
 	import { socialText } from '../game/social';
 	import CoverImage from './CoverImage.svelte';
 	import Rays from './fx/Rays.svelte';
+	import HalloweenScene from './fx/halloween/HalloweenScene.svelte';
+	import JackOLantern from './fx/halloween/JackOLantern.svelte';
 	import { createClock, easeOutBack } from './fx/timeline.svelte';
 
 	const context = getContext();
@@ -44,8 +46,8 @@
 
 	type Feature = { lines: string[]; icons?: string[]; title?: string[] };
 	const FEATURES: Feature[] = [
-		{ icons: ['M_100', 'H1'], lines: ['BOTTLE CAPS UP TO 100X', 'MULTIPLY EVERY WIN'] },
-		{ icons: ['S', 'S', 'S'], lines: ['4+ GOLDEN TRASH CANS', 'TRIGGER THE MIDNIGHT RAID', 'THE LOOT BAG NEVER RESETS'] },
+		{ icons: ['M_100', 'H1'], lines: ['CANDY CAPS UP TO 100X', 'MULTIPLY EVERY WIN'] },
+		{ icons: ['S', 'S', 'S'], lines: ['4+ CURSED TRASH CANS', 'TRIGGER THE HAUNTED RAID', 'THE TREAT BAG NEVER RESETS'] },
 		{ title: ['MAX', 'WIN'], lines: ['UNLOCK A MASSIVE', '10,000X MAX WIN'] },
 	];
 
@@ -83,13 +85,17 @@
 </script>
 
 <CoverImage name="bg_base" />
+<HalloweenScene />
+<HalloweenScene layer="front" />
 
 <MainContainer>
 	{#if landscape}
 		{@const scale = Math.min(layout.width / 1750, (layout.height * 0.47) / TALL.height)}
 		<!-- logo -->
 		<Container x={layout.width / 2} y={layout.height * 0.19 + Math.sin(clock.seconds * 1.2) * 6} scale={pop(0)}>
-			<Rays radius={330} alpha={0.55} />
+			<Rays radius={330} alpha={0.55} colour={0xff8a1a} />
+			<JackOLantern x={-layout.height * 0.27} y={layout.height * 0.1} size={130} seed={2} rotation={-0.15} />
+			<JackOLantern x={layout.height * 0.27} y={layout.height * 0.11} size={110} seed={5} rotation={0.12} />
 			<Sprite key="duke_logo" anchor={0.5} width={layout.height * 0.36} height={layout.height * 0.36} />
 		</Container>
 		<!-- three panels in a row -->
@@ -122,7 +128,7 @@
 	{:else}
 		{@const scale = Math.min(layout.width / 960, (layout.height * 0.18) / WIDE.height)}
 		<Container x={layout.width / 2} y={layout.height * 0.16} scale={pop(0)}>
-			<Rays radius={layout.width * 0.42} alpha={0.55} />
+			<Rays radius={layout.width * 0.42} alpha={0.55} colour={0xff8a1a} />
 			<Sprite key="duke_logo" anchor={0.5} width={layout.width * 0.66} height={layout.width * 0.66} />
 		</Container>
 		<!-- wide panels stacked: icons on the left, text on the right -->

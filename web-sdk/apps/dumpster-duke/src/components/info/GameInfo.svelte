@@ -28,7 +28,7 @@
 		base: 'Base game',
 		ante: 'Double Chance',
 		feature: 'Feature Spin',
-		bonus: 'Bonus buy (Midnight Raid)',
+		bonus: 'Bonus buy (Haunted Raid)',
 		super: 'Super Bonus',
 		mystery: 'Mystery Bonus',
 		max: 'Max or Nothing',
@@ -49,7 +49,7 @@
 		<p>
 			The Dumpster Duke, a grinning, slime-dripping dumpster, rules the junkyard after dark with his alley crew. Land
 			{MIN_CLUSTER} or more matching symbols anywhere on the 6×5 screen to win, tumble for more wins,
-			and lead the <strong>Midnight Raid</strong> to fill the Duke's <strong>Loot Bag</strong>.
+			and lead the <strong>Haunted Raid</strong> to fill the Duke's <strong>Trick-or-Treat Bag</strong>.
 		</p>
 	</section>
 
@@ -61,19 +61,19 @@
 			symbols drop in from above. Tumbling continues until there are no new wins. All wins from one
 			spin are added together.
 		</p>
-		<h3>Bottle Caps</h3>
+		<h3>Candy Caps</h3>
 		<p>
-			Bottle Cap multipliers can land in the base game and the Midnight Raid and stay on screen
-			while symbols tumble. In the base game, when a spin wins, the values of all Bottle Caps on
+			Candy Cap multipliers can land in the base game and the Haunted Raid and stay on screen
+			while symbols tumble. In the base game, when a spin wins, the values of all Candy Caps on
 			screen are added together and the total win of the spin is multiplied by that sum.
 		</p>
-		<h3>Midnight Raid (free spins)</h3>
+		<h3>Haunted Raid (free spins)</h3>
 		<p>
 			{#each SCATTER_AWARDS as award, i}{i > 0 ? (i === SCATTER_AWARDS.length - 1 ? ' or ' : ', ') : ''}{award.scatters}{/each}
-			Golden Trash Cans anywhere trigger the Midnight Raid:
+			Cursed Trash Cans anywhere trigger the Haunted Raid:
 		</p>
 		<table>
-			<thead><tr><th>Golden Trash Cans</th><th>Free spins</th></tr></thead>
+			<thead><tr><th>Cursed Trash Cans</th><th>Free spins</th></tr></thead>
 			<tbody>
 				{#each SCATTER_AWARDS as award}
 					<tr><td>{award.scatters}</td><td>{award.spins}</td></tr>
@@ -81,13 +81,13 @@
 			</tbody>
 		</table>
 		<p>
-			The raid starts with an empty <strong>Loot Bag</strong>. When a free spin wins, every Bottle Cap
-			on screen is added to the Loot Bag and the win of that spin is multiplied by the whole Loot Bag
-			total. The Loot Bag is never reset during the raid, so later wins are multiplied by everything
-			collected so far, even when no new Bottle Cap lands.
+			The raid starts with an empty <strong>Trick-or-Treat Bag</strong>. When a free spin wins, every Candy Cap
+			on screen is added to the Trick-or-Treat Bag and the win of that spin is multiplied by the whole Trick-or-Treat Bag
+			total. The Trick-or-Treat Bag is never reset during the raid, so later wins are multiplied by everything
+			collected so far, even when no new Candy Cap lands.
 		</p>
 		<p>
-			{retrigger.scatters} or more Golden Trash Cans during the raid award {retrigger.spins} more free
+			{retrigger.scatters} or more Cursed Trash Cans during the raid award {retrigger.spins} more free
 			spins.
 		</p>
 	</section>
@@ -117,14 +117,14 @@
 		<div class="special">
 			<SymbolIcon symbol="S" />
 			<p>
-				<strong>Golden Trash Can</strong> — scatter. Pays nothing by itself; triggers and retriggers
-				the Midnight Raid.
+				<strong>Cursed Trash Can</strong> — scatter. Pays nothing by itself; triggers and retriggers
+				the Haunted Raid.
 			</p>
 		</div>
 		<div class="special">
 			<SymbolIcon symbol="M" />
 			<p>
-				<strong>Bottle Cap</strong> — multiplier. Possible values:
+				<strong>Candy Cap</strong> — multiplier. Possible values:
 				{CAP_VALUES.map((value) => formatX(value)).join(', ')}.
 			</p>
 		</div>
@@ -143,8 +143,8 @@
 		<h2>Bonus buy</h2>
 		{#if buy}
 			<p>
-				Buy the Midnight Raid for <strong>{buy.cost}× the bet</strong>. The bought round starts with
-				4, 5 or 6 Golden Trash Cans and is then played exactly like a triggered raid. Bought raids always pay something. RTP of the bonus buy: {formatRtp(buy.rtp)}. Maximum win:
+				Buy the Haunted Raid for <strong>{buy.cost}× the bet</strong>. The bought round starts with
+				4, 5 or 6 Cursed Trash Cans and is then played exactly like a triggered raid. Bought raids always pay something. RTP of the bonus buy: {formatRtp(buy.rtp)}. Maximum win:
 				{formatX(buy.maxWin)} the bet.
 			</p>
 		{:else}
@@ -157,7 +157,7 @@
 			<h2>Double Chance</h2>
 			<p>
 				Switch on Double Chance in the bonus menu to bet <strong>{ante.cost}× the bet</strong> per spin. While
-				it is on, the Midnight Raid triggers twice as often as in the base game. Base-game wins are a little
+				it is on, the Haunted Raid triggers twice as often as in the base game. Base-game wins are a little
 				less frequent to balance the extra raids. Wins are calculated on the base bet. RTP with
 				Double Chance: {formatRtp(ante.rtp)}. Maximum win: {formatX(ante.maxWin)} the bet. Double Chance stays
 				on until you switch it off; the bonus buy is not available while it is on.
@@ -170,8 +170,8 @@
 			<h2>Feature Spin</h2>
 			<p>
 				Switch on Feature Spin in the bonus menu to play at <strong>{feature.cost}× the bet</strong> per spin.
-				Every spin lands 3 Golden Trash Cans and at least one Bottle Cap; one more Golden Trash Can (landing
-				in a tumble) starts the Midnight Raid. RTP: {formatRtp(feature.rtp)}. Maximum win: {formatX(feature.maxWin)}
+				Every spin lands 3 Cursed Trash Cans and at least one Candy Cap; one more Cursed Trash Can (landing
+				in a tumble) starts the Haunted Raid. RTP: {formatRtp(feature.rtp)}. Maximum win: {formatX(feature.maxWin)}
 				the bet. Feature Spin stays on until you switch it off.
 			</p>
 		</section>
@@ -182,15 +182,15 @@
 			<h2>More bonus buys</h2>
 			{#if superRaid}
 				<p>
-					<strong>Super Bonus — {superRaid.cost}× the bet.</strong> A Midnight Raid where the Loot Bag starts at
-					x10 and every free spin lands at least one Bottle Cap. RTP: {formatRtp(superRaid.rtp)}. Maximum win:
+					<strong>Super Bonus — {superRaid.cost}× the bet.</strong> A Haunted Raid where the Trick-or-Treat Bag starts at
+					x10 and every free spin lands at least one Candy Cap. RTP: {formatRtp(superRaid.rtp)}. Maximum win:
 					{formatX(superRaid.maxWin)} the bet.
 				</p>
 			{/if}
 			{#if mystery}
 				<p>
 					<strong>Mystery Bonus — {mystery.cost}× the bet.</strong> A chest reveals the raid before it starts:
-					5 to 25 free spins and a starting Loot Bag from x0 to x20, chosen at random. RTP:
+					5 to 25 free spins and a starting Trick-or-Treat Bag from x0 to x20, chosen at random. RTP:
 					{formatRtp(mystery.rtp)}. Maximum win: {formatX(mystery.maxWin)} the bet.
 				</p>
 			{/if}

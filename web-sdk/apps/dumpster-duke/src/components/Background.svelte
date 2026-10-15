@@ -19,7 +19,7 @@
 	<CoverImage name="bg_base" />
 </FadeContainer>
 
-<!-- Midnight Raid: the same tunnel, graded darker and more purple -->
+<!-- Haunted Raid: the same tunnel, graded darker and more purple -->
 <FadeContainer show={showFeatureBackground} duration={SECOND} zIndex={-1}>
 	<CoverImage name="bg_raid" />
 </FadeContainer>

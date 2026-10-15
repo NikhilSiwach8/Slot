@@ -34,7 +34,7 @@
 	});
 </script>
 
-<!-- total bottle-cap multiplier: slams onto the middle of the board over gold rays -->
+<!-- total candy-cap multiplier: slams onto the middle of the board over gold rays -->
 {#if show}
 	<BoardContainer>
 		<Container
