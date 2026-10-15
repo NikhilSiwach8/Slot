@@ -55,7 +55,8 @@ class GameConfig(Config):
             "L4": [0.2, 0.3, 0.4, 0.6, 0.9, 1.8, 4.0, 10.0],
         }
         pay_scale = 3.0
-        pay_group = {(size, sym): round(values[i] * pay_scale, 2) for sym, values in pays.items() for i, size in enumerate(sizes)}
+        # Stake needs every payout in 0.1x steps: pays are rounded to 0.1, keepers are whole numbers.
+        pay_group = {(size, sym): round(values[i] * pay_scale + 1e-9, 1) for sym, values in pays.items() for i, size in enumerate(sizes)}
         self.paytable = self.convert_range_table(pay_group)
         self.min_cluster = min(s[0] for s in sizes)
 

@@ -62,7 +62,12 @@ if __name__ == "__main__":
         generate_configs(gamestate)
 
     if run_conditions["run_analysis"]:
-        create_stat_sheet(gamestate, custom_keys=[{"symbol": "scatter"}])
+        # The SDK's xlsx sheet assumes every mode has base-game wins, which Off the Shelf
+        # never has; analyze.py reports the numbers we need either way.
+        try:
+            create_stat_sheet(gamestate, custom_keys=[{"symbol": "scatter"}])
+        except UnboundLocalError as err:
+            print(f"Skipped the xlsx stat sheet ({err}); run analyze.py for the mode summary.")
 
     if run_conditions["run_format_checks"]:
         execute_all_tests(config)
