@@ -8,9 +8,13 @@ Cut into `art/whisker_tilt/raw/` by
 `python art/whisker_tilt/slice_sheet.py art/whisker_tilt/source/{sheet_1,sheet_2,paw}.webp`
 (preview: `python art/whisker_tilt/contact_sheet.py` → `art/whisker_tilt/contact_sheet.png`).
 
-| Done (20) | Still needed (7) |
+| Done (21) | Placeholder only (6) |
 |---|---|
-| H1–H4, L1–L4, S, C and the four keepers (sheet 1); `box_frame`, `gift_closed`, `gift_open`, `crack_overlay`, `logo_plate` (sheet 2); `mitten_paw` | `mitten.png` — use prompt **11b**, which now matches the paw (grey cat, white socks, red collar with a gold bell); backgrounds 22–27 |
+| H1–H4, L1–L4, S, C, the four keepers (sheet 1); `box_frame`, `gift_closed`, `gift_open`, `crack_overlay`, `logo_plate` (sheet 2); `mitten_paw`; `mitten` | the 6 backgrounds: they came as one 1536×1024 sheet with captions printed on, so each is thumbnail-sized (tall ones ~150–375 px wide). Cut as placeholders; regenerate each on its own at full size |
+
+The backgrounds moved from the toyshop shelf to a snowy village by a frozen lake, with Mitten
+sitting on the crates at the left. That reads as the village *inside* the snow box, so the
+full-size versions should keep this look.
 
 Fixed in code: sheet 1's checkerboard background is removed; its star was red like the round
 bauble, so it's recoloured pine green; its red bauble's right edge was hidden behind the blue

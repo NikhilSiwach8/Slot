@@ -14,7 +14,7 @@ rows = (len(names) + COLS - 1) // COLS
 sheet = Image.new("RGBA", (COLS * CELL, rows * CELL), (40, 30, 70, 255))
 draw = ImageDraw.Draw(sheet)
 for i, name in enumerate(names):
-    im = Image.open(os.path.join(RAW, name + ".png"))
+    im = Image.open(os.path.join(RAW, name + ".png")).convert("RGBA")
     im.thumbnail((CELL - 20, CELL - 30))
     x, y = (i % COLS) * CELL, (i // COLS) * CELL
     sheet.alpha_composite(im, (x + (CELL - im.width) // 2, y + 5 + (CELL - 30 - im.height) // 2))

@@ -63,6 +63,21 @@ SHEETS = {
     "sheet_1": ("checker", SHEET_1),
     "sheet_2": ("alpha", SHEET_2),
     "paw": ("alpha", {"mitten_paw": (395, 135, 1126, 1222)}),
+    "mitten": ("alpha", {"mitten": (0, 0, 1024, 1536)}),
+    # Six backgrounds on one 1536x1024 sheet, cropped above the captions ChatGPT printed on
+    # them. They're thumbnail-sized (tall ones ~150 px wide): placeholders until full-size
+    # versions arrive.
+    "backgrounds_sheet": (
+        "opaque",
+        {
+            "bg_base": (0, 0, 620, 452),
+            "bg_base_portrait": (624, 0, 772, 452),
+            "bg_snowday": (776, 0, 1287, 452),
+            "bg_snowday_portrait": (1291, 0, 1536, 452),
+            "bg_super": (57, 510, 908, 930),
+            "bg_super_portrait": (948, 510, 1323, 930),
+        },
+    ),
 }
 PER_PIXEL = {"crack_overlay"}
 # The three baubles touch on the sheet: drop the neighbour's colour from each crop
@@ -236,6 +251,11 @@ def cut_sheet(path):
     kind, boxes = SHEETS[stem]
     sheet = Image.open(path).convert("RGBA")
     for name, box in boxes.items():
+        if kind == "opaque":
+            img = sheet.crop(box).convert("RGB")
+            img.save(os.path.join(RAW, f"{name}.png"))
+            print(f"{stem:8} {name:20} {img.size[0]}x{img.size[1]}  (placeholder size)")
+            continue
         crop = np.asarray(sheet.crop(box)).astype(int)
         rgb = crop[..., :3]
         if kind == "alpha":
