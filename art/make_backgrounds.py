@@ -2,7 +2,7 @@
 
 The sheet holds two portrait images side by side:
   left  - the mine tunnel   -> base game and (purple-graded) free-spins backgrounds
-  right - the FREE SPINS cart -> full-screen splash when free spins trigger
+  right - the old FREE SPINS cart splash (now replaced by make_fs_splashes.py)
 
 The landscape backgrounds behind the reels fill the screen (cropping top and
 bottom); the splash, which has its sign in the middle, is instead widened by
@@ -72,14 +72,11 @@ def main(path):
     os.makedirs(OUT, exist_ok=True)
     sheet = Image.open(path).convert("RGB")
     tunnel = sheet.crop((LEFT[0], 0, LEFT[1], sheet.height))
-    splash = sheet.crop((RIGHT[0], 0, RIGHT[1], sheet.height))
     # Behind the reels: fill the screen so the tunnel stays visible around the board.
     save(cover_sharp(tunnel, LANDSCAPE, 0.45), "bg_base_landscape")
     save(cover(tunnel, PORTRAIT), "bg_base_portrait")
     save(raid_grade(cover_sharp(tunnel, LANDSCAPE, 0.45)), "bg_raid_landscape")
     save(raid_grade(cover(tunnel, PORTRAIT)), "bg_raid_portrait")
-    save(widen(splash, LANDSCAPE), "fs_splash_landscape")
-    save(cover(splash, PORTRAIT), "fs_splash_portrait")
 
 
 if __name__ == "__main__":

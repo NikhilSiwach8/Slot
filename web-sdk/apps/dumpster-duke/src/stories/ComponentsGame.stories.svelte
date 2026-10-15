@@ -19,6 +19,7 @@
 	import { setContext } from '../game/context';
 	import { eventEmitter } from '../game/eventEmitter';
 	import { stateBet } from 'state-shared';
+	import { winLevelMap } from '../game/winLevelMap';
 
 	
 	setContext();
@@ -87,6 +88,62 @@
 		data: {},
 		action: async () => {
 			await eventEmitter.broadcastAsync({ type: 'mysteryReveal', spins: 15, lootBag: 8 });
+		},
+	})}
+	{template}
+/>
+
+<Story
+	name="splash: haunted raid"
+	args={templateArgs({
+		skipLoadingScreen: true,
+		data: {},
+		action: async () => {
+			stateBet.activeBetModeKey = 'BASE';
+			eventEmitter.broadcast({ type: 'freeSpinIntroShow' });
+			await eventEmitter.broadcastAsync({ type: 'freeSpinIntroUpdate', totalFreeSpins: 12 });
+		},
+	})}
+	{template}
+/>
+
+<Story
+	name="splash: super bonus"
+	args={templateArgs({
+		skipLoadingScreen: true,
+		data: {},
+		action: async () => {
+			stateBet.activeBetModeKey = 'SUPER';
+			eventEmitter.broadcast({ type: 'freeSpinIntroShow' });
+			await eventEmitter.broadcastAsync({ type: 'freeSpinIntroUpdate', totalFreeSpins: 12 });
+		},
+	})}
+	{template}
+/>
+
+<Story
+	name="splash: mystery bonus"
+	args={templateArgs({
+		skipLoadingScreen: true,
+		data: {},
+		action: async () => {
+			stateBet.activeBetModeKey = 'MYSTERY';
+			eventEmitter.broadcast({ type: 'freeSpinIntroShow' });
+			await eventEmitter.broadcastAsync({ type: 'freeSpinIntroUpdate', totalFreeSpins: 12 });
+		},
+	})}
+	{template}
+/>
+
+<Story
+	name="splash: raid complete"
+	args={templateArgs({
+		skipLoadingScreen: true,
+		data: {},
+		action: async () => {
+			stateBet.betAmount = 1;
+			eventEmitter.broadcast({ type: 'freeSpinOutroShow' });
+			await eventEmitter.broadcastAsync({ type: 'freeSpinOutroCountUp', amount: 1254300000, winLevelData: winLevelMap[6] });
 		},
 	})}
 	{template}

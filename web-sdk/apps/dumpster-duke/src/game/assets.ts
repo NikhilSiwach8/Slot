@@ -20,14 +20,45 @@ export default {
 		src: new URL('../../assets/sprites/dukeBackgrounds/bg_raid_portrait.webp', import.meta.url).href,
 		preload: true,
 	},
-	fs_splash_landscape: {
+	// bonus splashes: Haunted Raid, Super Bonus, Mystery Bonus intros and the raid-complete outro
+	fs_raid_landscape: {
 		type: 'sprite',
-		src: new URL('../../assets/sprites/dukeBackgrounds/fs_splash_landscape.webp', import.meta.url).href,
+		src: new URL('../../assets/sprites/dukeBackgrounds/fs_raid_landscape.webp', import.meta.url).href,
 		preload: true,
 	},
-	fs_splash_portrait: {
+	fs_raid_portrait: {
 		type: 'sprite',
-		src: new URL('../../assets/sprites/dukeBackgrounds/fs_splash_portrait.webp', import.meta.url).href,
+		src: new URL('../../assets/sprites/dukeBackgrounds/fs_raid_portrait.webp', import.meta.url).href,
+		preload: true,
+	},
+	fs_super_landscape: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/dukeBackgrounds/fs_super_landscape.webp', import.meta.url).href,
+		preload: true,
+	},
+	fs_super_portrait: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/dukeBackgrounds/fs_super_portrait.webp', import.meta.url).href,
+		preload: true,
+	},
+	fs_mystery_landscape: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/dukeBackgrounds/fs_mystery_landscape.webp', import.meta.url).href,
+		preload: true,
+	},
+	fs_mystery_portrait: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/dukeBackgrounds/fs_mystery_portrait.webp', import.meta.url).href,
+		preload: true,
+	},
+	fs_outro_landscape: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/dukeBackgrounds/fs_outro_landscape.webp', import.meta.url).href,
+		preload: true,
+	},
+	fs_outro_portrait: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/dukeBackgrounds/fs_outro_portrait.webp', import.meta.url).href,
 		preload: true,
 	},
 	// full DUMPSTER DUKE logo (the Duke on his sign) for the intro screen

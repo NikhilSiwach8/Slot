@@ -12,20 +12,18 @@
 	import { FadeContainer, WinCountUpProvider, ResponsiveBitmapText } from 'components-pixi';
 	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
 	import { waitForResolve } from 'utils-shared/wait';
-	import { CanvasSizeRectangle, MainContainer } from 'components-layout';
+	import { CanvasSizeRectangle } from 'components-layout';
 	import { OnMount } from 'components-shared';
 
 	import { getContext } from '../game/context';
-	import Plaque from './fx/Plaque.svelte';
-	import Rays from './fx/Rays.svelte';
 	import { createTween01, type Tween01, easeOutBack } from './fx/timeline.svelte';
 	import PressToContinue from './PressToContinue.svelte';
+	import Splash from './Splash.svelte';
 	import WinCoins from './WinCoins.svelte';
 
 	const context = getContext();
 
 	let show = $state(true);
-	const PANEL = { width: 1100, height: 620 };
 	let intro = $state(createTween01(1));
 	let amount = $state(0);
 	let winLevelData = $state<WinLevelData>();
@@ -54,26 +52,21 @@
 
 				<CanvasSizeRectangle backgroundColor={0x000000} backgroundAlpha={0.5} />
 
-				<!-- end of the Haunted Raid: total win on a plaque over gold rays -->
-				<MainContainer>
-					<Container
-						x={context.stateLayoutDerived.mainLayout().width * 0.5}
-						y={context.stateLayoutDerived.mainLayout().height * 0.5}
-						scale={easeOutBack(Math.min(1, intro.t), 1.8)}
-					>
-						<Rays radius={PANEL.width * 0.95} />
-						<Plaque width={PANEL.width} height={PANEL.height} glow={1} />
-						<BitmapText anchor={0.5} y={-PANEL.height * 0.3} text="HAUNTED RAID" style={{ fontFamily: 'gold', fontSize: PANEL.height * 0.16 }} />
-						<BitmapText anchor={0.5} y={-PANEL.height * 0.12} text="TOTAL WIN" style={{ fontFamily: 'gold', fontSize: PANEL.height * 0.11 }} />
-						<ResponsiveBitmapText
-							anchor={0.5}
-							y={PANEL.height * 0.14}
-							style={{ fontFamily: 'gold', fontSize: PANEL.height * (isBigWin ? 0.28 : 0.24) }}
-							text={bookEventAmountToCurrencyString(countUpAmount)}
-							maxWidth={PANEL.width * 0.85}
-						/>
-					</Container>
-				</MainContainer>
+				<!-- RAID COMPLETE splash: the total win counts up on its blank plaque -->
+				<Splash name="outro">
+					{#snippet children({ plaque })}
+						<Container x={plaque.x} y={plaque.y} scale={easeOutBack(Math.min(1, intro.t), 1.8)}>
+							<BitmapText anchor={0.5} y={-plaque.height * 0.27} text="TOTAL WIN" style={{ fontFamily: 'gold', fontSize: plaque.height * 0.22 }} />
+							<ResponsiveBitmapText
+								anchor={0.5}
+								y={plaque.height * 0.13}
+								style={{ fontFamily: 'gold', fontSize: plaque.height * (isBigWin ? 0.5 : 0.44) }}
+								text={bookEventAmountToCurrencyString(countUpAmount)}
+								maxWidth={plaque.width * 0.88}
+							/>
+						</Container>
+					{/snippet}
+				</Splash>
 
 				<WinCoins emit={!countUpCompleted} levelAlias={winLevelData?.alias} />
 
