@@ -81,48 +81,132 @@ Four tiny villagers stand on the box's walls, each holding a lantern with their 
 A keeper at x0 is unlit and adds nothing. Base game: keepers reset every spin. Free
 spins: keepers never reset.
 
-## 5. Bonus: Snow Day (free spins)
+## 5. Features
 
-- **4 / 5 / 6+ Wind-up Keys** → **10 / 12 / 15** free spins.
+Six features. Free Spins, Super Free Spins and Feature Spins can happen in normal play;
+Mystery Free Spins and Max or Nothing are buy-only; Ante is a bet switch.
+
+| # | Feature | In-game name | How you get it | Cost (target, set by math) |
+|---|---|---|---|---|
+| 1 | Ante — Double Chance | **Catnip** | toggle in the bet panel | 1.25× per spin |
+| 2 | Free Spins | **Snow Day** | 4 / 5 Wind-up Keys, or buy | buy 100× |
+| 3 | Super Free Spins | **Super Snow Day** | 6+ Wind-up Keys, or buy | buy 300× |
+| 4 | Mystery Free Spins | **Mitten's Gift** | buy | buy 150× |
+| 5 | Feature Spins | **Paw Spins** | bet mode, per spin | ~10× per spin |
+| 6 | Max or Nothing Spins | **Off the Shelf** | buy | buy 200× |
+
+All modes: RTP 96.50% (within Stake's ±0.5% between modes), max win **10,000×**, the round
+ends as soon as it is reached.
+
+### 5.1 Ante — Double Chance (Catnip)
+
+- Costs **1.25×** the bet. Mitten is on catnip: Wind-up Keys appear more often, so
+  Snow Day triggers **twice as often**. Everything else about the spin is unchanged.
+- While Catnip is on, every buy (Snow Day, Super, Gift, Off the Shelf) and Paw Spins are
+  disabled, as Stake requires; switching it off re-enables them.
+- Math: a separate reel set with more keys. Since a trigger needs 4 keys, about 2^¼ ≈ 1.2×
+  more keys gives 2× the triggers (prototype: 1 in 242 → 1 in 133 spins).
+
+### 5.2 Free Spins (Snow Day)
+
+- **4 keys → 10 spins, 5 keys → 12 spins.** (6+ keys → Super Snow Day, below.)
 - Keepers, gravity direction and the quarter-turn count **persist for the whole bonus**.
 - **The Paw:** before each free spin drops, Mitten turns the box a quarter turn. So the
   floor wall changes every spin, all four keepers get coins, and a Snowstorm comes at
   least every 4 spins.
-- **3+ Keys** during the bonus → **+3 spins** (lifetime cap: 50 spins).
+- **3+ keys** during the bonus → **+3 spins** (lifetime cap: 50 spins).
+- Buy: **100×**, guarantees 4 or 5 keys.
 
-## 6. Bet modes (Stake)
+### 5.3 Super Free Spins (Super Snow Day)
 
-| Mode | Cost | What |
-|---|---|---|
-| `base` | 1× | normal play |
-| `ante` (Cat Nip) | 1.25× | bonus twice as often, same as Dumpster Duke's Double Chance |
-| `bonus` | 100× | buy Snow Day (4–6 keys guaranteed) |
-| `super` (optional) | 300× | buy Snow Day with every keeper already lit at x2 |
+- **6+ keys → 12 spins**, or buy for **300×**.
+- Same as Snow Day, plus **all four keepers start lit at x2**, so every edge cluster is
+  multiplied from the first spin and every Snowstorm doubles something.
+- Snowflake Coins land more often (heavier coin strip).
+- Look: night falls in the toyshop, the box glows gold, Mitten's eyes shine.
 
-Targets: RTP 96.50% all modes, max win **10,000×** (round ends on reaching it),
-high volatility, base hit rate ~1 in 3.5.
+### 5.4 Mystery Free Spins (Mitten's Gift)
+
+- Buy for **150×**. Mitten knocks a wrapped present off the shelf; it unwraps to reveal the
+  round before it starts. Starting weights (to tune):
+
+  | Gift | Weight |
+  |---|---|
+  | Snow Day, 8 spins | 30 |
+  | Snow Day, 10 spins | 25 |
+  | Snow Day, 12 spins | 20 |
+  | Snow Day, 15 spins | 12 |
+  | Super Snow Day, 10 spins | 9 |
+  | Super Snow Day, 12 spins | 4 |
+
+- The price sits between Snow Day and Super: you pay less than Super, and 13% of gifts are
+  Super rounds. The reveal is part of the book (`mysteryReveal` event), so it is replayable.
+
+### 5.5 Feature Spins (Paw Spins)
+
+- A bet mode at **~10× per spin**, played as single spins (works with autoplay).
+- Every Paw Spin starts with **all four keepers lit at x2** and is **guaranteed to win**
+  (the mode's book set holds no zero-win spins), so every spin tilts at least once.
+- Keys still trigger Snow Day / Super Snow Day as usual.
+- Keepers reset each spin, as in the base game.
+- Prototype: full turns happen 1 in ~520 Paw Spins vs 1 in ~3,000 base spins.
+
+### 5.6 Max or Nothing Spins (Off the Shelf)
+
+- Buy for **200×**. Mitten pushes the box to the edge of the shelf and plays a Super Snow Day.
+- Spin wins are **not paid** in this mode: they put cracks in the glass instead, shown on a
+  **crack meter** that fills toward 10,000×. No coin amounts or win counters are shown.
+- If the round reaches **10,000×**, the box falls, shatters and pays the **max win**.
+  Otherwise the box holds and the round pays **0**.
+- So every round is either 10,000× or nothing. At 96.50% RTP and 200× cost, the max hits in
+  **1 in ~52** rounds (p = 0.965 × 200 / 10,000).
+- Math: the mode's books are two sets, max-win rounds (weight p) and zero rounds (real Super
+  rounds that fall short of 10,000×). The optimizer only has to hit p.
+
+## 6. Bet modes (math-sdk)
+
+| Mode id | Cost | Feature | Notes |
+|---|---|---|---|
+| `base` | 1× | normal play | keys trigger Snow Day / Super |
+| `ante` | 1.25× | Catnip | own reel set, 2× trigger rate |
+| `bonus` | 100× | Snow Day buy | 4–5 keys guaranteed |
+| `super` | 300× | Super Snow Day buy | |
+| `mystery` | 150× | Mitten's Gift | gift drawn from weights in the book |
+| `feature` | ~10× | Paw Spins | no zero-win books |
+| `max_or_nothing` | 200× | Off the Shelf | win is 0 or 10,000× |
+
+Base hit rate target ~1 in 3.5, high volatility.
 
 ## 7. Prototype findings (placeholder weights — feel, not RTP)
 
-`python prototype/tilt.py --sims 20000` and `--bonus --sims 5000`:
+`python prototype/tilt.py --mode <base|ante|feature|bonus|super|mystery> --sims N`:
 
-| | Base | Snow Day (10 spins) |
-|---|---|---|
-| Tilts per spin | 0: 80%, 1: 18%, 2: 2%, 3+: 0.2% | — |
-| Snowstorm | ~1 in 2,500 spins | avg 2.75 per round, every round has one |
-| Biggest keeper at the end | — | median x16, p90 x60, p99 x216 |
+| | Base | Catnip (ante) | Paw Spins |
+|---|---|---|---|
+| Hit rate | 1 in 5.3 | 1 in 5.4 | every spin |
+| Tilts per spin | 0: 80%, 1: 18%, 2: 2%, 3+: 0.2% | same | 1: 88%, 2: 10%, 3+: 1.3% |
+| Full turn (Snowstorm) | 1 in 3,000 | 1 in 3,000 | 1 in ~520 |
+| Bonus trigger | 1 in 242 | 1 in 133 | — |
+
+| | Snow Day (10) | Super Snow Day (12) | Mitten's Gift |
+|---|---|---|---|
+| Snowstorms per round | 2.75 | 3.38 | 2.94 |
+| Biggest keeper: median / p90 / p99 | x16 / x60 / x216 | x44 / x120 / x432 | x18 / x84 / x400 |
+| Walls lit at the end | 1.75 of 4 | 4 of 4 | 2.07 of 4 |
 
 What this says:
 
 - Without the Paw, free spins only averaged 0.2 Snowstorms per round — the bonus didn't
   feel like turning the box. Adding the Paw fixed it, so it's now part of the design.
-- Base-game full turns are a true rare event. That's fine as a "hype moment", but if it
-  should be part of base play, add Wilds or lower the cluster size to 4 so cascades run
-  longer.
+- Super Snow Day's keepers end up about 3× bigger than Snow Day's, which fits a ~3× price.
+- Base-game full turns are a true rare event. That's fine as a "hype moment", and Paw Spins
+  are where players can chase them.
+- Ante: 1.2× more keys gives 1.8× the triggers here; the final reel set will hit 2×.
 - Hit rate (1 in 5 with flat weights) needs reel strips to reach ~1 in 3.5.
+- Off the Shelf has no prototype: it's a choice of book weights, not new gameplay.
 
-`python prototype/tilt.py --demo 197` shows a two-tilt spin where a coin waiting on the
-north wall gets banked once the box turns upside down.
+`python prototype/tilt.py --demo 158` shows a two-tilt spin: the first tilt slides an x10
+coin onto the West wall, and the cluster after it touches that wall and pays ×10.
 
 ## 8. Implementation notes
 
@@ -147,6 +231,8 @@ north wall gets banked once the box turns upside down.
 | `keeperBank` | `{ wall, coinValue, keeperTotal, position }` |
 | `snowstorm` | `{ keepers: [s, w, n, e] }` after doubling |
 | `clusterWin` | as in the cluster app, plus `walls` touched and `multiplier` |
+| `mysteryReveal` | `{ kind, spins }`: kind is free / super |
+| `crackMeter` | `{ progress }`: Off the Shelf only, replaces win counters |
 
 ### Client (web-sdk, from the cluster app)
 
@@ -166,14 +252,19 @@ north wall gets banked once the box turns upside down.
   frequency within Stake's limits (more often than 1 in 10M).
 - **Animation length:** each tilt adds ~0.5 s. Long base cascades are rare (2% reach 2 tilts),
   so it's OK, but the bonus with the Paw adds a turn per spin: keep the Paw quick.
+- **Off the Shelf presentation:** showing progress that isn't paid can read as a lost win.
+  Rules and UI must say clearly that only 10,000× pays; check with Stake before building.
+- **Paw Spins price:** guaranteeing a win changes the whole distribution; the ~10× price is a
+  guess until the first simulation.
 - Should a cluster touching the floor wall get a small bonus (x2) even with unlit keepers,
   to make edges matter in the base game? Test after first math run.
 
 ## 10. Next steps
 
 1. Sign off this concept (theme + mechanic).
-2. Math: set up `math/whisker_tilt/` on the math-sdk with the rotate-tumble, simulate, tune
-   reel strips toward the targets above.
+2. Math: set up `math/whisker_tilt/` on the math-sdk with the rotate-tumble and the seven
+   bet modes in section 6, simulate, tune reel strips and prices toward the targets.
 3. Art prompt sheet in the Dumpster Duke style workflow (`docs/ART_PROMPTS.md`) for
    symbols, keepers, Mitten and the toyshop background.
-4. Client: fork the cluster app, add the `tilt` / `keeperBank` / `snowstorm` events.
+4. Client: fork the cluster app, add the `tilt` / `keeperBank` / `snowstorm` /
+   `mysteryReveal` / `crackMeter` events and the buy menu for the five buyable modes.

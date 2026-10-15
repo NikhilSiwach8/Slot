@@ -6,8 +6,8 @@ Symbols are drawn from flat weights, not reel strips, and the paytable is a
 placeholder: the stats this prints are about feel (tilts per spin, keeper
 growth, Snowstorm frequency), never RTP.
 
-    python tilt.py --demo 7      # play one spin step by step (seed 7)
-    python tilt.py --sims 20000  # mechanic stats over many spins
+    python tilt.py --demo 158                  # play one spin step by step
+    python tilt.py --mode base --sims 20000    # mechanic stats; modes: base ante feature bonus super mystery
 """
 import argparse
 import random
@@ -23,7 +23,7 @@ EDGE_NAMES = ["South", "West", "North", "East"]  # the edge each direction falls
 WEIGHTS = {
     "H1": 4, "H2": 5, "H3": 6, "H4": 7,
     "L1": 10, "L2": 11, "L3": 12, "L4": 13,
-    "S": 0.8, "C": 2.2,
+    "S": 1.25, "C": 2.2,
 }
 COIN_VALUES = {2: 50, 3: 25, 5: 15, 10: 7, 25: 2, 50: 1}
 PAYS = {  # placeholder, x bet for cluster sizes 5,6,7,8,9-10,11-12,13-15,16+
@@ -188,9 +188,20 @@ def play_spin(rng, keepers=None, d=DOWN, turn=0, paw=False, log=lambda s: None):
     return dict(win=win, tilts=tilts, storms=storms, keepers=keepers, d=d, turn=turn, scatters=scatters)
 
 
-def play_bonus(rng, spins=10):
+FS_SPINS = {4: 10, 5: 12}  # keys landed -> free spins; 6+ keys -> Super Snow Day
+SUPER_SPINS = 12
+SUPER_KEEPERS = 2  # Super Snow Day: every wall starts lit at x2
+MYSTERY_GIFTS = [  # (kind, spins, weight) revealed from Mitten's present
+    ("free", 8, 30), ("free", 10, 25), ("free", 12, 20), ("free", 15, 12),
+    ("super", 10, 9), ("super", 12, 4),
+]
+ANTE_KEY_BOOST = 1.2
+FEATURE_KEEPERS = 2  # Feature Spins: every wall starts lit at x2 and the spin always wins
+
+
+def play_bonus(rng, spins=10, start_keeper=0):
     """Free spins: keepers, gravity and the turn count never reset; 3+ scatters give +3 spins."""
-    keepers, d, turn, win, storms, played = [0, 0, 0, 0], DOWN, 0, 0.0, 0, 0
+    keepers, d, turn, win, storms, played = [start_keeper] * 4, DOWN, 0, 0.0, 0, 0
     while played < spins and played < 50:
         res = play_spin(rng, keepers, d, turn, paw=True)
         d, turn = res["d"], res["turn"]
@@ -202,41 +213,86 @@ def play_bonus(rng, spins=10):
     return dict(win=win, storms=storms, keepers=keepers, spins=played)
 
 
+def bonus_entry(keys):
+    """What a natural trigger awards: ("free"|"super", spins)."""
+    return ("super", SUPER_SPINS) if keys >= 6 else ("free", FS_SPINS[keys])
+
+
+def play_mystery(rng):
+    kinds, spins, w = zip(*MYSTERY_GIFTS)
+    i = rng.choices(range(len(w)), w)[0]
+    res = play_bonus(rng, spins[i], SUPER_KEEPERS if kinds[i] == "super" else 0)
+    res["gift"] = f"{kinds[i]} {spins[i]}"
+    return res
+
+
+def play_feature_spin(rng):
+    """Feature Spins: walls start at x2, and only winning spins are dealt (the book set has no 0 wins)."""
+    while True:
+        res = play_spin(rng, [FEATURE_KEEPERS] * 4)
+        if res["win"] > 0:
+            return res
+
+
+def report_rounds(title, rounds):
+    n = len(rounds)
+    print(f"{n} {title} (placeholder weights/paytable — feel only, not RTP)")
+    print(f"spins played        avg {sum(r['spins'] for r in rounds) / n:.1f}")
+    print(f"snowstorms/round    avg {sum(r['storms'] for r in rounds) / n:.2f}, "
+          f"at least one {sum(r['storms'] > 0 for r in rounds) / n:.0%}")
+    top = sorted(max(r["keepers"]) for r in rounds)
+    print(f"biggest keeper      median x{top[n // 2]}, p90 x{top[n * 9 // 10]}, p99 x{top[n * 99 // 100]}")
+    print(f"edges lit at end    avg {sum(sum(k > 0 for k in r['keepers']) for r in rounds) / n:.2f} of 4")
+    if "gift" in rounds[0]:
+        gifts = Counter(r["gift"] for r in rounds)
+        print("gifts               " + "  ".join(f"{g}:{v / n:.0%}" for g, v in sorted(gifts.items())))
+
+
+def report_spins(title, spins, triggers=None):
+    n = len(spins)
+    tilts = Counter(r["tilts"] for r in spins)
+    lit = Counter(sum(k > 0 for k in r["keepers"]) for r in spins)
+    print(f"{n} {title} (placeholder weights/paytable — feel only, not RTP)")
+    print(f"hit rate            1 in {n / max(sum(r['win'] > 0 for r in spins), 1):.2f}")
+    print("tilts per spin      " + "  ".join(f"{k}:{v / n:.1%}" for k, v in sorted(tilts.items())))
+    print(f"full turn (storm)   1 in {n / max(sum(r['storms'] > 0 for r in spins), 1):.0f} spins")
+    print("keepers lit at end  " + "  ".join(f"{k}:{v / n:.1%}" for k, v in sorted(lit.items())))
+    if triggers is not None:
+        print(f"bonus trigger       1 in {n / max(sum(triggers.values()), 1):.0f} spins  "
+              + "  ".join(f"{k}:{v}" for k, v in sorted(triggers.items())))
+
+
+MODES = ["base", "ante", "feature", "bonus", "super", "mystery"]
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--demo", type=int, help="seed of one spin to print step by step")
     ap.add_argument("--sims", type=int, default=20000)
-    ap.add_argument("--bonus", action="store_true", help="simulate free-spin rounds instead of base spins")
+    ap.add_argument("--mode", choices=MODES, default="base",
+                    help="max-or-nothing has no prototype: it is a book-distribution choice, see CONCEPT.md")
     args = ap.parse_args()
     if args.demo is not None:
         res = play_spin(random.Random(args.demo), log=print)
         print(f"total win {res['win']:g}x, tilts {res['tilts']}, snowstorms {res['storms']}")
         return
     rng = random.Random(1)
-    if args.bonus:
-        rounds = [play_bonus(rng) for _ in range(args.sims)]
-        n = len(rounds)
-        print(f"{n} free-spin rounds of 10 (placeholder weights/paytable — feel only, not RTP)")
-        print(f"spins played        avg {sum(r['spins'] for r in rounds) / n:.1f}")
-        print(f"snowstorms/round    avg {sum(r['storms'] for r in rounds) / n:.2f}, "
-              f"at least one {sum(r['storms'] > 0 for r in rounds) / n:.0%}")
-        top = sorted(max(r["keepers"]) for r in rounds)
-        print(f"biggest keeper      median x{top[n // 2]}, p90 x{top[n * 9 // 10]}, p99 x{top[n * 99 // 100]}")
-        print(f"edges lit at end    avg {sum(sum(k > 0 for k in r['keepers']) for r in rounds) / n:.2f} of 4")
-        return
-    tilts, storms, lit, wins = Counter(), 0, Counter(), 0
-    for _ in range(args.sims):
-        res = play_spin(rng)
-        tilts[res["tilts"]] += 1
-        storms += res["storms"] > 0
-        lit[sum(k > 0 for k in res["keepers"])] += 1
-        wins += res["win"] > 0
     n = args.sims
-    print(f"{n} base spins (placeholder weights/paytable — feel only, not RTP)")
-    print(f"hit rate            1 in {n / max(wins, 1):.2f}")
-    print("tilts per spin      " + "  ".join(f"{k}:{v / n:.1%}" for k, v in sorted(tilts.items())))
-    print(f"full turn (storm)   1 in {n / max(storms, 1):.0f} spins")
-    print("keepers lit at end  " + "  ".join(f"{k}:{v / n:.1%}" for k, v in sorted(lit.items())))
+    if args.mode in ("base", "ante"):
+        if args.mode == "ante":  # Double Chance: 4+ keys need ~4 of them, so 2^(1/4) more keys ~ 2x triggers
+            WEIGHTS["S"] *= ANTE_KEY_BOOST
+        spins = [play_spin(rng) for _ in range(n)]
+        triggers = Counter(bonus_entry(r["scatters"]) for r in spins if r["scatters"] >= 4)
+        report_spins(f"{args.mode} spins", spins, Counter({f"{k} {v}": c for (k, v), c in triggers.items()}))
+    elif args.mode == "feature":
+        report_spins("feature spins", [play_feature_spin(rng) for _ in range(n)])
+    elif args.mode == "bonus":
+        report_rounds("Snow Day rounds of 10", [play_bonus(rng, 10) for _ in range(n)])
+    elif args.mode == "super":
+        report_rounds(f"Super Snow Day rounds of {SUPER_SPINS}",
+                      [play_bonus(rng, SUPER_SPINS, SUPER_KEEPERS) for _ in range(n)])
+    else:
+        report_rounds("Mystery Snow Day rounds", [play_mystery(rng) for _ in range(n)])
 
 
 if __name__ == "__main__":
