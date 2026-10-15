@@ -8,6 +8,7 @@
 	import { getContext } from '../game/context';
 	import TransitionAnimation from './TransitionAnimation.svelte';
 	import PressToContinue from './PressToContinue.svelte';
+	import IntroScreen from './IntroScreen.svelte';
 	import UiArt from '../ui/components/UiArt.svelte';
 	import { createClock } from './fx/timeline.svelte';
 
@@ -32,8 +33,8 @@
 	};
 </script>
 
-<!-- title, bouncing crown coin and loading bar -->
-<FadeContainer show={loadingType === 'start'}>
+<!-- while loading: title, bouncing crown coin and loading bar -->
+<FadeContainer show={loadingType === 'start' && !context.stateApp.loaded}>
 	<MainContainer>
 		<Container
 			x={context.stateLayoutDerived.mainLayout().width * 0.5}
@@ -51,8 +52,11 @@
 	</MainContainer>
 </FadeContainer>
 
-<!-- press to continue -->
+<!-- loaded: the intro screen (logo + feature panels), press to continue -->
 <FadeContainer show={loadingType === 'start' && context.stateApp.loaded}>
+	{#if context.stateApp.loaded}
+		<IntroScreen />
+	{/if}
 	<PressToContinue onpress={() => (loadingType = 'transition')} />
 </FadeContainer>
 

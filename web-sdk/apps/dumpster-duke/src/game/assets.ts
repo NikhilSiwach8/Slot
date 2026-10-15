@@ -30,6 +30,12 @@ export default {
 		src: new URL('../../assets/sprites/dukeBackgrounds/fs_splash_portrait.webp', import.meta.url).href,
 		preload: true,
 	},
+	// full DUMPSTER DUKE logo (the Duke on his sign) for the intro screen
+	duke_logo: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/dukeLogo/duke_logo.webp', import.meta.url).href,
+		preload: true,
+	},
 	dukeUi: {
 		type: 'sprites',
 		src: new URL('../../assets/sprites/dukeUi/dukeUi.json', import.meta.url).href,
