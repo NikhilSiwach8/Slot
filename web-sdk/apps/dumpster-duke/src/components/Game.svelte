@@ -18,6 +18,7 @@
 	import Sound from './Sound.svelte';
 	import Background from './Background.svelte';
 	import LoadingScreen from './LoadingScreen.svelte';
+	import ProviderSplash from './ProviderSplash.svelte';
 	import HalloweenScene from './fx/halloween/HalloweenScene.svelte';
 	import HalloweenFrame from './fx/halloween/HalloweenFrame.svelte';
 	import BoardFrame from './BoardFrame.svelte';
@@ -123,6 +124,10 @@
 
 	{/if}
 </App>
+
+{#if context.stateLayout.showLoadingScreen}
+	<ProviderSplash />
+{/if}
 
 <GameModals>
 	{#snippet version()}

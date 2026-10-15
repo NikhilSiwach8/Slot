@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { SHEET_ORDER, SHEET_COLUMNS, SHEET_ROWS } from '../../game/rules';
+	import { staticAsset } from '../../game/staticAsset';
 
 	type Props = { symbol: string; size?: string };
 	const props: Props = $props();
 
-	const sheet = new URL('../../../assets/sprites/dukeSymbols/dukeSymbols.webp', import.meta.url).href;
+	const sheet = staticAsset('sprites/dukeSymbols/dukeSymbols.webp');
 	const index = $derived(SHEET_ORDER.indexOf(props.symbol));
 	const col = $derived(index % SHEET_COLUMNS);
 	const row = $derived(Math.floor(index / SHEET_COLUMNS));

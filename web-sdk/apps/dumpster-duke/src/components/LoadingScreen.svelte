@@ -9,6 +9,7 @@
 	import TransitionAnimation from './TransitionAnimation.svelte';
 	import PressToContinue from './PressToContinue.svelte';
 	import IntroScreen from './IntroScreen.svelte';
+	import { stateSplash } from './ProviderSplash.svelte';
 	import UiArt from '../ui/components/UiArt.svelte';
 	import { createClock } from './fx/timeline.svelte';
 
@@ -53,11 +54,11 @@
 </FadeContainer>
 
 <!-- loaded: the intro screen (logo + feature panels), press to continue -->
-<FadeContainer show={loadingType === 'start' && context.stateApp.loaded}>
-	{#if context.stateApp.loaded}
+<FadeContainer show={loadingType === 'start' && context.stateApp.loaded && !stateSplash.visible}>
+	{#if context.stateApp.loaded && !stateSplash.visible}
 		<IntroScreen />
+		<PressToContinue onpress={() => (loadingType = 'transition')} />
 	{/if}
-	<PressToContinue onpress={() => (loadingType = 'transition')} />
 </FadeContainer>
 
 <!-- transition between the loading screen and the game -->

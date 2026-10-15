@@ -20,13 +20,13 @@
 	import type { EmitterEventModal } from 'components-ui-html';
 
 	import { socialWording } from '../../game/social';
+	import { staticAsset } from '../../game/staticAsset';
 
 	const { eventEmitter } = getContextEventEmitter<EmitterEventModal>();
 
-	// literal paths so Vite can resolve them
-	const ICON_CAN = new URL('../../../assets/ui/icon_s.webp', import.meta.url).href;
-	const ICON_CAP = new URL('../../../assets/ui/icon_m.webp', import.meta.url).href;
-	const ICON_DUKE = new URL('../../../assets/ui/icon_h1.webp', import.meta.url).href;
+	const ICON_CAN = staticAsset('ui/icon_s.webp');
+	const ICON_CAP = staticAsset('ui/icon_m.webp');
+	const ICON_DUKE = staticAsset('ui/icon_h1.webp');
 
 	type Look = { images: string[]; badge?: string; text?: string; sky: string; volatility: number };
 	const LOOK: Record<string, Look> = {
