@@ -9,6 +9,7 @@ and the "Midnight Raid" free spins. Design: [docs/GDD.md](docs/GDD.md).
 | `web-sdk/apps/dumpster-duke/` | Game client (Svelte + PixiJS, forked from the web-sdk scatter app) |
 | `art/` | Art prompts, ChatGPT/OpenAI generation + finishing pass, sprite-sheet builder |
 | `docs/` | Game design doc, ChatGPT art prompt sheet |
+| `concepts/` | New game concepts: [Whisker Tilt](concepts/whisker-tilt/CONCEPT.md) (rotating-gravity cluster tumble) |
 | `scripts/` | SDK setup and math → client sync tools |
 
 ## Setup
