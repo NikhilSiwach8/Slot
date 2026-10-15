@@ -90,9 +90,9 @@ Mystery Free Spins and Max or Nothing are buy-only; Ante is a bet switch.
 |---|---|---|---|---|
 | 1 | Ante — Double Chance | **Catnip** | toggle in the bet panel | 1.25× per spin |
 | 2 | Free Spins | **Snow Day** | 4 / 5 Wind-up Keys, or buy | buy 100× |
-| 3 | Super Free Spins | **Super Snow Day** | 6+ Wind-up Keys, or buy | buy 300× |
-| 4 | Mystery Free Spins | **Mitten's Gift** | buy | buy 150× |
-| 5 | Feature Spins | **Paw Spins** | bet mode, per spin | ~10× per spin |
+| 3 | Super Free Spins | **Super Snow Day** | 6+ Wind-up Keys, or buy | buy 250× |
+| 4 | Mystery Free Spins | **Mitten's Gift** | buy | buy 140× |
+| 5 | Feature Spins | **Paw Spins** | bet mode, per spin | 5× per spin |
 | 6 | Max or Nothing Spins | **Off the Shelf** | buy | buy 200× |
 
 All modes: RTP 96.50% (within Stake's ±0.5% between modes), max win **10,000×**, the round
@@ -119,32 +119,32 @@ ends as soon as it is reached.
 
 ### 5.3 Super Free Spins (Super Snow Day)
 
-- **6+ keys → 12 spins**, or buy for **300×**.
-- Same as Snow Day, plus **all four keepers start lit at x2**, so every edge cluster is
+- **6+ keys → 12 spins**, or buy for **250×**.
+- Same as Snow Day, plus **all four keepers start lit at x5**, so every edge cluster is
   multiplied from the first spin and every Snowstorm doubles something.
 - Snowflake Coins land more often (heavier coin strip).
 - Look: night falls in the toyshop, the box glows gold, Mitten's eyes shine.
 
 ### 5.4 Mystery Free Spins (Mitten's Gift)
 
-- Buy for **150×**. Mitten knocks a wrapped present off the shelf; it unwraps to reveal the
+- Buy for **140×**. Mitten knocks a wrapped present off the shelf; it unwraps to reveal the
   round before it starts. Starting weights (to tune):
 
   | Gift | Weight |
   |---|---|
-  | Snow Day, 8 spins | 30 |
+  | Snow Day, 8 spins | 20 |
   | Snow Day, 10 spins | 25 |
   | Snow Day, 12 spins | 20 |
-  | Snow Day, 15 spins | 12 |
-  | Super Snow Day, 10 spins | 9 |
-  | Super Snow Day, 12 spins | 4 |
+  | Snow Day, 15 spins | 15 |
+  | Super Snow Day, 10 spins | 12 |
+  | Super Snow Day, 12 spins | 8 |
 
-- The price sits between Snow Day and Super: you pay less than Super, and 13% of gifts are
+- The price sits between Snow Day and Super: you pay less than Super, and 20% of gifts are
   Super rounds. The reveal is part of the book (`mysteryReveal` event), so it is replayable.
 
 ### 5.5 Feature Spins (Paw Spins)
 
-- A bet mode at **~10× per spin**, played as single spins (works with autoplay).
+- A bet mode at **5× per spin**, played as single spins (works with autoplay).
 - Every Paw Spin starts with **all four keepers lit at x2** and is **guaranteed to win**
   (the mode's book set holds no zero-win spins), so every spin tilts at least once.
 - Keys still trigger Snow Day / Super Snow Day as usual.
@@ -170,9 +170,9 @@ ends as soon as it is reached.
 | `base` | 1× | normal play | keys trigger Snow Day / Super |
 | `ante` | 1.25× | Catnip | own reel set, 2× trigger rate |
 | `bonus` | 100× | Snow Day buy | 4–5 keys guaranteed |
-| `super` | 300× | Super Snow Day buy | |
-| `mystery` | 150× | Mitten's Gift | gift drawn from weights in the book |
-| `feature` | ~10× | Paw Spins | no zero-win books |
+| `super` | 250× | Super Snow Day buy | |
+| `mystery` | 140× | Mitten's Gift | gift drawn from weights in the book |
+| `feature` | 5× | Paw Spins | no zero-win books |
 | `max_or_nothing` | 200× | Off the Shelf | win is 0 or 10,000× |
 
 Base hit rate target ~1 in 3.5, high volatility.

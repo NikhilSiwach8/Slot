@@ -10,6 +10,7 @@ and the "Midnight Raid" free spins. Design: [docs/GDD.md](docs/GDD.md).
 | `art/` | Art prompts, ChatGPT/OpenAI generation + finishing pass, sprite-sheet builder |
 | `docs/` | Game design doc, ChatGPT art prompt sheet |
 | `concepts/` | New game concepts: [Whisker Tilt](concepts/whisker-tilt/CONCEPT.md) (rotating-gravity cluster tumble) |
+| `math/whisker_tilt/` | Whisker Tilt math model (7 bet modes) — see its [README](math/whisker_tilt/README.md) |
 | `scripts/` | SDK setup and math → client sync tools |
 
 ## Setup

@@ -2,6 +2,7 @@
 # Restore the Stake Engine SDKs around this repo's game folders.
 #
 #   math/dumpster_duke          -> linked into math-sdk/games/dumpster_duke
+#   math/whisker_tilt           -> linked into math-sdk/games/whisker_tilt
 #   web-sdk/apps/dumpster-duke  -> the rest of web-sdk is filled in around it
 #
 # Usage: scripts/setup.sh        (idempotent; needs git, python3.12+, make, node 22, pnpm 10)
@@ -27,6 +28,7 @@ if [ ! -f "$ROOT/math-sdk/Makefile" ]; then
   rm -rf "$ROOT/math-sdk" && mv "$src" "$ROOT/math-sdk"
 fi
 ln -sfn "$ROOT/math/dumpster_duke" "$ROOT/math-sdk/games/dumpster_duke"
+ln -sfn "$ROOT/math/whisker_tilt" "$ROOT/math-sdk/games/whisker_tilt"
 [ -x "$ROOT/math-sdk/env/bin/python" ] || make -C "$ROOT/math-sdk" setup
 
 # --- web-sdk --------------------------------------------------------------
