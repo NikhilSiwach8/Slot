@@ -48,6 +48,7 @@ const celebrate = async (positions: Position[]) => {
 
 export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContext> = {
 	reveal: async (bookEvent: BookEventOfType<'reveal'>, { bookEvents }: BookEventContext) => {
+		eventEmitter.broadcast({ type: 'tumbleWinAmountHide' });
 		eventEmitter.broadcast({ type: 'tumbleWinAmountReset' });
 		if (checkIsMultipleRevealEvents({ bookEvents })) {
 			eventEmitter.broadcast({ type: 'stopButtonEnable' });
