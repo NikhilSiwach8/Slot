@@ -37,7 +37,7 @@ const boardLayout = () => {
 	const scale = boardScale();
 	return {
 		x: stateLayoutDerived.mainLayout().width * 0.5,
-		y: stateLayoutDerived.mainLayout().height * 0.47,
+		y: stateLayoutDerived.mainLayout().height * 0.45,
 		anchor: { x: 0.5, y: 0.5 },
 		pivot: { x: BOARD_SIZES.width / 2, y: BOARD_SIZES.height / 2 },
 		scale,

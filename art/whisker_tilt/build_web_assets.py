@@ -142,8 +142,16 @@ def main():
     dd = os.path.join(HERE, "..", "..", "web-sdk", "apps", "dumpster-duke", "static", "assets")
     ui = os.path.join(sprites, "wtUi")
     os.makedirs(ui, exist_ok=True)
-    winterise(Image.open(os.path.join(dd, "sprites", "dukeUi", "dukeUi.webp"))).save(os.path.join(ui, "wtUi.webp"), quality=92)
     atlas = json.load(open(os.path.join(dd, "sprites", "dukeUi", "dukeUi.json")))
+    sheet = winterise(Image.open(os.path.join(dd, "sprites", "dukeUi", "dukeUi.webp")))
+    # the Buy Bonus button shows Mitten's gift instead of Dumpster Duke's mine cart
+    gift = Image.open(os.path.join(RAW, "gift_closed.png")).convert("RGBA")
+    for frame_name in ("ui_icon_cart.png",):
+        f = atlas["frames"][frame_name]["frame"]
+        sheet.paste((0, 0, 0, 0), (f["x"], f["y"], f["x"] + f["w"], f["y"] + f["h"]))
+        icon = fit(gift, min(f["w"], f["h"]) - 6)
+        sheet.paste(icon, (f["x"] + (f["w"] - icon.width) // 2, f["y"] + (f["h"] - icon.height) // 2), icon)
+    sheet.save(os.path.join(ui, "wtUi.webp"), quality=92)
     atlas["meta"]["image"] = "wtUi.webp"
     json.dump(atlas, open(os.path.join(ui, "wtUi.json"), "w"), indent=1)
     with open(os.path.join(ui, "index.ts"), "w") as f:
@@ -153,6 +161,10 @@ def main():
     os.makedirs(os.path.join(OUT, "ui"), exist_ok=True)
     for f in os.listdir(os.path.join(dd, "ui")):
         winterise(Image.open(os.path.join(dd, "ui", f))).save(os.path.join(OUT, "ui", f), quality=92)
+    icon = fit(gift, 240)
+    canvas = Image.new("RGBA", (256, 256), (0, 0, 0, 0))
+    canvas.paste(icon, ((256 - icon.width) // 2, (256 - icon.height) // 2), icon)
+    canvas.save(os.path.join(OUT, "ui", "icon_cart.webp"), quality=92)
     print("wtUi + ui/: recoloured from Dumpster Duke")
 
     for old in ("dukeSymbols", "dukeUi", "dukeBackgrounds"):

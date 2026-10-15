@@ -7,11 +7,11 @@ export const BOARD_SIZES = {
 	height: SYMBOL_SIZE * BOARD_DIMENSIONS.y,
 };
 
-/** The snow box frame art: its window spans ~60% of the image, centred at (0.49, 0.503). */
-export const FRAME = { size: BOARD_SIZES.width / 0.6, centerX: 0.49, centerY: 0.503 };
+/** The snow box frame art: its clear window (inside the snow) spans ~54% of the image. */
+export const FRAME = { size: BOARD_SIZES.width / 0.54, centerX: 0.49, centerY: 0.49 };
 
 /** Board + frame + keepers scale per layout, so the whole box fits the main area. */
-export const BOARD_SCALE = { desktop: 0.76, tablet: 0.9, landscape: 0.84, portrait: 0.76 } as const;
+export const BOARD_SCALE = { desktop: 0.66, tablet: 0.8, landscape: 0.74, portrait: 0.7 } as const;
 
 export const GRAVITIES: Gravity[] = ['down', 'left', 'up', 'right'];
 export const WALLS: Wall[] = ['south', 'west', 'north', 'east'];
