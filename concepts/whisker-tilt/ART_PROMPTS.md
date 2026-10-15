@@ -2,6 +2,21 @@
 
 27 images: 10 symbols, 6 characters, 5 props, 6 backgrounds. Design: [CONCEPT.md](CONCEPT.md).
 
+## Status
+
+Sheet 1 (`art/whisker_tilt/source/sheet_1.webp`) is cut into `art/whisker_tilt/raw/` by
+`python art/whisker_tilt/slice_sheet.py art/whisker_tilt/source/sheet_1.webp`
+(preview: `art/whisker_tilt/contact_sheet.png`).
+
+| Done (19) | Still needed (8) |
+|---|---|
+| H1–H4, L1–L4, S, C, the four keepers, `box_frame`, `gift_closed`, `gift_open`, `crack_overlay`, `logo_plate` | `mitten.png`, `mitten_paw.png` (the sheet drew a knitted glove, not a cat — use prompts 11b / 12b below), backgrounds 22–27 |
+
+Fixed in code from sheet 1: the star was red like the round bauble, so it's recoloured pine
+green; the frame was wide, so it's narrowed to the square board; the red bauble's right edge
+was hidden behind the blue one, so it's rebuilt from its mirror image. The coin's centre has a
+snowflake instead of being empty: the game prints its value on a small plaque over it.
+
 ## How to use
 
 1. **Chat A (symbols, characters, props):** start a new ChatGPT chat, paste the **Style setup**
@@ -113,6 +128,20 @@ Symbol C — Snowflake Coin: a thick round gold coin with a frosted icy-blue rim
 
 ```
 Character: Mitten, a fluffy ginger tabby cat with white socks, big round amber eyes, a mischievous grin and a raised paw, sitting and peering curiously at something in front of her. Full body, three-quarter view facing left. She will sit beside the game board in the background, so make her big and expressive. Portrait 1024×1536, transparent background PNG, same style as set up above.
+```
+
+### 11b. Mitten the cat, retry → `mitten.png`
+
+If ChatGPT draws a glove or mitten, use this one instead:
+
+```
+Character: a CAT named Mitten (an animal, NOT a glove or mitten). A fluffy orange ginger tabby house cat with white fur on her paws and chest, pointed cat ears, long whiskers, big round amber eyes, a long striped tail and a mischievous grin, sitting upright with one front paw raised as if about to bat something. Full body, three-quarter view facing left. Portrait 1024×1536, transparent background PNG, same style as set up above.
+```
+
+### 12b. Mitten's paw, retry → `mitten_paw.png`
+
+```
+A CAT'S front paw (an animal paw, NOT a glove): a fluffy orange ginger tabby cat's foreleg with white fur on the paw and soft pink toe beans, coming down from the top edge of the image, claws slightly out, about to bat something below it. Only the paw and lower leg. Portrait 1024×1536, transparent background PNG, same style as set up above.
 ```
 
 ### 12. Mitten's paw → `mitten_paw.png`
