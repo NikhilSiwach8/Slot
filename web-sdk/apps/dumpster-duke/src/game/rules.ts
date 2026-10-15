@@ -6,14 +6,14 @@ export const { scatterAwards: SCATTER_AWARDS, retrigger: RETRIGGER, minCluster: 
 	config.dukeRules;
 
 export const SYMBOL_NAMES: Record<string, string> = {
-	H1: 'The Dumpster Duke',
-	H2: 'Possum Bruiser',
-	H3: 'Bling Pigeon',
-	H4: 'Golden Pizza Slice',
-	L1: 'Soda Can',
-	L2: 'Fish Bone',
-	L3: 'Banana Peel',
-	L4: 'Apple Core',
+	H1: 'Count Dumpster Duke',
+	H2: 'Werewolf Possum',
+	H3: 'Witch Pigeon',
+	H4: "Jack-o'-Pizza",
+	L1: 'Mummy Can',
+	L2: 'Ghost Fish',
+	L3: 'Boo-nana',
+	L4: 'Poison Apple',
 	S: 'Cursed Trash Can',
 	M: 'Candy Cap',
 };

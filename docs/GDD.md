@@ -34,14 +34,14 @@ Reference *feel*: chunky, cel-shaded cartoon slots (e.g. the Meta Gaming style o
 
 | Symbol | Code | 8–9 | 10–11 | 12–14 | 15+ |
 |---|---|---|---|---|---|
-| The Dumpster Duke (grinning dumpster) | H1 | 10 | 25 | 50 | 100 |
-| Possum Bruiser | H2 | 2.5 | 10 | 25 | 50 |
-| Bling Pigeon | H3 | 2 | 5 | 15 | 40 |
-| Golden Pizza Slice | H4 | 1.5 | 2 | 12 | 30 |
-| Soda Can | L1 | 1 | 1.5 | 10 | 20 |
-| Fish Bone | L2 | 0.8 | 1.2 | 8 | 16 |
-| Banana Peel | L3 | 0.5 | 1 | 5 | 12 |
-| Apple Core | L4 | 0.4 | 0.9 | 4 | 10 |
+| Count Dumpster Duke (vampire dumpster) | H1 | 10 | 25 | 50 | 100 |
+| Werewolf Possum | H2 | 2.5 | 10 | 25 | 50 |
+| Witch Pigeon | H3 | 2 | 5 | 15 | 40 |
+| Jack-o'-Pizza | H4 | 1.5 | 2 | 12 | 30 |
+| Mummy Can | L1 | 1 | 1.5 | 10 | 20 |
+| Ghost Fish | L2 | 0.8 | 1.2 | 8 | 16 |
+| Boo-nana | L3 | 0.5 | 1 | 5 | 12 |
+| Poison Apple | L4 | 0.4 | 0.9 | 4 | 10 |
 
 Payouts are multiples of the bet. (Values are the starting paytable; final
 values are fixed once the math is signed off.)
