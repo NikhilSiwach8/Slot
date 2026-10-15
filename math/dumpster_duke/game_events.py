@@ -42,3 +42,18 @@ def send_mystery_reveal_event(gamestate, spins: int, loot_bag: int):
             "lootBag": loot_bag,
         }
     )
+
+
+MAX_BOOST = "maxBoost"
+
+
+def send_max_boost_event(gamestate, spin_win: float):
+    """Max or Nothing: the spin won, so its win is boosted to the max win."""
+    gamestate.book.add_event(
+        {
+            "index": len(gamestate.book.events),
+            "type": MAX_BOOST,
+            "fromWin": int(round(spin_win * 100)),
+            "toWin": int(round(gamestate.config.wincap * 100)),
+        }
+    )

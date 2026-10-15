@@ -22,7 +22,13 @@ class GameState(GameStateOverride):
             self.set_end_tumble_event()
             self.win_manager.update_gametype_wins(self.gametype)
 
-            if not self.wincap_triggered and self.check_fs_condition() and self.check_freespin_entry():
+            max_or_nothing = self.get_current_distribution_conditions().get("max_or_nothing", False)
+            if (
+                not max_or_nothing
+                and not self.wincap_triggered
+                and self.check_fs_condition()
+                and self.check_freespin_entry()
+            ):
                 self.run_freespin_from_base()
 
             self.evaluate_finalwin()

@@ -131,6 +131,11 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		// Mystery Bonus: the chest rolls the raid's spins and starting Trick-or-Treat Bag first
 		await eventEmitter.broadcastAsync({ type: 'mysteryReveal', spins: bookEvent.spins, lootBag: bookEvent.lootBag });
 	},
+	maxBoost: async (bookEvent: BookEventOfType<'maxBoost'>) => {
+		// Max or Nothing: the spin won something, so it jumps straight to the max win
+		eventEmitter.broadcast({ type: 'tumbleWinAmountHide' });
+		await eventEmitter.broadcastAsync({ type: 'maxBoost', fromWin: bookEvent.fromWin, toWin: bookEvent.toWin });
+	},
 	freeSpinRetrigger: async (bookEvent: BookEventOfType<'freeSpinRetrigger'>) => {
 		// 3+ Cursed Trash Cans during the Haunted Raid: celebrate them and add the spins
 		// to the counter (the next updateFreeSpin event carries the same total).

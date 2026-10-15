@@ -257,7 +257,8 @@ class GameConfig(Config):
                     freegame_dist(0.999, {4: 20, 5: 4, 6: 1}, mystery),
                 ],
             ),
-            # Max or Nothing: one paid spin that either reaches the 10,000x max win or pays 0.
+            # Max or Nothing: one paid spin, no free spins. If the spin wins anything at all,
+            # the win is boosted straight to the 10,000x max win; a dead spin pays 0.
             BetMode(
                 name="max",
                 cost=MAX_COST,
@@ -267,18 +268,19 @@ class GameConfig(Config):
                 is_feature=False,
                 is_buybonus=True,
                 distributions=[
-                    wincap_dist({5: 1, 6: 2}, quota=0.02),
                     Distribution(
-                        criteria="0",
-                        quota=0.98,
-                        win_criteria=0.0,
+                        criteria=criteria,
+                        quota=quota,
+                        win_criteria=win,
                         conditions={
                             "reel_weights": {self.basegame_type: {"BR0": 1}},
                             "mult_values": {self.basegame_type: base_caps, self.freegame_type: fs_caps},
                             "force_wincap": False,
                             "force_freegame": False,
+                            "max_or_nothing": True,
                         },
-                    ),
+                    )
+                    for criteria, quota, win in (("wincap", 0.02, float(self.wincap)), ("0", 0.98, 0.0))
                 ],
             ),
         ]

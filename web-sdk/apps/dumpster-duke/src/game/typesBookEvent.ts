@@ -55,6 +55,14 @@ type BookEventMysteryReveal = {
 	lootBag: number;
 };
 
+// Max or Nothing: the single spin won, so its win is boosted to the max win
+type BookEventMaxBoost = {
+	index: number;
+	type: 'maxBoost';
+	fromWin: number;
+	toWin: number;
+};
+
 type BookEventFreeSpinRetrigger = {
 	index: number;
 	type: 'freeSpinRetrigger';
@@ -130,6 +138,7 @@ export type BookEvent =
 	| BookEventSetTotalWin
 	| BookEventFreeSpinTrigger
 	| BookEventMysteryReveal
+	| BookEventMaxBoost
 	| BookEventFreeSpinRetrigger
 	| BookEventUpdateFreeSpin
 	| BookEventUpdateGlobalMult

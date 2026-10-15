@@ -6,7 +6,7 @@
 	});
 </script>
 
-<!-- Rounds from the Super Bonus, Mystery Bonus and Feature Spin modes. -->
+<!-- Rounds from the Super Bonus, Mystery Bonus, Feature Spin and Max or Nothing modes. -->
 <script lang="ts">
 	import { StoryGameTemplate, StoryLocale, type TemplateArgs, templateArgs } from 'components-storybook';
 	import { stateBet } from 'state-shared';
@@ -18,6 +18,7 @@
 	import superBooks from './data/super_books';
 	import mysteryBooks from './data/mystery_books';
 	import featureBooks from './data/feature_books';
+	import maxBooks from './data/max_books';
 
 	setContext();
 
@@ -56,6 +57,26 @@
 		skipLoadingScreen: true,
 		data: {},
 		action: async () => await play('FEATURE', featureBooks.find((book) => book.payoutMultiplier > 0) ?? featureBooks[0]),
+	})}
+	{template}
+/>
+
+<Story
+	name="max or nothing win"
+	args={templateArgs({
+		skipLoadingScreen: true,
+		data: {},
+		action: async () => await play('MAX', maxBooks.find((book) => book.payoutMultiplier > 0) ?? maxBooks[0]),
+	})}
+	{template}
+/>
+
+<Story
+	name="max or nothing loss"
+	args={templateArgs({
+		skipLoadingScreen: true,
+		data: {},
+		action: async () => await play('MAX', maxBooks.find((book) => book.payoutMultiplier === 0) ?? maxBooks[0]),
 	})}
 	{template}
 />

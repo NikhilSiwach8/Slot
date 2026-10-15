@@ -36,7 +36,9 @@ Double Chance (ante): hits 1 in 4.32, triggers the bonus 1 in 105 (2x base), sam
 Feature Spin: every spin shows 3 Golden Trash Cans and a Bottle Cap; hits 1 in 5.37, raid 1 in 23 (avg ~99x bet).
 Super Bonus: Loot Bag starts at x10, a Bottle Cap on every free spin. Mystery Bonus: 5-25 spins and a x0-x20
 starting Loot Bag drawn at random (a `mysteryReveal` book event carries both before `freeSpinTrigger`).
-Max or Nothing: only two outcomes, 0 or the 10,000x cap; weights are set exactly by
+Max or Nothing: a single base-game spin (no free spins; boards with 4+ Cursed Trash Cans are
+redrawn). A winning spin gets a `maxBoost` book event and is set to the 10,000x cap; a losing spin
+pays 0. Only two outcomes, 0 or the cap; weights are set exactly by
 `math/dumpster_duke/fixed_weights.py` (P(cap) = RTP x cost / cap = 1 in 20.7). The SDK's own
 format-check statistics step cannot handle a two-outcome table (it crashes computing the gap between
 payouts); `validate-books-index` passes for all 7 modes. Mention this mode explicitly to reviewers.

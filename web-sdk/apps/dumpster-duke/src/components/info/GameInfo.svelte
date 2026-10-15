@@ -196,8 +196,10 @@
 			{/if}
 			{#if maxOrNothing}
 				<p>
-					<strong>Max or Nothing — {maxOrNothing.cost}× the bet.</strong> One spin that either pays the full
-					maximum win of {formatX(maxOrNothing.maxWin)} the bet or pays nothing. On average about
+					<strong>Max or Nothing — {maxOrNothing.cost}× the bet.</strong> A single spin with no free spins.
+					If the spin wins anything at all, the win is boosted straight to the maximum win of
+					{formatX(maxOrNothing.maxWin)} the bet; if it does not win, it pays nothing. Cursed Trash Cans do not
+					trigger the Haunted Raid on this spin. On average about
 					1 in {(maxOrNothing.maxWin / (maxOrNothing.rtp * maxOrNothing.cost)).toFixed(1)} of these spins pays.
 					RTP: {formatRtp(maxOrNothing.rtp)}.
 				</p>

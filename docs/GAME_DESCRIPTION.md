@@ -22,7 +22,7 @@ Feeling lucky? Switch on **Double Chance** to play at 1.25x the bet and trigger 
 - Double Chance (ante): 1.25x the bet, bonus twice as often
 - Feature Spin: 5x the bet, every spin lands 3 Cursed Trash Cans and a Candy Cap
 - Bonus buys: Haunted Raid (100x), Super Bonus with a x10 Trick-or-Treat Bag (250x), Mystery Bonus (100x)
-- Max or Nothing: one 500x spin that pays the 10,000x max win or nothing
+- Max or Nothing: a single 500x spin; any win is boosted to the 10,000x max win, no win pays nothing
 - Max win: 10,000x the bet
 - RTP: 96.50% (all modes)
 - Volatility: high

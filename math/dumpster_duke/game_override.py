@@ -93,3 +93,10 @@ class GameStateOverride(GameExecutables):
         super().check_repeat()
         if not self.repeat and self.criteria == "freegame" and self.final_win == 0:
             self.repeat = True
+        # Max or Nothing is a single spin: never show a raid-triggering board
+        if (
+            not self.repeat
+            and self.get_current_distribution_conditions().get("max_or_nothing")
+            and self.count_special_symbols("scatter") >= min(self.config.freespin_triggers[self.gametype])
+        ):
+            self.repeat = True

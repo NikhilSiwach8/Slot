@@ -3,7 +3,7 @@
 from copy import copy
 
 from game_calculations import GameCalculations
-from game_events import send_mult_info_event
+from game_events import send_max_boost_event, send_mult_info_event
 from src.events.events import (
     set_win_event,
     set_total_event,
@@ -40,6 +40,12 @@ class GameExecutables(GameCalculations):
                 send_mult_info_event(self, applied_mult, mult_info, base_tumble_win, self.win_manager.spin_win)
                 update_tumble_win_event(self)
                 self.evaluate_wincap()
+
+        # Max or Nothing: any win at all is boosted straight to the max win
+        if self.win_manager.spin_win > 0 and self.get_current_distribution_conditions().get("max_or_nothing"):
+            send_max_boost_event(self, self.win_manager.spin_win)
+            self.win_manager.set_spin_win(self.config.wincap)
+            self.evaluate_wincap()
 
         if self.win_manager.spin_win > 0:
             set_win_event(self)
