@@ -1,0 +1,294 @@
+{
+ "frames": {
+  "ui_panel.png": {
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 558,
+    "h": 637
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 558,
+    "h": 637
+   },
+   "sourceSize": {
+    "w": 558,
+    "h": 637
+   }
+  },
+  "ui_card.png": {
+   "frame": {
+    "x": 560,
+    "y": 0,
+    "w": 278,
+    "h": 543
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 278,
+    "h": 543
+   },
+   "sourceSize": {
+    "w": 278,
+    "h": 543
+   }
+  },
+  "ui_bar_frame.png": {
+   "frame": {
+    "x": 0,
+    "y": 639,
+    "w": 368,
+    "h": 129
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 368,
+    "h": 129
+   },
+   "sourceSize": {
+    "w": 368,
+    "h": 129
+   }
+  },
+  "ui_btn_spin.png": {
+   "frame": {
+    "x": 370,
+    "y": 639,
+    "w": 120,
+    "h": 118
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 120,
+    "h": 118
+   },
+   "sourceSize": {
+    "w": 120,
+    "h": 118
+   }
+  },
+  "ui_icon_bonus.png": {
+   "frame": {
+    "x": 492,
+    "y": 639,
+    "w": 117,
+    "h": 115
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 117,
+    "h": 115
+   },
+   "sourceSize": {
+    "w": 117,
+    "h": 115
+   }
+  },
+  "ui_btn_menu.png": {
+   "frame": {
+    "x": 611,
+    "y": 639,
+    "w": 115,
+    "h": 114
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 115,
+    "h": 114
+   },
+   "sourceSize": {
+    "w": 115,
+    "h": 114
+   }
+  },
+  "ui_icon_cart.png": {
+   "frame": {
+    "x": 728,
+    "y": 639,
+    "w": 119,
+    "h": 114
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 119,
+    "h": 114
+   },
+   "sourceSize": {
+    "w": 119,
+    "h": 114
+   }
+  },
+  "ui_btn_turbo.png": {
+   "frame": {
+    "x": 849,
+    "y": 639,
+    "w": 114,
+    "h": 113
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 114,
+    "h": 113
+   },
+   "sourceSize": {
+    "w": 114,
+    "h": 113
+   }
+  },
+  "ui_btn_blank.png": {
+   "frame": {
+    "x": 0,
+    "y": 770,
+    "w": 114,
+    "h": 113
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 114,
+    "h": 113
+   },
+   "sourceSize": {
+    "w": 114,
+    "h": 113
+   }
+  },
+  "ui_bar_panel.png": {
+   "frame": {
+    "x": 116,
+    "y": 770,
+    "w": 163,
+    "h": 90
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 163,
+    "h": 90
+   },
+   "sourceSize": {
+    "w": 163,
+    "h": 90
+   }
+  },
+  "ui_btn_info.png": {
+   "frame": {
+    "x": 281,
+    "y": 770,
+    "w": 177,
+    "h": 78
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 177,
+    "h": 78
+   },
+   "sourceSize": {
+    "w": 177,
+    "h": 78
+   }
+  },
+  "ui_btn_back.png": {
+   "frame": {
+    "x": 460,
+    "y": 770,
+    "w": 183,
+    "h": 77
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 183,
+    "h": 77
+   },
+   "sourceSize": {
+    "w": 183,
+    "h": 77
+   }
+  },
+  "ui_bar_minus.png": {
+   "frame": {
+    "x": 645,
+    "y": 770,
+    "w": 76,
+    "h": 76
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 76,
+    "h": 76
+   },
+   "sourceSize": {
+    "w": 76,
+    "h": 76
+   }
+  },
+  "ui_bar_plus.png": {
+   "frame": {
+    "x": 723,
+    "y": 770,
+    "w": 74,
+    "h": 76
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 74,
+    "h": 76
+   },
+   "sourceSize": {
+    "w": 74,
+    "h": 76
+   }
+  }
+ },
+ "meta": {
+  "app": "art/slice_ui.py",
+  "image": "wtUi.webp",
+  "format": "RGBA8888",
+  "size": {
+   "w": 1024,
+   "h": 883
+  },
+  "scale": "1"
+ }
+}

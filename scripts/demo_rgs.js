@@ -4,7 +4,9 @@
 (() => {
 	const M = 1000000;
 	const BOOKS = window.__DEMO_BOOKS__;
-	const COST = { base: 1, bonus: 100 };
+	const COST = window.__DEMO_COSTS__ || { base: 1, bonus: 100 };
+	// ?demoBook=<mode>:<id> plays that book on the next round of that mode (testing)
+	const forced = new URLSearchParams(location.search).get('demoBook');
 	let balance = 1000 * M;
 	let round = null;
 
@@ -34,7 +36,8 @@
 				balance = 1000 * M; // demo top-up instead of an error
 			}
 			balance -= cost;
-			const id = set.picks[Math.floor(Math.random() * set.picks.length)];
+			let id = set.picks[Math.floor(Math.random() * set.picks.length)];
+			if (forced && forced.startsWith(`${mode}:`) && set.books[forced.split(':')[1]]) id = forced.split(':')[1];
 			const book = set.books[id];
 			const payoutMultiplier = book.p / 100;
 			round = { roundID: Date.now(), amount: req.amount, payout: Math.round(req.amount * payoutMultiplier), payoutMultiplier, active: payoutMultiplier > 0, mode: req.mode, event: null, state: book.e };

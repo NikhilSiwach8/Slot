@@ -11,5 +11,6 @@ web-sdk/*
 !web-sdk/apps/
 web-sdk/apps/*
 !web-sdk/apps/dumpster-duke/
+!web-sdk/apps/whisker-tilt/
 math-sdk
 dist/

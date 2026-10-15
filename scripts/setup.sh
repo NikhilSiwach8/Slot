@@ -4,6 +4,7 @@
 #   math/dumpster_duke          -> linked into math-sdk/games/dumpster_duke
 #   math/whisker_tilt           -> linked into math-sdk/games/whisker_tilt
 #   web-sdk/apps/dumpster-duke  -> the rest of web-sdk is filled in around it
+#   web-sdk/apps/whisker-tilt   -> (same)
 #
 # Usage: scripts/setup.sh        (idempotent; needs git, python3.12+, make, node 22, pnpm 10)
 set -euo pipefail
@@ -35,10 +36,12 @@ ln -sfn "$ROOT/math/whisker_tilt" "$ROOT/math-sdk/games/whisker_tilt"
 if [ ! -f "$ROOT/web-sdk/package.json" ]; then
   src="$(fetch https://github.com/StakeEngine/web-sdk.git "$WEB_SDK_COMMIT")"
   # copy upstream around our app without touching it
-  (cd "$src" && tar cf - --exclude=./apps/dumpster-duke .) | (cd "$ROOT/web-sdk" && tar xf -)
+  (cd "$src" && tar cf - --exclude=./apps/dumpster-duke --exclude=./apps/whisker-tilt .) | (cd "$ROOT/web-sdk" && tar xf -)
   # Stake Engine's intro loader (platform branding) is the only file taken from the
   # template's static folder; every other asset in the game is our own and tracked.
-  cp -n "$src/apps/scatter/static/stake-engine-loader.gif" "$ROOT/web-sdk/apps/dumpster-duke/static/" 2>/dev/null || true
+  for app in dumpster-duke whisker-tilt; do
+    cp -n "$src/apps/scatter/static/stake-engine-loader.gif" "$ROOT/web-sdk/apps/$app/static/" 2>/dev/null || true
+  done
   rm -rf "$src"
 fi
 (cd "$ROOT/web-sdk" && pnpm install)
