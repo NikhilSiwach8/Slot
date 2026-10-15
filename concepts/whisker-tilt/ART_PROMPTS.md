@@ -8,9 +8,9 @@ Cut into `art/whisker_tilt/raw/` by
 `python art/whisker_tilt/slice_sheet.py art/whisker_tilt/source/{sheet_1,sheet_2,paw}.webp`
 (preview: `python art/whisker_tilt/contact_sheet.py` → `art/whisker_tilt/contact_sheet.png`).
 
-| Done (21) | Placeholder only (6) |
+| Done (26) | Stand-in (1) |
 |---|---|
-| H1–H4, L1–L4, S, C, the four keepers (sheet 1); `box_frame`, `gift_closed`, `gift_open`, `crack_overlay`, `logo_plate` (sheet 2); `mitten_paw`; `mitten` | the 6 backgrounds: they came as one 1536×1024 sheet with captions printed on, so each is thumbnail-sized (tall ones ~150–375 px wide). Cut as placeholders; regenerate each on its own at full size |
+| H1–H4, L1–L4, S, C, the four keepers (sheet 1); `box_frame`, `gift_closed`, `gift_open`, `crack_overlay`, `logo_plate` (sheet 2); `mitten_paw`; `mitten`; full-size `bg_base`, `bg_base_portrait`, `bg_snowday`, `bg_snowday_portrait`, `bg_super` | `bg_super_portrait`: for now the middle of `bg_super`, scaled to 1024×1536; the real one replaces it when its file arrives |
 
 The backgrounds moved from the toyshop shelf to a snowy village by a frozen lake, with Mitten
 sitting on the crates at the left. That reads as the village *inside* the snow box, so the

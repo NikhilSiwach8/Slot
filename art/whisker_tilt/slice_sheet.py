@@ -64,20 +64,13 @@ SHEETS = {
     "sheet_2": ("alpha", SHEET_2),
     "paw": ("alpha", {"mitten_paw": (395, 135, 1126, 1222)}),
     "mitten": ("alpha", {"mitten": (0, 0, 1024, 1536)}),
-    # Six backgrounds on one 1536x1024 sheet, cropped above the captions ChatGPT printed on
-    # them. They're thumbnail-sized (tall ones ~150 px wide): placeholders until full-size
-    # versions arrive.
-    "backgrounds_sheet": (
-        "opaque",
-        {
-            "bg_base": (0, 0, 620, 452),
-            "bg_base_portrait": (624, 0, 772, 452),
-            "bg_snowday": (776, 0, 1287, 452),
-            "bg_snowday_portrait": (1291, 0, 1536, 452),
-            "bg_super": (57, 510, 908, 930),
-            "bg_super_portrait": (948, 510, 1323, 930),
-        },
-    ),
+    # Full-size backgrounds, one file each, used as they are. Until a tall Super Snow Day
+    # arrives, bg_super_portrait is the middle of the wide one, scaled to 1024x1536.
+    "bg_base": ("opaque", {"bg_base": (0, 0, 1536, 1024)}),
+    "bg_base_portrait": ("opaque", {"bg_base_portrait": (0, 0, 1024, 1536)}),
+    "bg_snowday": ("opaque", {"bg_snowday": (0, 0, 1536, 1024)}),
+    "bg_snowday_portrait": ("opaque", {"bg_snowday_portrait": (0, 0, 1024, 1536)}),
+    "bg_super": ("opaque", {"bg_super": (0, 0, 1536, 1024), "bg_super_portrait": (426, 0, 1109, 1024)}),
 }
 PER_PIXEL = {"crack_overlay"}
 # The three baubles touch on the sheet: drop the neighbour's colour from each crop
@@ -253,8 +246,10 @@ def cut_sheet(path):
     for name, box in boxes.items():
         if kind == "opaque":
             img = sheet.crop(box).convert("RGB")
+            if name.endswith("_portrait") and img.size != (1024, 1536):
+                img = img.resize((1024, 1536), Image.LANCZOS)
             img.save(os.path.join(RAW, f"{name}.png"))
-            print(f"{stem:8} {name:20} {img.size[0]}x{img.size[1]}  (placeholder size)")
+            print(f"{stem:8} {name:20} {img.size[0]}x{img.size[1]}")
             continue
         crop = np.asarray(sheet.crop(box)).astype(int)
         rgb = crop[..., :3]
