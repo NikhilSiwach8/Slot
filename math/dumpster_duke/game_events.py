@@ -27,3 +27,18 @@ def send_mult_info_event(gamestate, board_mult: int, mult_info: dict, base_win: 
         "winInfo": winInfo,
     }
     gamestate.book.add_event(event)
+
+
+MYSTERY_REVEAL = "mysteryReveal"
+
+
+def send_mystery_reveal_event(gamestate, spins: int, loot_bag: int):
+    """Mystery Bonus: the chest reveals the raid's free spins and starting Loot Bag."""
+    gamestate.book.add_event(
+        {
+            "index": len(gamestate.book.events),
+            "type": MYSTERY_REVEAL,
+            "spins": spins,
+            "lootBag": loot_bag,
+        }
+    )

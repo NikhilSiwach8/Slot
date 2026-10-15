@@ -79,3 +79,15 @@
 	})}
 	{template}
 />
+
+<Story
+	name="mystery reveal"
+	args={templateArgs({
+		skipLoadingScreen: true,
+		data: {},
+		action: async () => {
+			await eventEmitter.broadcastAsync({ type: 'mysteryReveal', spins: 15, lootBag: 8 });
+		},
+	})}
+	{template}
+/>

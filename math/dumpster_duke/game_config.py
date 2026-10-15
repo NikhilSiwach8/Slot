@@ -6,6 +6,14 @@ from src.config.distributions import Distribution
 from src.config.betmode import BetMode
 
 
+# Costs (x bet) of the extra modes. Measured from the natural round averages and checked by
+# analyze.py; the optimiser then tunes weights to the 96.5% RTP at these prices.
+FEATURE_COST = 5.0
+SUPER_COST = 250.0
+MYSTERY_COST = 100.0
+MAX_COST = 500.0
+
+
 class GameConfig(Config):
     """Load all game specific parameters and elements"""
 
@@ -98,12 +106,12 @@ class GameConfig(Config):
         # Every bottle-cap value a player can see, for the rules screen.
         self.cap_values = sorted(set(base_caps) | set(fs_caps) | set(wincap_caps))
 
-        mode_maxwins = {"base": 10000, "ante": 10000, "bonus": 10000}
+        mode_maxwins = {m: 10000 for m in ("base", "ante", "feature", "bonus", "super", "mystery", "max")}
 
-        def wincap_dist(scatter_triggers):
+        def wincap_dist(scatter_triggers, extra=None, quota=0.001):
             return Distribution(
                 criteria="wincap",
-                quota=0.001,
+                quota=quota,
                 win_criteria=mode_maxwins["base"],
                 conditions={
                     "reel_weights": {
@@ -114,10 +122,11 @@ class GameConfig(Config):
                     "scatter_triggers": scatter_triggers,
                     "force_wincap": True,
                     "force_freegame": True,
+                    **(extra or {}),
                 },
             )
 
-        def freegame_dist(quota, scatter_triggers):
+        def freegame_dist(quota, scatter_triggers, extra=None):
             return Distribution(
                 criteria="freegame",
                 quota=quota,
@@ -131,13 +140,14 @@ class GameConfig(Config):
                     "mult_values": {self.basegame_type: base_caps, self.freegame_type: fs_caps},
                     "force_wincap": False,
                     "force_freegame": True,
+                    **(extra or {}),
                 },
             )
 
-        def base_dists(freegame_quota=0.1):
+        def base_dists(freegame_quota=0.1, extra=None):
             return [
-                    wincap_dist({5: 1, 6: 2}),
-                    freegame_dist(freegame_quota, {4: 20, 5: 4, 6: 1}),
+                    wincap_dist({5: 1, 6: 2}, extra),
+                    freegame_dist(freegame_quota, {4: 20, 5: 4, 6: 1}, extra),
                     Distribution(
                         criteria="0",
                         quota=0.4,
@@ -147,6 +157,7 @@ class GameConfig(Config):
                             "mult_values": {self.basegame_type: base_caps, self.freegame_type: fs_caps},
                             "force_wincap": False,
                             "force_freegame": False,
+                            **(extra or {}),
                         },
                     ),
                     Distribution(
@@ -157,9 +168,16 @@ class GameConfig(Config):
                             "mult_values": {self.basegame_type: base_caps, self.freegame_type: fs_caps},
                             "force_wincap": False,
                             "force_freegame": False,
+                            **(extra or {}),
                         },
                     ),
                 ]
+
+        super_raid = {"start_loot_bag": {10: 1}, "guarantee_cap": [self.freegame_type]}
+        mystery = {
+            "mystery_spins": {5: 30, 8: 25, 10: 20, 12: 12, 15: 8, 20: 4, 25: 1},
+            "mystery_loot_bag": {0: 30, 2: 25, 3: 15, 5: 12, 8: 8, 10: 6, 15: 3, 20: 1},
+        }
 
         self.bet_modes = [
             BetMode(
@@ -194,6 +212,73 @@ class GameConfig(Config):
                 distributions=[
                     wincap_dist({5: 1, 6: 2}),
                     freegame_dist(0.999, {4: 20, 5: 4, 6: 1}),
+                ],
+            ),
+            # Feature Spin: stays on like Double Chance. Every spin shows 3 Golden Trash Cans
+            # (one short of the raid) and at least one Bottle Cap.
+            BetMode(
+                name="feature",
+                cost=FEATURE_COST,
+                rtp=self.rtp,
+                max_win=mode_maxwins["feature"],
+                auto_close_disabled=False,
+                is_feature=True,
+                is_buybonus=False,
+                distributions=base_dists(
+                    freegame_quota=0.15,
+                    extra={"tease_scatters": 3, "guarantee_cap": [self.basegame_type]},
+                ),
+            ),
+            # Super Raid: the Loot Bag starts at x10 and every free spin shows a Bottle Cap.
+            BetMode(
+                name="super",
+                cost=SUPER_COST,
+                rtp=self.rtp,
+                max_win=mode_maxwins["super"],
+                auto_close_disabled=False,
+                is_feature=False,
+                is_buybonus=True,
+                distributions=[
+                    wincap_dist({5: 1, 6: 2}, super_raid),
+                    freegame_dist(0.999, {4: 20, 5: 4, 6: 1}, super_raid),
+                ],
+            ),
+            # Mystery Bonus: a chest reveals 5-25 free spins and a starting Loot Bag of x0-x20.
+            BetMode(
+                name="mystery",
+                cost=MYSTERY_COST,
+                rtp=self.rtp,
+                max_win=mode_maxwins["mystery"],
+                auto_close_disabled=False,
+                is_feature=False,
+                is_buybonus=True,
+                distributions=[
+                    wincap_dist({5: 1, 6: 2}, mystery),
+                    freegame_dist(0.999, {4: 20, 5: 4, 6: 1}, mystery),
+                ],
+            ),
+            # Max or Nothing: one paid spin that either reaches the 10,000x max win or pays 0.
+            BetMode(
+                name="max",
+                cost=MAX_COST,
+                rtp=self.rtp,
+                max_win=mode_maxwins["max"],
+                auto_close_disabled=False,
+                is_feature=False,
+                is_buybonus=True,
+                distributions=[
+                    wincap_dist({5: 1, 6: 2}, quota=0.02),
+                    Distribution(
+                        criteria="0",
+                        quota=0.98,
+                        win_criteria=0.0,
+                        conditions={
+                            "reel_weights": {self.basegame_type: {"BR0": 1}},
+                            "mult_values": {self.basegame_type: base_caps, self.freegame_type: fs_caps},
+                            "force_wincap": False,
+                            "force_freegame": False,
+                        },
+                    ),
                 ],
             ),
         ]

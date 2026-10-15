@@ -20,7 +20,19 @@
 	const base = BET_MODES.find((mode) => mode.name === 'base')!;
 	const ante = BET_MODES.find((mode) => mode.name === 'ante');
 	const buy = BET_MODES.find((mode) => mode.buyBonus);
-	const MODE_NAMES: Record<string, string> = { base: 'Base game', ante: 'Double Chance', bonus: 'Bonus buy' };
+	const feature = BET_MODES.find((mode) => mode.name === 'feature');
+	const superRaid = BET_MODES.find((mode) => mode.name === 'super');
+	const mystery = BET_MODES.find((mode) => mode.name === 'mystery');
+	const maxOrNothing = BET_MODES.find((mode) => mode.name === 'max');
+	const MODE_NAMES: Record<string, string> = {
+		base: 'Base game',
+		ante: 'Double Chance',
+		feature: 'Feature Spin',
+		bonus: 'Bonus buy (Midnight Raid)',
+		super: 'Super Bonus',
+		mystery: 'Mystery Bonus',
+		max: 'Max or Nothing',
+	};
 	const retrigger = RETRIGGER[0];
 	const range = (from: number, to: number) => (to >= 30 ? `${from}+` : from === to ? `${from}` : `${from}–${to}`);
 
@@ -153,6 +165,47 @@
 		</section>
 	{/if}
 
+	{#if feature}
+		<section>
+			<h2>Feature Spin</h2>
+			<p>
+				Switch on Feature Spin in the bonus menu to play at <strong>{feature.cost}× the bet</strong> per spin.
+				Every spin lands 3 Golden Trash Cans and at least one Bottle Cap; one more Golden Trash Can (landing
+				in a tumble) starts the Midnight Raid. RTP: {formatRtp(feature.rtp)}. Maximum win: {formatX(feature.maxWin)}
+				the bet. Feature Spin stays on until you switch it off.
+			</p>
+		</section>
+	{/if}
+
+	{#if superRaid || mystery || maxOrNothing}
+		<section>
+			<h2>More bonus buys</h2>
+			{#if superRaid}
+				<p>
+					<strong>Super Bonus — {superRaid.cost}× the bet.</strong> A Midnight Raid where the Loot Bag starts at
+					x10 and every free spin lands at least one Bottle Cap. RTP: {formatRtp(superRaid.rtp)}. Maximum win:
+					{formatX(superRaid.maxWin)} the bet.
+				</p>
+			{/if}
+			{#if mystery}
+				<p>
+					<strong>Mystery Bonus — {mystery.cost}× the bet.</strong> A chest reveals the raid before it starts:
+					5 to 25 free spins and a starting Loot Bag from x0 to x20, chosen at random. RTP:
+					{formatRtp(mystery.rtp)}. Maximum win: {formatX(mystery.maxWin)} the bet.
+				</p>
+			{/if}
+			{#if maxOrNothing}
+				<p>
+					<strong>Max or Nothing — {maxOrNothing.cost}× the bet.</strong> One spin that either pays the full
+					maximum win of {formatX(maxOrNothing.maxWin)} the bet or pays nothing. On average about
+					1 in {(maxOrNothing.maxWin / (maxOrNothing.rtp * maxOrNothing.cost)).toFixed(1)} of these spins pays.
+					RTP: {formatRtp(maxOrNothing.rtp)}.
+				</p>
+			{/if}
+			<p>Bonus buys are not available while Double Chance or Feature Spin is on.</p>
+		</section>
+	{/if}
+
 	<section>
 		<h2>General rules</h2>
 		<table>
@@ -182,7 +235,7 @@
 			<li><strong>+ / −</strong> — change the bet. Available bet levels are set by the casino.</li>
 			<li><strong>Auto spin</strong> — play several rounds automatically after you confirm the settings.</li>
 			<li><strong>Turbo</strong> — faster animations; results are unchanged.</li>
-			<li><strong>Buy bonus</strong> — open the bonus menu: buy the Midnight Raid or switch Double Chance on. While Double Chance is on, this button switches it off.</li>
+			<li><strong>Buy bonus</strong> — open the bonus menu: buy a bonus, or switch Double Chance or Feature Spin on. While one of them is on, this button switches it off.</li>
 			<li><strong>Menu</strong> — rules, paytable, sound and settings. Sound can be muted at any time.</li>
 		</ul>
 	</section>

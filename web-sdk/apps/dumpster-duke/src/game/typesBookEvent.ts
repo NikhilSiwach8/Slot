@@ -47,6 +47,14 @@ type BookEventFreeSpinTrigger = {
 	positions: Position[];
 };
 
+// Mystery Bonus: free spins and starting Loot Bag revealed before the raid
+type BookEventMysteryReveal = {
+	index: number;
+	type: 'mysteryReveal';
+	spins: number;
+	lootBag: number;
+};
+
 type BookEventFreeSpinRetrigger = {
 	index: number;
 	type: 'freeSpinRetrigger';
@@ -121,6 +129,7 @@ export type BookEvent =
 	| BookEventSetTumbleWin
 	| BookEventSetTotalWin
 	| BookEventFreeSpinTrigger
+	| BookEventMysteryReveal
 	| BookEventFreeSpinRetrigger
 	| BookEventUpdateFreeSpin
 	| BookEventUpdateGlobalMult

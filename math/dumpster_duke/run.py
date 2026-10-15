@@ -1,5 +1,6 @@
-import os
 """Main file for generating results for sample ways-pay game."""
+
+import os
 
 from gamestate import GameState
 from game_config import GameConfig
@@ -9,6 +10,9 @@ from utils.game_analytics.run_analysis import create_stat_sheet
 from utils.rgs_verification import execute_all_tests
 from src.state.run_sims import create_books
 from src.write_data.write_configs import generate_configs
+from fixed_weights import write_all_or_nothing
+
+FIXED_WEIGHT_MODES = ["max"]  # all-or-nothing modes: weights set exactly, not optimised
 
 if __name__ == "__main__":
 
@@ -22,6 +26,10 @@ if __name__ == "__main__":
         "base": int(2e5),
         "ante": int(2e5),
         "bonus": int(1e5),
+        "feature": int(2e5),
+        "super": int(1e5),
+        "mystery": int(1e5),
+        "max": int(1e5),
     }
     # optional: python run.py ante   (only re-simulate/optimise the named modes)
     import sys
@@ -56,7 +64,12 @@ if __name__ == "__main__":
     generate_configs(gamestate)
 
     if run_conditions["run_optimization"]:
-        OptimizationExecution().run_all_modes(config, target_modes, rust_threads)
+        OptimizationExecution().run_all_modes(
+            config, [m for m in target_modes if m not in FIXED_WEIGHT_MODES], rust_threads
+        )
+        for mode in target_modes:
+            if mode in FIXED_WEIGHT_MODES:
+                write_all_or_nothing(config, mode)
         generate_configs(gamestate)
 
     if run_conditions["run_analysis"]:

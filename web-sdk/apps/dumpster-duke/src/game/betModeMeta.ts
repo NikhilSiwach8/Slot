@@ -9,6 +9,13 @@ import { SCATTER_AWARDS, formatRtp } from './rules';
 const base = config.betModes.base;
 const ante = config.betModes.ante;
 const bonus = config.betModes.bonus;
+const feature = config.betModes.feature;
+const superRaid = config.betModes.super;
+const mystery = config.betModes.mystery;
+const maxOrNothing = config.betModes.max;
+
+const rtpLine = (mode: { rtp: number; max_win: number }) =>
+	`RTP ${formatRtp(mode.rtp)} · Max win ${mode.max_win.toLocaleString('en-US')}x`;
 const spins = SCATTER_AWARDS.map((award) => award.spins);
 
 const noAssets = { icon: '', volatility: '', button: '', dialogImage: '', dialogVolatility: '' };
@@ -66,6 +73,85 @@ export const BET_MODE_META: BetModeMeta = {
 		},
 	},
 };
+
+// Extra modes: Feature Spin (stays on), Super Raid, Mystery Bonus and Max or Nothing (buys).
+Object.assign(BET_MODE_META, {
+	FEATURE: {
+		mode: 'FEATURE',
+		costMultiplier: feature.cost,
+		type: 'activate',
+		parent: '',
+		children: '',
+		maxWin: feature.max_win,
+		assets: noAssets,
+		text: {
+			title: 'FEATURE SPIN',
+			description:
+				'Every spin lands 3 Golden Trash Cans and at least one Bottle Cap. One more can starts the Midnight Raid.',
+			dialog: rtpLine(feature),
+			button: 'ACTIVATE',
+			betAmountLabel: 'FEATURE SPIN',
+			tickerIdle: 'FEATURE SPIN IS ON',
+			tickerSpin: 'GOOD LUCK',
+		},
+	},
+	SUPER: {
+		mode: 'SUPER',
+		costMultiplier: superRaid.cost,
+		type: 'buy',
+		parent: '',
+		children: '',
+		maxWin: superRaid.max_win,
+		assets: noAssets,
+		text: {
+			title: 'SUPER BONUS',
+			description:
+				'A Midnight Raid where the Loot Bag starts at x10 and every free spin lands at least one Bottle Cap.',
+			dialog: rtpLine(superRaid),
+			button: 'BUY',
+			betAmountLabel: 'SUPER BONUS',
+			tickerIdle: '',
+			tickerSpin: '',
+		},
+	},
+	MYSTERY: {
+		mode: 'MYSTERY',
+		costMultiplier: mystery.cost,
+		type: 'buy',
+		parent: '',
+		children: '',
+		maxWin: mystery.max_win,
+		assets: noAssets,
+		text: {
+			title: 'MYSTERY BONUS',
+			description:
+				'The Duke\'s chest reveals a surprise Midnight Raid: 5 to 25 free spins and a Loot Bag starting anywhere from x0 to x20.',
+			dialog: rtpLine(mystery),
+			button: 'BUY',
+			betAmountLabel: 'MYSTERY BONUS',
+			tickerIdle: '',
+			tickerSpin: '',
+		},
+	},
+	MAX: {
+		mode: 'MAX',
+		costMultiplier: maxOrNothing.cost,
+		type: 'buy',
+		parent: '',
+		children: '',
+		maxWin: maxOrNothing.max_win,
+		assets: noAssets,
+		text: {
+			title: 'MAX OR NOTHING',
+			description: `One spin that either pays the full ${maxOrNothing.max_win.toLocaleString('en-US')}x max win or nothing at all.`,
+			dialog: rtpLine(maxOrNothing),
+			button: 'BUY',
+			betAmountLabel: 'MAX OR NOTHING',
+			tickerIdle: '',
+			tickerSpin: '',
+		},
+	},
+});
 
 export const applyBetModeMeta = () => {
 	stateMeta.betModeMeta = BET_MODE_META;
