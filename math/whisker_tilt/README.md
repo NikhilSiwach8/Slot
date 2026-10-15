@@ -43,7 +43,7 @@ wall, no padding row). Gravity/wall index: 0 down/South, 1 left/West, 2 up/North
 | `reveal` | SDK event; the board lands along the current gravity |
 | `tilt` | `gravity`, `turn`, `cause` (`cascade` after a win, `paw` before each free spin) |
 | `snowstorm` | `turn`, `keepers` after doubling (every 4th turn) |
-| `settleBoard` | `cause` (`cascade`/`bank`), `gravity`, `removed`, `newPositions`, full `board` |
+| `settleBoard` | `cause` (`cascade`/`bank`), `gravity`, `removed`, `newSymbols` (`reel`, `row`, symbol). Survivors slide toward the floor wall in their lane, keeping their order |
 | `keeperBank` | `wall`, `coins` (`reel`, `row`, `value`), `keepers` |
 | `keepersInit` | `keepers` when a round starts with lit walls (Paw Spins, Super Snow Day) |
 | `winInfo` | SDK event; `meta.clusterMult` is the wall multiplier, `meta.walls` the walls touched |

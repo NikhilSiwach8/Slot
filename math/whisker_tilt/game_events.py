@@ -23,11 +23,6 @@ def _add(gamestate, event_type, **fields):
     gamestate.book.add_event({"index": len(gamestate.book.events), "type": event_type, **fields})
 
 
-def board_json(gamestate):
-    attrs = list(gamestate.config.special_symbols.keys())
-    return [[json_ready_sym(sym, attrs) for sym in reel] for reel in gamestate.board]
-
-
 def tilt_event(gamestate, cause):
     """Mitten turns the box a quarter turn: cause is "cascade" (after a win) or "paw" (free-spin start)."""
     _add(gamestate, TILT, gravity=GRAVITY_NAMES[gamestate.gravity], turn=gamestate.turn, cause=cause)
@@ -38,16 +33,18 @@ def snowstorm_event(gamestate):
 
 
 def settle_board_event(gamestate, removed, new_positions, cause):
-    """Removed cells are gone, survivors slid toward the floor, new symbols fell in from the far wall.
-    The full board is included so the client never has to rebuild it."""
+    """Removed cells are gone, survivors slid toward the floor (the client replays the slide from
+    `removed` + `gravity`), and new symbols fell in from the far wall at `newSymbols`."""
+    attrs = list(gamestate.config.special_symbols.keys())
     _add(
         gamestate,
         SETTLE_BOARD,
         cause=cause,
         gravity=GRAVITY_NAMES[gamestate.gravity],
         removed=[{"reel": r, "row": c} for r, c in sorted(removed)],
-        newPositions=[{"reel": r, "row": c} for r, c in new_positions],
-        board=board_json(gamestate),
+        newSymbols=[
+            {"reel": r, "row": c, **json_ready_sym(gamestate.board[r][c], attrs)} for r, c in new_positions
+        ],
     )
 
 

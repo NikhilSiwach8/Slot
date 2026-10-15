@@ -22,7 +22,7 @@ if __name__ == "__main__":
 
     num_threads = 4
     rust_threads = 4
-    batching_size = 10000
+    batching_size = 5000  # free-spin books are large; smaller batches keep workers in memory
     compression = True
     profiling = False
 
