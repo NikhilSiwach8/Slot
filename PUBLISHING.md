@@ -10,14 +10,14 @@ scripts/package_release.sh            # -> dist/math, dist/frontend
 
 | Folder | Contents | Upload to |
 |---|---|---|
-| `dist/math` | `index.json`, `books_{base,ante,bonus}.jsonl.zst`, `lookUpTable_{base,ante,bonus}_0.csv` | Stake Engine dashboard → Math |
+| `dist/math` | `index.json`, `books_<mode>.jsonl.zst` and `lookUpTable_<mode>_0.csv` for all 7 modes (base, ante, feature, bonus, super, mystery, max) | Stake Engine dashboard → Math |
 | `dist/frontend` | Static SvelteKit build (`index.html`, `_app/`, `assets/`) | Stake Engine dashboard → Front End |
 
 The math folder was checked with `validate-books-index.mjs` and passed.
 
-Ready-made copies live in `release/`: `dumpster_duke_frontend.zip`, and the math split in two
-(`dumpster_duke_math_1of2.zip`, `dumpster_duke_math_2of2.zip`) because GitHub refuses files over
-100 MB. Unzip both math zips into one folder to get all 7 math files.
+Ready-made copies live in `release/`: `dumpster_duke_frontend.zip`, and the math split into
+`dumpster_duke_math_<n>of<N>.zip` parts because GitHub refuses files over 100 MB. Unzip every math
+part into one folder to get all 15 math files (index + 7 books + 7 lookup tables).
 
 ## 2. Math summary
 
@@ -25,10 +25,21 @@ Ready-made copies live in `release/`: `dumpster_duke_frontend.zip`, and the math
 |---|---|---|---|---|
 | base | 1x | 96.50% | 10,000x | 1 in 5.0M |
 | ante (Double Chance) | 1.25x | 96.50% | 10,000x | 1 in 4.0M |
+| feature (Feature Spin) | 5x | 96.50% | 10,000x | 1 in 1.0M |
 | bonus (buy Midnight Raid) | 100x | 96.50% | 10,000x | 1 in 100k |
+| super (Super Bonus) | 250x | 96.50% | 10,000x | 1 in 20k |
+| mystery (Mystery Bonus) | 100x | 96.50% | 10,000x | 1 in 100k |
+| max (Max or Nothing) | 500x | 96.50% | 10,000x | 1 in 20.7 |
 
 Base game: hits 1 in 3.44, triggers the bonus 1 in 210, std dev 8.7.
 Double Chance (ante): hits 1 in 4.32, triggers the bonus 1 in 105 (2x base), same average raid (~78x), std dev 9.0.
+Feature Spin: every spin shows 3 Golden Trash Cans and a Bottle Cap; hits 1 in 5.37, raid 1 in 23 (avg ~99x bet).
+Super Bonus: Loot Bag starts at x10, a Bottle Cap on every free spin. Mystery Bonus: 5-25 spins and a x0-x20
+starting Loot Bag drawn at random (a `mysteryReveal` book event carries both before `freeSpinTrigger`).
+Max or Nothing: only two outcomes, 0 or the 10,000x cap; weights are set exactly by
+`math/dumpster_duke/fixed_weights.py` (P(cap) = RTP x cost / cap = 1 in 20.7). The SDK's own
+format-check statistics step cannot handle a two-outcome table (it crashes computing the gap between
+payouts); `validate-books-index` passes for all 7 modes. Mention this mode explicitly to reviewers.
 
 ## 3. What was done to meet the approval checklist
 
@@ -58,9 +69,22 @@ Double Chance (ante): hits 1 in 4.32, triggers the bonus 1 in 105 (2x base), sam
 | ante | bonus trigger | 4 | 13x |
 | ante | big bonus | 58 | 144.2x |
 | ante | win cap | 701 | 10,000x |
+| feature | loss | 0 | 0x |
+| feature | normal win | 21 | 1.6x |
+| feature | big win | 53 | 18x |
+| feature | bonus trigger | 4 | 14x |
+| feature | big bonus | 58 | 217.8x |
+| feature | win cap | 701 | 10,000x |
 | bonus | bonus (every buy triggers) | 0 | 51.6x |
 | bonus | big bonus | 1 | 633.6x |
 | bonus | win cap | 1875 | 10,000x |
+| super | bonus (every buy) | 0 | 98x |
+| super | win cap | 1875 | 10,000x |
+| mystery | bonus (every buy) | 0 | 10.9x |
+| mystery | big bonus | 2 | 138.8x |
+| mystery | win cap | 1875 | 10,000x |
+| max | loss | 0 | 0x |
+| max | win cap | 124 | 10,000x |
 
 Every bonus buy triggers free spins and always pays, so the bonus mode has no loss or normal-win case. To regenerate the table after a math rerun, run `scripts/find_replay_examples.py`.
 

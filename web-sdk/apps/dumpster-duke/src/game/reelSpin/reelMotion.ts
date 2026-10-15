@@ -18,6 +18,7 @@ type Phase = 'idle' | 'launch' | 'cruise' | 'decel' | 'bounce';
 const easeOutCubic = (u: number) => 1 - (1 - u) ** 3;
 const easeOutQuad = (u: number) => 1 - (1 - u) ** 2;
 const clamp01 = (u: number) => Math.max(0, Math.min(1, u));
+const smoothstep = (u: number) => u * u * (3 - 2 * u);
 
 /** Rows of the padded board: one hidden row above and one below the 5 visible rows. */
 export const PADDED_ROWS = { top: -1, bottom: 5 };
@@ -150,7 +151,7 @@ export class ReelMotion {
 		if (this.phase === 'idle') return;
 		const c = this.config();
 		const v = this.speed();
-		const t = now - this.phaseStart;
+		const t = Math.max(0, now - this.phaseStart); // frame time can trail an event-time start by < 1 frame
 
 		if (this.phase === 'launch') {
 			// quick upward kick, then an ease-in drop to full speed
@@ -160,7 +161,8 @@ export class ReelMotion {
 			} else {
 				const u = clamp01((t - kickTime) / (c.spinAcceleration - kickTime));
 				const accelTime = c.spinAcceleration - kickTime;
-				this.scroll = this.scrollAtPhaseStart - c.launchKick * (1 - u) + (v * accelTime * u ** 3) / 3;
+				// the kick unwinds with zero speed at both ends, so the hand-over to cruise is seamless
+				this.scroll = this.scrollAtPhaseStart - c.launchKick * (1 - smoothstep(u)) + (v * accelTime * u ** 3) / 3;
 				if (u >= 1) {
 					this.phase = 'cruise';
 					this.phaseStart = now;

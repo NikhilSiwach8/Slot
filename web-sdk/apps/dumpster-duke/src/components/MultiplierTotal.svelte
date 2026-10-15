@@ -28,7 +28,7 @@
 		multiplierTotalHide: () => (show = false),
 		multiplierTotalUpdate: (emitterEvent) => (totalMultiplier = emitterEvent.totalMultiplier),
 		multiplierTotalAnimate: async () => {
-			slam = createTween01(900 / stateBetDerived.timeScale());
+			slam = createTween01(700 / stateBetDerived.timeScale());
 			await slam.done;
 		},
 	});

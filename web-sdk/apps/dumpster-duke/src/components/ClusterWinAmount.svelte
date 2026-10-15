@@ -33,16 +33,17 @@
 
 	let showMultiplier = $state(props.win.mult > 1);
 
+	// Timings match the symbols' 1 s win animation so the next tumble follows straight away.
 	// update showMultiplier
 	onMount(async () => {
-		await waitForTimeout(SECOND / stateBetDerived.timeScale());
+		await waitForTimeout((SECOND * 0.5) / stateBetDerived.timeScale());
 		showMultiplier = false;
 	});
 
 	// update scale
 	onMount(async () => {
 		if (showMultiplier) {
-			await waitForTimeout(SECOND);
+			await waitForTimeout((SECOND * 0.5) / stateBetDerived.timeScale());
 			context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_multiplier_combine_a' });
 			await scale.set(0.1, { duration: 200 / stateBetDerived.timeScale() });
 			await scale.set(1, { duration: 200 / stateBetDerived.timeScale() });
@@ -51,7 +52,7 @@
 
 	// update y
 	onMount(async () => {
-		await y.set(-SYMBOL_SIZE, { duration: (SECOND * 2) / stateBetDerived.timeScale() });
+		await y.set(-SYMBOL_SIZE, { duration: (SECOND * 1.1) / stateBetDerived.timeScale() });
 		show = false;
 	});
 </script>

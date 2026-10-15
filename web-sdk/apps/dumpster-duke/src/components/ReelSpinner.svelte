@@ -54,7 +54,7 @@
 		outer.mask = mask;
 
 		const inner = new PIXI.Container();
-		const blur = new PIXI.BlurFilter({ strengthX: 0, strengthY: 0, quality: 3 });
+		const blur = new PIXI.BlurFilter({ strengthX: 0, strengthY: 0, quality: 2 }); // 2 passes: smooth on phones
 		inner.filters = [blur];
 		outer.addChild(inner);
 
@@ -117,13 +117,28 @@
 		});
 	};
 
-	const tick = () => {
-		reelSpin.updateShake(performance.now());
+	/** After the hand-over only the landing flashes are left: let them finish fading. */
+	const fadeFlashes = (now: number) => {
+		let fading = false;
+		for (const view of views) {
+			const sinceLand = now - view.landedAt;
+			view.flash.alpha = sinceLand < FLASH_MS ? 0.28 * (1 - sinceLand / FLASH_MS) : 0;
+			if (view.flash.alpha > 0) fading = true;
+			for (const slot of view.slots) slot.root.visible = false;
+			view.blur.enabled = false;
+		}
+		return fading;
+	};
+
+	// Motion is driven by the frame's own vsync timestamp (ticker.lastTime), not by
+	// performance.now() read part-way through the frame, so every frame advances by an even step.
+	const tick = (ticker: PIXI.Ticker) => {
+		const now = ticker.lastTime;
+		reelSpin.updateShake(now);
 		if (!stateReelSpin.active) {
-			if (root.visible) root.visible = false;
+			if (root.visible) root.visible = fadeFlashes(now);
 			return;
 		}
-		const now = performance.now();
 		const landed = reelSpin.update(now);
 		for (const reelIndex of landed) views[reelIndex].landedAt = now;
 		// stay visible on the frame the spin hands over, so there is no blank frame

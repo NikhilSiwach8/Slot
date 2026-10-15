@@ -20,7 +20,9 @@ Feeling lucky? Switch on **Double Chance** to play at 1.25x the bet and trigger 
 - Bottle Cap multipliers from 2x to 100x
 - Midnight Raid free spins with a persistent Loot Bag multiplier
 - Double Chance (ante): 1.25x the bet, bonus twice as often
-- Bonus buy: 100x the bet
+- Feature Spin: 5x the bet, every spin lands 3 Golden Trash Cans and a Bottle Cap
+- Bonus buys: Midnight Raid (100x), Super Bonus with a x10 Loot Bag (250x), Mystery Bonus (100x)
+- Max or Nothing: one 500x spin that pays the 10,000x max win or nothing
 - Max win: 10,000x the bet
 - RTP: 96.50% (all modes)
 - Volatility: high

@@ -16,7 +16,22 @@ import type { RawSymbol, SymbolState } from './types';
 
 // general utils
 export const { getEmptyBoard } = createGetEmptyPaddedBoard({ reelsDimensions: BOARD_DIMENSIONS });
-export const { playBookEvent, playBookEvents } = createPlayBookUtils({ bookEventHandlerMap });
+// Debug timeline: when a test page sets `window.__dukeTimeline = []`, every book event
+// handler records its start/end time there (used to check for idle gaps between steps).
+const timedHandlerMap = Object.fromEntries(
+	Object.entries(bookEventHandlerMap).map(([type, handler]) => [
+		type,
+		async (...args: Parameters<typeof handler>) => {
+			const timeline = (globalThis as { __dukeTimeline?: unknown[] }).__dukeTimeline;
+			const start = performance.now();
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			await (handler as any)(...args);
+			timeline?.push({ type, start, end: performance.now() });
+		},
+	]),
+) as typeof bookEventHandlerMap;
+
+export const { playBookEvent, playBookEvents } = createPlayBookUtils({ bookEventHandlerMap: timedHandlerMap });
 export const playBet = async (bet: Bet) => {
 	stateBet.winBookEventAmount = 0;
 	await playBookEvents(bet.state);

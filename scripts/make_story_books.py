@@ -2,12 +2,13 @@
 
 Writes web-sdk/apps/dumpster-duke/src/stories/data/{base,bonus}_books.ts.
 Run with the math-sdk venv (needs zstandard):
-    math-sdk/env/bin/python scripts/make_story_books.py
+    math-sdk/env/bin/python scripts/make_story_books.py [mode ...]   (default: every mode in PLAN)
 """
 import io
 import json
 import os
 import random
+import sys
 
 import zstandard
 
@@ -19,6 +20,9 @@ OUT = os.path.join(ROOT, "web-sdk", "apps", "dumpster-duke", "src", "stories", "
 PLAN = {
     "base": [(0, 0, 4), (0.01, 2, 8), (2, 20, 8), (20, 200, 6), (200, 1e9, 6)],
     "bonus": [(0, 50, 3), (50, 200, 6), (200, 1000, 6), (1000, 1e9, 5)],
+    "feature": [(0, 0, 2), (0.01, 20, 3), (50, 1e9, 3)],
+    "super": [(0, 300, 2), (300, 1e9, 2)],
+    "mystery": [(0, 100, 2), (100, 1e9, 2)],
 }
 
 
@@ -33,7 +37,8 @@ def stream(mode):
 
 def main():
     rng = random.Random(7)
-    for mode, plan in PLAN.items():
+    modes = sys.argv[1:] or list(PLAN)
+    for mode, plan in ((m, PLAN[m]) for m in modes):
         # pass 1: lightweight summary of every book
         summary = []
         for i, line in stream(mode):

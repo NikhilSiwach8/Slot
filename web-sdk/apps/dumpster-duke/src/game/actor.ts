@@ -5,7 +5,6 @@ import { checkIsMultipleRevealEvents } from 'utils-book';
 import { createPrimaryMachines, createIntermediateMachines, createGameActor } from 'utils-xstate';
 
 import type { Bet } from './typesBookEvent';
-import { stateXstateDerived } from './stateXstate';
 import { playBet, convertTorResumableBet } from './utils';
 import { stateGameDerived } from './stateGame.svelte';
 import { reelSpin } from './reelSpin/controller.svelte';
@@ -21,9 +20,9 @@ const primaryMachines = createPrimaryMachines<Bet>({
 		if (lastRevealEvent) stateGameDerived.enhancedBoard.settle(lastRevealEvent.board);
 	},
 	onNewGameStart: async () => {
-		if ((stateBet.isTurbo && stateXstateDerived.isAutoBetting()) || stateBet.isSpaceHold) return;
 		stateBet.winBookEventAmount = 0;
-		// launch the reels straight away; they land when the reveal event arrives
+		// launch the reels straight away (also in turbo autoplay / space hold) so they are
+		// already spinning while the RGS answers; they land when the reveal event arrives
 		reelSpin.start();
 	},
 	onNewGameError: () => stateGameDerived.enhancedBoard.settle(),
