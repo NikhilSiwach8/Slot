@@ -19,8 +19,25 @@
 	import { stateBet } from 'state-shared';
 
 	import { getContext } from '../game/context';
+	import { stateXstateDerived } from '../game/stateXstate';
 
 	const context = getContext();
+
+	// Base-game music level: quieter while the game waits for the player, fuller while the
+	// reels spin and wins play out. Relative to the track's own volume and the player's
+	// music slider (both still apply).
+	const MUSIC_LEVEL = { idle: 0.45, playing: 1 };
+	const FADE_MS = { toIdle: 1500, toPlaying: 350 };
+	let musicLevel = MUSIC_LEVEL.idle;
+	const setMusicLevel = (target: number, duration: number) => {
+		sound.players.music.fade({ name: 'bgm_main', from: musicLevel, to: target, duration });
+		musicLevel = target;
+	};
+	$effect(() => {
+		const idle = stateXstateDerived.isIdle();
+		const target = idle ? MUSIC_LEVEL.idle : MUSIC_LEVEL.playing;
+		if (target !== musicLevel) setMusicLevel(target, idle ? FADE_MS.toIdle : FADE_MS.toPlaying);
+	});
 
 	context.eventEmitter.subscribeOnMount({
 		// ui
@@ -40,7 +57,11 @@
 		soundScatterCounterIncrease: () => (context.stateGame.scatterCounter = context.stateGame.scatterCounter + 1), // prettier-ignore
 		soundScatterCounterClear: () => (context.stateGame.scatterCounter = 0),
 		// game
-		soundMusic: ({ name }) => sound.players.music.play({ name }),
+		soundMusic: ({ name }) => {
+			sound.players.music.play({ name });
+			// the base track can restart (after a bonus or a big win): keep the current level
+			if (name === 'bgm_main') setMusicLevel(musicLevel, 10);
+		},
 		soundLoop: ({ name }) => sound.players.loop.play({ name }),
 		soundOnce: ({ name, forcePlay }) => sound.players.once.play({ name, forcePlay }),
 		soundStop: ({ name }) => sound.stop({ name }),
@@ -53,6 +74,8 @@
 			sound.players.music.play({ name: 'bgm_freespin' });
 		} else {
 			sound.players.music.play({ name: 'bgm_main' });
+			// audio may still be loading/locked here: apply the level once the track really starts
+			sound.players.music.howl.on('play', () => setMusicLevel(musicLevel, 10));
 
 			//How to control volume per soundfile(use fade)
 			// sound.players.music.fade({ name: 'bgm_main', from: 0, to: 1, duration: 3000 });

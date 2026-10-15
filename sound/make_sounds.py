@@ -184,7 +184,30 @@ def melody_line(bars, seed, density=0.55, low=0, high=9):
     return notes
 
 
+# Base-game music: "Silly Intro" by Alexander Nakarada (serpentsoundstudios.com), CC BY 4.0,
+# taken from sound/source/. Falls back to the synthesized groove if the file is missing.
+BGM_MAIN_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "source", "bgm_main_silly_intro.mp3")
+
+
+def load_track(path, level=0.85):
+    """Decode a music file to stereo float32 and make it loop cleanly: trim the near-silent
+    head and tail, add short fades so the loop point never clicks, and set its peak."""
+    raw = subprocess.run(["ffmpeg", "-loglevel", "error", "-i", path, "-f", "s16le", "-ac", "2", "-ar", str(SR), "-"],
+                         check=True, capture_output=True).stdout
+    x = np.frombuffer(raw, dtype=np.int16).reshape(-1, 2).astype(np.float32) / 32768
+    loud = np.sqrt(np.convolve((x ** 2).mean(axis=1), np.ones(441) / 441, mode="same")) > 0.004
+    first, last = int(np.argmax(loud)), len(loud) - int(np.argmax(loud[::-1]))
+    x = x[max(0, first - 220): min(len(x), last + 2205)]
+    fade = int(0.03 * SR)
+    ramp = np.linspace(0, 1, fade)[:, None]
+    x[:fade] *= ramp
+    x[-fade:] *= ramp[::-1]
+    return x / np.abs(x).max() * level
+
+
 def bgm_main():
+    if os.path.exists(BGM_MAIN_FILE):
+        return load_track(BGM_MAIN_FILE)
     bass = [45, 45, 48, 48, 50, 50, 43, 43]
     return groove(104, 16, bass, melody_line(16, 3, 0.5))
 
@@ -372,6 +395,10 @@ def build():
     return sounds
 
 
+# the recorded base-game track is mastered louder than the synth tracks
+BGM_VOLUME = {"bgm_main": 0.5}
+
+
 def main():
     sounds = build()
     gap = 1.0
@@ -379,14 +406,15 @@ def main():
     for name in sorted(sounds):
         data, loop = sounds[name]
         data = np.clip(data, -1, 1)
+        if data.ndim == 1:  # synthesized sounds are mono; music files keep their stereo
+            data = np.stack([data, data], axis=1)
         start = cursor
         length_ms = len(data) / SR * 1000
         sprite[name] = [round(start * 1000), length_ms, True] if loop else [round(start * 1000), length_ms]
-        padded = np.concatenate([data, np.zeros(int(gap * SR))])
+        padded = np.concatenate([data, np.zeros((int(gap * SR), 2))])
         chunks.append(padded)
         cursor += len(padded) / SR
-    audio = np.concatenate(chunks)
-    stereo = np.stack([audio, audio], axis=1)
+    stereo = np.concatenate(chunks)
     os.makedirs(OUT, exist_ok=True)
     with tempfile.TemporaryDirectory() as tmp:
         wav_path = os.path.join(tmp, "sounds.wav")
@@ -406,7 +434,7 @@ def main():
     manifest = {
         "sprite": sprite,
         "src": ["./assets/audio/sounds.ogg", "./assets/audio/sounds.m4a", "./assets/audio/sounds.mp3"],
-        "config": {name: {"volume": 0.55 if name.startswith("bgm_") else 1} for name in sprite},
+        "config": {name: {"volume": BGM_VOLUME.get(name, 0.55) if name.startswith("bgm_") else 1} for name in sprite},
     }
     with open(os.path.join(OUT, "sounds.json"), "w") as f:
         json.dump(manifest, f, indent="\t")

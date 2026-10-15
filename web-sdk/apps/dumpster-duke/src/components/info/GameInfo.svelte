@@ -251,6 +251,14 @@
 			Engine.
 		</p>
 	</section>
+
+	<section>
+		<h2>Credits</h2>
+		<p class="disclaimer">
+			Music: "Silly Intro" by Alexander Nakarada (serpentsoundstudios.com), licensed under Creative
+			Commons Attribution 4.0 (CC BY 4.0).
+		</p>
+	</section>
 </article>
 
 <style>
