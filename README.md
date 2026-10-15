@@ -11,6 +11,8 @@ and the "Midnight Raid" free spins. Design: [docs/GDD.md](docs/GDD.md).
 | `docs/` | Game design doc, ChatGPT art prompt sheet |
 | `concepts/` | New game concepts: [Whisker Tilt](concepts/whisker-tilt/CONCEPT.md) (rotating-gravity cluster tumble) |
 | `math/whisker_tilt/` | Whisker Tilt math model (7 bet modes) — see its [README](math/whisker_tilt/README.md) |
+| `web-sdk/apps/whisker-tilt/` | Whisker Tilt game client (see *Whisker Tilt client* below) |
+| `art/whisker_tilt/` | Whisker Tilt art: ChatGPT sources, slicer, web asset builder |
 | `scripts/` | SDK setup and math → client sync tools |
 
 ## Setup
@@ -58,3 +60,18 @@ values (speed, durations, stagger, overshoot, bounce, blur, stretch, shake) are 
 
 The bottom bar is our own copy of the web-sdk UI package in
 `web-sdk/apps/dumpster-duke/src/ui/` (restyled with the art above).
+
+## Whisker Tilt client
+
+```bash
+python art/whisker_tilt/slice_sheet.py art/whisker_tilt/source/*.webp   # cut the art into art/whisker_tilt/raw/
+python art/whisker_tilt/build_web_assets.py                             # raw art -> client static assets
+math-sdk/env/bin/python scripts/sync_fe_config_whisker_tilt.py          # math config -> client
+cd web-sdk/apps/whisker-tilt && pnpm build                              # static build in ./build (~3 min)
+scripts/make_demo_whisker_tilt.sh [mode:id ...]                         # offline demo with real books
+```
+
+Open the demo at `dist/whisker-tilt-demo/` served over HTTP, at
+`/?sessionID=demo&rgs_url=demo.local&lang=en&device=desktop`. Add `&demoBook=<mode>:<id>` to
+force a book (it must be passed to `make_demo_whisker_tilt.sh`). The board lives in
+`src/game/tiltBoard.svelte.ts` (state + animations) and `src/components/TiltBoard.svelte` (drawing).
