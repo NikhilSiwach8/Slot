@@ -64,13 +64,13 @@ SHEETS = {
     "sheet_2": ("alpha", SHEET_2),
     "paw": ("alpha", {"mitten_paw": (395, 135, 1126, 1222)}),
     "mitten": ("alpha", {"mitten": (0, 0, 1024, 1536)}),
-    # Full-size backgrounds, one file each, used as they are. Until a tall Super Snow Day
-    # arrives, bg_super_portrait is the middle of the wide one, scaled to 1024x1536.
+    # Full-size backgrounds, one file each, used as they are.
     "bg_base": ("opaque", {"bg_base": (0, 0, 1536, 1024)}),
     "bg_base_portrait": ("opaque", {"bg_base_portrait": (0, 0, 1024, 1536)}),
     "bg_snowday": ("opaque", {"bg_snowday": (0, 0, 1536, 1024)}),
     "bg_snowday_portrait": ("opaque", {"bg_snowday_portrait": (0, 0, 1024, 1536)}),
-    "bg_super": ("opaque", {"bg_super": (0, 0, 1536, 1024), "bg_super_portrait": (426, 0, 1109, 1024)}),
+    "bg_super": ("opaque", {"bg_super": (0, 0, 1536, 1024)}),
+    "bg_super_portrait": ("opaque", {"bg_super_portrait": (0, 0, 1024, 1536)}),
 }
 PER_PIXEL = {"crack_overlay"}
 # The three baubles touch on the sheet: drop the neighbour's colour from each crop
