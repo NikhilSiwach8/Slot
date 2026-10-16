@@ -137,7 +137,8 @@
 									{price(mode.costMultiplier)}{#if mode.type === 'activate'}<small>/spin</small>{/if}
 								</div>
 								{#if mode.type === 'activate'}
-									<button class="act" class:on onclick={() => toggleSpinMode(mode.mode)}>
+									<!-- switching on asks for confirmation on the detail screen; switching off is immediate -->
+									<button class="act" class:on onclick={() => (on ? toggleSpinMode(mode.mode) : showDetail(mode.mode))}>
 										{on ? 'ON' : 'ACTIVATE'}
 									</button>
 								{:else}
@@ -200,7 +201,7 @@
 							<button class="back" onclick={() => (stateModal.modal = { name: 'buyBonus' })}>BACK</button>
 							{#if spinMode}
 								<button class="act" class:on={isOn(selected.mode)} onclick={() => toggleSpinMode(selected.mode)}>
-									{isOn(selected.mode) ? 'SWITCH OFF' : 'ACTIVATE'}
+									{isOn(selected.mode) ? 'SWITCH OFF' : 'CONFIRM ACTIVATE'}
 								</button>
 							{:else}
 								<button

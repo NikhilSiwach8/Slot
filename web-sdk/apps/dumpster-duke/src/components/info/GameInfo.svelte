@@ -137,6 +137,23 @@
 			to be adjacent or on a line. Each symbol pays once per tumble, for the total number of that
 			symbol on screen; wins of different symbols are added together. There are no wild symbols.
 		</p>
+		<h3>Winning combinations</h3>
+		<table>
+			<thead><tr><th>Symbols on screen</th><th>Example</th><th>Pays</th></tr></thead>
+			<tbody>
+				{#each getPayGroups(PAYING_SYMBOLS[0]) as group}
+					<tr>
+						<td>{range(group.from, group.to)}</td>
+						<td>{range(group.from, group.to)} × {SYMBOL_NAMES[PAYING_SYMBOLS[0]]}</td>
+						<td>{formatX(group.pay)}</td>
+					</tr>
+				{/each}
+			</tbody>
+		</table>
+		<p>
+			Every paying symbol follows the same count ranges; see <em>Symbol payouts</em> for each symbol's
+			values. A Cursed Trash Can or Candy Cap never forms a winning combination on its own.
+		</p>
 	</section>
 
 	<section>
@@ -238,7 +255,7 @@
 			<li><strong>+ / −</strong> — change the bet. Available bet levels are set by the casino.</li>
 			<li><strong>Auto spin</strong> — play several rounds automatically after you confirm the settings.</li>
 			<li><strong>Turbo</strong> — faster animations; results are unchanged.</li>
-			<li><strong>Buy bonus</strong> — open the bonus menu: buy a bonus, or switch Double Chance or Feature Spin on. While one of them is on, this button switches it off.</li>
+			<li><strong>Buy bonus</strong> — open the bonus menu: buy a bonus, or switch Double Chance or Feature Spin on. Every buy and every switch-on asks you to confirm the cost first. While Double Chance or Feature Spin is on, this button switches it off.</li>
 			<li><strong>Menu</strong> — rules, paytable, sound and settings. Sound can be muted at any time.</li>
 		</ul>
 	</section>
@@ -250,8 +267,8 @@
 			event of a disconnection, reload the game to finish any uncompleted rounds. The expected return
 			is calculated over many plays. The game display is not representative of any physical device
 			and is for illustrative purposes only. Winnings are settled according to the amount received
-			from the Remote Game Server and not from events within the web browser. TM and © 2025 Stake
-			Engine.
+			from the Remote Game Server and not from events within the web browser. Dumpster Duke © 2026 nyxhilx.
+			All rights reserved.
 		</p>
 	</section>
 

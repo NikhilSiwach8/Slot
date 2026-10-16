@@ -2,7 +2,7 @@
 	import { BitmapText, Container } from 'pixi-svelte';
 	import { Button, type ButtonProps } from 'components-pixi';
 	import { OnHotkey } from 'components-shared';
-	import { stateBetDerived } from 'state-shared';
+	import { stateBetDerived, stateModal, stateUi } from 'state-shared';
 
 	import HudCard from './hud/HudCard.svelte';
 	import HudIcon from './hud/HudIcon.svelte';
@@ -12,6 +12,8 @@
 
 	const props: Partial<Omit<ButtonProps, 'children'>> = $props();
 	const disabled = $derived(!stateBetDerived.isBetCostAvailable());
+	// the space bar plays a round like the SPIN card, but not while a menu or dialog is open
+	const hotkeyDisabled = $derived(disabled || !!stateModal.modal || stateUi.menuOpen);
 	// the SPIN card is the hero of the HUD
 	const sizes = { width: UI_BASE_SIZE * 1.6, height: UI_BASE_SIZE * 1.6 };
 </script>
@@ -20,7 +22,7 @@
 	{#snippet children({ key, onpress })}
 		{@const stopping = !['spin_default', 'spin_disabled'].includes(key)}
 		{@const dimmed = disabled || ['spin_disabled', 'stop_disabled'].includes(key)}
-		<OnHotkey hotkey="Space" {disabled} {onpress} />
+		<OnHotkey hotkey="Space" disabled={hotkeyDisabled} {onpress} />
 		<Button {...props} {sizes} {onpress} {disabled}>
 			{#snippet children({ center, hovered, pressed })}
 				<Container
