@@ -11,7 +11,7 @@
 	import { BitmapText, Container } from 'pixi-svelte';
 	import { FadeContainer, WinCountUpProvider, ResponsiveBitmapText } from 'components-pixi';
 	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
-	import { waitForResolve } from 'utils-shared/wait';
+	import { waitForResolve, waitForTimeout } from 'utils-shared/wait';
 	import { CanvasSizeRectangle } from 'components-layout';
 	import { OnMount } from 'components-shared';
 
@@ -36,7 +36,9 @@
 		freeSpinOutroCountUp: async (emitterEvent) => {
 			amount = emitterEvent.amount;
 			winLevelData = emitterEvent.winLevelData;
-			intro = createTween01(500);
+			intro = createTween01(1);
+			// the win slams onto the plaque once the art has lunged in
+			waitForTimeout(650).then(() => (intro = createTween01(500)));
 			await waitForResolve((resolve) => (oncomplete = resolve));
 		},
 	});

@@ -8,7 +8,7 @@
 <script lang="ts">
 	import { CanvasSizeRectangle } from 'components-layout';
 	import { FadeContainer } from 'components-pixi';
-	import { waitForResolve } from 'utils-shared/wait';
+	import { waitForResolve, waitForTimeout } from 'utils-shared/wait';
 	import { Container } from 'pixi-svelte';
 	import { ResponsiveBitmapText } from 'components-pixi';
 
@@ -39,7 +39,9 @@
 			// }
 			// freeSpinsFromEvent = emitterEvent.extraSpins ?? emitterEvent.totalFreeSpins;
 			freeSpinsFromEvent = emitterEvent.totalFreeSpins;
-			pop = createTween01(450);
+			pop = createTween01(1);
+			// the count slams onto the plaque once the art has lunged in
+			waitForTimeout(650).then(() => (pop = createTween01(450)));
 			await waitForResolve((resolve) => (oncomplete = resolve));
 		},
 	});
