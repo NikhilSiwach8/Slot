@@ -135,7 +135,8 @@
 			const period = 3.5 + rand(i, 11) * 2.5;
 			const p = ((t + rand(i, 12) * period) % period) / period;
 			return {
-				x: W * (0.08 + rand(i, 13) * 0.84),
+				// drift up the sides, clear of the plaque
+				x: i % 2 ? W * (0.72 + rand(i, 13) * 0.22) : W * (0.06 + rand(i, 13) * 0.22),
 				y: H * (0.95 - p * 0.9),
 				rotation: Math.sin(t * 2 + i) * 0.5,
 				scale: u * (0.6 + rand(i, 14) * 0.8),
