@@ -55,6 +55,13 @@ type BookEventMysteryReveal = {
 	lootBag: number;
 };
 
+// The round reached the max win (the win amounts that follow are already capped)
+type BookEventWincap = {
+	index: number;
+	type: 'wincap';
+	amount: number;
+};
+
 // Max or Nothing: the single spin won, so its win is boosted to the max win
 type BookEventMaxBoost = {
 	index: number;
@@ -139,6 +146,7 @@ export type BookEvent =
 	| BookEventFreeSpinTrigger
 	| BookEventMysteryReveal
 	| BookEventMaxBoost
+	| BookEventWincap
 	| BookEventFreeSpinRetrigger
 	| BookEventUpdateFreeSpin
 	| BookEventUpdateGlobalMult

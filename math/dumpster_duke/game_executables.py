@@ -24,6 +24,9 @@ class GameExecutables(GameCalculations):
         spin is multiplied by the whole Loot Bag total.
         """
         base_tumble_win = copy(self.win_manager.spin_win)
+        if self.get_current_distribution_conditions().get("max_or_nothing"):
+            self.apply_max_cap(base_tumble_win)
+            return
         if base_tumble_win > 0:
             board_sum, mult_info = self.get_board_multipliers()
             if self.gametype == self.config.freegame_type:
@@ -41,12 +44,21 @@ class GameExecutables(GameCalculations):
                 update_tumble_win_event(self)
                 self.evaluate_wincap()
 
-        # Max or Nothing: any win at all is boosted straight to the max win
-        if self.win_manager.spin_win > 0 and self.get_current_distribution_conditions().get("max_or_nothing"):
-            send_max_boost_event(self, self.win_manager.spin_win)
-            self.win_manager.set_spin_win(self.config.wincap)
-            self.evaluate_wincap()
+        if self.win_manager.spin_win > 0:
+            set_win_event(self)
+        set_total_event(self)
 
+    def apply_max_cap(self, base_tumble_win):
+        """Max or Nothing: after the tumbles, the MAX cap(s) on screen lift any win to the max win."""
+        _, mult_info = self.get_board_multipliers()
+        if base_tumble_win > 0 and mult_info:
+            max_cap = mult_info[0]["value"]
+            self.win_manager.set_spin_win(base_tumble_win * max_cap)
+            send_mult_info_event(self, max_cap, mult_info, base_tumble_win, self.win_manager.spin_win)
+            self.win_manager.set_spin_win(min(self.win_manager.spin_win, self.config.wincap))
+            update_tumble_win_event(self)
+            self.evaluate_wincap()
+            send_max_boost_event(self, base_tumble_win)
         if self.win_manager.spin_win > 0:
             set_win_event(self)
         set_total_event(self)

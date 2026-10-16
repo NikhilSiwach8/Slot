@@ -37,8 +37,9 @@ Feature Spin: every spin shows 3 Golden Trash Cans and a Bottle Cap; hits 1 in 5
 Super Bonus: Loot Bag starts at x10, a Bottle Cap on every free spin. Mystery Bonus: 5-25 spins and a x0-x20
 starting Loot Bag drawn at random (a `mysteryReveal` book event carries both before `freeSpinTrigger`).
 Max or Nothing: a single base-game spin (no free spins; boards with 4+ Cursed Trash Cans are
-redrawn). A winning spin gets a `maxBoost` book event and is set to the 10,000x cap; a losing spin
-pays 0. Only two outcomes, 0 or the cap; weights are set exactly by
+redrawn). Every board carries a MAX Candy Cap (multiplier value 25,000, shown as MAX). A winning
+spin tumbles, then the MAX cap applies through the normal `boardMultiplierInfo` event and the win
+is capped at 10,000x (`wincap`, then a `maxBoost` event for the celebration); a losing spin pays 0. Only two outcomes, 0 or the cap; weights are set exactly by
 `math/dumpster_duke/fixed_weights.py` (P(cap) = RTP x cost / cap = 1 in 20.7). The SDK's own
 format-check statistics step cannot handle a two-outcome table (it crashes computing the gap between
 payouts); `validate-books-index` passes for all 7 modes. Mention this mode explicitly to reviewers.

@@ -14,6 +14,7 @@
 
 	import { getContext } from '../game/context';
 	import { SYMBOL_SIZE } from '../game/constants';
+	import { capLabel } from '../game/rules';
 	import BoardContainer from './BoardContainer.svelte';
 
 
@@ -46,7 +47,7 @@
 			<Container scale={slam ? 1.8 - 0.8 * easeOutBack(Math.min(1, slam.t * 2.5), 2.5) : 1}>
 				<BitmapText
 					anchor={0.5}
-					text={`${totalMultiplier}x`}
+					text={capLabel(totalMultiplier)}
 					style={{ fontFamily: 'gold', fontSize: SYMBOL_SIZE * 1.6 }}
 				/>
 			</Container>

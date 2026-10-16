@@ -24,7 +24,7 @@ if isinstance(config.get("symbols"), list):
 MATH_SDK = os.environ.get("MATH_SDK", os.path.join(ROOT, "math-sdk"))
 sys.path[:0] = [MATH_SDK, os.path.join(ROOT, "math", "dumpster_duke")]
 os.chdir(MATH_SDK)
-from game_config import GameConfig  # noqa: E402
+from game_config import MAX_CAP, GameConfig  # noqa: E402
 
 gc = GameConfig()
 config["providerName"] = gc.provider_name  # also correct when the books predate a rename
@@ -33,6 +33,7 @@ config["dukeRules"] = {
     "scatterAwards": [{"scatters": k, "spins": v} for k, v in sorted(gc.freespin_triggers[gc.basegame_type].items())],
     "retrigger": [{"scatters": k, "spins": v} for k, v in sorted(gc.freespin_triggers[gc.freegame_type].items())],
     "capValues": gc.cap_values,
+    "maxCap": MAX_CAP,
 }
 
 with open(DST, "w") as f:

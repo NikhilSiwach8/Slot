@@ -143,7 +143,7 @@ Object.assign(BET_MODE_META, {
 		assets: noAssets,
 		text: {
 			title: 'MAX OR NOTHING',
-			description: `A single spin: any win is boosted to the ${maxOrNothing.max_win.toLocaleString('en-US')}x max win, no win pays nothing.`,
+			description: `A single spin with a MAX cap: any win tumbles, then hits the ${maxOrNothing.max_win.toLocaleString('en-US')}x max win. No win pays nothing.`,
 			dialog: rtpLine(maxOrNothing),
 			button: 'BUY',
 			betAmountLabel: 'MAX OR NOTHING',

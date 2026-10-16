@@ -131,6 +131,9 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		// Mystery Bonus: the chest rolls the raid's spins and starting Trick-or-Treat Bag first
 		await eventEmitter.broadcastAsync({ type: 'mysteryReveal', spins: bookEvent.spins, lootBag: bookEvent.lootBag });
 	},
+	wincap: async () => {
+		// nothing to show here: the capped win plays through the setWin / finalWin events
+	},
 	maxBoost: async (bookEvent: BookEventOfType<'maxBoost'>) => {
 		// Max or Nothing: the spin won something, so it jumps straight to the max win
 		eventEmitter.broadcast({ type: 'tumbleWinAmountHide' });

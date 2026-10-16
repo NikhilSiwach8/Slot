@@ -3,8 +3,8 @@
 </script>
 
 <!--
-	Max or Nothing: the single spin won, so its win is boosted to the max win. The spin's
-	own win shows first, then a gold "MAX WIN" slams in over it with rays and a flash.
+	Max or Nothing: the spin tumbled to a win and the MAX cap lifted it to the max win.
+	The tumble win x MAX shows first, then "MAX WIN REACHED" slams in with rays and a flash.
 -->
 <script lang="ts">
 	import { BitmapText, Container } from 'pixi-svelte';
@@ -65,13 +65,14 @@
 				anchor={0.5}
 				y={-PANEL.height * 0.1}
 				alpha={1 - slam * 0.55}
-				text={`SPIN WIN ${bookEventAmountToCurrencyString(fromWin)}`}
+				text={`${bookEventAmountToCurrencyString(fromWin)} × MAX`}
 				style={{ fontFamily: 'gold', fontSize: PANEL.height * 0.08 }}
 			/>
 			{#if t >= SLAM}
 				<Container y={PANEL.height * 0.14} scale={slam}>
-					<BitmapText anchor={0.5} y={-PANEL.height * 0.02} text="MAX WIN" style={{ fontFamily: 'gold', fontSize: PANEL.height * 0.2 }} />
-					<BitmapText anchor={0.5} y={PANEL.height * 0.17} text={bookEventAmountToCurrencyString(toWin)} style={{ fontFamily: 'gold', fontSize: PANEL.height * 0.11 }} />
+					<BitmapText anchor={0.5} y={-PANEL.height * 0.06} text="MAX WIN" style={{ fontFamily: 'gold', fontSize: PANEL.height * 0.17 }} />
+					<BitmapText anchor={0.5} y={PANEL.height * 0.08} text="REACHED" style={{ fontFamily: 'gold', fontSize: PANEL.height * 0.1 }} />
+					<BitmapText anchor={0.5} y={PANEL.height * 0.23} text={bookEventAmountToCurrencyString(toWin)} style={{ fontFamily: 'gold', fontSize: PANEL.height * 0.11 }} />
 				</Container>
 			{/if}
 		</Container>

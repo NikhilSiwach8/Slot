@@ -148,3 +148,16 @@
 	})}
 	{template}
 />
+
+<Story
+	name="max multiplier total"
+	args={templateArgs({
+		skipLoadingScreen: true,
+		data: {},
+		action: async () => {
+			eventEmitter.broadcast({ type: 'multiplierTotalShow' });
+			eventEmitter.broadcast({ type: 'multiplierTotalUpdate', totalMultiplier: 25000 });
+		},
+	})}
+	{template}
+/>

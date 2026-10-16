@@ -16,6 +16,7 @@
 	import { Container, Sprite, Text } from 'pixi-svelte';
 
 	import { SYMBOL_SIZE } from '../game/constants';
+	import { capLabel } from '../game/rules';
 	import WinSparks from './WinSparks.svelte';
 
 	type Props = {
@@ -132,7 +133,7 @@
 		<Text
 			anchor={0.5}
 			y={-SYMBOL_SIZE * props.symbolInfo.sizeRatios.height * 0.05}
-			text={`${props.symbolInfo.multiplier}x`}
+			text={capLabel(props.symbolInfo.multiplier)}
 			style={{
 				fontFamily: 'Arial Black, Arial, sans-serif',
 				fontWeight: '900',

@@ -2,8 +2,16 @@
 // (scripts/sync_fe_config.py), so the rules screen always matches the math.
 import config from './config';
 
-export const { scatterAwards: SCATTER_AWARDS, retrigger: RETRIGGER, minCluster: MIN_CLUSTER, capValues: CAP_VALUES } =
-	config.dukeRules;
+export const {
+	scatterAwards: SCATTER_AWARDS,
+	retrigger: RETRIGGER,
+	minCluster: MIN_CLUSTER,
+	capValues: CAP_VALUES,
+	maxCap: MAX_CAP,
+} = config.dukeRules;
+
+/** Text on a Candy Cap: its value, or MAX for the Max or Nothing cap. */
+export const capLabel = (value: number) => (value >= MAX_CAP ? 'MAX' : `${value}x`);
 
 export const SYMBOL_NAMES: Record<string, string> = {
 	H1: 'Count Dumpster Duke',

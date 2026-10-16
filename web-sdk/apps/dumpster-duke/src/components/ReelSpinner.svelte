@@ -10,6 +10,7 @@
 
 	import { getContext } from '../game/context';
 	import { SYMBOL_SIZE, SYMBOL_INFO_MAP, BOARD_DIMENSIONS } from '../game/constants';
+	import { capLabel } from '../game/rules';
 	import { getSymbolX } from '../game/utils';
 	import { reels, reelSpin, stateReelSpin } from '../game/reelSpin/controller.svelte';
 	import type { TapeSymbol } from '../game/reelSpin/reelMotion';
@@ -111,7 +112,7 @@
 				slot.root.y = (index + reel.scroll + 0.5) * spacing;
 				slot.sprite.width = look.size * (1 + squash * 0.6);
 				slot.sprite.height = look.size * stretch * (1 - squash);
-				const text = symbol.multiplier !== undefined ? `${symbol.multiplier}x` : '';
+				const text = symbol.multiplier !== undefined ? capLabel(symbol.multiplier) : '';
 				if (slot.value.text !== text) slot.value.text = text;
 			});
 		});

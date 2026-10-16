@@ -196,8 +196,9 @@
 			{/if}
 			{#if maxOrNothing}
 				<p>
-					<strong>Max or Nothing — {maxOrNothing.cost}× the bet.</strong> A single spin with no free spins.
-					If the spin wins anything at all, the win is boosted straight to the maximum win of
+					<strong>Max or Nothing — {maxOrNothing.cost}× the bet.</strong> A single spin with no free spins. Every
+					spin shows a MAX Candy Cap. If the spin wins anything at all, the winning symbols tumble as
+					usual and, after the last tumble, the MAX cap lifts the win to the maximum win of
 					{formatX(maxOrNothing.maxWin)} the bet; if it does not win, it pays nothing. Cursed Trash Cans do not
 					trigger the Haunted Raid on this spin. On average about
 					1 in {(maxOrNothing.maxWin / (maxOrNothing.rtp * maxOrNothing.cost)).toFixed(1)} of these spins pays.

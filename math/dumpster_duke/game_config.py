@@ -12,6 +12,9 @@ FEATURE_COST = 5.0
 SUPER_COST = 250.0
 MYSTERY_COST = 100.0
 MAX_COST = 500.0
+# Max or Nothing: every Candy Cap on its spin is a MAX cap. Its value only has to lift the
+# smallest win (0.4x) to the 10,000x max win; the client shows it as "MAX".
+MAX_CAP = 25000
 
 
 class GameConfig(Config):
@@ -257,8 +260,9 @@ class GameConfig(Config):
                     freegame_dist(0.999, {4: 20, 5: 4, 6: 1}, mystery),
                 ],
             ),
-            # Max or Nothing: one paid spin, no free spins. If the spin wins anything at all,
-            # the win is boosted straight to the 10,000x max win; a dead spin pays 0.
+            # Max or Nothing: one paid spin, no free spins. Every board shows a MAX cap; if the
+            # spin wins anything at all (with tumbles), the MAX cap lifts it to the 10,000x max
+            # win. A dead spin pays 0.
             BetMode(
                 name="max",
                 cost=MAX_COST,
@@ -274,9 +278,10 @@ class GameConfig(Config):
                         win_criteria=win,
                         conditions={
                             "reel_weights": {self.basegame_type: {"BR0": 1}},
-                            "mult_values": {self.basegame_type: base_caps, self.freegame_type: fs_caps},
+                            "mult_values": {self.basegame_type: {MAX_CAP: 1}, self.freegame_type: fs_caps},
                             "force_wincap": False,
                             "force_freegame": False,
+                            "guarantee_cap": [self.basegame_type],
                             "max_or_nothing": True,
                         },
                     )

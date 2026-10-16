@@ -95,7 +95,7 @@ Extra modes (all 96.50% RTP, max win 10,000×):
 | Feature Spin (`feature`) | 5×/spin, stays on | Every spin shows 3 Golden Trash Cans + at least one Bottle Cap | hit 1 in 5.37, raid 1 in 23, cap 1 in 1.0M |
 | Super Bonus (`super`) | 250× buy | Raid with the Loot Bag starting at x10, a Bottle Cap every free spin | cap 1 in 20k buys |
 | Mystery Bonus (`mystery`) | 100× buy | Chest reveals 5–25 spins and a x0–x20 starting Loot Bag | cap 1 in 100k buys |
-| Max or Nothing (`max`) | 500× buy | Single spin, no free spins: any win is boosted to the 10,000× cap, no win pays 0 | cap 1 in 20.7 |
+| Max or Nothing (`max`) | 500× buy | Single spin, no free spins, a MAX Candy Cap on every board: any win tumbles, then the MAX cap lifts it to the 10,000× cap; no win pays 0 | cap 1 in 20.7 |
 
 Double Chance keeps the raid's average size (~78× bet) and doubles its frequency. The extra
 stake pays for that: base-game wins keep the same size spread but land a bit less often.
