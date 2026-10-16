@@ -161,3 +161,87 @@
 	})}
 	{template}
 />
+
+<Story
+	name="win: good"
+	args={templateArgs({
+		skipLoadingScreen: true,
+		data: {},
+		action: async () => {
+			stateBet.betAmount = 1;
+			eventEmitter.broadcast({ type: 'winShow' });
+			await eventEmitter.broadcastAsync({ type: 'winUpdate', amount: 800, winLevelData: winLevelMap[5] });
+		},
+	})}
+	{template}
+/>
+
+<Story
+	name="win: big"
+	args={templateArgs({
+		skipLoadingScreen: true,
+		data: {},
+		action: async () => {
+			stateBet.betAmount = 1;
+			eventEmitter.broadcast({ type: 'winShow' });
+			await eventEmitter.broadcastAsync({ type: 'winUpdate', amount: 2000, winLevelData: winLevelMap[6] });
+		},
+	})}
+	{template}
+/>
+
+<Story
+	name="win: super"
+	args={templateArgs({
+		skipLoadingScreen: true,
+		data: {},
+		action: async () => {
+			stateBet.betAmount = 1;
+			eventEmitter.broadcast({ type: 'winShow' });
+			await eventEmitter.broadcastAsync({ type: 'winUpdate', amount: 4000, winLevelData: winLevelMap[7] });
+		},
+	})}
+	{template}
+/>
+
+<Story
+	name="win: mega"
+	args={templateArgs({
+		skipLoadingScreen: true,
+		data: {},
+		action: async () => {
+			stateBet.betAmount = 1;
+			eventEmitter.broadcast({ type: 'winShow' });
+			await eventEmitter.broadcastAsync({ type: 'winUpdate', amount: 7500, winLevelData: winLevelMap[8] });
+		},
+	})}
+	{template}
+/>
+
+<Story
+	name="win: epic"
+	args={templateArgs({
+		skipLoadingScreen: true,
+		data: {},
+		action: async () => {
+			stateBet.betAmount = 1;
+			eventEmitter.broadcast({ type: 'winShow' });
+			await eventEmitter.broadcastAsync({ type: 'winUpdate', amount: 15000, winLevelData: winLevelMap[9] });
+		},
+	})}
+	{template}
+/>
+
+<Story
+	name="win: max"
+	args={templateArgs({
+		skipLoadingScreen: true,
+		data: {},
+		action: async () => {
+			stateBet.betAmount = 1;
+			eventEmitter.broadcast({ type: 'winShow' });
+			await eventEmitter.broadcastAsync({ type: 'winUpdate', amount: 1000000, winLevelData: winLevelMap[10] });
+		},
+	})}
+	{template}
+/>

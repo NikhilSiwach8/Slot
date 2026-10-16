@@ -46,8 +46,8 @@
 		{@const duration = winLevelData.presentDuration}
 		<WinCountUpProvider {amount} {duration} oncomplete={() => onCountUpComplete()}>
 			{#snippet children({ countUpAmount, startCountUp, finishCountUp, countUpCompleted })}
-				{#if isBigWin}
-					<CanvasSizeRectangle backgroundColor={0x000000} backgroundAlpha={0.5} />
+				{#if isBigWin || winLevelData.animation}
+					<CanvasSizeRectangle backgroundColor={0x000000} backgroundAlpha={isBigWin ? 0.55 : 0.35} />
 				{/if}
 
 				<OnMount

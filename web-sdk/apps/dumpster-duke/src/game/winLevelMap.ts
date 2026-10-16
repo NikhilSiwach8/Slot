@@ -41,10 +41,10 @@ export const winLevelMap = {
 		level: 5,
 		alias: 'substantial',
 		type: 'medium',
-		text: null,
-		presentDuration: 2.0 * SECOND,
+		text: 'GOOD WIN',
+		presentDuration: 2.6 * SECOND,
 		sound: { sfx: 'sfx_win', bgm: undefined },
-		animation: undefined,
+		animation: { intro: 'good_win_intro', idle: 'good_win_idle', outro: 'good_win_exit' },
 	},
 	6: {
 		level: 6,
