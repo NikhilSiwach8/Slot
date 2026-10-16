@@ -183,7 +183,7 @@ export default [
 	},
 	{
 		"id": 289,
-		"payoutMultiplier": 1000000,
+		"payoutMultiplier": 400000,
 		"events": [
 			{
 				"index": 0,
@@ -507,43 +507,44 @@ export default [
 				"winInfo": {
 					"tumbleWin": 100,
 					"boardMult": 25000,
-					"totalWin": 1000000
+					"totalWin": 400000
 				}
 			},
 			{
 				"index": 5,
 				"type": "updateTumbleWin",
-				"amount": 1000000
+				"amount": 400000
 			},
 			{
 				"index": 6,
-				"type": "wincap",
-				"amount": 1000000
+				"type": "maxBoost",
+				"fromWin": 100,
+				"toWin": 400000
 			},
 			{
 				"index": 7,
-				"type": "maxBoost",
-				"fromWin": 100,
-				"toWin": 1000000
+				"type": "setWin",
+				"amount": 400000,
+				"winLevel": 10
 			},
 			{
 				"index": 8,
 				"type": "setTotalWin",
-				"amount": 1000000
+				"amount": 400000
 			},
 			{
 				"index": 9,
 				"type": "finalWin",
-				"amount": 1000000
+				"amount": 400000
 			}
 		],
-		"criteria": "wincap",
-		"baseGameWins": 10000.0,
+		"criteria": "max",
+		"baseGameWins": 4000.0,
 		"freeGameWins": 0.0
 	},
 	{
 		"id": 340,
-		"payoutMultiplier": 1000000,
+		"payoutMultiplier": 400000,
 		"events": [
 			{
 				"index": 0,
@@ -856,38 +857,39 @@ export default [
 				"winInfo": {
 					"tumbleWin": 150,
 					"boardMult": 25000,
-					"totalWin": 1000000
+					"totalWin": 400000
 				}
 			},
 			{
 				"index": 5,
 				"type": "updateTumbleWin",
-				"amount": 1000000
+				"amount": 400000
 			},
 			{
 				"index": 6,
-				"type": "wincap",
-				"amount": 1000000
+				"type": "maxBoost",
+				"fromWin": 150,
+				"toWin": 400000
 			},
 			{
 				"index": 7,
-				"type": "maxBoost",
-				"fromWin": 150,
-				"toWin": 1000000
+				"type": "setWin",
+				"amount": 400000,
+				"winLevel": 10
 			},
 			{
 				"index": 8,
 				"type": "setTotalWin",
-				"amount": 1000000
+				"amount": 400000
 			},
 			{
 				"index": 9,
 				"type": "finalWin",
-				"amount": 1000000
+				"amount": 400000
 			}
 		],
-		"criteria": "wincap",
-		"baseGameWins": 10000.0,
+		"criteria": "max",
+		"baseGameWins": 4000.0,
 		"freeGameWins": 0.0
 	}
 ];

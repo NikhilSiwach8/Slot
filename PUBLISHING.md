@@ -29,7 +29,7 @@ part into one folder to get all 15 math files (index + 7 books + 7 lookup tables
 | bonus (buy Midnight Raid) | 100x | 96.50% | 10,000x | 1 in 100k |
 | super (Super Bonus) | 250x | 96.50% | 10,000x | 1 in 20k |
 | mystery (Mystery Bonus) | 100x | 96.50% | 10,000x | 1 in 100k |
-| max (Max or Nothing) | 500x | 96.50% | 10,000x | 1 in 20.7 |
+| max (Max or Nothing) | 200x | 96.50% | 4,000x (mode prize) | 1 in 20.7 |
 
 Base game: hits 1 in 3.44, triggers the bonus 1 in 210, std dev 8.7.
 Double Chance (ante): hits 1 in 4.32, triggers the bonus 1 in 105 (2x base), same average raid (~78x), std dev 9.0.
@@ -39,10 +39,13 @@ starting Loot Bag drawn at random (a `mysteryReveal` book event carries both bef
 Max or Nothing: a single base-game spin (no free spins; boards with 4+ Cursed Trash Cans are
 redrawn). Every board carries a MAX Candy Cap (multiplier value 25,000, shown as MAX). A winning
 spin tumbles, then the MAX cap applies through the normal `boardMultiplierInfo` event and the win
-is capped at 10,000x (`wincap`, then a `maxBoost` event for the celebration); a losing spin pays 0. Only two outcomes, 0 or the cap; weights are set exactly by
-`math/dumpster_duke/fixed_weights.py` (P(cap) = RTP x cost / cap = 1 in 20.7). The SDK's own
-format-check statistics step cannot handle a two-outcome table (it crashes computing the gap between
-payouts); `validate-books-index` passes for all 7 modes. Mention this mode explicitly to reviewers.
+is set to the mode's prize of 4,000x (a `maxBoost` event drives the celebration); a losing spin pays
+0. Only two outcomes, 0 or 4,000x; weights are set exactly by `math/dumpster_duke/fixed_weights.py`
+(P(prize) = RTP x cost / prize = 1 in 20.7). The prize is kept under 5,000x so the mode passes the
+risk checks: every mode has P(win >= 5,000x) <= 0.0001, P(win >= 10,000x) <= 0.00005, expected tail
+liability (10,000x) <= 0.002 and expected tail liability (40x, per cost) <= 0.600 (Double Chance).
+The SDK's own format-check statistics step cannot handle a two-outcome table (it crashes computing the
+gap between payouts); `validate-books-index` passes for all 7 modes. Mention this mode explicitly to reviewers.
 
 ## 3. What was done to meet the approval checklist
 
@@ -87,7 +90,7 @@ payouts); `validate-books-index` passes for all 7 modes. Mention this mode expli
 | mystery | big bonus | 2 | 138.8x |
 | mystery | win cap | 1875 | 10,000x |
 | max | loss | 0 | 0x |
-| max | win cap | 124 | 10,000x |
+| max | prize (4,000x) | 124 | 4,000x |
 
 Every bonus buy triggers free spins and always pays, so the bonus mode has no loss or normal-win case. To regenerate the table after a math rerun, run `scripts/find_replay_examples.py`.
 

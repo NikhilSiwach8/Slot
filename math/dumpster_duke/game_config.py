@@ -11,7 +11,10 @@ from src.config.betmode import BetMode
 FEATURE_COST = 5.0
 SUPER_COST = 250.0
 MYSTERY_COST = 100.0
-MAX_COST = 500.0
+MAX_COST = 200.0
+# Max or Nothing pays this or nothing. Kept under 5,000x so the mode passes Stake's tail
+# checks (P(win >= 5,000x) and the RTP share of 10,000x wins); 1 in 20.7 at 200x.
+MAX_OR_NOTHING_WIN = 4000
 # Max or Nothing: every Candy Cap on its spin is a MAX cap. Its value only has to lift the
 # smallest win (0.4x) to the 10,000x max win; the client shows it as "MAX".
 MAX_CAP = 25000
@@ -109,7 +112,8 @@ class GameConfig(Config):
         # Every bottle-cap value a player can see, for the rules screen.
         self.cap_values = sorted(set(base_caps) | set(fs_caps) | set(wincap_caps))
 
-        mode_maxwins = {m: 10000 for m in ("base", "ante", "feature", "bonus", "super", "mystery", "max")}
+        mode_maxwins = {m: 10000 for m in ("base", "ante", "feature", "bonus", "super", "mystery")}
+        mode_maxwins["max"] = MAX_OR_NOTHING_WIN
 
         def wincap_dist(scatter_triggers, extra=None, quota=0.001):
             return Distribution(
@@ -261,8 +265,8 @@ class GameConfig(Config):
                 ],
             ),
             # Max or Nothing: one paid spin, no free spins. Every board shows a MAX cap; if the
-            # spin wins anything at all (with tumbles), the MAX cap lifts it to the 10,000x max
-            # win. A dead spin pays 0.
+            # spin wins anything at all (with tumbles), the MAX cap lifts it to this mode's max
+            # win (MAX_OR_NOTHING_WIN). A dead spin pays 0.
             BetMode(
                 name="max",
                 cost=MAX_COST,
@@ -285,7 +289,7 @@ class GameConfig(Config):
                             "max_or_nothing": True,
                         },
                     )
-                    for criteria, quota, win in (("wincap", 0.02, float(self.wincap)), ("0", 0.98, 0.0))
+                    for criteria, quota, win in (("max", 0.02, float(MAX_OR_NOTHING_WIN)), ("0", 0.98, 0.0))
                 ],
             ),
         ]

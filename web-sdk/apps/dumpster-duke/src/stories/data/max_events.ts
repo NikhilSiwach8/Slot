@@ -322,28 +322,29 @@ export default {
 		"winInfo": {
 			"tumbleWin": 100,
 			"boardMult": 25000,
-			"totalWin": 1000000
+			"totalWin": 400000
 		}
 	},
-	"wincap": {
-		"index": 6,
-		"type": "wincap",
-		"amount": 1000000
-	},
 	"maxBoost": {
-		"index": 7,
+		"index": 6,
 		"type": "maxBoost",
 		"fromWin": 100,
-		"toWin": 1000000
+		"toWin": 400000
+	},
+	"setWin": {
+		"index": 7,
+		"type": "setWin",
+		"amount": 400000,
+		"winLevel": 10
 	},
 	"setTotalWin": {
 		"index": 8,
 		"type": "setTotalWin",
-		"amount": 1000000
+		"amount": 400000
 	},
 	"finalWin": {
 		"index": 9,
 		"type": "finalWin",
-		"amount": 1000000
+		"amount": 400000
 	}
 };
