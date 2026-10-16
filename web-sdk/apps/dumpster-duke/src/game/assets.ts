@@ -1,3 +1,4 @@
+import { bgLayerAssets } from './bgLayers';
 import { splashLayerAssets } from './splashLayers';
 
 // Every asset here is original to Dumpster Duke (no web-sdk sample assets).
@@ -22,8 +23,9 @@ export default {
 		src: new URL('../../assets/sprites/dukeBackgrounds/bg_raid_portrait.webp', import.meta.url).href,
 		preload: true,
 	},
-	// moving parts of the bonus splashes (art/make_splash_layers.py)
+	// moving parts of the bonus splashes (art/make_splash_layers.py) and backgrounds (make_bg_layers.py)
 	...splashLayerAssets,
+	...bgLayerAssets,
 	// bonus splashes: Haunted Raid, Super Bonus, Mystery Bonus intros and the raid-complete outro
 	fs_raid_landscape: {
 		type: 'sprite',

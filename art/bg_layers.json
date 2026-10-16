@@ -1,0 +1,32 @@
+{
+ "landscape": [
+  {"id": "portal", "box": [960, 600, 1240, 880], "pivot": [1100, 760], "anim": "portal"},
+  {"id": "lantern_a", "box": [400, 0, 630, 320], "pivot": [515, 0], "anim": "lantern"},
+  {"id": "lantern_b", "box": [690, 300, 815, 525], "pivot": [752, 300], "anim": "lantern"},
+  {"id": "lantern_c", "box": [810, 500, 890, 645], "pivot": [850, 500], "anim": "lantern"},
+  {"id": "lantern_d", "box": [1330, 330, 1465, 585], "pivot": [1395, 330], "anim": "lantern"},
+  {"id": "lantern_e", "box": [1235, 590, 1310, 715], "pivot": [1270, 590], "anim": "lantern"},
+  {"id": "lantern_f", "box": [930, 640, 985, 720], "pivot": [957, 640], "anim": "lantern"},
+  {"id": "crystal_l", "box": [0, 590, 180, 840], "pivot": [85, 830], "anim": "crystal"},
+  {"id": "crystal_r", "box": [1830, 360, 1920, 525], "pivot": [1880, 520], "anim": "crystal"},
+  {"id": "crystal_br", "box": [1375, 810, 1515, 1010], "pivot": [1445, 1000], "anim": "crystal"},
+  {"id": "crystal_m", "box": [770, 780, 880, 960], "pivot": [825, 950], "anim": "crystal"},
+  {"id": "gold", "box": [20, 680, 770, 920], "pivot": [400, 900], "anim": "gold"}
+ ],
+ "portrait": [
+  {"id": "portal", "box": [520, 740, 690, 880], "pivot": [605, 815], "anim": "portal"},
+  {"id": "lantern_a", "box": [220, 280, 360, 555], "pivot": [295, 285], "anim": "lantern"},
+  {"id": "lantern_b", "box": [385, 470, 465, 675], "pivot": [425, 470], "anim": "lantern"},
+  {"id": "lantern_c", "box": [745, 520, 825, 705], "pivot": [785, 520], "anim": "lantern"},
+  {"id": "lantern_d", "box": [450, 650, 505, 740], "pivot": [478, 650], "anim": "lantern"},
+  {"id": "lantern_e", "box": [690, 700, 740, 780], "pivot": [715, 700], "anim": "lantern"},
+  {"id": "crystal_tl", "box": [0, 140, 160, 390], "pivot": [70, 380], "anim": "crystal"},
+  {"id": "crystal_l", "box": [0, 705, 100, 850], "pivot": [45, 840], "anim": "crystal"},
+  {"id": "crystal_bl", "box": [0, 1045, 70, 1210], "pivot": [30, 1200], "anim": "crystal"},
+  {"id": "crystal_tr", "box": [940, 145, 1045, 310], "pivot": [990, 300], "anim": "crystal"},
+  {"id": "crystal_r", "box": [1025, 575, 1080, 675], "pivot": [1055, 670], "anim": "crystal"},
+  {"id": "crystal_m", "box": [770, 825, 860, 950], "pivot": [815, 940], "anim": "crystal"},
+  {"id": "crystal_br", "box": [980, 975, 1080, 1180], "pivot": [1030, 1170], "anim": "crystal"},
+  {"id": "gold", "box": [10, 750, 430, 900], "pivot": [220, 890], "anim": "gold"}
+ ]
+}
