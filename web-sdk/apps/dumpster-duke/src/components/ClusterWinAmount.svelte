@@ -21,12 +21,10 @@
 	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
 
 	import { SYMBOL_SIZE } from '../game/constants';
-	import { getContext } from '../game/context';
 
 	type Props = { win: Win };
 
 	const props: Props = $props();
-	const context = getContext();
 	const y = new Tween(0);
 	const scale = new Tween(1);
 	let show = $state(true);
@@ -44,7 +42,6 @@
 	onMount(async () => {
 		if (showMultiplier) {
 			await waitForTimeout((SECOND * 0.5) / stateBetDerived.timeScale());
-			context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_multiplier_combine_a' });
 			await scale.set(0.1, { duration: 200 / stateBetDerived.timeScale() });
 			await scale.set(1, { duration: 200 / stateBetDerived.timeScale() });
 		}

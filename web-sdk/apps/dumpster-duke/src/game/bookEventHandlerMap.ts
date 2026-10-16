@@ -83,6 +83,8 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 	},
 	updateTumbleWin: async (bookEvent: BookEventOfType<'updateTumbleWin'>) => {
 		if (bookEvent.amount > 0) {
+			// the tumble's wins are collected into the tumble-win total
+			eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_tumble_collect' });
 			eventEmitter.broadcast({ type: 'tumbleWinAmountShow' });
 			eventEmitter.broadcast({
 				type: 'tumbleWinAmountUpdate',

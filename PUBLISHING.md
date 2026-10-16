@@ -102,5 +102,5 @@ Every bonus buy triggers free spins and always pays, so the bonus mode has no lo
    - Play both modes from the dashboard preview.
    - Open a replay link with `?replay=true` for each event id above.
    - Try `?social=true`.
-4. **Review the audio.** Sound effects and the bonus music are synthesized by `sound/make_sounds.py`. The base-game music is "Silly Intro" by Alexander Nakarada (`sound/source/bgm_main_silly_intro.mp3`, credited as CC BY 4.0 in the rules screen's Credits section); confirm that licence on the track's download page before release. It plays at 45% while idle and 100% while a round plays (`components/Sound.svelte`).
+4. **Review the audio.** Most sound effects and the bonus music are synthesized by `sound/make_sounds.py`; the bonus-start, tumble-collect and spin-win sounds are your recordings in `sound/source/` (sfx_bonus_start, sfx_tumble_collect, sfx_win). The base-game music is "Silly Intro" by Alexander Nakarada (`sound/source/bgm_main_silly_intro.mp3`, credited as CC BY 4.0 in the rules screen's Credits section); confirm that licence on the track's download page before release. It plays at 45% while idle and 100% while a round plays (`components/Sound.svelte`).
 5. **Submit for review**, pasting the replay table above into the notes.

@@ -205,6 +205,26 @@ def load_track(path, level=0.85):
     return x / np.abs(x).max() * level
 
 
+# Recorded sound effects supplied for the game (sound/source/): bonus start, tumble
+# collect and the spin-win sound. Trimmed to their audible part and levelled.
+SOURCE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "source")
+RECORDED_SFX = {
+    # sprite name: (file, peak level, max seconds)
+    "jng_intro_fs": ("sfx_bonus_start.mp3", 0.85, 1.2),
+    "sfx_tumble_collect": ("sfx_tumble_collect.wav", 0.75, 1.4),
+    "sfx_win": ("sfx_win.mp3", 0.8, 3.2),
+}
+
+
+def load_sfx(file, level, max_sec):
+    x = load_track(os.path.join(SOURCE, file), level)
+    if len(x) > max_sec * SR:
+        x = x[: int(max_sec * SR)]
+        fade = int(0.25 * SR)
+        x[-fade:] *= np.linspace(1, 0, fade)[:, None]
+    return x
+
+
 def bgm_main():
     if os.path.exists(BGM_MAIN_FILE):
         return load_track(BGM_MAIN_FILE)
@@ -392,6 +412,9 @@ def build():
     sounds["sfx_winlevel_substantial"] = (jingle([69, 72, 76, 79, 84, 88], 0.11), False)
     sounds["sfx_winlevel_end"] = (jingle([84, 79, 84, 88], 0.13), False)
     sounds["sfx_youwon_panel"] = (norm(jingle([67, 72, 76, 79, 84, 88, 91], 0.12) + 0, 0.85), False)
+    for name, (file, level, max_sec) in RECORDED_SFX.items():
+        if os.path.exists(os.path.join(SOURCE, file)):
+            sounds[name] = (load_sfx(file, level, max_sec), False)
     return sounds
 
 
