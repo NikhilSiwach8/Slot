@@ -32,10 +32,10 @@ def examples(mode):
             checks = {
                 "loss": payout == 0,
                 "normal win": 1 <= payout <= 5 and "freeSpinTrigger" not in types,
-                "big win": level >= 6 and payout < 60000 and "freeSpinTrigger" not in types,
-                "win cap": payout >= 60000,
-                "bonus trigger": "freeSpinTrigger" in types and payout < 60000,
-                "big bonus": "freeSpinTrigger" in types and level >= 8 and payout < 60000,
+                "big win": level >= 6 and payout < 50000 and "freeSpinTrigger" not in types,
+                "win cap": payout >= 50000,
+                "bonus trigger": "freeSpinTrigger" in types and payout < 50000,
+                "big bonus": "freeSpinTrigger" in types and level >= 8 and payout < 50000,
             }
             for name, ok in checks.items():
                 if ok and name not in found:

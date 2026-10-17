@@ -88,11 +88,11 @@ Measured from the optimized lookup tables (`math/dumpster_duke/analyze.py`):
 | RTP | 96.50% | 96.50% | 96.50% |
 | Hit rate | 1 in 3.44 | 1 in 4.32 | every buy pays |
 | Bonus trigger | 1 in 210 spins | 1 in 105 spins | — |
-| Max win 60,000× | 1 in 8.0M spins | 1 in 6.4M spins | 1 in 100k buys |
+| Max win 50,000× | 1 in 8.0M spins | 1 in 6.4M spins | 1 in 100k buys |
 | Std dev (per unit cost) | 24.7 | 24.7 | 3.1 |
 | Simulations | 200,000 | 200,000 | 100,000 |
 
-Extra modes (all 96.50% RTP, max win 60,000×; Max or Nothing pays 4,000×):
+Extra modes (all 96.50% RTP, max win 50,000×; Max or Nothing pays 4,000×):
 
 | Mode | Cost | What it does | Key numbers |
 |---|---|---|---|
@@ -106,7 +106,7 @@ stake pays for that: base-game wins keep the same size spread but land a bit les
 
 Stake rules met: RTP 90–98% and modes within 0.5%; max win more often than
 1 in 10M; hit rate better than 1 in 20; 100k+ simulations; no gaps between small
-and max wins. The round ends immediately when the 60,000× cap is reached.
+and max wins. The round ends immediately when the 50,000× cap is reached.
 
 ## 9. Animation & feedback plan
 

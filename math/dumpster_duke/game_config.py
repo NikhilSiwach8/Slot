@@ -37,7 +37,7 @@ class GameConfig(Config):
         self.provider_name = "nyxhilx"
         self.provider_number = 0
         self.working_name = "Dumpster Duke"
-        self.wincap = 60000.0
+        self.wincap = 50000.0
         self.win_type = "cluster"
         self.rtp = 0.965
         self.construct_paths()
@@ -92,7 +92,7 @@ class GameConfig(Config):
         # Every bottle-cap value a player can see, for the rules screen.
         self.cap_values = sorted(set(base_caps) | set(fs_caps) | set(wincap_caps))
 
-        mode_maxwins = {m: 60000 for m in ("base", "ante", "feature", "bonus", "super", "mystery")}
+        mode_maxwins = {m: 50000 for m in ("base", "ante", "feature", "bonus", "super", "mystery")}
         mode_maxwins["max"] = MAX_OR_NOTHING_WIN
 
         def wincap_dist(scatter_triggers, extra=None, quota=0.001):

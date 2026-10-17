@@ -2,7 +2,7 @@
 
 ## Short (one line)
 
-Crown the king of trash: tumbling cluster wins, Haunted Spots that double up to x1024, Candy Cap multipliers and a Haunted Raid where the spots and the Trick-or-Treat Bag never reset, for wins up to 60,000x.
+Crown the king of trash: tumbling cluster wins, Haunted Spots that double up to x1024, Candy Cap multipliers and a Haunted Raid where the spots and the Trick-or-Treat Bag never reset, for wins up to 50,000x.
 
 ## Full
 
@@ -24,6 +24,6 @@ Feeling lucky? Switch on **Double Chance** to play at 1.25x the bet and trigger 
 - Feature Spin: 5x the bet, every spin lands 3 Cursed Trash Cans and a Candy Cap
 - Bonus buys: Haunted Raid (100x), Super Bonus with a x10 Trick-or-Treat Bag (250x), Mystery Bonus (100x)
 - Max or Nothing: a single 200x spin with a MAX Candy Cap; any win tumbles, then the MAX cap lifts it to 4,000x, no win pays nothing
-- Max win: 60,000x the bet
+- Max win: 50,000x the bet
 - RTP: 96.50% (all modes)
 - Volatility: high
