@@ -45,13 +45,18 @@ def main():
         for i, line in stream(mode):
             book = json.loads(line)
             types = {e["type"] for e in book["events"]}
-            summary.append((i, book["payoutMultiplier"] / 100, "boardMultiplierInfo" in types, "freeSpinTrigger" in types))
+            tumbles = sum(1 for e in book["events"] if e["type"] == "tumbleBoard")
+            summary.append((i, book["payoutMultiplier"] / 100, "boardMultiplierInfo" in types, "freeSpinTrigger" in types, tumbles))
         chosen = set()
         for lo, hi, n in plan:
             pool = [b for b in summary if lo <= b[1] <= hi]
             # prefer rounds that show the features (caps applied, bonus triggered)
             pool.sort(key=lambda b: (b[2], b[3]), reverse=True)
             chosen.update(b[0] for b in rng.sample(pool[: max(n * 5, n)], min(n, len(pool))))
+        # plus a few base-game wins (no raid) with the most tumbles, to show clusters and
+        # Haunted Spots building up in a single spin
+        plain = sorted((b for b in summary if b[1] > 0 and not b[3]), key=lambda b: -b[4])
+        chosen.update(b[0] for b in plain[:4])
         # pass 2: keep only the chosen books
         picked = [json.loads(line) for i, line in stream(mode) if i in chosen]
         with open(os.path.join(OUT, f"{mode}_books.ts"), "w") as f:
