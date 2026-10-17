@@ -4303,7 +4303,7 @@ export default [
 						},
 						{
 							"name": "M",
-							"multiplier": 20
+							"multiplier": 25
 						},
 						{
 							"name": "L2"

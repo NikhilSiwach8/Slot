@@ -90,7 +90,7 @@ export const zIndexes = {
 // Dumpster Duke symbols: sprites from the dukeSymbols sheet, animated in code
 // (see components/DukeSymbol.svelte). Animation names: idle | land | win | explode | taken.
 // 25000 is the Max or Nothing MAX cap (shown as "MAX", see capLabel in rules.ts)
-export const MULTIPLIER_VALUES = [2, 3, 4, 5, 8, 10, 15, 20, 25, 50, 100, 25000] as const;
+export const MULTIPLIER_VALUES = [2, 3, 4, 5, 8, 10, 15, 20, 25, 50, 100, 250, 500, 25000] as const;
 
 type DukeSymbolInfo = {
 	type: 'duke';

@@ -9002,7 +9002,7 @@ export default [
 	},
 	{
 		"id": 173,
-		"payoutMultiplier": 5260,
+		"payoutMultiplier": 12760,
 		"events": [
 			{
 				"index": 0,
@@ -11013,7 +11013,7 @@ export default [
 						},
 						{
 							"name": "M",
-							"multiplier": 100
+							"multiplier": 250
 						},
 						{
 							"name": "L1"
@@ -11223,7 +11223,7 @@ export default [
 			{
 				"index": 45,
 				"type": "updateGlobalMult",
-				"globalMult": 102
+				"globalMult": 252
 			},
 			{
 				"index": 46,
@@ -11238,31 +11238,31 @@ export default [
 						{
 							"reel": 4,
 							"row": 4,
-							"multiplier": 100
+							"multiplier": 250
 						}
 					]
 				},
 				"winInfo": {
 					"tumbleWin": 50,
-					"boardMult": 102,
-					"totalWin": 5100
+					"boardMult": 252,
+					"totalWin": 12600
 				}
 			},
 			{
 				"index": 47,
 				"type": "updateTumbleWin",
-				"amount": 5100
+				"amount": 12600
 			},
 			{
 				"index": 48,
 				"type": "setWin",
-				"amount": 5100,
-				"winLevel": 8
+				"amount": 12600,
+				"winLevel": 9
 			},
 			{
 				"index": 49,
 				"type": "setTotalWin",
-				"amount": 5260
+				"amount": 12760
 			},
 			{
 				"index": 50,
@@ -11436,7 +11436,7 @@ export default [
 			{
 				"index": 52,
 				"type": "setTotalWin",
-				"amount": 5260
+				"amount": 12760
 			},
 			{
 				"index": 53,
@@ -11610,7 +11610,7 @@ export default [
 			{
 				"index": 55,
 				"type": "setTotalWin",
-				"amount": 5260
+				"amount": 12760
 			},
 			{
 				"index": 56,
@@ -11783,7 +11783,7 @@ export default [
 			{
 				"index": 58,
 				"type": "setTotalWin",
-				"amount": 5260
+				"amount": 12760
 			},
 			{
 				"index": 59,
@@ -11957,23 +11957,23 @@ export default [
 			{
 				"index": 61,
 				"type": "setTotalWin",
-				"amount": 5260
+				"amount": 12760
 			},
 			{
 				"index": 62,
 				"type": "freeSpinEnd",
-				"amount": 5260,
-				"winLevel": 6
+				"amount": 12760,
+				"winLevel": 7
 			},
 			{
 				"index": 63,
 				"type": "finalWin",
-				"amount": 5260
+				"amount": 12760
 			}
 		],
 		"criteria": "freegame",
 		"baseGameWins": 0.0,
-		"freeGameWins": 52.6
+		"freeGameWins": 127.6
 	},
 	{
 		"id": 210,
@@ -14315,7 +14315,7 @@ export default [
 	},
 	{
 		"id": 287,
-		"payoutMultiplier": 808860,
+		"payoutMultiplier": 1804860,
 		"events": [
 			{
 				"index": 0,
@@ -16865,7 +16865,7 @@ export default [
 						},
 						{
 							"name": "M",
-							"multiplier": 100
+							"multiplier": 250
 						},
 						{
 							"name": "H4"
@@ -16954,7 +16954,7 @@ export default [
 			{
 				"index": 60,
 				"type": "updateGlobalMult",
-				"globalMult": 109
+				"globalMult": 259
 			},
 			{
 				"index": 61,
@@ -16964,7 +16964,7 @@ export default [
 						{
 							"reel": 0,
 							"row": 1,
-							"multiplier": 100
+							"multiplier": 250
 						},
 						{
 							"reel": 4,
@@ -16975,25 +16975,25 @@ export default [
 				},
 				"winInfo": {
 					"tumbleWin": 260,
-					"boardMult": 109,
-					"totalWin": 28340
+					"boardMult": 259,
+					"totalWin": 67340
 				}
 			},
 			{
 				"index": 62,
 				"type": "updateTumbleWin",
-				"amount": 28340
+				"amount": 67340
 			},
 			{
 				"index": 63,
 				"type": "setWin",
-				"amount": 28340,
+				"amount": 67340,
 				"winLevel": 9
 			},
 			{
 				"index": 64,
 				"type": "setTotalWin",
-				"amount": 48260
+				"amount": 87260
 			},
 			{
 				"index": 65,
@@ -17360,7 +17360,7 @@ export default [
 			{
 				"index": 71,
 				"type": "updateGlobalMult",
-				"globalMult": 114
+				"globalMult": 264
 			},
 			{
 				"index": 72,
@@ -17376,25 +17376,25 @@ export default [
 				},
 				"winInfo": {
 					"tumbleWin": 1680,
-					"boardMult": 114,
-					"totalWin": 191520
+					"boardMult": 264,
+					"totalWin": 443520
 				}
 			},
 			{
 				"index": 73,
 				"type": "updateTumbleWin",
-				"amount": 191520
+				"amount": 443520
 			},
 			{
 				"index": 74,
 				"type": "setWin",
-				"amount": 191520,
+				"amount": 443520,
 				"winLevel": 9
 			},
 			{
 				"index": 75,
 				"type": "setTotalWin",
-				"amount": 239780
+				"amount": 530780
 			},
 			{
 				"index": 76,
@@ -17568,7 +17568,7 @@ export default [
 			{
 				"index": 78,
 				"type": "setTotalWin",
-				"amount": 239780
+				"amount": 530780
 			},
 			{
 				"index": 79,
@@ -17894,25 +17894,25 @@ export default [
 				},
 				"winInfo": {
 					"tumbleWin": 540,
-					"boardMult": 114,
-					"totalWin": 61560
+					"boardMult": 264,
+					"totalWin": 142560
 				}
 			},
 			{
 				"index": 86,
 				"type": "updateTumbleWin",
-				"amount": 61560
+				"amount": 142560
 			},
 			{
 				"index": 87,
 				"type": "setWin",
-				"amount": 61560,
+				"amount": 142560,
 				"winLevel": 9
 			},
 			{
 				"index": 88,
 				"type": "setTotalWin",
-				"amount": 301340
+				"amount": 673340
 			},
 			{
 				"index": 89,
@@ -18233,7 +18233,7 @@ export default [
 			{
 				"index": 95,
 				"type": "updateGlobalMult",
-				"globalMult": 122
+				"globalMult": 272
 			},
 			{
 				"index": 96,
@@ -18249,25 +18249,25 @@ export default [
 				},
 				"winInfo": {
 					"tumbleWin": 4160,
-					"boardMult": 122,
-					"totalWin": 507520
+					"boardMult": 272,
+					"totalWin": 1131520
 				}
 			},
 			{
 				"index": 97,
 				"type": "updateTumbleWin",
-				"amount": 507520
+				"amount": 1131520
 			},
 			{
 				"index": 98,
 				"type": "setWin",
-				"amount": 507520,
+				"amount": 1131520,
 				"winLevel": 9
 			},
 			{
 				"index": 99,
 				"type": "setTotalWin",
-				"amount": 808860
+				"amount": 1804860
 			},
 			{
 				"index": 100,
@@ -18403,7 +18403,7 @@ export default [
 						},
 						{
 							"name": "M",
-							"multiplier": 50
+							"multiplier": 100
 						},
 						{
 							"name": "L2"
@@ -18440,22 +18440,4676 @@ export default [
 			{
 				"index": 102,
 				"type": "setTotalWin",
-				"amount": 808860
+				"amount": 1804860
 			},
 			{
 				"index": 103,
 				"type": "freeSpinEnd",
-				"amount": 808860,
+				"amount": 1804860,
 				"winLevel": 9
 			},
 			{
 				"index": 104,
 				"type": "finalWin",
-				"amount": 808860
+				"amount": 1804860
 			}
 		],
 		"criteria": "freegame",
 		"baseGameWins": 0.0,
-		"freeGameWins": 8088.6
+		"freeGameWins": 18048.6
+	},
+	{
+		"id": 6100,
+		"payoutMultiplier": 4360,
+		"events": [
+			{
+				"index": 0,
+				"type": "reveal",
+				"board": [
+					[
+						{
+							"name": "H4"
+						},
+						{
+							"name": "H4"
+						},
+						{
+							"name": "L2"
+						},
+						{
+							"name": "H4"
+						},
+						{
+							"name": "L4"
+						},
+						{
+							"name": "L4"
+						},
+						{
+							"name": "L4"
+						}
+					],
+					[
+						{
+							"name": "H2"
+						},
+						{
+							"name": "M",
+							"multiplier": 4
+						},
+						{
+							"name": "S",
+							"scatter": true
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L1"
+						},
+						{
+							"name": "H4"
+						},
+						{
+							"name": "H1"
+						}
+					],
+					[
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L2"
+						},
+						{
+							"name": "L2"
+						},
+						{
+							"name": "H1"
+						},
+						{
+							"name": "H1"
+						},
+						{
+							"name": "H2"
+						},
+						{
+							"name": "H2"
+						}
+					],
+					[
+						{
+							"name": "L3"
+						},
+						{
+							"name": "H4"
+						},
+						{
+							"name": "H4"
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L4"
+						}
+					],
+					[
+						{
+							"name": "L3"
+						},
+						{
+							"name": "H4"
+						},
+						{
+							"name": "H4"
+						},
+						{
+							"name": "H4"
+						},
+						{
+							"name": "S",
+							"scatter": true
+						},
+						{
+							"name": "L4"
+						},
+						{
+							"name": "L4"
+						}
+					],
+					[
+						{
+							"name": "H2"
+						},
+						{
+							"name": "L2"
+						},
+						{
+							"name": "S",
+							"scatter": true
+						},
+						{
+							"name": "L4"
+						},
+						{
+							"name": "L4"
+						},
+						{
+							"name": "L2"
+						},
+						{
+							"name": "L2"
+						}
+					]
+				],
+				"paddingPositions": [
+					240,
+					282,
+					79,
+					132,
+					172,
+					17
+				],
+				"gameType": "basegame",
+				"anticipation": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				]
+			},
+			{
+				"index": 1,
+				"type": "winInfo",
+				"totalWin": 80,
+				"wins": [
+					{
+						"symbol": "H4",
+						"clusterSize": 5,
+						"win": 80,
+						"positions": [
+							{
+								"reel": 3,
+								"row": 1
+							},
+							{
+								"reel": 4,
+								"row": 1
+							},
+							{
+								"reel": 4,
+								"row": 2
+							},
+							{
+								"reel": 4,
+								"row": 3
+							},
+							{
+								"reel": 3,
+								"row": 2
+							}
+						],
+						"meta": {
+							"globalMult": 1,
+							"clusterMult": 1,
+							"winWithoutMult": 80,
+							"overlay": {
+								"reel": 4,
+								"row": 2
+							}
+						}
+					}
+				]
+			},
+			{
+				"index": 2,
+				"type": "updateTumbleWin",
+				"amount": 80
+			},
+			{
+				"index": 3,
+				"type": "hauntedSpots",
+				"spots": [
+					[
+						0,
+						0,
+						0,
+						0,
+						0
+					],
+					[
+						0,
+						0,
+						0,
+						0,
+						0
+					],
+					[
+						0,
+						0,
+						0,
+						0,
+						0
+					],
+					[
+						1,
+						1,
+						0,
+						0,
+						0
+					],
+					[
+						1,
+						1,
+						1,
+						0,
+						0
+					],
+					[
+						0,
+						0,
+						0,
+						0,
+						0
+					]
+				]
+			},
+			{
+				"index": 4,
+				"type": "tumbleBoard",
+				"newSymbols": [
+					[],
+					[],
+					[],
+					[
+						{
+							"name": "H1"
+						},
+						{
+							"name": "L1"
+						}
+					],
+					[
+						{
+							"name": "L4"
+						},
+						{
+							"name": "L1"
+						},
+						{
+							"name": "L3"
+						}
+					],
+					[]
+				],
+				"explodingSymbols": [
+					{
+						"reel": 3,
+						"row": 1
+					},
+					{
+						"reel": 3,
+						"row": 2
+					},
+					{
+						"reel": 4,
+						"row": 1
+					},
+					{
+						"reel": 4,
+						"row": 2
+					},
+					{
+						"reel": 4,
+						"row": 3
+					}
+				]
+			},
+			{
+				"index": 5,
+				"type": "winInfo",
+				"totalWin": 50,
+				"wins": [
+					{
+						"symbol": "L3",
+						"clusterSize": 6,
+						"win": 50,
+						"positions": [
+							{
+								"reel": 3,
+								"row": 2
+							},
+							{
+								"reel": 4,
+								"row": 2
+							},
+							{
+								"reel": 4,
+								"row": 3
+							},
+							{
+								"reel": 3,
+								"row": 3
+							},
+							{
+								"reel": 3,
+								"row": 4
+							},
+							{
+								"reel": 3,
+								"row": 5
+							}
+						],
+						"meta": {
+							"globalMult": 1,
+							"clusterMult": 1,
+							"winWithoutMult": 50,
+							"overlay": {
+								"reel": 3,
+								"row": 3
+							}
+						}
+					}
+				]
+			},
+			{
+				"index": 6,
+				"type": "updateTumbleWin",
+				"amount": 130
+			},
+			{
+				"index": 7,
+				"type": "hauntedSpots",
+				"spots": [
+					[
+						0,
+						0,
+						0,
+						0,
+						0
+					],
+					[
+						0,
+						0,
+						0,
+						0,
+						0
+					],
+					[
+						0,
+						0,
+						0,
+						0,
+						0
+					],
+					[
+						1,
+						2,
+						1,
+						1,
+						1
+					],
+					[
+						1,
+						2,
+						2,
+						0,
+						0
+					],
+					[
+						0,
+						0,
+						0,
+						0,
+						0
+					]
+				]
+			},
+			{
+				"index": 8,
+				"type": "tumbleBoard",
+				"newSymbols": [
+					[],
+					[],
+					[],
+					[
+						{
+							"name": "L2"
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "H1"
+						},
+						{
+							"name": "H1"
+						}
+					],
+					[
+						{
+							"name": "H2"
+						},
+						{
+							"name": "L4"
+						}
+					],
+					[]
+				],
+				"explodingSymbols": [
+					{
+						"reel": 3,
+						"row": 2
+					},
+					{
+						"reel": 3,
+						"row": 3
+					},
+					{
+						"reel": 3,
+						"row": 4
+					},
+					{
+						"reel": 3,
+						"row": 5
+					},
+					{
+						"reel": 4,
+						"row": 2
+					},
+					{
+						"reel": 4,
+						"row": 3
+					}
+				]
+			},
+			{
+				"index": 9,
+				"type": "winInfo",
+				"totalWin": 400,
+				"wins": [
+					{
+						"symbol": "H1",
+						"clusterSize": 5,
+						"win": 400,
+						"positions": [
+							{
+								"reel": 2,
+								"row": 3
+							},
+							{
+								"reel": 3,
+								"row": 3
+							},
+							{
+								"reel": 3,
+								"row": 2
+							},
+							{
+								"reel": 3,
+								"row": 4
+							},
+							{
+								"reel": 2,
+								"row": 4
+							}
+						],
+						"meta": {
+							"globalMult": 1,
+							"clusterMult": 2,
+							"winWithoutMult": 200,
+							"overlay": {
+								"reel": 3,
+								"row": 3
+							}
+						}
+					}
+				]
+			},
+			{
+				"index": 10,
+				"type": "updateTumbleWin",
+				"amount": 530
+			},
+			{
+				"index": 11,
+				"type": "hauntedSpots",
+				"spots": [
+					[
+						0,
+						0,
+						0,
+						0,
+						0
+					],
+					[
+						0,
+						0,
+						0,
+						0,
+						0
+					],
+					[
+						0,
+						0,
+						1,
+						1,
+						0
+					],
+					[
+						1,
+						4,
+						2,
+						2,
+						1
+					],
+					[
+						1,
+						2,
+						2,
+						0,
+						0
+					],
+					[
+						0,
+						0,
+						0,
+						0,
+						0
+					]
+				]
+			},
+			{
+				"index": 12,
+				"type": "tumbleBoard",
+				"newSymbols": [
+					[],
+					[],
+					[
+						{
+							"name": "L1"
+						},
+						{
+							"name": "L4"
+						}
+					],
+					[
+						{
+							"name": "L4"
+						},
+						{
+							"name": "L2"
+						},
+						{
+							"name": "L2"
+						}
+					],
+					[],
+					[]
+				],
+				"explodingSymbols": [
+					{
+						"reel": 2,
+						"row": 3
+					},
+					{
+						"reel": 2,
+						"row": 4
+					},
+					{
+						"reel": 3,
+						"row": 3
+					},
+					{
+						"reel": 3,
+						"row": 2
+					},
+					{
+						"reel": 3,
+						"row": 4
+					}
+				]
+			},
+			{
+				"index": 13,
+				"type": "winInfo",
+				"totalWin": 240,
+				"wins": [
+					{
+						"symbol": "L2",
+						"clusterSize": 5,
+						"win": 240,
+						"positions": [
+							{
+								"reel": 2,
+								"row": 3
+							},
+							{
+								"reel": 3,
+								"row": 3
+							},
+							{
+								"reel": 3,
+								"row": 2
+							},
+							{
+								"reel": 3,
+								"row": 1
+							},
+							{
+								"reel": 2,
+								"row": 4
+							}
+						],
+						"meta": {
+							"globalMult": 1,
+							"clusterMult": 6,
+							"winWithoutMult": 40,
+							"overlay": {
+								"reel": 3,
+								"row": 3
+							}
+						}
+					}
+				]
+			},
+			{
+				"index": 14,
+				"type": "updateTumbleWin",
+				"amount": 770
+			},
+			{
+				"index": 15,
+				"type": "hauntedSpots",
+				"spots": [
+					[
+						0,
+						0,
+						0,
+						0,
+						0
+					],
+					[
+						0,
+						0,
+						0,
+						0,
+						0
+					],
+					[
+						0,
+						0,
+						2,
+						2,
+						0
+					],
+					[
+						2,
+						8,
+						4,
+						2,
+						1
+					],
+					[
+						1,
+						2,
+						2,
+						0,
+						0
+					],
+					[
+						0,
+						0,
+						0,
+						0,
+						0
+					]
+				]
+			},
+			{
+				"index": 16,
+				"type": "tumbleBoard",
+				"newSymbols": [
+					[],
+					[],
+					[
+						{
+							"name": "L1"
+						},
+						{
+							"name": "L1"
+						}
+					],
+					[
+						{
+							"name": "L4"
+						},
+						{
+							"name": "H3"
+						},
+						{
+							"name": "L4"
+						}
+					],
+					[],
+					[]
+				],
+				"explodingSymbols": [
+					{
+						"reel": 2,
+						"row": 3
+					},
+					{
+						"reel": 2,
+						"row": 4
+					},
+					{
+						"reel": 3,
+						"row": 3
+					},
+					{
+						"reel": 3,
+						"row": 2
+					},
+					{
+						"reel": 3,
+						"row": 1
+					}
+				]
+			},
+			{
+				"index": 17,
+				"type": "winInfo",
+				"totalWin": 320,
+				"wins": [
+					{
+						"symbol": "L4",
+						"clusterSize": 5,
+						"win": 320,
+						"positions": [
+							{
+								"reel": 2,
+								"row": 3
+							},
+							{
+								"reel": 3,
+								"row": 3
+							},
+							{
+								"reel": 3,
+								"row": 2
+							},
+							{
+								"reel": 4,
+								"row": 2
+							},
+							{
+								"reel": 4,
+								"row": 1
+							}
+						],
+						"meta": {
+							"globalMult": 1,
+							"clusterMult": 16,
+							"winWithoutMult": 20,
+							"overlay": {
+								"reel": 3,
+								"row": 2
+							}
+						}
+					}
+				]
+			},
+			{
+				"index": 18,
+				"type": "updateTumbleWin",
+				"amount": 1090
+			},
+			{
+				"index": 19,
+				"type": "hauntedSpots",
+				"spots": [
+					[
+						0,
+						0,
+						0,
+						0,
+						0
+					],
+					[
+						0,
+						0,
+						0,
+						0,
+						0
+					],
+					[
+						0,
+						0,
+						4,
+						2,
+						0
+					],
+					[
+						2,
+						16,
+						8,
+						2,
+						1
+					],
+					[
+						2,
+						4,
+						2,
+						0,
+						0
+					],
+					[
+						0,
+						0,
+						0,
+						0,
+						0
+					]
+				]
+			},
+			{
+				"index": 20,
+				"type": "tumbleBoard",
+				"newSymbols": [
+					[],
+					[],
+					[
+						{
+							"name": "L3"
+						}
+					],
+					[
+						{
+							"name": "L2"
+						},
+						{
+							"name": "L2"
+						}
+					],
+					[
+						{
+							"name": "L4"
+						},
+						{
+							"name": "H2"
+						}
+					],
+					[]
+				],
+				"explodingSymbols": [
+					{
+						"reel": 2,
+						"row": 3
+					},
+					{
+						"reel": 3,
+						"row": 3
+					},
+					{
+						"reel": 3,
+						"row": 2
+					},
+					{
+						"reel": 4,
+						"row": 2
+					},
+					{
+						"reel": 4,
+						"row": 1
+					}
+				]
+			},
+			{
+				"index": 21,
+				"type": "boardMultiplierInfo",
+				"multInfo": {
+					"positions": [
+						{
+							"reel": 1,
+							"row": 1,
+							"multiplier": 4
+						}
+					]
+				},
+				"winInfo": {
+					"tumbleWin": 1090,
+					"boardMult": 4,
+					"totalWin": 4360
+				}
+			},
+			{
+				"index": 22,
+				"type": "updateTumbleWin",
+				"amount": 4360
+			},
+			{
+				"index": 23,
+				"type": "setWin",
+				"amount": 4360,
+				"winLevel": 7
+			},
+			{
+				"index": 24,
+				"type": "setTotalWin",
+				"amount": 4360
+			},
+			{
+				"index": 25,
+				"type": "finalWin",
+				"amount": 4360
+			}
+		],
+		"criteria": "basegame",
+		"baseGameWins": 43.6,
+		"freeGameWins": 0.0
+	},
+	{
+		"id": 59973,
+		"payoutMultiplier": 4580,
+		"events": [
+			{
+				"index": 0,
+				"type": "reveal",
+				"board": [
+					[
+						{
+							"name": "H2"
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L4"
+						},
+						{
+							"name": "H2"
+						},
+						{
+							"name": "H2"
+						},
+						{
+							"name": "H2"
+						}
+					],
+					[
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L1"
+						},
+						{
+							"name": "L4"
+						},
+						{
+							"name": "S",
+							"scatter": true
+						},
+						{
+							"name": "L2"
+						},
+						{
+							"name": "L3"
+						}
+					],
+					[
+						{
+							"name": "L4"
+						},
+						{
+							"name": "L4"
+						},
+						{
+							"name": "L1"
+						},
+						{
+							"name": "L4"
+						},
+						{
+							"name": "L1"
+						},
+						{
+							"name": "L4"
+						},
+						{
+							"name": "L4"
+						}
+					],
+					[
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L4"
+						},
+						{
+							"name": "L4"
+						},
+						{
+							"name": "H4"
+						},
+						{
+							"name": "M",
+							"multiplier": 2
+						},
+						{
+							"name": "H2"
+						},
+						{
+							"name": "L3"
+						}
+					],
+					[
+						{
+							"name": "L3"
+						},
+						{
+							"name": "H4"
+						},
+						{
+							"name": "H4"
+						},
+						{
+							"name": "H4"
+						},
+						{
+							"name": "S",
+							"scatter": true
+						},
+						{
+							"name": "L4"
+						},
+						{
+							"name": "L4"
+						}
+					],
+					[
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L1"
+						},
+						{
+							"name": "H4"
+						},
+						{
+							"name": "S",
+							"scatter": true
+						},
+						{
+							"name": "L2"
+						},
+						{
+							"name": "L2"
+						},
+						{
+							"name": "L4"
+						}
+					]
+				],
+				"paddingPositions": [
+					49,
+					186,
+					234,
+					246,
+					172,
+					259
+				],
+				"gameType": "basegame",
+				"anticipation": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				]
+			},
+			{
+				"index": 1,
+				"type": "winInfo",
+				"totalWin": 80,
+				"wins": [
+					{
+						"symbol": "H4",
+						"clusterSize": 5,
+						"win": 80,
+						"positions": [
+							{
+								"reel": 3,
+								"row": 3
+							},
+							{
+								"reel": 4,
+								"row": 3
+							},
+							{
+								"reel": 4,
+								"row": 2
+							},
+							{
+								"reel": 5,
+								"row": 2
+							},
+							{
+								"reel": 4,
+								"row": 1
+							}
+						],
+						"meta": {
+							"globalMult": 1,
+							"clusterMult": 1,
+							"winWithoutMult": 80,
+							"overlay": {
+								"reel": 4,
+								"row": 2
+							}
+						}
+					}
+				]
+			},
+			{
+				"index": 2,
+				"type": "updateTumbleWin",
+				"amount": 80
+			},
+			{
+				"index": 3,
+				"type": "hauntedSpots",
+				"spots": [
+					[
+						0,
+						0,
+						0,
+						0,
+						0
+					],
+					[
+						0,
+						0,
+						0,
+						0,
+						0
+					],
+					[
+						0,
+						0,
+						0,
+						0,
+						0
+					],
+					[
+						0,
+						0,
+						1,
+						0,
+						0
+					],
+					[
+						1,
+						1,
+						1,
+						0,
+						0
+					],
+					[
+						0,
+						1,
+						0,
+						0,
+						0
+					]
+				]
+			},
+			{
+				"index": 4,
+				"type": "tumbleBoard",
+				"newSymbols": [
+					[],
+					[],
+					[],
+					[
+						{
+							"name": "L3"
+						}
+					],
+					[
+						{
+							"name": "L4"
+						},
+						{
+							"name": "L1"
+						},
+						{
+							"name": "L3"
+						}
+					],
+					[
+						{
+							"name": "L1"
+						}
+					]
+				],
+				"explodingSymbols": [
+					{
+						"reel": 3,
+						"row": 3
+					},
+					{
+						"reel": 4,
+						"row": 3
+					},
+					{
+						"reel": 4,
+						"row": 2
+					},
+					{
+						"reel": 4,
+						"row": 1
+					},
+					{
+						"reel": 5,
+						"row": 2
+					}
+				]
+			},
+			{
+				"index": 5,
+				"type": "winInfo",
+				"totalWin": 20,
+				"wins": [
+					{
+						"symbol": "L4",
+						"clusterSize": 5,
+						"win": 20,
+						"positions": [
+							{
+								"reel": 0,
+								"row": 3
+							},
+							{
+								"reel": 1,
+								"row": 3
+							},
+							{
+								"reel": 2,
+								"row": 3
+							},
+							{
+								"reel": 3,
+								"row": 3
+							},
+							{
+								"reel": 3,
+								"row": 2
+							}
+						],
+						"meta": {
+							"globalMult": 1,
+							"clusterMult": 1,
+							"winWithoutMult": 20,
+							"overlay": {
+								"reel": 2,
+								"row": 3
+							}
+						}
+					}
+				]
+			},
+			{
+				"index": 6,
+				"type": "updateTumbleWin",
+				"amount": 100
+			},
+			{
+				"index": 7,
+				"type": "hauntedSpots",
+				"spots": [
+					[
+						0,
+						0,
+						1,
+						0,
+						0
+					],
+					[
+						0,
+						0,
+						1,
+						0,
+						0
+					],
+					[
+						0,
+						0,
+						1,
+						0,
+						0
+					],
+					[
+						0,
+						1,
+						2,
+						0,
+						0
+					],
+					[
+						1,
+						1,
+						1,
+						0,
+						0
+					],
+					[
+						0,
+						1,
+						0,
+						0,
+						0
+					]
+				]
+			},
+			{
+				"index": 8,
+				"type": "tumbleBoard",
+				"newSymbols": [
+					[
+						{
+							"name": "L3"
+						}
+					],
+					[
+						{
+							"name": "L3"
+						}
+					],
+					[
+						{
+							"name": "L1"
+						}
+					],
+					[
+						{
+							"name": "L2"
+						},
+						{
+							"name": "L3"
+						}
+					],
+					[],
+					[]
+				],
+				"explodingSymbols": [
+					{
+						"reel": 0,
+						"row": 3
+					},
+					{
+						"reel": 1,
+						"row": 3
+					},
+					{
+						"reel": 2,
+						"row": 3
+					},
+					{
+						"reel": 3,
+						"row": 3
+					},
+					{
+						"reel": 3,
+						"row": 2
+					}
+				]
+			},
+			{
+				"index": 9,
+				"type": "winInfo",
+				"totalWin": 60,
+				"wins": [
+					{
+						"symbol": "L3",
+						"clusterSize": 5,
+						"win": 60,
+						"positions": [
+							{
+								"reel": 3,
+								"row": 1
+							},
+							{
+								"reel": 3,
+								"row": 2
+							},
+							{
+								"reel": 4,
+								"row": 2
+							},
+							{
+								"reel": 4,
+								"row": 3
+							},
+							{
+								"reel": 3,
+								"row": 3
+							}
+						],
+						"meta": {
+							"globalMult": 1,
+							"clusterMult": 2,
+							"winWithoutMult": 30,
+							"overlay": {
+								"reel": 3,
+								"row": 2
+							}
+						}
+					}
+				]
+			},
+			{
+				"index": 10,
+				"type": "updateTumbleWin",
+				"amount": 160
+			},
+			{
+				"index": 11,
+				"type": "hauntedSpots",
+				"spots": [
+					[
+						0,
+						0,
+						1,
+						0,
+						0
+					],
+					[
+						0,
+						0,
+						1,
+						0,
+						0
+					],
+					[
+						0,
+						0,
+						1,
+						0,
+						0
+					],
+					[
+						1,
+						2,
+						4,
+						0,
+						0
+					],
+					[
+						1,
+						2,
+						2,
+						0,
+						0
+					],
+					[
+						0,
+						1,
+						0,
+						0,
+						0
+					]
+				]
+			},
+			{
+				"index": 12,
+				"type": "tumbleBoard",
+				"newSymbols": [
+					[],
+					[],
+					[],
+					[
+						{
+							"name": "L2"
+						},
+						{
+							"name": "L4"
+						},
+						{
+							"name": "L4"
+						}
+					],
+					[
+						{
+							"name": "H2"
+						},
+						{
+							"name": "L4"
+						}
+					],
+					[]
+				],
+				"explodingSymbols": [
+					{
+						"reel": 3,
+						"row": 1
+					},
+					{
+						"reel": 3,
+						"row": 2
+					},
+					{
+						"reel": 3,
+						"row": 3
+					},
+					{
+						"reel": 4,
+						"row": 2
+					},
+					{
+						"reel": 4,
+						"row": 3
+					}
+				]
+			},
+			{
+				"index": 13,
+				"type": "winInfo",
+				"totalWin": 160,
+				"wins": [
+					{
+						"symbol": "L4",
+						"clusterSize": 6,
+						"win": 160,
+						"positions": [
+							{
+								"reel": 2,
+								"row": 1
+							},
+							{
+								"reel": 3,
+								"row": 1
+							},
+							{
+								"reel": 4,
+								"row": 1
+							},
+							{
+								"reel": 4,
+								"row": 2
+							},
+							{
+								"reel": 3,
+								"row": 2
+							},
+							{
+								"reel": 2,
+								"row": 2
+							}
+						],
+						"meta": {
+							"globalMult": 1,
+							"clusterMult": 4,
+							"winWithoutMult": 40,
+							"overlay": {
+								"reel": 3,
+								"row": 1
+							}
+						}
+					}
+				]
+			},
+			{
+				"index": 14,
+				"type": "updateTumbleWin",
+				"amount": 320
+			},
+			{
+				"index": 15,
+				"type": "hauntedSpots",
+				"spots": [
+					[
+						0,
+						0,
+						1,
+						0,
+						0
+					],
+					[
+						0,
+						0,
+						1,
+						0,
+						0
+					],
+					[
+						1,
+						1,
+						1,
+						0,
+						0
+					],
+					[
+						2,
+						4,
+						4,
+						0,
+						0
+					],
+					[
+						2,
+						4,
+						2,
+						0,
+						0
+					],
+					[
+						0,
+						1,
+						0,
+						0,
+						0
+					]
+				]
+			},
+			{
+				"index": 16,
+				"type": "tumbleBoard",
+				"newSymbols": [
+					[],
+					[],
+					[
+						{
+							"name": "H4"
+						},
+						{
+							"name": "L1"
+						}
+					],
+					[
+						{
+							"name": "L2"
+						},
+						{
+							"name": "L2"
+						}
+					],
+					[
+						{
+							"name": "L4"
+						},
+						{
+							"name": "H2"
+						}
+					],
+					[]
+				],
+				"explodingSymbols": [
+					{
+						"reel": 2,
+						"row": 1
+					},
+					{
+						"reel": 2,
+						"row": 2
+					},
+					{
+						"reel": 3,
+						"row": 1
+					},
+					{
+						"reel": 3,
+						"row": 2
+					},
+					{
+						"reel": 4,
+						"row": 1
+					},
+					{
+						"reel": 4,
+						"row": 2
+					}
+				]
+			},
+			{
+				"index": 17,
+				"type": "winInfo",
+				"totalWin": 50,
+				"wins": [
+					{
+						"symbol": "L1",
+						"clusterSize": 5,
+						"win": 50,
+						"positions": [
+							{
+								"reel": 1,
+								"row": 3
+							},
+							{
+								"reel": 2,
+								"row": 3
+							},
+							{
+								"reel": 2,
+								"row": 2
+							},
+							{
+								"reel": 2,
+								"row": 1
+							},
+							{
+								"reel": 2,
+								"row": 4
+							}
+						],
+						"meta": {
+							"globalMult": 1,
+							"clusterMult": 1,
+							"winWithoutMult": 50,
+							"overlay": {
+								"reel": 2,
+								"row": 3
+							}
+						}
+					}
+				]
+			},
+			{
+				"index": 18,
+				"type": "updateTumbleWin",
+				"amount": 370
+			},
+			{
+				"index": 19,
+				"type": "hauntedSpots",
+				"spots": [
+					[
+						0,
+						0,
+						1,
+						0,
+						0
+					],
+					[
+						0,
+						0,
+						2,
+						0,
+						0
+					],
+					[
+						2,
+						2,
+						2,
+						1,
+						0
+					],
+					[
+						2,
+						4,
+						4,
+						0,
+						0
+					],
+					[
+						2,
+						4,
+						2,
+						0,
+						0
+					],
+					[
+						0,
+						1,
+						0,
+						0,
+						0
+					]
+				]
+			},
+			{
+				"index": 20,
+				"type": "tumbleBoard",
+				"newSymbols": [
+					[],
+					[
+						{
+							"name": "L1"
+						}
+					],
+					[
+						{
+							"name": "H3"
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L3"
+						}
+					],
+					[],
+					[],
+					[]
+				],
+				"explodingSymbols": [
+					{
+						"reel": 1,
+						"row": 3
+					},
+					{
+						"reel": 2,
+						"row": 3
+					},
+					{
+						"reel": 2,
+						"row": 2
+					},
+					{
+						"reel": 2,
+						"row": 1
+					},
+					{
+						"reel": 2,
+						"row": 4
+					}
+				]
+			},
+			{
+				"index": 21,
+				"type": "winInfo",
+				"totalWin": 1200,
+				"wins": [
+					{
+						"symbol": "L3",
+						"clusterSize": 8,
+						"win": 1200,
+						"positions": [
+							{
+								"reel": 0,
+								"row": 2
+							},
+							{
+								"reel": 1,
+								"row": 2
+							},
+							{
+								"reel": 2,
+								"row": 2
+							},
+							{
+								"reel": 2,
+								"row": 1
+							},
+							{
+								"reel": 2,
+								"row": 3
+							},
+							{
+								"reel": 1,
+								"row": 1
+							},
+							{
+								"reel": 1,
+								"row": 3
+							},
+							{
+								"reel": 0,
+								"row": 3
+							}
+						],
+						"meta": {
+							"globalMult": 1,
+							"clusterMult": 8,
+							"winWithoutMult": 150,
+							"overlay": {
+								"reel": 1,
+								"row": 2
+							}
+						}
+					}
+				]
+			},
+			{
+				"index": 22,
+				"type": "updateTumbleWin",
+				"amount": 1570
+			},
+			{
+				"index": 23,
+				"type": "hauntedSpots",
+				"spots": [
+					[
+						0,
+						1,
+						2,
+						0,
+						0
+					],
+					[
+						1,
+						1,
+						4,
+						0,
+						0
+					],
+					[
+						4,
+						4,
+						4,
+						1,
+						0
+					],
+					[
+						2,
+						4,
+						4,
+						0,
+						0
+					],
+					[
+						2,
+						4,
+						2,
+						0,
+						0
+					],
+					[
+						0,
+						1,
+						0,
+						0,
+						0
+					]
+				]
+			},
+			{
+				"index": 24,
+				"type": "tumbleBoard",
+				"newSymbols": [
+					[
+						{
+							"name": "H2"
+						},
+						{
+							"name": "L3"
+						}
+					],
+					[
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L3"
+						}
+					],
+					[
+						{
+							"name": "H2"
+						},
+						{
+							"name": "H2"
+						},
+						{
+							"name": "L3"
+						}
+					],
+					[],
+					[],
+					[]
+				],
+				"explodingSymbols": [
+					{
+						"reel": 0,
+						"row": 2
+					},
+					{
+						"reel": 0,
+						"row": 3
+					},
+					{
+						"reel": 1,
+						"row": 2
+					},
+					{
+						"reel": 1,
+						"row": 1
+					},
+					{
+						"reel": 1,
+						"row": 3
+					},
+					{
+						"reel": 2,
+						"row": 2
+					},
+					{
+						"reel": 2,
+						"row": 1
+					},
+					{
+						"reel": 2,
+						"row": 3
+					}
+				]
+			},
+			{
+				"index": 25,
+				"type": "winInfo",
+				"totalWin": 120,
+				"wins": [
+					{
+						"symbol": "L3",
+						"clusterSize": 5,
+						"win": 120,
+						"positions": [
+							{
+								"reel": 0,
+								"row": 1
+							},
+							{
+								"reel": 1,
+								"row": 1
+							},
+							{
+								"reel": 1,
+								"row": 2
+							},
+							{
+								"reel": 2,
+								"row": 2
+							},
+							{
+								"reel": 0,
+								"row": 2
+							}
+						],
+						"meta": {
+							"globalMult": 1,
+							"clusterMult": 4,
+							"winWithoutMult": 30,
+							"overlay": {
+								"reel": 1,
+								"row": 2
+							}
+						}
+					}
+				]
+			},
+			{
+				"index": 26,
+				"type": "updateTumbleWin",
+				"amount": 1690
+			},
+			{
+				"index": 27,
+				"type": "hauntedSpots",
+				"spots": [
+					[
+						1,
+						2,
+						2,
+						0,
+						0
+					],
+					[
+						2,
+						2,
+						4,
+						0,
+						0
+					],
+					[
+						4,
+						8,
+						4,
+						1,
+						0
+					],
+					[
+						2,
+						4,
+						4,
+						0,
+						0
+					],
+					[
+						2,
+						4,
+						2,
+						0,
+						0
+					],
+					[
+						0,
+						1,
+						0,
+						0,
+						0
+					]
+				]
+			},
+			{
+				"index": 28,
+				"type": "tumbleBoard",
+				"newSymbols": [
+					[
+						{
+							"name": "L4"
+						},
+						{
+							"name": "H2"
+						}
+					],
+					[
+						{
+							"name": "H4"
+						},
+						{
+							"name": "H4"
+						}
+					],
+					[
+						{
+							"name": "H3"
+						}
+					],
+					[],
+					[],
+					[]
+				],
+				"explodingSymbols": [
+					{
+						"reel": 0,
+						"row": 1
+					},
+					{
+						"reel": 0,
+						"row": 2
+					},
+					{
+						"reel": 1,
+						"row": 1
+					},
+					{
+						"reel": 1,
+						"row": 2
+					},
+					{
+						"reel": 2,
+						"row": 2
+					}
+				]
+			},
+			{
+				"index": 29,
+				"type": "winInfo",
+				"totalWin": 600,
+				"wins": [
+					{
+						"symbol": "H2",
+						"clusterSize": 5,
+						"win": 600,
+						"positions": [
+							{
+								"reel": 0,
+								"row": 1
+							},
+							{
+								"reel": 0,
+								"row": 2
+							},
+							{
+								"reel": 0,
+								"row": 3
+							},
+							{
+								"reel": 0,
+								"row": 4
+							},
+							{
+								"reel": 0,
+								"row": 5
+							}
+						],
+						"meta": {
+							"globalMult": 1,
+							"clusterMult": 4,
+							"winWithoutMult": 150,
+							"overlay": {
+								"reel": 0,
+								"row": 3
+							}
+						}
+					}
+				]
+			},
+			{
+				"index": 30,
+				"type": "updateTumbleWin",
+				"amount": 2290
+			},
+			{
+				"index": 31,
+				"type": "hauntedSpots",
+				"spots": [
+					[
+						2,
+						4,
+						4,
+						1,
+						1
+					],
+					[
+						2,
+						2,
+						4,
+						0,
+						0
+					],
+					[
+						4,
+						8,
+						4,
+						1,
+						0
+					],
+					[
+						2,
+						4,
+						4,
+						0,
+						0
+					],
+					[
+						2,
+						4,
+						2,
+						0,
+						0
+					],
+					[
+						0,
+						1,
+						0,
+						0,
+						0
+					]
+				]
+			},
+			{
+				"index": 32,
+				"type": "tumbleBoard",
+				"newSymbols": [
+					[
+						{
+							"name": "H1"
+						},
+						{
+							"name": "H4"
+						},
+						{
+							"name": "H4"
+						},
+						{
+							"name": "H4"
+						},
+						{
+							"name": "L4"
+						}
+					],
+					[],
+					[],
+					[],
+					[],
+					[]
+				],
+				"explodingSymbols": [
+					{
+						"reel": 0,
+						"row": 1
+					},
+					{
+						"reel": 0,
+						"row": 2
+					},
+					{
+						"reel": 0,
+						"row": 3
+					},
+					{
+						"reel": 0,
+						"row": 4
+					},
+					{
+						"reel": 0,
+						"row": 5
+					}
+				]
+			},
+			{
+				"index": 33,
+				"type": "boardMultiplierInfo",
+				"multInfo": {
+					"positions": [
+						{
+							"reel": 3,
+							"row": 4,
+							"multiplier": 2
+						}
+					]
+				},
+				"winInfo": {
+					"tumbleWin": 2290,
+					"boardMult": 2,
+					"totalWin": 4580
+				}
+			},
+			{
+				"index": 34,
+				"type": "updateTumbleWin",
+				"amount": 4580
+			},
+			{
+				"index": 35,
+				"type": "setWin",
+				"amount": 4580,
+				"winLevel": 7
+			},
+			{
+				"index": 36,
+				"type": "setTotalWin",
+				"amount": 4580
+			},
+			{
+				"index": 37,
+				"type": "finalWin",
+				"amount": 4580
+			}
+		],
+		"criteria": "basegame",
+		"baseGameWins": 45.8,
+		"freeGameWins": 0.0
+	},
+	{
+		"id": 72261,
+		"payoutMultiplier": 1620,
+		"events": [
+			{
+				"index": 0,
+				"type": "reveal",
+				"board": [
+					[
+						{
+							"name": "L1"
+						},
+						{
+							"name": "M",
+							"multiplier": 3
+						},
+						{
+							"name": "L4"
+						},
+						{
+							"name": "S",
+							"scatter": true
+						},
+						{
+							"name": "L2"
+						},
+						{
+							"name": "H1"
+						},
+						{
+							"name": "H1"
+						}
+					],
+					[
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "H2"
+						},
+						{
+							"name": "L2"
+						},
+						{
+							"name": "L2"
+						},
+						{
+							"name": "L4"
+						},
+						{
+							"name": "L3"
+						}
+					],
+					[
+						{
+							"name": "L4"
+						},
+						{
+							"name": "L2"
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L2"
+						},
+						{
+							"name": "L2"
+						},
+						{
+							"name": "L2"
+						}
+					],
+					[
+						{
+							"name": "H4"
+						},
+						{
+							"name": "L4"
+						},
+						{
+							"name": "H3"
+						},
+						{
+							"name": "S",
+							"scatter": true
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L1"
+						}
+					],
+					[
+						{
+							"name": "H4"
+						},
+						{
+							"name": "H4"
+						},
+						{
+							"name": "H4"
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "H3"
+						},
+						{
+							"name": "L3"
+						}
+					],
+					[
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L1"
+						},
+						{
+							"name": "H4"
+						},
+						{
+							"name": "S",
+							"scatter": true
+						},
+						{
+							"name": "L2"
+						},
+						{
+							"name": "L2"
+						},
+						{
+							"name": "L4"
+						}
+					]
+				],
+				"paddingPositions": [
+					209,
+					72,
+					48,
+					189,
+					55,
+					259
+				],
+				"gameType": "basegame",
+				"anticipation": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				]
+			},
+			{
+				"index": 1,
+				"type": "winInfo",
+				"totalWin": 40,
+				"wins": [
+					{
+						"symbol": "L2",
+						"clusterSize": 5,
+						"win": 40,
+						"positions": [
+							{
+								"reel": 0,
+								"row": 4
+							},
+							{
+								"reel": 1,
+								"row": 4
+							},
+							{
+								"reel": 2,
+								"row": 4
+							},
+							{
+								"reel": 2,
+								"row": 5
+							},
+							{
+								"reel": 1,
+								"row": 3
+							}
+						],
+						"meta": {
+							"globalMult": 1,
+							"clusterMult": 1,
+							"winWithoutMult": 40,
+							"overlay": {
+								"reel": 1,
+								"row": 4
+							}
+						}
+					}
+				]
+			},
+			{
+				"index": 2,
+				"type": "updateTumbleWin",
+				"amount": 40
+			},
+			{
+				"index": 3,
+				"type": "hauntedSpots",
+				"spots": [
+					[
+						0,
+						0,
+						0,
+						1,
+						0
+					],
+					[
+						0,
+						0,
+						1,
+						1,
+						0
+					],
+					[
+						0,
+						0,
+						0,
+						1,
+						1
+					],
+					[
+						0,
+						0,
+						0,
+						0,
+						0
+					],
+					[
+						0,
+						0,
+						0,
+						0,
+						0
+					],
+					[
+						0,
+						0,
+						0,
+						0,
+						0
+					]
+				]
+			},
+			{
+				"index": 4,
+				"type": "tumbleBoard",
+				"newSymbols": [
+					[
+						{
+							"name": "L1"
+						}
+					],
+					[
+						{
+							"name": "H4"
+						},
+						{
+							"name": "L3"
+						}
+					],
+					[
+						{
+							"name": "H3"
+						},
+						{
+							"name": "L4"
+						}
+					],
+					[],
+					[],
+					[]
+				],
+				"explodingSymbols": [
+					{
+						"reel": 0,
+						"row": 4
+					},
+					{
+						"reel": 1,
+						"row": 4
+					},
+					{
+						"reel": 1,
+						"row": 3
+					},
+					{
+						"reel": 2,
+						"row": 4
+					},
+					{
+						"reel": 2,
+						"row": 5
+					}
+				]
+			},
+			{
+				"index": 5,
+				"type": "winInfo",
+				"totalWin": 50,
+				"wins": [
+					{
+						"symbol": "L3",
+						"clusterSize": 6,
+						"win": 50,
+						"positions": [
+							{
+								"reel": 2,
+								"row": 4
+							},
+							{
+								"reel": 3,
+								"row": 4
+							},
+							{
+								"reel": 4,
+								"row": 4
+							},
+							{
+								"reel": 4,
+								"row": 3
+							},
+							{
+								"reel": 3,
+								"row": 5
+							},
+							{
+								"reel": 2,
+								"row": 5
+							}
+						],
+						"meta": {
+							"globalMult": 1,
+							"clusterMult": 1,
+							"winWithoutMult": 50,
+							"overlay": {
+								"reel": 3,
+								"row": 4
+							}
+						}
+					}
+				]
+			},
+			{
+				"index": 6,
+				"type": "updateTumbleWin",
+				"amount": 90
+			},
+			{
+				"index": 7,
+				"type": "hauntedSpots",
+				"spots": [
+					[
+						0,
+						0,
+						0,
+						1,
+						0
+					],
+					[
+						0,
+						0,
+						1,
+						1,
+						0
+					],
+					[
+						0,
+						0,
+						0,
+						2,
+						2
+					],
+					[
+						0,
+						0,
+						0,
+						1,
+						1
+					],
+					[
+						0,
+						0,
+						1,
+						1,
+						0
+					],
+					[
+						0,
+						0,
+						0,
+						0,
+						0
+					]
+				]
+			},
+			{
+				"index": 8,
+				"type": "tumbleBoard",
+				"newSymbols": [
+					[],
+					[],
+					[
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L3"
+						}
+					],
+					[
+						{
+							"name": "L4"
+						},
+						{
+							"name": "L1"
+						}
+					],
+					[
+						{
+							"name": "L1"
+						},
+						{
+							"name": "L4"
+						}
+					],
+					[]
+				],
+				"explodingSymbols": [
+					{
+						"reel": 2,
+						"row": 4
+					},
+					{
+						"reel": 2,
+						"row": 5
+					},
+					{
+						"reel": 3,
+						"row": 4
+					},
+					{
+						"reel": 3,
+						"row": 5
+					},
+					{
+						"reel": 4,
+						"row": 4
+					},
+					{
+						"reel": 4,
+						"row": 3
+					}
+				]
+			},
+			{
+				"index": 9,
+				"type": "winInfo",
+				"totalWin": 80,
+				"wins": [
+					{
+						"symbol": "H4",
+						"clusterSize": 5,
+						"win": 80,
+						"positions": [
+							{
+								"reel": 3,
+								"row": 2
+							},
+							{
+								"reel": 4,
+								"row": 2
+							},
+							{
+								"reel": 5,
+								"row": 2
+							},
+							{
+								"reel": 4,
+								"row": 3
+							},
+							{
+								"reel": 4,
+								"row": 4
+							}
+						],
+						"meta": {
+							"globalMult": 1,
+							"clusterMult": 1,
+							"winWithoutMult": 80,
+							"overlay": {
+								"reel": 4,
+								"row": 3
+							}
+						}
+					}
+				]
+			},
+			{
+				"index": 10,
+				"type": "updateTumbleWin",
+				"amount": 170
+			},
+			{
+				"index": 11,
+				"type": "hauntedSpots",
+				"spots": [
+					[
+						0,
+						0,
+						0,
+						1,
+						0
+					],
+					[
+						0,
+						0,
+						1,
+						1,
+						0
+					],
+					[
+						0,
+						0,
+						0,
+						2,
+						2
+					],
+					[
+						0,
+						1,
+						0,
+						1,
+						1
+					],
+					[
+						0,
+						1,
+						2,
+						2,
+						0
+					],
+					[
+						0,
+						1,
+						0,
+						0,
+						0
+					]
+				]
+			},
+			{
+				"index": 12,
+				"type": "tumbleBoard",
+				"newSymbols": [
+					[],
+					[],
+					[],
+					[
+						{
+							"name": "L2"
+						}
+					],
+					[
+						{
+							"name": "L2"
+						},
+						{
+							"name": "L1"
+						},
+						{
+							"name": "L1"
+						}
+					],
+					[
+						{
+							"name": "L1"
+						}
+					]
+				],
+				"explodingSymbols": [
+					{
+						"reel": 3,
+						"row": 2
+					},
+					{
+						"reel": 4,
+						"row": 2
+					},
+					{
+						"reel": 4,
+						"row": 3
+					},
+					{
+						"reel": 4,
+						"row": 4
+					},
+					{
+						"reel": 5,
+						"row": 2
+					}
+				]
+			},
+			{
+				"index": 13,
+				"type": "winInfo",
+				"totalWin": 100,
+				"wins": [
+					{
+						"symbol": "L1",
+						"clusterSize": 5,
+						"win": 100,
+						"positions": [
+							{
+								"reel": 3,
+								"row": 2
+							},
+							{
+								"reel": 4,
+								"row": 2
+							},
+							{
+								"reel": 5,
+								"row": 2
+							},
+							{
+								"reel": 4,
+								"row": 1
+							},
+							{
+								"reel": 4,
+								"row": 3
+							}
+						],
+						"meta": {
+							"globalMult": 1,
+							"clusterMult": 2,
+							"winWithoutMult": 50,
+							"overlay": {
+								"reel": 4,
+								"row": 2
+							}
+						}
+					}
+				]
+			},
+			{
+				"index": 14,
+				"type": "updateTumbleWin",
+				"amount": 270
+			},
+			{
+				"index": 15,
+				"type": "hauntedSpots",
+				"spots": [
+					[
+						0,
+						0,
+						0,
+						1,
+						0
+					],
+					[
+						0,
+						0,
+						1,
+						1,
+						0
+					],
+					[
+						0,
+						0,
+						0,
+						2,
+						2
+					],
+					[
+						0,
+						2,
+						0,
+						1,
+						1
+					],
+					[
+						1,
+						2,
+						4,
+						2,
+						0
+					],
+					[
+						0,
+						2,
+						0,
+						0,
+						0
+					]
+				]
+			},
+			{
+				"index": 16,
+				"type": "tumbleBoard",
+				"newSymbols": [
+					[],
+					[],
+					[],
+					[
+						{
+							"name": "L2"
+						}
+					],
+					[
+						{
+							"name": "H3"
+						},
+						{
+							"name": "L4"
+						},
+						{
+							"name": "L4"
+						}
+					],
+					[
+						{
+							"name": "L3"
+						}
+					]
+				],
+				"explodingSymbols": [
+					{
+						"reel": 3,
+						"row": 2
+					},
+					{
+						"reel": 4,
+						"row": 2
+					},
+					{
+						"reel": 4,
+						"row": 1
+					},
+					{
+						"reel": 4,
+						"row": 3
+					},
+					{
+						"reel": 5,
+						"row": 2
+					}
+				]
+			},
+			{
+				"index": 17,
+				"type": "winInfo",
+				"totalWin": 240,
+				"wins": [
+					{
+						"symbol": "L4",
+						"clusterSize": 6,
+						"win": 240,
+						"positions": [
+							{
+								"reel": 2,
+								"row": 3
+							},
+							{
+								"reel": 3,
+								"row": 3
+							},
+							{
+								"reel": 3,
+								"row": 2
+							},
+							{
+								"reel": 4,
+								"row": 2
+							},
+							{
+								"reel": 4,
+								"row": 1
+							},
+							{
+								"reel": 2,
+								"row": 4
+							}
+						],
+						"meta": {
+							"globalMult": 1,
+							"clusterMult": 6,
+							"winWithoutMult": 40,
+							"overlay": {
+								"reel": 3,
+								"row": 3
+							}
+						}
+					}
+				]
+			},
+			{
+				"index": 18,
+				"type": "updateTumbleWin",
+				"amount": 510
+			},
+			{
+				"index": 19,
+				"type": "hauntedSpots",
+				"spots": [
+					[
+						0,
+						0,
+						0,
+						1,
+						0
+					],
+					[
+						0,
+						0,
+						1,
+						1,
+						0
+					],
+					[
+						0,
+						0,
+						1,
+						4,
+						2
+					],
+					[
+						0,
+						4,
+						1,
+						1,
+						1
+					],
+					[
+						2,
+						4,
+						4,
+						2,
+						0
+					],
+					[
+						0,
+						2,
+						0,
+						0,
+						0
+					]
+				]
+			},
+			{
+				"index": 20,
+				"type": "tumbleBoard",
+				"newSymbols": [
+					[],
+					[],
+					[
+						{
+							"name": "L1"
+						},
+						{
+							"name": "H2"
+						}
+					],
+					[
+						{
+							"name": "L1"
+						},
+						{
+							"name": "H3"
+						}
+					],
+					[
+						{
+							"name": "L1"
+						},
+						{
+							"name": "L1"
+						}
+					],
+					[]
+				],
+				"explodingSymbols": [
+					{
+						"reel": 2,
+						"row": 3
+					},
+					{
+						"reel": 2,
+						"row": 4
+					},
+					{
+						"reel": 3,
+						"row": 3
+					},
+					{
+						"reel": 3,
+						"row": 2
+					},
+					{
+						"reel": 4,
+						"row": 2
+					},
+					{
+						"reel": 4,
+						"row": 1
+					}
+				]
+			},
+			{
+				"index": 21,
+				"type": "winInfo",
+				"totalWin": 30,
+				"wins": [
+					{
+						"symbol": "L3",
+						"clusterSize": 5,
+						"win": 30,
+						"positions": [
+							{
+								"reel": 1,
+								"row": 1
+							},
+							{
+								"reel": 1,
+								"row": 2
+							},
+							{
+								"reel": 2,
+								"row": 2
+							},
+							{
+								"reel": 2,
+								"row": 3
+							},
+							{
+								"reel": 1,
+								"row": 3
+							}
+						],
+						"meta": {
+							"globalMult": 1,
+							"clusterMult": 1,
+							"winWithoutMult": 30,
+							"overlay": {
+								"reel": 1,
+								"row": 2
+							}
+						}
+					}
+				]
+			},
+			{
+				"index": 22,
+				"type": "updateTumbleWin",
+				"amount": 540
+			},
+			{
+				"index": 23,
+				"type": "hauntedSpots",
+				"spots": [
+					[
+						0,
+						0,
+						0,
+						1,
+						0
+					],
+					[
+						1,
+						1,
+						2,
+						1,
+						0
+					],
+					[
+						0,
+						1,
+						2,
+						4,
+						2
+					],
+					[
+						0,
+						4,
+						1,
+						1,
+						1
+					],
+					[
+						2,
+						4,
+						4,
+						2,
+						0
+					],
+					[
+						0,
+						2,
+						0,
+						0,
+						0
+					]
+				]
+			},
+			{
+				"index": 24,
+				"type": "tumbleBoard",
+				"newSymbols": [
+					[],
+					[
+						{
+							"name": "L4"
+						},
+						{
+							"name": "H2"
+						},
+						{
+							"name": "H4"
+						}
+					],
+					[
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L1"
+						}
+					],
+					[],
+					[],
+					[]
+				],
+				"explodingSymbols": [
+					{
+						"reel": 1,
+						"row": 1
+					},
+					{
+						"reel": 1,
+						"row": 2
+					},
+					{
+						"reel": 1,
+						"row": 3
+					},
+					{
+						"reel": 2,
+						"row": 2
+					},
+					{
+						"reel": 2,
+						"row": 3
+					}
+				]
+			},
+			{
+				"index": 25,
+				"type": "boardMultiplierInfo",
+				"multInfo": {
+					"positions": [
+						{
+							"reel": 0,
+							"row": 2,
+							"multiplier": 3
+						}
+					]
+				},
+				"winInfo": {
+					"tumbleWin": 540,
+					"boardMult": 3,
+					"totalWin": 1620
+				}
+			},
+			{
+				"index": 26,
+				"type": "updateTumbleWin",
+				"amount": 1620
+			},
+			{
+				"index": 27,
+				"type": "setWin",
+				"amount": 1620,
+				"winLevel": 6
+			},
+			{
+				"index": 28,
+				"type": "setTotalWin",
+				"amount": 1620
+			},
+			{
+				"index": 29,
+				"type": "finalWin",
+				"amount": 1620
+			}
+		],
+		"criteria": "basegame",
+		"baseGameWins": 16.2,
+		"freeGameWins": 0.0
+	},
+	{
+		"id": 133543,
+		"payoutMultiplier": 1900,
+		"events": [
+			{
+				"index": 0,
+				"type": "reveal",
+				"board": [
+					[
+						{
+							"name": "H2"
+						},
+						{
+							"name": "H1"
+						},
+						{
+							"name": "H1"
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L2"
+						}
+					],
+					[
+						{
+							"name": "H2"
+						},
+						{
+							"name": "L4"
+						},
+						{
+							"name": "S",
+							"scatter": true
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L1"
+						},
+						{
+							"name": "H4"
+						},
+						{
+							"name": "H1"
+						}
+					],
+					[
+						{
+							"name": "L3"
+						},
+						{
+							"name": "H4"
+						},
+						{
+							"name": "H4"
+						},
+						{
+							"name": "H4"
+						},
+						{
+							"name": "M",
+							"multiplier": 2
+						},
+						{
+							"name": "H2"
+						},
+						{
+							"name": "S",
+							"scatter": true
+						}
+					],
+					[
+						{
+							"name": "L3"
+						},
+						{
+							"name": "H4"
+						},
+						{
+							"name": "H4"
+						},
+						{
+							"name": "L2"
+						},
+						{
+							"name": "L2"
+						},
+						{
+							"name": "L4"
+						},
+						{
+							"name": "H4"
+						}
+					],
+					[
+						{
+							"name": "L4"
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "H4"
+						},
+						{
+							"name": "S",
+							"scatter": true
+						},
+						{
+							"name": "L2"
+						},
+						{
+							"name": "H1"
+						},
+						{
+							"name": "H1"
+						}
+					],
+					[
+						{
+							"name": "L1"
+						},
+						{
+							"name": "H3"
+						},
+						{
+							"name": "L4"
+						},
+						{
+							"name": "L4"
+						},
+						{
+							"name": "S",
+							"scatter": true
+						},
+						{
+							"name": "L1"
+						},
+						{
+							"name": "H4"
+						}
+					]
+				],
+				"paddingPositions": [
+					139,
+					282,
+					55,
+					286,
+					19,
+					126
+				],
+				"gameType": "basegame",
+				"anticipation": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				]
+			},
+			{
+				"index": 1,
+				"type": "winInfo",
+				"totalWin": 120,
+				"wins": [
+					{
+						"symbol": "H4",
+						"clusterSize": 6,
+						"win": 120,
+						"positions": [
+							{
+								"reel": 2,
+								"row": 1
+							},
+							{
+								"reel": 3,
+								"row": 1
+							},
+							{
+								"reel": 3,
+								"row": 2
+							},
+							{
+								"reel": 4,
+								"row": 2
+							},
+							{
+								"reel": 2,
+								"row": 2
+							},
+							{
+								"reel": 2,
+								"row": 3
+							}
+						],
+						"meta": {
+							"globalMult": 1,
+							"clusterMult": 1,
+							"winWithoutMult": 120,
+							"overlay": {
+								"reel": 3,
+								"row": 2
+							}
+						}
+					}
+				]
+			},
+			{
+				"index": 2,
+				"type": "updateTumbleWin",
+				"amount": 120
+			},
+			{
+				"index": 3,
+				"type": "hauntedSpots",
+				"spots": [
+					[
+						0,
+						0,
+						0,
+						0,
+						0
+					],
+					[
+						0,
+						0,
+						0,
+						0,
+						0
+					],
+					[
+						1,
+						1,
+						1,
+						0,
+						0
+					],
+					[
+						1,
+						1,
+						0,
+						0,
+						0
+					],
+					[
+						0,
+						1,
+						0,
+						0,
+						0
+					],
+					[
+						0,
+						0,
+						0,
+						0,
+						0
+					]
+				]
+			},
+			{
+				"index": 4,
+				"type": "tumbleBoard",
+				"newSymbols": [
+					[],
+					[],
+					[
+						{
+							"name": "L2"
+						},
+						{
+							"name": "L2"
+						},
+						{
+							"name": "L2"
+						}
+					],
+					[
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L2"
+						}
+					],
+					[
+						{
+							"name": "L4"
+						}
+					],
+					[]
+				],
+				"explodingSymbols": [
+					{
+						"reel": 2,
+						"row": 1
+					},
+					{
+						"reel": 2,
+						"row": 2
+					},
+					{
+						"reel": 2,
+						"row": 3
+					},
+					{
+						"reel": 3,
+						"row": 1
+					},
+					{
+						"reel": 3,
+						"row": 2
+					},
+					{
+						"reel": 4,
+						"row": 2
+					}
+				]
+			},
+			{
+				"index": 5,
+				"type": "winInfo",
+				"totalWin": 30,
+				"wins": [
+					{
+						"symbol": "L3",
+						"clusterSize": 5,
+						"win": 30,
+						"positions": [
+							{
+								"reel": 0,
+								"row": 3
+							},
+							{
+								"reel": 1,
+								"row": 3
+							},
+							{
+								"reel": 2,
+								"row": 3
+							},
+							{
+								"reel": 0,
+								"row": 4
+							},
+							{
+								"reel": 0,
+								"row": 5
+							}
+						],
+						"meta": {
+							"globalMult": 1,
+							"clusterMult": 1,
+							"winWithoutMult": 30,
+							"overlay": {
+								"reel": 1,
+								"row": 4
+							}
+						}
+					}
+				]
+			},
+			{
+				"index": 6,
+				"type": "updateTumbleWin",
+				"amount": 150
+			},
+			{
+				"index": 7,
+				"type": "hauntedSpots",
+				"spots": [
+					[
+						0,
+						0,
+						1,
+						1,
+						1
+					],
+					[
+						0,
+						0,
+						1,
+						0,
+						0
+					],
+					[
+						1,
+						1,
+						2,
+						0,
+						0
+					],
+					[
+						1,
+						1,
+						0,
+						0,
+						0
+					],
+					[
+						0,
+						1,
+						0,
+						0,
+						0
+					],
+					[
+						0,
+						0,
+						0,
+						0,
+						0
+					]
+				]
+			},
+			{
+				"index": 8,
+				"type": "tumbleBoard",
+				"newSymbols": [
+					[
+						{
+							"name": "H3"
+						},
+						{
+							"name": "L4"
+						},
+						{
+							"name": "L2"
+						}
+					],
+					[
+						{
+							"name": "L1"
+						}
+					],
+					[
+						{
+							"name": "L3"
+						}
+					],
+					[],
+					[],
+					[]
+				],
+				"explodingSymbols": [
+					{
+						"reel": 0,
+						"row": 3
+					},
+					{
+						"reel": 0,
+						"row": 4
+					},
+					{
+						"reel": 0,
+						"row": 5
+					},
+					{
+						"reel": 1,
+						"row": 3
+					},
+					{
+						"reel": 2,
+						"row": 3
+					}
+				]
+			},
+			{
+				"index": 9,
+				"type": "winInfo",
+				"totalWin": 200,
+				"wins": [
+					{
+						"symbol": "L2",
+						"clusterSize": 7,
+						"win": 200,
+						"positions": [
+							{
+								"reel": 2,
+								"row": 1
+							},
+							{
+								"reel": 3,
+								"row": 1
+							},
+							{
+								"reel": 2,
+								"row": 2
+							},
+							{
+								"reel": 2,
+								"row": 3
+							},
+							{
+								"reel": 3,
+								"row": 3
+							},
+							{
+								"reel": 3,
+								"row": 4
+							},
+							{
+								"reel": 4,
+								"row": 4
+							}
+						],
+						"meta": {
+							"globalMult": 1,
+							"clusterMult": 2,
+							"winWithoutMult": 100,
+							"overlay": {
+								"reel": 3,
+								"row": 3
+							}
+						}
+					}
+				]
+			},
+			{
+				"index": 10,
+				"type": "updateTumbleWin",
+				"amount": 350
+			},
+			{
+				"index": 11,
+				"type": "hauntedSpots",
+				"spots": [
+					[
+						0,
+						0,
+						1,
+						1,
+						1
+					],
+					[
+						0,
+						0,
+						1,
+						0,
+						0
+					],
+					[
+						2,
+						2,
+						4,
+						0,
+						0
+					],
+					[
+						2,
+						1,
+						1,
+						1,
+						0
+					],
+					[
+						0,
+						1,
+						0,
+						1,
+						0
+					],
+					[
+						0,
+						0,
+						0,
+						0,
+						0
+					]
+				]
+			},
+			{
+				"index": 12,
+				"type": "tumbleBoard",
+				"newSymbols": [
+					[],
+					[],
+					[
+						{
+							"name": "L4"
+						},
+						{
+							"name": "L2"
+						},
+						{
+							"name": "L3"
+						}
+					],
+					[
+						{
+							"name": "H3"
+						},
+						{
+							"name": "L1"
+						},
+						{
+							"name": "L1"
+						}
+					],
+					[
+						{
+							"name": "L4"
+						}
+					],
+					[]
+				],
+				"explodingSymbols": [
+					{
+						"reel": 2,
+						"row": 1
+					},
+					{
+						"reel": 2,
+						"row": 2
+					},
+					{
+						"reel": 2,
+						"row": 3
+					},
+					{
+						"reel": 3,
+						"row": 1
+					},
+					{
+						"reel": 3,
+						"row": 3
+					},
+					{
+						"reel": 3,
+						"row": 4
+					},
+					{
+						"reel": 4,
+						"row": 4
+					}
+				]
+			},
+			{
+				"index": 13,
+				"type": "winInfo",
+				"totalWin": 180,
+				"wins": [
+					{
+						"symbol": "L3",
+						"clusterSize": 5,
+						"win": 180,
+						"positions": [
+							{
+								"reel": 2,
+								"row": 2
+							},
+							{
+								"reel": 2,
+								"row": 3
+							},
+							{
+								"reel": 3,
+								"row": 3
+							},
+							{
+								"reel": 4,
+								"row": 3
+							},
+							{
+								"reel": 3,
+								"row": 4
+							}
+						],
+						"meta": {
+							"globalMult": 1,
+							"clusterMult": 6,
+							"winWithoutMult": 30,
+							"overlay": {
+								"reel": 3,
+								"row": 3
+							}
+						}
+					}
+				]
+			},
+			{
+				"index": 14,
+				"type": "updateTumbleWin",
+				"amount": 530
+			},
+			{
+				"index": 15,
+				"type": "hauntedSpots",
+				"spots": [
+					[
+						0,
+						0,
+						1,
+						1,
+						1
+					],
+					[
+						0,
+						0,
+						1,
+						0,
+						0
+					],
+					[
+						2,
+						4,
+						8,
+						0,
+						0
+					],
+					[
+						2,
+						1,
+						2,
+						2,
+						0
+					],
+					[
+						0,
+						1,
+						1,
+						1,
+						0
+					],
+					[
+						0,
+						0,
+						0,
+						0,
+						0
+					]
+				]
+			},
+			{
+				"index": 16,
+				"type": "tumbleBoard",
+				"newSymbols": [
+					[],
+					[],
+					[
+						{
+							"name": "H3"
+						},
+						{
+							"name": "L4"
+						}
+					],
+					[
+						{
+							"name": "H1"
+						},
+						{
+							"name": "H1"
+						}
+					],
+					[
+						{
+							"name": "L1"
+						}
+					],
+					[]
+				],
+				"explodingSymbols": [
+					{
+						"reel": 2,
+						"row": 2
+					},
+					{
+						"reel": 2,
+						"row": 3
+					},
+					{
+						"reel": 3,
+						"row": 3
+					},
+					{
+						"reel": 3,
+						"row": 4
+					},
+					{
+						"reel": 4,
+						"row": 3
+					}
+				]
+			},
+			{
+				"index": 17,
+				"type": "winInfo",
+				"totalWin": 20,
+				"wins": [
+					{
+						"symbol": "L4",
+						"clusterSize": 5,
+						"win": 20,
+						"positions": [
+							{
+								"reel": 4,
+								"row": 1
+							},
+							{
+								"reel": 4,
+								"row": 2
+							},
+							{
+								"reel": 5,
+								"row": 2
+							},
+							{
+								"reel": 5,
+								"row": 3
+							},
+							{
+								"reel": 4,
+								"row": 3
+							}
+						],
+						"meta": {
+							"globalMult": 1,
+							"clusterMult": 1,
+							"winWithoutMult": 20,
+							"overlay": {
+								"reel": 4,
+								"row": 2
+							}
+						}
+					}
+				]
+			},
+			{
+				"index": 18,
+				"type": "updateTumbleWin",
+				"amount": 550
+			},
+			{
+				"index": 19,
+				"type": "hauntedSpots",
+				"spots": [
+					[
+						0,
+						0,
+						1,
+						1,
+						1
+					],
+					[
+						0,
+						0,
+						1,
+						0,
+						0
+					],
+					[
+						2,
+						4,
+						8,
+						0,
+						0
+					],
+					[
+						2,
+						1,
+						2,
+						2,
+						0
+					],
+					[
+						1,
+						2,
+						2,
+						1,
+						0
+					],
+					[
+						0,
+						1,
+						1,
+						0,
+						0
+					]
+				]
+			},
+			{
+				"index": 20,
+				"type": "tumbleBoard",
+				"newSymbols": [
+					[],
+					[],
+					[],
+					[],
+					[
+						{
+							"name": "L3"
+						},
+						{
+							"name": "H2"
+						},
+						{
+							"name": "L1"
+						}
+					],
+					[
+						{
+							"name": "H3"
+						},
+						{
+							"name": "L2"
+						}
+					]
+				],
+				"explodingSymbols": [
+					{
+						"reel": 4,
+						"row": 1
+					},
+					{
+						"reel": 4,
+						"row": 2
+					},
+					{
+						"reel": 4,
+						"row": 3
+					},
+					{
+						"reel": 5,
+						"row": 2
+					},
+					{
+						"reel": 5,
+						"row": 3
+					}
+				]
+			},
+			{
+				"index": 21,
+				"type": "winInfo",
+				"totalWin": 400,
+				"wins": [
+					{
+						"symbol": "L1",
+						"clusterSize": 5,
+						"win": 400,
+						"positions": [
+							{
+								"reel": 3,
+								"row": 3
+							},
+							{
+								"reel": 4,
+								"row": 3
+							},
+							{
+								"reel": 4,
+								"row": 2
+							},
+							{
+								"reel": 5,
+								"row": 2
+							},
+							{
+								"reel": 3,
+								"row": 4
+							}
+						],
+						"meta": {
+							"globalMult": 1,
+							"clusterMult": 8,
+							"winWithoutMult": 50,
+							"overlay": {
+								"reel": 4,
+								"row": 3
+							}
+						}
+					}
+				]
+			},
+			{
+				"index": 22,
+				"type": "updateTumbleWin",
+				"amount": 950
+			},
+			{
+				"index": 23,
+				"type": "hauntedSpots",
+				"spots": [
+					[
+						0,
+						0,
+						1,
+						1,
+						1
+					],
+					[
+						0,
+						0,
+						1,
+						0,
+						0
+					],
+					[
+						2,
+						4,
+						8,
+						0,
+						0
+					],
+					[
+						2,
+						1,
+						4,
+						4,
+						0
+					],
+					[
+						1,
+						4,
+						4,
+						1,
+						0
+					],
+					[
+						0,
+						2,
+						1,
+						0,
+						0
+					]
+				]
+			},
+			{
+				"index": 24,
+				"type": "tumbleBoard",
+				"newSymbols": [
+					[],
+					[],
+					[],
+					[
+						{
+							"name": "L4"
+						},
+						{
+							"name": "L1"
+						}
+					],
+					[
+						{
+							"name": "H4"
+						},
+						{
+							"name": "L3"
+						}
+					],
+					[
+						{
+							"name": "H3"
+						}
+					]
+				],
+				"explodingSymbols": [
+					{
+						"reel": 3,
+						"row": 3
+					},
+					{
+						"reel": 3,
+						"row": 4
+					},
+					{
+						"reel": 4,
+						"row": 3
+					},
+					{
+						"reel": 4,
+						"row": 2
+					},
+					{
+						"reel": 5,
+						"row": 2
+					}
+				]
+			},
+			{
+				"index": 25,
+				"type": "boardMultiplierInfo",
+				"multInfo": {
+					"positions": [
+						{
+							"reel": 2,
+							"row": 4,
+							"multiplier": 2
+						}
+					]
+				},
+				"winInfo": {
+					"tumbleWin": 950,
+					"boardMult": 2,
+					"totalWin": 1900
+				}
+			},
+			{
+				"index": 26,
+				"type": "updateTumbleWin",
+				"amount": 1900
+			},
+			{
+				"index": 27,
+				"type": "setWin",
+				"amount": 1900,
+				"winLevel": 6
+			},
+			{
+				"index": 28,
+				"type": "setTotalWin",
+				"amount": 1900
+			},
+			{
+				"index": 29,
+				"type": "finalWin",
+				"amount": 1900
+			}
+		],
+		"criteria": "basegame",
+		"baseGameWins": 19.0,
+		"freeGameWins": 0.0
 	}
 ];
