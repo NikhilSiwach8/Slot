@@ -386,12 +386,12 @@ export default {
 	"freeSpinEnd": {
 		"index": 103,
 		"type": "freeSpinEnd",
-		"amount": 1804860,
+		"amount": 808860,
 		"winLevel": 9
 	},
 	"finalWin": {
 		"index": 104,
 		"type": "finalWin",
-		"amount": 1804860
+		"amount": 808860
 	}
 };

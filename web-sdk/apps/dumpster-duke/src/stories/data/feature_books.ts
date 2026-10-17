@@ -9002,7 +9002,7 @@ export default [
 	},
 	{
 		"id": 173,
-		"payoutMultiplier": 12760,
+		"payoutMultiplier": 5260,
 		"events": [
 			{
 				"index": 0,
@@ -11013,7 +11013,7 @@ export default [
 						},
 						{
 							"name": "M",
-							"multiplier": 250
+							"multiplier": 100
 						},
 						{
 							"name": "L1"
@@ -11223,7 +11223,7 @@ export default [
 			{
 				"index": 45,
 				"type": "updateGlobalMult",
-				"globalMult": 252
+				"globalMult": 102
 			},
 			{
 				"index": 46,
@@ -11238,31 +11238,31 @@ export default [
 						{
 							"reel": 4,
 							"row": 4,
-							"multiplier": 250
+							"multiplier": 100
 						}
 					]
 				},
 				"winInfo": {
 					"tumbleWin": 50,
-					"boardMult": 252,
-					"totalWin": 12600
+					"boardMult": 102,
+					"totalWin": 5100
 				}
 			},
 			{
 				"index": 47,
 				"type": "updateTumbleWin",
-				"amount": 12600
+				"amount": 5100
 			},
 			{
 				"index": 48,
 				"type": "setWin",
-				"amount": 12600,
-				"winLevel": 9
+				"amount": 5100,
+				"winLevel": 8
 			},
 			{
 				"index": 49,
 				"type": "setTotalWin",
-				"amount": 12760
+				"amount": 5260
 			},
 			{
 				"index": 50,
@@ -11436,7 +11436,7 @@ export default [
 			{
 				"index": 52,
 				"type": "setTotalWin",
-				"amount": 12760
+				"amount": 5260
 			},
 			{
 				"index": 53,
@@ -11610,7 +11610,7 @@ export default [
 			{
 				"index": 55,
 				"type": "setTotalWin",
-				"amount": 12760
+				"amount": 5260
 			},
 			{
 				"index": 56,
@@ -11783,7 +11783,7 @@ export default [
 			{
 				"index": 58,
 				"type": "setTotalWin",
-				"amount": 12760
+				"amount": 5260
 			},
 			{
 				"index": 59,
@@ -11957,23 +11957,23 @@ export default [
 			{
 				"index": 61,
 				"type": "setTotalWin",
-				"amount": 12760
+				"amount": 5260
 			},
 			{
 				"index": 62,
 				"type": "freeSpinEnd",
-				"amount": 12760,
-				"winLevel": 7
+				"amount": 5260,
+				"winLevel": 6
 			},
 			{
 				"index": 63,
 				"type": "finalWin",
-				"amount": 12760
+				"amount": 5260
 			}
 		],
 		"criteria": "freegame",
 		"baseGameWins": 0.0,
-		"freeGameWins": 127.6
+		"freeGameWins": 52.6
 	},
 	{
 		"id": 210,
@@ -14315,7 +14315,7 @@ export default [
 	},
 	{
 		"id": 287,
-		"payoutMultiplier": 1804860,
+		"payoutMultiplier": 808860,
 		"events": [
 			{
 				"index": 0,
@@ -16865,7 +16865,7 @@ export default [
 						},
 						{
 							"name": "M",
-							"multiplier": 250
+							"multiplier": 100
 						},
 						{
 							"name": "H4"
@@ -16954,7 +16954,7 @@ export default [
 			{
 				"index": 60,
 				"type": "updateGlobalMult",
-				"globalMult": 259
+				"globalMult": 109
 			},
 			{
 				"index": 61,
@@ -16964,7 +16964,7 @@ export default [
 						{
 							"reel": 0,
 							"row": 1,
-							"multiplier": 250
+							"multiplier": 100
 						},
 						{
 							"reel": 4,
@@ -16975,25 +16975,25 @@ export default [
 				},
 				"winInfo": {
 					"tumbleWin": 260,
-					"boardMult": 259,
-					"totalWin": 67340
+					"boardMult": 109,
+					"totalWin": 28340
 				}
 			},
 			{
 				"index": 62,
 				"type": "updateTumbleWin",
-				"amount": 67340
+				"amount": 28340
 			},
 			{
 				"index": 63,
 				"type": "setWin",
-				"amount": 67340,
+				"amount": 28340,
 				"winLevel": 9
 			},
 			{
 				"index": 64,
 				"type": "setTotalWin",
-				"amount": 87260
+				"amount": 48260
 			},
 			{
 				"index": 65,
@@ -17360,7 +17360,7 @@ export default [
 			{
 				"index": 71,
 				"type": "updateGlobalMult",
-				"globalMult": 264
+				"globalMult": 114
 			},
 			{
 				"index": 72,
@@ -17376,25 +17376,25 @@ export default [
 				},
 				"winInfo": {
 					"tumbleWin": 1680,
-					"boardMult": 264,
-					"totalWin": 443520
+					"boardMult": 114,
+					"totalWin": 191520
 				}
 			},
 			{
 				"index": 73,
 				"type": "updateTumbleWin",
-				"amount": 443520
+				"amount": 191520
 			},
 			{
 				"index": 74,
 				"type": "setWin",
-				"amount": 443520,
+				"amount": 191520,
 				"winLevel": 9
 			},
 			{
 				"index": 75,
 				"type": "setTotalWin",
-				"amount": 530780
+				"amount": 239780
 			},
 			{
 				"index": 76,
@@ -17568,7 +17568,7 @@ export default [
 			{
 				"index": 78,
 				"type": "setTotalWin",
-				"amount": 530780
+				"amount": 239780
 			},
 			{
 				"index": 79,
@@ -17894,25 +17894,25 @@ export default [
 				},
 				"winInfo": {
 					"tumbleWin": 540,
-					"boardMult": 264,
-					"totalWin": 142560
+					"boardMult": 114,
+					"totalWin": 61560
 				}
 			},
 			{
 				"index": 86,
 				"type": "updateTumbleWin",
-				"amount": 142560
+				"amount": 61560
 			},
 			{
 				"index": 87,
 				"type": "setWin",
-				"amount": 142560,
+				"amount": 61560,
 				"winLevel": 9
 			},
 			{
 				"index": 88,
 				"type": "setTotalWin",
-				"amount": 673340
+				"amount": 301340
 			},
 			{
 				"index": 89,
@@ -18233,7 +18233,7 @@ export default [
 			{
 				"index": 95,
 				"type": "updateGlobalMult",
-				"globalMult": 272
+				"globalMult": 122
 			},
 			{
 				"index": 96,
@@ -18249,25 +18249,25 @@ export default [
 				},
 				"winInfo": {
 					"tumbleWin": 4160,
-					"boardMult": 272,
-					"totalWin": 1131520
+					"boardMult": 122,
+					"totalWin": 507520
 				}
 			},
 			{
 				"index": 97,
 				"type": "updateTumbleWin",
-				"amount": 1131520
+				"amount": 507520
 			},
 			{
 				"index": 98,
 				"type": "setWin",
-				"amount": 1131520,
+				"amount": 507520,
 				"winLevel": 9
 			},
 			{
 				"index": 99,
 				"type": "setTotalWin",
-				"amount": 1804860
+				"amount": 808860
 			},
 			{
 				"index": 100,
@@ -18403,7 +18403,7 @@ export default [
 						},
 						{
 							"name": "M",
-							"multiplier": 100
+							"multiplier": 50
 						},
 						{
 							"name": "L2"
@@ -18440,23 +18440,23 @@ export default [
 			{
 				"index": 102,
 				"type": "setTotalWin",
-				"amount": 1804860
+				"amount": 808860
 			},
 			{
 				"index": 103,
 				"type": "freeSpinEnd",
-				"amount": 1804860,
+				"amount": 808860,
 				"winLevel": 9
 			},
 			{
 				"index": 104,
 				"type": "finalWin",
-				"amount": 1804860
+				"amount": 808860
 			}
 		],
 		"criteria": "freegame",
 		"baseGameWins": 0.0,
-		"freeGameWins": 18048.6
+		"freeGameWins": 8088.6
 	},
 	{
 		"id": 6100,
