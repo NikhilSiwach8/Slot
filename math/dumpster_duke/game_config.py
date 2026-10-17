@@ -37,7 +37,7 @@ class GameConfig(Config):
         self.provider_name = "nyxhilx"
         self.provider_number = 0
         self.working_name = "Dumpster Duke"
-        self.wincap = 50000.0
+        self.wincap = 10000.0
         self.win_type = "cluster"
         self.rtp = 0.965
         self.construct_paths()
@@ -61,7 +61,7 @@ class GameConfig(Config):
         pay_group = {(tier, sym): value for sym, values in pays.items() for tier, value in zip(tiers, values)}
         # Haunted Spots: a spot a winning symbol explodes from is haunted; each further win
         # there turns it into x2, x4, ... up to this cap (base: cleared every spin; raid: kept)
-        self.haunted_spot_max = 1024
+        self.haunted_spot_max = 128
         self.paytable = self.convert_range_table(pay_group)
 
         self.include_padding = True
@@ -86,13 +86,13 @@ class GameConfig(Config):
         self.padding_reels[self.freegame_type] = self.reels["FR0"]
 
         base_caps = {2: 300, 3: 150, 4: 80, 5: 40, 8: 15, 10: 8, 15: 4, 20: 2, 25: 1, 50: 0.4, 100: 0.1}
-        fs_caps = {2: 200, 3: 120, 4: 80, 5: 60, 8: 30, 10: 20, 15: 12, 20: 8, 25: 6, 50: 3, 100: 1.5, 250: 0.5, 500: 0.2}
-        wincap_caps = {10: 20, 15: 20, 20: 30, 25: 30, 50: 40, 100: 30, 250: 20, 500: 10}
+        fs_caps = {2: 200, 3: 120, 4: 80, 5: 60, 8: 30, 10: 20, 15: 12, 20: 8, 25: 6, 50: 3, 100: 1.5}
+        wincap_caps = {10: 20, 15: 20, 20: 30, 25: 30, 50: 40, 100: 30}
 
         # Every bottle-cap value a player can see, for the rules screen.
         self.cap_values = sorted(set(base_caps) | set(fs_caps) | set(wincap_caps))
 
-        mode_maxwins = {m: 50000 for m in ("base", "ante", "feature", "bonus", "super", "mystery")}
+        mode_maxwins = {m: 10000 for m in ("base", "ante", "feature", "bonus", "super", "mystery")}
         mode_maxwins["max"] = MAX_OR_NOTHING_WIN
 
         def wincap_dist(scatter_triggers, extra=None, quota=0.001):

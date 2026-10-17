@@ -4,7 +4,7 @@
 	slime-dripping lids:
 	  1. Candy Caps up to 100x multiply every win
 	  2. 4+ Cursed Trash Cans trigger the Haunted Raid (Trick-or-Treat Bag never resets)
-	  3. Max win 50,000x
+	  3. Max win 10,000x
 	Landscape: panels in a row. Portrait: wide panels stacked, icons left of the text.
 -->
 <script lang="ts">
@@ -46,9 +46,9 @@
 
 	type Feature = { lines: string[]; icons?: string[]; title?: string[] };
 	const FEATURES: Feature[] = [
-		{ icons: ['H1', 'H1'], lines: ['CLUSTERS OF 5+ WIN', 'HAUNTED SPOTS DOUBLE', 'UP TO X1024'] },
+		{ icons: ['H1', 'H1'], lines: ['CLUSTERS OF 5+ WIN', 'HAUNTED SPOTS DOUBLE', 'UP TO X128'] },
 		{ icons: ['S', 'S', 'S'], lines: ['4+ CURSED TRASH CANS', 'TRIGGER THE HAUNTED RAID', 'THE TREAT BAG NEVER RESETS'] },
-		{ title: ['MAX', 'WIN'], lines: ['UNLOCK A MASSIVE', '50,000X MAX WIN'] },
+		{ title: ['MAX', 'WIN'], lines: ['UNLOCK A MASSIVE', '10,000X MAX WIN'] },
 	];
 
 	/** A dumpster: slate body with ribs and a gold frame, slimy green lid, wheels. */

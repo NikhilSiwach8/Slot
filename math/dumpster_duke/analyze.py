@@ -5,7 +5,7 @@ import csv, math, os
 HERE = os.path.dirname(os.path.abspath(__file__))
 LIB = os.path.join(HERE, "library")
 COST = {"base": 1.0, "ante": 1.25, "feature": 5.0, "bonus": 100.0, "super": 250.0, "mystery": 100.0, "max": 200.0}
-WINCAP = 50000.0
+WINCAP = 10000.0
 
 
 def load(mode):

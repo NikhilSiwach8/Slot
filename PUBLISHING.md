@@ -23,19 +23,19 @@ part into one folder to get all 15 math files (index + 7 books + 7 lookup tables
 
 | Mode | Cost | RTP | Max win | Max win frequency |
 |---|---|---|---|---|
-| base | 1x | 96.50% | 50,000x | 1 in 8.0M |
-| ante (Double Chance) | 1.25x | 96.50% | 50,000x | 1 in 6.4M |
-| feature (Feature Spin) | 5x | 96.50% | 50,000x | 1 in 1.0M |
-| bonus (buy Haunted Raid) | 100x | 96.50% | 50,000x | 1 in 100k |
-| super (Super Bonus) | 250x | 96.50% | 50,000x | 1 in 20k |
-| mystery (Mystery Bonus) | 100x | 96.50% | 50,000x | 1 in 100k |
+| base | 1x | 96.50% | 10,000x | 1 in 5.0M |
+| ante (Double Chance) | 1.25x | 96.50% | 10,000x | 1 in 4.0M |
+| feature (Feature Spin) | 5x | 96.50% | 10,000x | 1 in 1.0M |
+| bonus (buy Midnight Raid) | 100x | 96.50% | 10,000x | 1 in 100k |
+| super (Super Bonus) | 250x | 96.50% | 10,000x | 1 in 20k |
+| mystery (Mystery Bonus) | 100x | 96.50% | 10,000x | 1 in 100k |
 | max (Max or Nothing) | 200x | 96.50% | 4,000x (mode prize) | 1 in 20.7 |
 
 Win style: cluster pays (5+ touching, orthogonal) with Haunted Spots (a spot a win explodes from is
-haunted; each further win there makes it x2, x4, ... x1024; cleared each base spin, kept through the raid;
+haunted; each further win there makes it x2, x4, ... x128; cleared each base spin, kept through the raid;
 `hauntedSpots` book event). Reels: math/dumpster_duke/make_reels.py (runs of 1-3).
-Base game: hits 1 in 3.44, triggers the bonus 1 in 210, std dev 24.7.
-Double Chance (ante): hits 1 in 4.32, triggers the bonus 1 in 105 (2x base), std dev 24.7.
+Base game: hits 1 in 3.44, triggers the bonus 1 in 210, std dev 10.8.
+Double Chance (ante): hits 1 in 4.32, triggers the bonus 1 in 105 (2x base), std dev 12.1.
 Feature Spin: every spin shows 3 Golden Trash Cans and a Bottle Cap; hits 1 in 5.37.
 Super Bonus: Loot Bag starts at x10, a Bottle Cap on every free spin. Mystery Bonus: 5-25 spins and a x0-x20
 starting Loot Bag drawn at random (a `mysteryReveal` book event carries both before `freeSpinTrigger`).
@@ -45,9 +45,8 @@ spin tumbles, then the MAX cap applies through the normal `boardMultiplierInfo` 
 is set to the mode's prize of 4,000x (a `maxBoost` event drives the celebration); a losing spin pays
 0. Only two outcomes, 0 or 4,000x; weights are set exactly by `math/dumpster_duke/fixed_weights.py`
 (P(prize) = RTP x cost / prize = 1 in 20.7). The prize is kept under 5,000x so the mode passes the
-risk checks. Worst values over all modes at the 50,000x max win: P(>= 5,000x) 0.00033,
-P(>= 10,000x) 0.00015, P(>= 25,000x) 0.000066, P(>= 50,000x) 0.000052, ETL(10,000x) 0.036,
-ETL(40x, per cost) 0.709 (Feature Spin), CVaR (top 0.1%) 238 per stake / 8,183 absolute (Super Bonus).
+risk checks: every mode has P(win >= 5,000x) <= 0.0001, P(win >= 10,000x) <= 0.00005, expected tail
+liability (10,000x) <= 0.002 and expected tail liability (40x, per cost) <= 0.600 (Double Chance).
 The SDK's own format-check statistics step cannot handle a two-outcome table (it crashes computing the
 gap between payouts); `validate-books-index` passes for all 7 modes. Mention this mode explicitly to reviewers.
 
@@ -72,25 +71,25 @@ gap between payouts); `validate-books-index` passes for all 7 modes. Mention thi
 | base | loss | 2 | 0x |
 | base | bonus trigger | 0 | 48x |
 | base | big bonus | 4 | 241.4x |
-| base | win cap | 629 | 50,000x |
+| base | win cap | 271 | 10,000x |
 | ante | normal win | 38 | 1x |
 | ante | big win | 495 | 18.5x |
 | ante | loss | 0 | 0x |
 | ante | bonus trigger / big bonus | 4 | 241.4x |
-| ante | win cap | 701 | 50,000x |
+| ante | win cap | 701 | 10,000x |
 | feature | loss | 1 | 0x |
 | feature | normal win | 37 | 4x |
 | feature | big win | 580 | 28x |
 | feature | bonus trigger | 4 | 10.6x |
 | feature | big bonus | 45 | 68.7x |
-| feature | win cap | 701 | 50,000x |
+| feature | win cap | 701 | 10,000x |
 | bonus | bonus (every buy triggers) | 0 | 48x |
 | bonus | big bonus | 1 | 130.5x |
-| bonus | win cap | 1875 | 50,000x |
+| bonus | win cap | 271 | 10,000x |
 | super | bonus (every buy) | 0 | 125.4x |
-| super | win cap | 287 | 50,000x |
+| super | win cap | 158 | 10,000x |
 | mystery | bonus (every buy) | 0 | 1,358.7x |
-| mystery | win cap | 1875 | 50,000x |
+| mystery | win cap | 93 | 10,000x |
 | max | loss | 0 | 0x |
 | max | prize (4,000x) | 124 | 4,000x |
 
