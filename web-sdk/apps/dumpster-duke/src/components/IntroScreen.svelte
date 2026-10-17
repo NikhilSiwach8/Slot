@@ -46,7 +46,7 @@
 
 	type Feature = { lines: string[]; icons?: string[]; title?: string[] };
 	const FEATURES: Feature[] = [
-		{ icons: ['M_100', 'H1'], lines: ['CANDY CAPS UP TO 100X', 'MULTIPLY EVERY WIN'] },
+		{ icons: ['H1', 'H1'], lines: ['CLUSTERS OF 5+ WIN', 'HAUNTED SPOTS DOUBLE', 'UP TO X128'] },
 		{ icons: ['S', 'S', 'S'], lines: ['4+ CURSED TRASH CANS', 'TRIGGER THE HAUNTED RAID', 'THE TREAT BAG NEVER RESETS'] },
 		{ title: ['MAX', 'WIN'], lines: ['UNLOCK A MASSIVE', '10,000X MAX WIN'] },
 	];

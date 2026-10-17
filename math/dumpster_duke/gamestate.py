@@ -11,13 +11,15 @@ class GameState(GameStateOverride):
             self.reset_book()
             self.draw_board()
 
-            self.get_scatterpays_update_wins()
+            self.get_cluster_wins_update()
             self.emit_tumble_win_events()
+            self.update_haunted_spots()
 
             while self.win_data["totalWin"] > 0 and not (self.wincap_triggered):
                 self.tumble_game_board()
-                self.get_scatterpays_update_wins()
+                self.get_cluster_wins_update()
                 self.emit_tumble_win_events()
+                self.update_haunted_spots()
 
             self.set_end_tumble_event()
             self.win_manager.update_gametype_wins(self.gametype)
@@ -42,13 +44,15 @@ class GameState(GameStateOverride):
             self.update_freespin()
             self.draw_board()
 
-            self.get_scatterpays_update_wins()
+            self.get_cluster_wins_update()
             self.emit_tumble_win_events()
+            self.update_haunted_spots()
 
             while self.win_data["totalWin"] > 0 and not (self.wincap_triggered):
                 self.tumble_game_board()
-                self.get_scatterpays_update_wins()
+                self.get_cluster_wins_update()
                 self.emit_tumble_win_events()
+                self.update_haunted_spots()
 
             self.set_end_tumble_event()
             self.win_manager.update_gametype_wins(self.gametype)

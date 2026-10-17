@@ -35,11 +35,13 @@ if __name__ == "__main__":
     import sys
 
     chosen = sys.argv[1:] or list(all_sims)
-    num_sim_args = {m: all_sims[m] for m in chosen}
+    # SIMS_SCALE=0.01 for a quick smoke run
+    scale = float(os.environ.get("SIMS_SCALE", "1"))
+    num_sim_args = {m: max(1000, int(all_sims[m] * scale)) for m in chosen}
 
     run_conditions = {
         "run_sims": os.environ.get("SKIP_SIMS") != "1",  # SKIP_SIMS=1: re-optimise existing books
-        "run_optimization": True,
+        "run_optimization": os.environ.get("SKIP_OPT") != "1",
         "run_analysis": True,
         "run_format_checks": True,
     }

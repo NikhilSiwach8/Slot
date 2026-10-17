@@ -70,3 +70,19 @@
 	})}
 	{template}
 />
+
+<!-- A base-game round (no raid) with the most tumbles: clusters exploding and Haunted Spots doubling. -->
+<Story
+	name="cluster tumbles"
+	args={templateArgs({
+		skipLoadingScreen: true,
+		data: {},
+		action: async () => {
+			const base = books.filter((book) => !book.events.some((event) => event.type === 'freeSpinTrigger'));
+			const tumbles = (book: (typeof books)[number]) => book.events.filter((event) => event.type === 'tumbleBoard').length;
+			const data = [...base].sort((a, b) => tumbles(b) - tumbles(a))[0];
+			await playBet({ ...data, state: data.events });
+		},
+	})}
+	{template}
+/>

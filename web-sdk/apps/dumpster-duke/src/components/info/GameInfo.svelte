@@ -11,6 +11,7 @@
 		getPayGroups,
 		formatRtp,
 		formatX,
+		HAUNTED_SPOT_MAX,
 	} from '../../game/rules';
 	import { socialWording } from '../../game/social';
 
@@ -61,6 +62,14 @@
 			symbols drop in from above. Tumbling continues until there are no new wins. All wins from one
 			spin are added together.
 		</p>
+		<h3>Haunted Spots</h3>
+		<p>
+			Every spot a winning symbol explodes from becomes <strong>haunted</strong>. When another winning
+			symbol explodes from a haunted spot, the spot turns into a <strong>x2</strong> multiplier, and every
+			further win there doubles it again (x4, x8, ... up to x{HAUNTED_SPOT_MAX}). A winning cluster is
+			multiplied by the sum of the multiplier spots it covers. In the base game, Haunted Spots clear at
+			the start of every spin; during the Haunted Raid they stay for the whole raid.
+		</p>
 		<h3>Candy Caps</h3>
 		<p>
 			Candy Cap multipliers can land in the base game and the Haunted Raid and stay on screen
@@ -94,7 +103,7 @@
 
 	<section use:scrollToPaytable>
 		<h2>Symbol payouts</h2>
-		<p>Payouts are multiples of the total bet, for the number of matching symbols anywhere on screen.</p>
+		<p>Payouts are multiples of the total bet, by the number of touching symbols in a cluster.</p>
 		<div class="paytable">
 			{#each PAYING_SYMBOLS as symbol}
 				<div class="pay-card">
@@ -133,25 +142,26 @@
 	<section>
 		<h2>How to win</h2>
 		<p>
-			Pay anywhere: {MIN_CLUSTER} or more of the same symbol anywhere on screen win. Symbols do not need
-			to be adjacent or on a line. Each symbol pays once per tumble, for the total number of that
-			symbol on screen; wins of different symbols are added together. There are no wild symbols.
+			Cluster pays: {MIN_CLUSTER} or more of the same symbol touching each other horizontally or
+			vertically form a cluster and win. Diagonals do not connect. Bigger clusters pay more; each
+			cluster pays for its own size, and wins of all clusters are added together. There are no wild
+			symbols.
 		</p>
-		<h3>Winning combinations</h3>
+		<h3>Winning clusters</h3>
 		<table>
-			<thead><tr><th>Symbols on screen</th><th>Example</th><th>Pays</th></tr></thead>
+			<thead><tr><th>Cluster size</th><th>Example</th><th>Pays</th></tr></thead>
 			<tbody>
 				{#each getPayGroups(PAYING_SYMBOLS[0]) as group}
 					<tr>
 						<td>{range(group.from, group.to)}</td>
-						<td>{range(group.from, group.to)} × {SYMBOL_NAMES[PAYING_SYMBOLS[0]]}</td>
+						<td>{range(group.from, group.to)} touching {SYMBOL_NAMES[PAYING_SYMBOLS[0]]}</td>
 						<td>{formatX(group.pay)}</td>
 					</tr>
 				{/each}
 			</tbody>
 		</table>
 		<p>
-			Every paying symbol follows the same count ranges; see <em>Symbol payouts</em> for each symbol's
+			Every paying symbol follows the same cluster sizes; see <em>Symbol payouts</em> for each symbol's
 			values. A Cursed Trash Can or Candy Cap never forms a winning combination on its own.
 		</p>
 	</section>

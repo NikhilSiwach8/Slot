@@ -55,6 +55,13 @@ type BookEventMysteryReveal = {
 	lootBag: number;
 };
 
+// Haunted Spots after a tumble's wins: per reel, per visible row; 0 clear, 1 haunted, 2+ multiplier
+type BookEventHauntedSpots = {
+	index: number;
+	type: 'hauntedSpots';
+	spots: number[][];
+};
+
 // The round reached the max win (the win amounts that follow are already capped)
 type BookEventWincap = {
 	index: number;
@@ -147,6 +154,7 @@ export type BookEvent =
 	| BookEventMysteryReveal
 	| BookEventMaxBoost
 	| BookEventWincap
+	| BookEventHauntedSpots
 	| BookEventFreeSpinRetrigger
 	| BookEventUpdateFreeSpin
 	| BookEventUpdateGlobalMult

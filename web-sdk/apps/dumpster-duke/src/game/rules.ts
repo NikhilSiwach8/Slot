@@ -8,6 +8,7 @@ export const {
 	minCluster: MIN_CLUSTER,
 	capValues: CAP_VALUES,
 	maxCap: MAX_CAP,
+	hauntedSpotMax: HAUNTED_SPOT_MAX,
 } = config.dukeRules;
 
 /** Text on a Candy Cap: its value, or MAX for the Max or Nothing cap. */

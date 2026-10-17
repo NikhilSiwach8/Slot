@@ -3,7 +3,7 @@
 from copy import copy
 
 from game_calculations import GameCalculations
-from game_events import send_max_boost_event, send_mult_info_event
+from game_events import send_haunted_spots_event, send_max_boost_event, send_mult_info_event
 from src.events.events import (
     set_win_event,
     set_total_event,
@@ -64,14 +64,31 @@ class GameExecutables(GameCalculations):
             set_win_event(self)
         set_total_event(self)
 
-    def get_scatterpays_update_wins(self):
-        """Evaluate pay-anywhere wins. Caps are applied at the end of the spin, not per tumble."""
-        from src.calculations.scatter import Scatter
+    def get_cluster_wins_update(self):
+        """Evaluate cluster wins (with Haunted Spot multipliers). The Candy Caps are applied
+        once at the end of the spin, not per tumble."""
+        from src.calculations.cluster import Cluster
 
-        self.win_data = Scatter.get_scatterpay_wins(self.config, self.board, global_multiplier=1)
-        Scatter.record_scatter_wins(self)
+        clusters = Cluster.get_clusters(self.board, "wild")
+        self.win_data = self.evaluate_clusters_with_spots(clusters)
+        Cluster.record_cluster_wins(self)
         self.win_manager.tumble_win = self.win_data["totalWin"]
         self.win_manager.update_spinwin(self.win_data["totalWin"])
+
+    def reset_haunted_spots(self):
+        """0 = clear, 1 = haunted (no multiplier yet), 2..HAUNTED_SPOT_MAX = multiplier."""
+        self.haunted_spots = [[0] * self.config.num_rows[r] for r in range(self.config.num_reels)]
+
+    def update_haunted_spots(self):
+        """Every position a winning symbol explodes from becomes haunted; a haunted spot that
+        wins again becomes x2, and doubles on every further win there (up to the cap)."""
+        if self.win_data["totalWin"] <= 0:
+            return
+        for win in self.win_data["wins"]:
+            for pos in win["positions"]:
+                v = self.haunted_spots[pos["reel"]][pos["row"]]
+                self.haunted_spots[pos["reel"]][pos["row"]] = 1 if v == 0 else min(max(2, v * 2), self.config.haunted_spot_max)
+        send_haunted_spots_event(self)
 
     def update_freespin(self) -> None:
         """Called before a new reveal during freegame. The Loot Bag persists."""

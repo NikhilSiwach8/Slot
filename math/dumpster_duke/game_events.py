@@ -57,3 +57,18 @@ def send_max_boost_event(gamestate, spin_win: float, prize: float):
             "toWin": int(round(prize * 100)),
         }
     )
+
+
+HAUNTED_SPOTS = "hauntedSpots"
+
+
+def send_haunted_spots_event(gamestate):
+    """The Haunted Spots grid after a tumble's wins: per reel, per visible row (no padding),
+    0 = clear, 1 = haunted, 2+ = multiplier."""
+    gamestate.book.add_event(
+        {
+            "index": len(gamestate.book.events),
+            "type": HAUNTED_SPOTS,
+            "spots": [list(reel) for reel in gamestate.haunted_spots],
+        }
+    )

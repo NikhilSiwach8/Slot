@@ -20,6 +20,7 @@
 	import { eventEmitter } from '../game/eventEmitter';
 	import { stateBet } from 'state-shared';
 	import { winLevelMap } from '../game/winLevelMap';
+	import { setHauntedSpots } from '../game/hauntedSpots.svelte';
 
 	
 	setContext();
@@ -241,6 +242,25 @@
 			stateBet.betAmount = 1;
 			eventEmitter.broadcast({ type: 'winShow' });
 			await eventEmitter.broadcastAsync({ type: 'winUpdate', amount: 1000000, winLevelData: winLevelMap[10] });
+		},
+	})}
+	{template}
+/>
+
+<Story
+	name="haunted spots"
+	args={templateArgs({
+		skipLoadingScreen: true,
+		data: {},
+		action: async () => {
+			setHauntedSpots([
+				[0, 1, 2, 0, 0],
+				[1, 4, 8, 1, 0],
+				[0, 2, 16, 32, 1],
+				[0, 1, 64, 128, 0],
+				[0, 0, 1, 2, 0],
+				[0, 0, 0, 1, 1],
+			]);
 		},
 	})}
 	{template}

@@ -14,7 +14,7 @@ import random
 NUM_REELS = 6
 ROWS = 5
 STRIP_LEN = 300
-RUN_LENGTHS = {1: 80, 2: 18, 3: 2}
+RUN_LENGTHS = {1: 58, 2: 32, 3: 10}
 
 REELSETS = {
     # name: (seed, symbol weights, scatters per reel)

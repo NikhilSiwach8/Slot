@@ -16,7 +16,7 @@ MAX_COST = 200.0
 # checks (P(win >= 5,000x) and the RTP share of 10,000x wins); 1 in 20.7 at 200x.
 MAX_OR_NOTHING_WIN = 4000
 # Max or Nothing: every Candy Cap on its spin is a MAX cap. Its value only has to lift the
-# smallest win (0.4x) to the 10,000x max win; the client shows it as "MAX".
+# smallest win (0.2x) to the Max or Nothing prize; the client shows it as "MAX".
 MAX_CAP = 25000
 
 
@@ -38,7 +38,7 @@ class GameConfig(Config):
         self.provider_number = 0
         self.working_name = "Dumpster Duke"
         self.wincap = 10000.0
-        self.win_type = "scatter"
+        self.win_type = "cluster"
         self.rtp = 0.965
         self.construct_paths()
 
@@ -46,46 +46,26 @@ class GameConfig(Config):
         self.num_reels = 6
         self.num_rows = [5] * self.num_reels
 
-        # Pay anywhere: 8+ of a kind, grouped by count on board
-        t1, t2, t3, t4 = (8, 9), (10, 11), (12, 14), (15, 30)
-        pay_group = {
-            (t1, "H1"): 10.0,
-            (t2, "H1"): 25.0,
-            (t3, "H1"): 50.0,
-            (t4, "H1"): 100.0,
-            (t1, "H2"): 2.5,
-            (t2, "H2"): 10.0,
-            (t3, "H2"): 25.0,
-            (t4, "H2"): 50.0,
-            (t1, "H3"): 2.0,
-            (t2, "H3"): 5.0,
-            (t3, "H3"): 15.0,
-            (t4, "H3"): 40.0,
-            (t1, "H4"): 1.5,
-            (t2, "H4"): 2.0,
-            (t3, "H4"): 12.0,
-            (t4, "H4"): 30.0,
-            (t1, "L1"): 1.0,
-            (t2, "L1"): 1.5,
-            (t3, "L1"): 10.0,
-            (t4, "L1"): 20.0,
-            (t1, "L2"): 0.8,
-            (t2, "L2"): 1.2,
-            (t3, "L2"): 8.0,
-            (t4, "L2"): 16.0,
-            (t1, "L3"): 0.5,
-            (t2, "L3"): 1.0,
-            (t3, "L3"): 5.0,
-            (t4, "L3"): 12.0,
-            (t1, "L4"): 0.4,
-            (t2, "L4"): 0.9,
-            (t3, "L4"): 4.0,
-            (t4, "L4"): 10.0,
+        # Cluster pays: 5+ like symbols touching (up/down/left/right), paid by cluster size
+        tiers = [(5, 5), (6, 6), (7, 7), (8, 9), (10, 12), (13, 30)]
+        pays = {
+            "H1": [2.0, 3.0, 5.0, 10.0, 25.0, 100.0],
+            "H2": [1.5, 2.0, 3.0, 6.0, 15.0, 50.0],
+            "H3": [1.0, 1.5, 2.5, 5.0, 10.0, 40.0],
+            "H4": [0.8, 1.2, 2.0, 4.0, 8.0, 30.0],
+            "L1": [0.5, 0.8, 1.2, 2.5, 5.0, 20.0],
+            "L2": [0.4, 0.6, 1.0, 2.0, 4.0, 15.0],
+            "L3": [0.3, 0.5, 0.8, 1.5, 3.0, 12.0],
+            "L4": [0.2, 0.4, 0.6, 1.2, 2.5, 10.0],
         }
+        pay_group = {(tier, sym): value for sym, values in pays.items() for tier, value in zip(tiers, values)}
+        # Haunted Spots: a spot a winning symbol explodes from is haunted; each further win
+        # there turns it into x2, x4, ... up to this cap (base: cleared every spin; raid: kept)
+        self.haunted_spot_max = 128
         self.paytable = self.convert_range_table(pay_group)
 
         self.include_padding = True
-        # No wild in this game; the key must exist for the scatter-pay calculator.
+        # No wild in this game; the key must exist for the cluster calculator.
         self.special_symbols = {"wild": ["W"], "scatter": ["S"], "multiplier": ["M"]}
 
         self.freespin_triggers = {

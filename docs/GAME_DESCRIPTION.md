@@ -2,21 +2,22 @@
 
 ## Short (one line)
 
-Crown the king of trash: tumbling pay-anywhere wins, Candy Cap multipliers up to 100x and a Haunted Raid with a Trick-or-Treat Bag that never resets, for wins up to 10,000x.
+Crown the king of trash: tumbling cluster wins, Haunted Spots that double up to x128, Candy Cap multipliers and a Haunted Raid where the spots and the Trick-or-Treat Bag never reset, for wins up to 10,000x.
 
 ## Full
 
 Deep beneath the city, in an old mine stuffed with gold and glowing crystals, a cigar-chomping dumpster in a jewelled crown holds court. Meet the **Dumpster Duke**, and his crew of alley critters guarding the night's haul.
 
-Dumpster Duke is a 6x5 pay-anywhere slot. Land 8 or more matching symbols anywhere to win. Winning symbols explode and new ones tumble in, again and again, for as long as wins keep coming. **Candy Caps** worth 2x to 100x stick around through every tumble and multiply the spin's total win.
+Dumpster Duke is a 6x5 cluster-pays slot. Land 5 or more matching symbols touching each other to win. Winning symbols explode and new ones tumble in, again and again, for as long as wins keep coming. Every spot a win explodes from turns into a **Haunted Spot**; win there again and it becomes a x2 multiplier that doubles with every further win, up to x128. **Candy Caps** worth 2x to 100x stick around through every tumble and multiply the spin's total win.
 
-Land 4 or more **Cursed Trash Cans** to start the **Haunted Raid**, worth 10, 12 or 15 free spins. Every Candy Cap that lands on a winning free spin goes into the Duke's **Trick-or-Treat Bag**, and the Trick-or-Treat Bag never resets until the raid is over. Land 3 more Cursed Trash Cans during the raid for +5 spins.
+Land 4 or more **Cursed Trash Cans** to start the **Haunted Raid**, worth 10, 12 or 15 free spins. Every Candy Cap that lands on a winning free spin goes into the Duke's **Trick-or-Treat Bag**, and both the Trick-or-Treat Bag and the Haunted Spots never reset until the raid is over. Land 3 more Cursed Trash Cans during the raid for +5 spins.
 
 Feeling lucky? Switch on **Double Chance** to play at 1.25x the bet and trigger the Haunted Raid twice as often, or buy the raid outright for 100x the bet.
 
 ## Key features
 
-- 6x5 grid, pay anywhere (8+ symbols), tumbling wins
+- 6x5 grid, cluster pays (5+ touching symbols), tumbling wins
+- Haunted Spots: winning spots haunt the grid, then double x2 to x128 (kept for the whole raid)
 - Candy Cap multipliers from 2x to 100x
 - Haunted Raid free spins with a persistent Trick-or-Treat Bag multiplier
 - Double Chance (ante): 1.25x the bet, bonus twice as often

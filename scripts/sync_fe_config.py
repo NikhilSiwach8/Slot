@@ -34,6 +34,7 @@ config["dukeRules"] = {
     "retrigger": [{"scatters": k, "spins": v} for k, v in sorted(gc.freespin_triggers[gc.freegame_type].items())],
     "capValues": gc.cap_values,
     "maxCap": MAX_CAP,
+    "hauntedSpotMax": gc.haunted_spot_max,
 }
 
 with open(DST, "w") as f:

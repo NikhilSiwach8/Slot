@@ -13,11 +13,15 @@ class GameStateOverride(GameExecutables):
         super().reset_book()
         self.tumble_win = 0
         self.loot_bag = 0
+        # base game: Haunted Spots clear every spin
+        self.reset_haunted_spots()
 
     def reset_fs_spin(self):
         super().reset_fs_spin()
         self.global_multiplier = 1
         self.loot_bag = 0
+        # the Haunted Raid starts with a clear grid; spots then stay for the whole raid
+        self.reset_haunted_spots()
         # Super Raid / Mystery Bonus: the Loot Bag can start the raid already filled
         start = getattr(self, "pending_loot_bag", 0)
         self.pending_loot_bag = 0

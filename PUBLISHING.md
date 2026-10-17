@@ -31,9 +31,12 @@ part into one folder to get all 15 math files (index + 7 books + 7 lookup tables
 | mystery (Mystery Bonus) | 100x | 96.50% | 10,000x | 1 in 100k |
 | max (Max or Nothing) | 200x | 96.50% | 4,000x (mode prize) | 1 in 20.7 |
 
-Base game: hits 1 in 3.44, triggers the bonus 1 in 210, std dev 8.7.
-Double Chance (ante): hits 1 in 4.32, triggers the bonus 1 in 105 (2x base), same average raid (~78x), std dev 9.0.
-Feature Spin: every spin shows 3 Golden Trash Cans and a Bottle Cap; hits 1 in 5.37, raid 1 in 23 (avg ~99x bet).
+Win style: cluster pays (5+ touching, orthogonal) with Haunted Spots (a spot a win explodes from is
+haunted; each further win there makes it x2, x4, ... x128; cleared each base spin, kept through the raid;
+`hauntedSpots` book event). Reels: math/dumpster_duke/make_reels.py (runs of 1-3).
+Base game: hits 1 in 3.44, triggers the bonus 1 in 210, std dev 10.8.
+Double Chance (ante): hits 1 in 4.32, triggers the bonus 1 in 105 (2x base), std dev 12.1.
+Feature Spin: every spin shows 3 Golden Trash Cans and a Bottle Cap; hits 1 in 5.37.
 Super Bonus: Loot Bag starts at x10, a Bottle Cap on every free spin. Mystery Bonus: 5-25 spins and a x0-x20
 starting Loot Bag drawn at random (a `mysteryReveal` book event carries both before `freeSpinTrigger`).
 Max or Nothing: a single base-game spin (no free spins; boards with 4+ Cursed Trash Cans are
@@ -63,32 +66,30 @@ gap between payouts); `validate-books-index` passes for all 7 modes. Mention thi
 
 | Mode | Case | Event id | Payout |
 |---|---|---|---|
-| base | normal win | 15 | 1x |
-| base | big win | 980 | 25x |
-| base | loss | 1 | 0x |
-| base | bonus trigger | 0 | 51.6x |
-| base | big bonus | 5 | 130x |
-| base | win cap | 629 | 10,000x |
-| ante | normal win | 0 | 1.7x |
-| ante | big win | 1028 | 28.5x |
-| ante | loss | 1 | 0x |
-| ante | bonus trigger | 4 | 13x |
-| ante | big bonus | 58 | 144.2x |
+| base | normal win | 1 | 1.9x |
+| base | big win | 436 | 15x |
+| base | loss | 2 | 0x |
+| base | bonus trigger | 0 | 48x |
+| base | big bonus | 4 | 241.4x |
+| base | win cap | 271 | 10,000x |
+| ante | normal win | 38 | 1x |
+| ante | big win | 495 | 18.5x |
+| ante | loss | 0 | 0x |
+| ante | bonus trigger / big bonus | 4 | 241.4x |
 | ante | win cap | 701 | 10,000x |
-| feature | loss | 0 | 0x |
-| feature | normal win | 21 | 1.6x |
-| feature | big win | 53 | 18x |
-| feature | bonus trigger | 4 | 14x |
-| feature | big bonus | 58 | 217.8x |
+| feature | loss | 1 | 0x |
+| feature | normal win | 37 | 4x |
+| feature | big win | 580 | 28x |
+| feature | bonus trigger | 4 | 10.6x |
+| feature | big bonus | 45 | 68.7x |
 | feature | win cap | 701 | 10,000x |
-| bonus | bonus (every buy triggers) | 0 | 51.6x |
-| bonus | big bonus | 1 | 633.6x |
-| bonus | win cap | 1875 | 10,000x |
-| super | bonus (every buy) | 0 | 98x |
-| super | win cap | 1875 | 10,000x |
-| mystery | bonus (every buy) | 0 | 10.9x |
-| mystery | big bonus | 2 | 138.8x |
-| mystery | win cap | 1875 | 10,000x |
+| bonus | bonus (every buy triggers) | 0 | 48x |
+| bonus | big bonus | 1 | 130.5x |
+| bonus | win cap | 271 | 10,000x |
+| super | bonus (every buy) | 0 | 125.4x |
+| super | win cap | 158 | 10,000x |
+| mystery | bonus (every buy) | 0 | 1,358.7x |
+| mystery | win cap | 93 | 10,000x |
 | max | loss | 0 | 0x |
 | max | prize (4,000x) | 124 | 4,000x |
 

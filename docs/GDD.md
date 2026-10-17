@@ -27,21 +27,25 @@ Reference *feel*: chunky, cel-shaded cartoon slots (e.g. the Meta Gaming style o
 
 ## 3. Grid & pays
 
-- 6 reels × 5 rows, pay anywhere: **8+ matching symbols anywhere** pay.
+- 6 reels × 5 rows, cluster pays: **5+ matching symbols touching** horizontally or vertically pay.
 - Winning symbols explode, remaining symbols fall, new symbols drop in (tumble).
   Tumbling repeats until no new wins.
-- Pay groups (count on board): 8–9, 10–11, 12–14, 15+.
+- Pay groups (cluster size): 5, 6, 7, 8–9, 10–12, 13+.
+- **Haunted Spots:** a spot a winning symbol explodes from becomes haunted; another win there
+  makes it x2, then it doubles per win up to x128. A cluster is multiplied by the sum of the
+  multiplier spots it covers. Cleared every base spin; kept for the whole Haunted Raid.
+  (`hauntedSpots` book event: per reel, per visible row, 0 clear / 1 haunted / 2+ multiplier.)
 
-| Symbol | Code | 8–9 | 10–11 | 12–14 | 15+ |
-|---|---|---|---|---|---|
-| Count Dumpster Duke (vampire dumpster) | H1 | 10 | 25 | 50 | 100 |
-| Werewolf Possum | H2 | 2.5 | 10 | 25 | 50 |
-| Witch Pigeon | H3 | 2 | 5 | 15 | 40 |
-| Jack-o'-Pizza | H4 | 1.5 | 2 | 12 | 30 |
-| Mummy Can | L1 | 1 | 1.5 | 10 | 20 |
-| Ghost Fish | L2 | 0.8 | 1.2 | 8 | 16 |
-| Boo-nana | L3 | 0.5 | 1 | 5 | 12 |
-| Poison Apple | L4 | 0.4 | 0.9 | 4 | 10 |
+| Symbol | Code | 5 | 6 | 7 | 8–9 | 10–12 | 13+ |
+|---|---|---|---|---|---|---|---|
+| Count Dumpster Duke (vampire dumpster) | H1 | 2 | 3 | 5 | 10 | 25 | 100 |
+| Werewolf Possum | H2 | 1.5 | 2 | 3 | 6 | 15 | 50 |
+| Witch Pigeon | H3 | 1 | 1.5 | 2.5 | 5 | 10 | 40 |
+| Jack-o'-Pizza | H4 | 0.8 | 1.2 | 2 | 4 | 8 | 30 |
+| Mummy Can | L1 | 0.5 | 0.8 | 1.2 | 2.5 | 5 | 20 |
+| Ghost Fish | L2 | 0.4 | 0.6 | 1 | 2 | 4 | 15 |
+| Boo-nana | L3 | 0.3 | 0.5 | 0.8 | 1.5 | 3 | 12 |
+| Poison Apple | L4 | 0.2 | 0.4 | 0.6 | 1.2 | 2.5 | 10 |
 
 Payouts are multiples of the bet. (Values are the starting paytable; final
 values are fixed once the math is signed off.)

@@ -35,6 +35,7 @@
 	import FreeSpinIntro from './FreeSpinIntro.svelte';
 	import MysteryReveal from './MysteryReveal.svelte';
 	import MaxBoost from './MaxBoost.svelte';
+	import HauntedSpots from './HauntedSpots.svelte';
 	import FreeSpinCounter from './FreeSpinCounter.svelte';
 	import FreeSpinOutro from './FreeSpinOutro.svelte';
 	import Transition from './Transition.svelte';
@@ -72,6 +73,7 @@
 
 		<MainContainer>
 			<BoardFrame />
+			<HauntedSpots layer="tile" />
 		</MainContainer>
 
 		<MainContainer>
@@ -90,6 +92,7 @@
 		<MainContainer>
 			<TumbleBoard />
 			<!-- <TumbleAnticipations /> -->
+			<HauntedSpots layer="badge" />
 			<ClusterWinAmounts />
 		</MainContainer>
 

@@ -6,25 +6,26 @@ export default {
 		"board": [
 			[
 				{
-					"name": "L1"
-				},
-				{
 					"name": "L4"
 				},
 				{
-					"name": "H1"
+					"name": "S",
+					"scatter": true
 				},
 				{
-					"name": "H2"
-				},
-				{
-					"name": "L1"
-				},
-				{
-					"name": "L1"
+					"name": "L2"
 				},
 				{
 					"name": "H1"
+				},
+				{
+					"name": "H1"
+				},
+				{
+					"name": "H4"
+				},
+				{
+					"name": "H4"
 				}
 			],
 			[
@@ -32,16 +33,50 @@ export default {
 					"name": "H4"
 				},
 				{
+					"name": "H4"
+				},
+				{
+					"name": "H2"
+				},
+				{
 					"name": "S",
 					"scatter": true
 				},
 				{
-					"name": "L1"
+					"name": "H4"
 				},
 				{
-					"name": "M",
-					"multiplier": 2
+					"name": "H4"
 				},
+				{
+					"name": "L4"
+				}
+			],
+			[
+				{
+					"name": "L2"
+				},
+				{
+					"name": "S",
+					"scatter": true
+				},
+				{
+					"name": "H3"
+				},
+				{
+					"name": "H3"
+				},
+				{
+					"name": "H3"
+				},
+				{
+					"name": "L3"
+				},
+				{
+					"name": "L3"
+				}
+			],
+			[
 				{
 					"name": "L1"
 				},
@@ -49,84 +84,10 @@ export default {
 					"name": "L2"
 				},
 				{
-					"name": "H3"
-				}
-			],
-			[
-				{
-					"name": "M",
-					"multiplier": 3
-				},
-				{
-					"name": "L4"
-				},
-				{
-					"name": "H3"
-				},
-				{
-					"name": "L1"
-				},
-				{
-					"name": "H4"
-				},
-				{
-					"name": "H4"
-				},
-				{
-					"name": "H3"
-				}
-			],
-			[
-				{
-					"name": "L4"
-				},
-				{
-					"name": "H4"
-				},
-				{
-					"name": "H3"
-				},
-				{
-					"name": "H3"
-				},
-				{
-					"name": "S",
-					"scatter": true
-				},
-				{
-					"name": "L3"
-				},
-				{
-					"name": "H2"
-				}
-			],
-			[
-				{
-					"name": "H4"
-				},
-				{
 					"name": "L4"
 				},
 				{
 					"name": "L4"
-				},
-				{
-					"name": "L3"
-				},
-				{
-					"name": "S",
-					"scatter": true
-				},
-				{
-					"name": "H3"
-				},
-				{
-					"name": "H3"
-				}
-			],
-			[
-				{
-					"name": "H3"
 				},
 				{
 					"name": "L2"
@@ -136,35 +97,73 @@ export default {
 					"scatter": true
 				},
 				{
+					"name": "L4"
+				}
+			],
+			[
+				{
 					"name": "H4"
 				},
 				{
-					"name": "L1"
+					"name": "H2"
 				},
 				{
-					"name": "H1"
+					"name": "L4"
 				},
 				{
-					"name": "H1"
+					"name": "L4"
+				},
+				{
+					"name": "S",
+					"scatter": true
+				},
+				{
+					"name": "L3"
+				},
+				{
+					"name": "L2"
+				}
+			],
+			[
+				{
+					"name": "L2"
+				},
+				{
+					"name": "L2"
+				},
+				{
+					"name": "L3"
+				},
+				{
+					"name": "L3"
+				},
+				{
+					"name": "H4"
+				},
+				{
+					"name": "H4"
+				},
+				{
+					"name": "H4"
 				}
 			]
 		],
 		"paddingPositions": [
-			141,
-			114,
-			89,
-			265,
-			144,
-			250
+			211,
+			27,
+			112,
+			227,
+			252,
+			169
 		],
 		"gameType": "basegame",
 		"anticipation": [
 			0,
 			0,
 			0,
-			0,
-			0,
-			1
+			1,
+			2,
+			3
 		]
 	},
 	"setTotalWin": {
@@ -175,23 +174,27 @@ export default {
 	"freeSpinTrigger": {
 		"index": 2,
 		"type": "freeSpinTrigger",
-		"totalFs": 10,
+		"totalFs": 12,
 		"positions": [
 			{
+				"reel": 0,
+				"row": 1
+			},
+			{
 				"reel": 1,
+				"row": 3
+			},
+			{
+				"reel": 2,
 				"row": 1
 			},
 			{
 				"reel": 3,
-				"row": 4
+				"row": 5
 			},
 			{
 				"reel": 4,
 				"row": 4
-			},
-			{
-				"reel": 5,
-				"row": 2
 			}
 		]
 	},
@@ -199,218 +202,203 @@ export default {
 		"index": 3,
 		"type": "updateFreeSpin",
 		"amount": 1,
-		"total": 10
+		"total": 12
 	},
 	"winInfo": {
-		"index": 5,
+		"index": 17,
 		"type": "winInfo",
-		"totalWin": 40,
+		"totalWin": 30,
 		"wins": [
 			{
-				"symbol": "L4",
-				"win": 40,
+				"symbol": "L3",
+				"clusterSize": 5,
+				"win": 30,
 				"positions": [
 					{
+						"reel": 1,
+						"row": 3
+					},
+					{
 						"reel": 2,
-						"row": 2
-					},
-					{
-						"reel": 3,
-						"row": 1
-					},
-					{
-						"reel": 3,
-						"row": 2
-					},
-					{
-						"reel": 3,
 						"row": 3
 					},
 					{
-						"reel": 4,
-						"row": 2
+						"reel": 2,
+						"row": 4
 					},
 					{
-						"reel": 4,
-						"row": 3
-					},
-					{
-						"reel": 4,
+						"reel": 2,
 						"row": 5
 					},
 					{
-						"reel": 5,
-						"row": 1
-					},
-					{
-						"reel": 5,
-						"row": 5
+						"reel": 1,
+						"row": 4
 					}
 				],
 				"meta": {
 					"globalMult": 1,
 					"clusterMult": 1,
-					"winWithoutMult": 40,
+					"winWithoutMult": 30,
 					"overlay": {
-						"reel": 3,
-						"row": 3
+						"reel": 2,
+						"row": 4
 					}
 				}
 			}
 		]
 	},
 	"updateTumbleWin": {
-		"index": 6,
+		"index": 18,
 		"type": "updateTumbleWin",
-		"amount": 40
+		"amount": 30
+	},
+	"hauntedSpots": {
+		"index": 19,
+		"type": "hauntedSpots",
+		"spots": [
+			[
+				0,
+				0,
+				0,
+				0,
+				0
+			],
+			[
+				0,
+				0,
+				1,
+				1,
+				0
+			],
+			[
+				0,
+				0,
+				1,
+				1,
+				1
+			],
+			[
+				0,
+				0,
+				0,
+				0,
+				0
+			],
+			[
+				0,
+				0,
+				0,
+				0,
+				0
+			],
+			[
+				0,
+				0,
+				0,
+				0,
+				0
+			]
+		]
 	},
 	"tumbleBoard": {
-		"index": 7,
+		"index": 20,
 		"type": "tumbleBoard",
 		"newSymbols": [
 			[],
-			[],
 			[
 				{
-					"name": "L1"
+					"name": "M",
+					"multiplier": 3
+				},
+				{
+					"name": "H2"
 				}
 			],
 			[
+				{
+					"name": "L4"
+				},
 				{
 					"name": "H4"
 				},
 				{
-					"name": "H2"
-				},
-				{
-					"name": "H3"
+					"name": "H4"
 				}
 			],
-			[
-				{
-					"name": "L3"
-				},
-				{
-					"name": "H1"
-				},
-				{
-					"name": "H1"
-				}
-			],
-			[
-				{
-					"name": "H1"
-				},
-				{
-					"name": "H1"
-				}
-			]
+			[],
+			[],
+			[]
 		],
 		"explodingSymbols": [
 			{
-				"reel": 2,
-				"row": 2
-			},
-			{
-				"reel": 3,
-				"row": 1
-			},
-			{
-				"reel": 3,
-				"row": 2
-			},
-			{
-				"reel": 3,
+				"reel": 1,
 				"row": 3
 			},
-			{
-				"reel": 4,
-				"row": 2
-			},
-			{
-				"reel": 4,
-				"row": 3
-			},
-			{
-				"reel": 4,
-				"row": 5
-			},
-			{
-				"reel": 5,
-				"row": 1
-			},
-			{
-				"reel": 5,
-				"row": 5
-			}
-		]
-	},
-	"setWin": {
-		"index": 8,
-		"type": "setWin",
-		"amount": 40,
-		"winLevel": 2
-	},
-	"updateGlobalMult": {
-		"index": 34,
-		"type": "updateGlobalMult",
-		"globalMult": 12
-	},
-	"boardMultiplierInfo": {
-		"index": 35,
-		"type": "boardMultiplierInfo",
-		"multInfo": {
-			"positions": [
-				{
-					"reel": 0,
-					"row": 4,
-					"multiplier": 10
-				},
-				{
-					"reel": 5,
-					"row": 2,
-					"multiplier": 2
-				}
-			]
-		},
-		"winInfo": {
-			"tumbleWin": 290,
-			"boardMult": 12,
-			"totalWin": 3480
-		}
-	},
-	"freeSpinEnd": {
-		"index": 106,
-		"type": "freeSpinEnd",
-		"amount": 24990,
-		"winLevel": 7
-	},
-	"finalWin": {
-		"index": 107,
-		"type": "finalWin",
-		"amount": 24990
-	},
-	"freeSpinRetrigger": {
-		"index": 51,
-		"type": "freeSpinRetrigger",
-		"totalFs": 15,
-		"positions": [
 			{
 				"reel": 1,
-				"row": 2
+				"row": 4
+			},
+			{
+				"reel": 2,
+				"row": 3
 			},
 			{
 				"reel": 2,
 				"row": 4
 			},
 			{
-				"reel": 5,
-				"row": 2
+				"reel": 2,
+				"row": 5
 			}
 		]
 	},
+	"updateGlobalMult": {
+		"index": 29,
+		"type": "updateGlobalMult",
+		"globalMult": 6
+	},
+	"boardMultiplierInfo": {
+		"index": 30,
+		"type": "boardMultiplierInfo",
+		"multInfo": {
+			"positions": [
+				{
+					"reel": 1,
+					"row": 1,
+					"multiplier": 3
+				},
+				{
+					"reel": 2,
+					"row": 1,
+					"multiplier": 3
+				}
+			]
+		},
+		"winInfo": {
+			"tumbleWin": 390,
+			"boardMult": 6,
+			"totalWin": 2340
+		}
+	},
+	"setWin": {
+		"index": 32,
+		"type": "setWin",
+		"amount": 2340,
+		"winLevel": 6
+	},
+	"freeSpinEnd": {
+		"index": 90,
+		"type": "freeSpinEnd",
+		"amount": 20170,
+		"winLevel": 7
+	},
+	"finalWin": {
+		"index": 91,
+		"type": "finalWin",
+		"amount": 20170
+	},
 	"wincap": {
-		"index": 68,
+		"index": 80,
 		"type": "wincap",
 		"amount": 1000000
 	}

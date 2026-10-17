@@ -10,6 +10,7 @@ import { stateGame, stateGameDerived } from './stateGame.svelte';
 import type { BookEvent, BookEventOfType, BookEventContext } from './typesBookEvent';
 import type { Position } from './types';
 import { reelSpin, shakeBoard } from './reelSpin/controller.svelte';
+import { clearHauntedSpots, setHauntedSpots } from './hauntedSpots.svelte';
 
 const winLevelSoundsPlay = ({ winLevelData }: { winLevelData: WinLevelData }) => {
 	if (winLevelData?.alias === 'max') eventEmitter.broadcastAsync({ type: 'uiHide' });
@@ -54,6 +55,8 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		}
 
 		stateGame.gameType = bookEvent.gameType;
+		// Haunted Spots clear every base spin (in the raid they stay until it ends)
+		if (bookEvent.gameType === 'basegame') clearHauntedSpots();
 		// spin the reels and land them exactly on this reveal's board
 		await reelSpin.land(bookEvent);
 		eventEmitter.broadcast({ type: 'soundScatterCounterClear' });
@@ -69,9 +72,10 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 				type: 'showClusterWinAmounts',
 				wins: bookEvent.wins.map((win) => {
 					return {
+						// cluster win, times the Haunted Spots under it
 						win: win.meta.winWithoutMult,
-						mult: win.meta.globalMult,
-						result: win.meta.winWithoutMult * win.meta.globalMult,
+						mult: win.meta.clusterMult * win.meta.globalMult,
+						result: win.meta.winWithoutMult * win.meta.clusterMult * win.meta.globalMult,
 						reel: win.meta.overlay.reel,
 						row: win.meta.overlay.row,
 					};
@@ -104,6 +108,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_superfreespin' });
 		await eventEmitter.broadcastAsync({ type: 'uiHide' });
 		await eventEmitter.broadcastAsync({ type: 'transition' });
+		clearHauntedSpots(); // the raid starts with a clear grid
 		eventEmitter.broadcast({ type: 'freeSpinIntroShow' });
 		eventEmitter.broadcast({ type: 'soundOnce', name: 'jng_intro_fs' });
 		eventEmitter.broadcast({ type: 'soundMusic', name: 'bgm_freespin' });
@@ -132,6 +137,12 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 	mysteryReveal: async (bookEvent: BookEventOfType<'mysteryReveal'>) => {
 		// Mystery Bonus: the chest rolls the raid's spins and starting Trick-or-Treat Bag first
 		await eventEmitter.broadcastAsync({ type: 'mysteryReveal', spins: bookEvent.spins, lootBag: bookEvent.lootBag });
+	},
+	hauntedSpots: async (bookEvent: BookEventOfType<'hauntedSpots'>) => {
+		// winning spots turn haunted, or double their multiplier
+		const doubled = bookEvent.spots.some((reel) => reel.some((v) => v >= 2));
+		setHauntedSpots(bookEvent.spots);
+		if (doubled) eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_multiplier_landing' });
 	},
 	wincap: async () => {
 		// nothing to show here: the capped win plays through the setWin / finalWin events
@@ -176,6 +187,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 
 		await eventEmitter.broadcastAsync({ type: 'uiHide' });
 		stateGame.gameType = 'basegame';
+		clearHauntedSpots();
 		eventEmitter.broadcast({ type: 'boardFrameGlowHide' });
 		eventEmitter.broadcast({ type: 'globalMultiplierHide' });
 		eventEmitter.broadcast({ type: 'freeSpinOutroShow' });
@@ -278,10 +290,12 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		const lastUpdateFreeSpinEvent = findLastBookEvent('updateFreeSpin' as const);
 		const lastSetTotalWinEvent = findLastBookEvent('setTotalWin' as const);
 		const lastUpdateGlobalMultEvent = findLastBookEvent('updateGlobalMult' as const);
+		const lastHauntedSpotsEvent = findLastBookEvent('hauntedSpots' as const);
 
 		if (lastFreeSpinTriggerEvent) await playBookEvent(lastFreeSpinTriggerEvent, { bookEvents });
 		if (lastUpdateFreeSpinEvent) playBookEvent(lastUpdateFreeSpinEvent, { bookEvents });
 		if (lastSetTotalWinEvent) playBookEvent(lastSetTotalWinEvent, { bookEvents });
 		if (lastUpdateGlobalMultEvent) playBookEvent(lastUpdateGlobalMultEvent, { bookEvents });
+		if (lastHauntedSpotsEvent) playBookEvent(lastHauntedSpotsEvent, { bookEvents });
 	},
 };
