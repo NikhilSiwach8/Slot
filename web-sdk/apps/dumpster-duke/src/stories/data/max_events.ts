@@ -346,20 +346,21 @@ export default {
 		"winInfo": {
 			"tumbleWin": 1520,
 			"boardMult": 25000,
-			"totalWin": 400000
+			"totalWin": 1000000
 		}
 	},
 	"maxBoost": {
 		"index": 27,
 		"type": "maxBoost",
 		"fromWin": 1520,
-		"toWin": 400000
+		"toWin": 400000,
+		"maxWin": false
 	},
 	"setWin": {
 		"index": 28,
 		"type": "setWin",
 		"amount": 400000,
-		"winLevel": 10
+		"winLevel": 9
 	},
 	"setTotalWin": {
 		"index": 29,

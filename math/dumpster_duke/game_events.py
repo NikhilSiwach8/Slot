@@ -48,13 +48,14 @@ MAX_BOOST = "maxBoost"
 
 
 def send_max_boost_event(gamestate, spin_win: float, prize: float):
-    """Max or Nothing: the spin won, so its win is lifted to the mode's max win."""
+    """Max or Nothing: the spin won, so its win is lifted to the prize (maxWin: the full max win)."""
     gamestate.book.add_event(
         {
             "index": len(gamestate.book.events),
             "type": MAX_BOOST,
             "fromWin": int(round(spin_win * 100)),
             "toWin": int(round(prize * 100)),
+            "maxWin": prize >= gamestate.config.wincap,
         }
     )
 

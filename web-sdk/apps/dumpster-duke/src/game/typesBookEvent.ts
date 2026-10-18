@@ -69,12 +69,14 @@ type BookEventWincap = {
 	amount: number;
 };
 
-// Max or Nothing: the single spin won, so its win is boosted to the max win
+// Max or Nothing: the single spin won, so its win is boosted to the prize
+// (maxWin: the full max win, otherwise the MAX BOOST prize)
 type BookEventMaxBoost = {
 	index: number;
 	type: 'maxBoost';
 	fromWin: number;
 	toWin: number;
+	maxWin: boolean;
 };
 
 type BookEventFreeSpinRetrigger = {

@@ -12,6 +12,7 @@
 		formatRtp,
 		formatX,
 		HAUNTED_SPOT_MAX,
+		MAX_OR_NOTHING_PRIZES,
 	} from '../../game/rules';
 	import { socialWording } from '../../game/social';
 
@@ -225,11 +226,19 @@
 				<p>
 					<strong>Max or Nothing — {maxOrNothing.cost}× the bet.</strong> A single spin with no free spins. Every
 					spin shows a MAX Candy Cap. If the spin wins anything at all, the winning symbols tumble as
-					usual and, after the last tumble, the MAX cap lifts the win to this mode's prize of
-					{formatX(maxOrNothing.maxWin)} the bet; if it does not win, it pays nothing. Cursed Trash Cans do not
-					trigger the Haunted Raid on this spin. On average about
-					1 in {(maxOrNothing.maxWin / (maxOrNothing.rtp * maxOrNothing.cost)).toFixed(1)} of these spins pays.
-					RTP: {formatRtp(maxOrNothing.rtp)}.
+					usual and, after the last tumble, the MAX cap lifts the win to one of these prizes; if it does not
+					win, it pays nothing. Cursed Trash Cans do not trigger the Haunted Raid on this spin.
+				</p>
+				<ul>
+					{#each MAX_OR_NOTHING_PRIZES as { prize, rtpShare }}
+						<li>
+							{formatX(prize)} the bet{prize >= maxOrNothing.maxWin ? ' (MAX WIN)' : ' (MAX BOOST)'}: on average 1 in
+							{(prize / (rtpShare * maxOrNothing.cost)).toFixed(1)} spins
+						</li>
+					{/each}
+				</ul>
+				<p>
+					RTP: {formatRtp(maxOrNothing.rtp)}. Maximum win: {formatX(maxOrNothing.maxWin)} the bet.
 				</p>
 			{/if}
 			<p>Bonus buys are not available while Double Chance or Feature Spin is on.</p>

@@ -58,7 +58,9 @@ def main():
         for name in assets:
             f.write(f"\t{name}: {{\n\t\ttype: 'sprite' as const,\n")
             f.write(f"\t\tsrc: new URL('../../assets/sprites/dukeBgLayers/{name}.webp', import.meta.url).href,\n")
-            f.write("\t\tpreload: true,\n\t},\n")
+            # only the base background is needed behind the loading screen; the rest loads
+            # with the loading bar
+            f.write(f"\t\tpreload: {'true' if name.startswith('bg_base_') else 'false'},\n\t}},\n")
         f.write("};\n")
     total = sum(os.path.getsize(os.path.join(OUT, f)) for f in os.listdir(OUT))
     print(len(assets), "layers,", total // 1024, "KB")

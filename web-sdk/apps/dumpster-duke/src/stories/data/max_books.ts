@@ -182,8 +182,8 @@ export default [
 		"freeGameWins": 0.0
 	},
 	{
-		"id": 289,
-		"payoutMultiplier": 400000,
+		"id": 124,
+		"payoutMultiplier": 1000000,
 		"events": [
 			{
 				"index": 0,
@@ -191,19 +191,128 @@ export default [
 				"board": [
 					[
 						{
-							"name": "H3"
+							"name": "L1"
 						},
 						{
-							"name": "H3"
+							"name": "H4"
+						},
+						{
+							"name": "H1"
+						},
+						{
+							"name": "H1"
+						},
+						{
+							"name": "H1"
 						},
 						{
 							"name": "L3"
 						},
 						{
+							"name": "H4"
+						}
+					],
+					[
+						{
 							"name": "H2"
 						},
 						{
+							"name": "H2"
+						},
+						{
+							"name": "L1"
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L2"
+						},
+						{
+							"name": "L2"
+						},
+						{
 							"name": "L4"
+						}
+					],
+					[
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L1"
+						},
+						{
+							"name": "L1"
+						},
+						{
+							"name": "L1"
+						},
+						{
+							"name": "L4"
+						},
+						{
+							"name": "L3"
+						}
+					],
+					[
+						{
+							"name": "L1"
+						},
+						{
+							"name": "H4"
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L1"
+						},
+						{
+							"name": "L4"
+						},
+						{
+							"name": "L4"
+						}
+					],
+					[
+						{
+							"name": "H1"
+						},
+						{
+							"name": "L2"
+						},
+						{
+							"name": "H2"
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "H4"
+						}
+					],
+					[
+						{
+							"name": "L3"
+						},
+						{
+							"name": "H1"
+						},
+						{
+							"name": "L3"
 						},
 						{
 							"name": "M",
@@ -211,131 +320,22 @@ export default [
 						},
 						{
 							"name": "H3"
-						}
-					],
-					[
-						{
-							"name": "L2"
-						},
-						{
-							"name": "L2"
-						},
-						{
-							"name": "L3"
-						},
-						{
-							"name": "H4"
-						},
-						{
-							"name": "H4"
-						},
-						{
-							"name": "L4"
-						},
-						{
-							"name": "L1"
-						}
-					],
-					[
-						{
-							"name": "L3"
-						},
-						{
-							"name": "L2"
-						},
-						{
-							"name": "L4"
-						},
-						{
-							"name": "L4"
-						},
-						{
-							"name": "H4"
 						},
 						{
 							"name": "H3"
 						},
 						{
-							"name": "H4"
-						}
-					],
-					[
-						{
-							"name": "L2"
-						},
-						{
-							"name": "L4"
-						},
-						{
-							"name": "L4"
-						},
-						{
-							"name": "L2"
-						},
-						{
 							"name": "L3"
-						},
-						{
-							"name": "L3"
-						},
-						{
-							"name": "L3"
-						}
-					],
-					[
-						{
-							"name": "L1"
-						},
-						{
-							"name": "L1"
-						},
-						{
-							"name": "L4"
-						},
-						{
-							"name": "L4"
-						},
-						{
-							"name": "L4"
-						},
-						{
-							"name": "L3"
-						},
-						{
-							"name": "H4"
-						}
-					],
-					[
-						{
-							"name": "L3"
-						},
-						{
-							"name": "L4"
-						},
-						{
-							"name": "H3"
-						},
-						{
-							"name": "H3"
-						},
-						{
-							"name": "H3"
-						},
-						{
-							"name": "L1"
-						},
-						{
-							"name": "L2"
 						}
 					]
 				],
 				"paddingPositions": [
-					279,
-					210,
-					177,
-					240,
-					15,
-					159
+					95,
+					251,
+					73,
+					25,
+					142,
+					273
 				],
 				"gameType": "basegame",
 				"anticipation": [
@@ -350,24 +350,20 @@ export default [
 			{
 				"index": 1,
 				"type": "winInfo",
-				"totalWin": 60,
+				"totalWin": 80,
 				"wins": [
 					{
-						"symbol": "L4",
-						"clusterSize": 7,
-						"win": 60,
+						"symbol": "L3",
+						"clusterSize": 5,
+						"win": 30,
 						"positions": [
-							{
-								"reel": 2,
-								"row": 2
-							},
 							{
 								"reel": 3,
 								"row": 2
 							},
 							{
-								"reel": 4,
-								"row": 2
+								"reel": 3,
+								"row": 3
 							},
 							{
 								"reel": 4,
@@ -378,21 +374,53 @@ export default [
 								"row": 4
 							},
 							{
-								"reel": 3,
-								"row": 1
-							},
-							{
-								"reel": 2,
-								"row": 3
+								"reel": 4,
+								"row": 5
 							}
 						],
 						"meta": {
 							"globalMult": 1,
 							"clusterMult": 1,
-							"winWithoutMult": 60,
+							"winWithoutMult": 30,
 							"overlay": {
-								"reel": 3,
+								"reel": 4,
+								"row": 3
+							}
+						}
+					},
+					{
+						"symbol": "L1",
+						"clusterSize": 5,
+						"win": 50,
+						"positions": [
+							{
+								"reel": 1,
 								"row": 2
+							},
+							{
+								"reel": 2,
+								"row": 2
+							},
+							{
+								"reel": 2,
+								"row": 3
+							},
+							{
+								"reel": 2,
+								"row": 4
+							},
+							{
+								"reel": 3,
+								"row": 4
+							}
+						],
+						"meta": {
+							"globalMult": 1,
+							"clusterMult": 1,
+							"winWithoutMult": 50,
+							"overlay": {
+								"reel": 2,
+								"row": 3
 							}
 						}
 					}
@@ -401,7 +429,7 @@ export default [
 			{
 				"index": 2,
 				"type": "updateTumbleWin",
-				"amount": 60
+				"amount": 80
 			},
 			{
 				"index": 3,
@@ -416,20 +444,6 @@ export default [
 					],
 					[
 						0,
-						0,
-						0,
-						0,
-						0
-					],
-					[
-						0,
-						1,
-						1,
-						0,
-						0
-					],
-					[
-						1,
 						1,
 						0,
 						0,
@@ -441,6 +455,20 @@ export default [
 						1,
 						1,
 						0
+					],
+					[
+						0,
+						1,
+						1,
+						1,
+						0
+					],
+					[
+						0,
+						0,
+						1,
+						1,
+						1
 					],
 					[
 						0,
@@ -456,13 +484,9 @@ export default [
 				"type": "tumbleBoard",
 				"newSymbols": [
 					[],
-					[],
 					[
 						{
-							"name": "H1"
-						},
-						{
-							"name": "H1"
+							"name": "L2"
 						}
 					],
 					[
@@ -470,7 +494,21 @@ export default [
 							"name": "L2"
 						},
 						{
+							"name": "H4"
+						},
+						{
+							"name": "H4"
+						}
+					],
+					[
+						{
+							"name": "H3"
+						},
+						{
 							"name": "L2"
+						},
+						{
+							"name": "H3"
 						}
 					],
 					[
@@ -478,16 +516,20 @@ export default [
 							"name": "L3"
 						},
 						{
-							"name": "L3"
+							"name": "L4"
 						},
 						{
-							"name": "H2"
+							"name": "L4"
 						}
 					],
 					[]
 				],
 				"explodingSymbols": [
 					{
+						"reel": 1,
+						"row": 2
+					},
+					{
 						"reel": 2,
 						"row": 2
 					},
@@ -496,16 +538,20 @@ export default [
 						"row": 3
 					},
 					{
+						"reel": 2,
+						"row": 4
+					},
+					{
 						"reel": 3,
 						"row": 2
 					},
 					{
 						"reel": 3,
-						"row": 1
+						"row": 3
 					},
 					{
-						"reel": 4,
-						"row": 2
+						"reel": 3,
+						"row": 4
 					},
 					{
 						"reel": 4,
@@ -514,393 +560,10 @@ export default [
 					{
 						"reel": 4,
 						"row": 4
-					}
-				]
-			},
-			{
-				"index": 5,
-				"type": "boardMultiplierInfo",
-				"multInfo": {
-					"positions": [
-						{
-							"reel": 0,
-							"row": 5,
-							"multiplier": 25000
-						}
-					]
-				},
-				"winInfo": {
-					"tumbleWin": 60,
-					"boardMult": 25000,
-					"totalWin": 400000
-				}
-			},
-			{
-				"index": 6,
-				"type": "updateTumbleWin",
-				"amount": 400000
-			},
-			{
-				"index": 7,
-				"type": "maxBoost",
-				"fromWin": 60,
-				"toWin": 400000
-			},
-			{
-				"index": 8,
-				"type": "setWin",
-				"amount": 400000,
-				"winLevel": 10
-			},
-			{
-				"index": 9,
-				"type": "setTotalWin",
-				"amount": 400000
-			},
-			{
-				"index": 10,
-				"type": "finalWin",
-				"amount": 400000
-			}
-		],
-		"criteria": "max",
-		"baseGameWins": 4000.0,
-		"freeGameWins": 0.0
-	},
-	{
-		"id": 300,
-		"payoutMultiplier": 400000,
-		"events": [
-			{
-				"index": 0,
-				"type": "reveal",
-				"board": [
-					[
-						{
-							"name": "H2"
-						},
-						{
-							"name": "L1"
-						},
-						{
-							"name": "H2"
-						},
-						{
-							"name": "L1"
-						},
-						{
-							"name": "L1"
-						},
-						{
-							"name": "H3"
-						},
-						{
-							"name": "H3"
-						}
-					],
-					[
-						{
-							"name": "H4"
-						},
-						{
-							"name": "L2"
-						},
-						{
-							"name": "H3"
-						},
-						{
-							"name": "H3"
-						},
-						{
-							"name": "L1"
-						},
-						{
-							"name": "H2"
-						},
-						{
-							"name": "L4"
-						}
-					],
-					[
-						{
-							"name": "L4"
-						},
-						{
-							"name": "L1"
-						},
-						{
-							"name": "L4"
-						},
-						{
-							"name": "L1"
-						},
-						{
-							"name": "L4"
-						},
-						{
-							"name": "L4"
-						},
-						{
-							"name": "H3"
-						}
-					],
-					[
-						{
-							"name": "L4"
-						},
-						{
-							"name": "H3"
-						},
-						{
-							"name": "L4"
-						},
-						{
-							"name": "L4"
-						},
-						{
-							"name": "L2"
-						},
-						{
-							"name": "L2"
-						},
-						{
-							"name": "L2"
-						}
-					],
-					[
-						{
-							"name": "H3"
-						},
-						{
-							"name": "H2"
-						},
-						{
-							"name": "L4"
-						},
-						{
-							"name": "L4"
-						},
-						{
-							"name": "L2"
-						},
-						{
-							"name": "H1"
-						},
-						{
-							"name": "H1"
-						}
-					],
-					[
-						{
-							"name": "H1"
-						},
-						{
-							"name": "H4"
-						},
-						{
-							"name": "H4"
-						},
-						{
-							"name": "L4"
-						},
-						{
-							"name": "L4"
-						},
-						{
-							"name": "M",
-							"multiplier": 25000
-						},
-						{
-							"name": "L3"
-						}
-					]
-				],
-				"paddingPositions": [
-					252,
-					277,
-					235,
-					120,
-					130,
-					60
-				],
-				"gameType": "basegame",
-				"anticipation": [
-					0,
-					0,
-					0,
-					0,
-					0,
-					0
-				]
-			},
-			{
-				"index": 1,
-				"type": "winInfo",
-				"totalWin": 60,
-				"wins": [
-					{
-						"symbol": "L4",
-						"clusterSize": 7,
-						"win": 60,
-						"positions": [
-							{
-								"reel": 2,
-								"row": 2
-							},
-							{
-								"reel": 3,
-								"row": 2
-							},
-							{
-								"reel": 4,
-								"row": 2
-							},
-							{
-								"reel": 4,
-								"row": 3
-							},
-							{
-								"reel": 5,
-								"row": 3
-							},
-							{
-								"reel": 5,
-								"row": 4
-							},
-							{
-								"reel": 3,
-								"row": 3
-							}
-						],
-						"meta": {
-							"globalMult": 1,
-							"clusterMult": 1,
-							"winWithoutMult": 60,
-							"overlay": {
-								"reel": 4,
-								"row": 3
-							}
-						}
-					}
-				]
-			},
-			{
-				"index": 2,
-				"type": "updateTumbleWin",
-				"amount": 60
-			},
-			{
-				"index": 3,
-				"type": "hauntedSpots",
-				"spots": [
-					[
-						0,
-						0,
-						0,
-						0,
-						0
-					],
-					[
-						0,
-						0,
-						0,
-						0,
-						0
-					],
-					[
-						0,
-						1,
-						0,
-						0,
-						0
-					],
-					[
-						0,
-						1,
-						1,
-						0,
-						0
-					],
-					[
-						0,
-						1,
-						1,
-						0,
-						0
-					],
-					[
-						0,
-						0,
-						1,
-						1,
-						0
-					]
-				]
-			},
-			{
-				"index": 4,
-				"type": "tumbleBoard",
-				"newSymbols": [
-					[],
-					[],
-					[
-						{
-							"name": "L4"
-						}
-					],
-					[
-						{
-							"name": "L2"
-						},
-						{
-							"name": "L2"
-						}
-					],
-					[
-						{
-							"name": "L4"
-						},
-						{
-							"name": "H3"
-						}
-					],
-					[
-						{
-							"name": "L1"
-						},
-						{
-							"name": "H1"
-						}
-					]
-				],
-				"explodingSymbols": [
-					{
-						"reel": 2,
-						"row": 2
-					},
-					{
-						"reel": 3,
-						"row": 2
-					},
-					{
-						"reel": 3,
-						"row": 3
 					},
 					{
 						"reel": 4,
-						"row": 2
-					},
-					{
-						"reel": 4,
-						"row": 3
-					},
-					{
-						"reel": 5,
-						"row": 3
-					},
-					{
-						"reel": 5,
-						"row": 4
+						"row": 5
 					}
 				]
 			},
@@ -911,15 +574,380 @@ export default [
 					"positions": [
 						{
 							"reel": 5,
-							"row": 5,
+							"row": 3,
 							"multiplier": 25000
 						}
 					]
 				},
 				"winInfo": {
-					"tumbleWin": 60,
+					"tumbleWin": 80,
 					"boardMult": 25000,
-					"totalWin": 400000
+					"totalWin": 1000000
+				}
+			},
+			{
+				"index": 6,
+				"type": "updateTumbleWin",
+				"amount": 1000000
+			},
+			{
+				"index": 7,
+				"type": "maxBoost",
+				"fromWin": 80,
+				"toWin": 1000000,
+				"maxWin": true
+			},
+			{
+				"index": 8,
+				"type": "setWin",
+				"amount": 1000000,
+				"winLevel": 10
+			},
+			{
+				"index": 9,
+				"type": "setTotalWin",
+				"amount": 1000000
+			},
+			{
+				"index": 10,
+				"type": "finalWin",
+				"amount": 1000000
+			}
+		],
+		"criteria": "max",
+		"baseGameWins": 10000.0,
+		"freeGameWins": 0.0
+	},
+	{
+		"id": 154,
+		"payoutMultiplier": 400000,
+		"events": [
+			{
+				"index": 0,
+				"type": "reveal",
+				"board": [
+					[
+						{
+							"name": "H2"
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "H1"
+						},
+						{
+							"name": "L4"
+						},
+						{
+							"name": "H3"
+						},
+						{
+							"name": "H2"
+						},
+						{
+							"name": "H2"
+						}
+					],
+					[
+						{
+							"name": "L4"
+						},
+						{
+							"name": "H2"
+						},
+						{
+							"name": "M",
+							"multiplier": 25000
+						},
+						{
+							"name": "H2"
+						},
+						{
+							"name": "H2"
+						},
+						{
+							"name": "L1"
+						},
+						{
+							"name": "L3"
+						}
+					],
+					[
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "H1"
+						},
+						{
+							"name": "H1"
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "H2"
+						}
+					],
+					[
+						{
+							"name": "H3"
+						},
+						{
+							"name": "L2"
+						},
+						{
+							"name": "L2"
+						},
+						{
+							"name": "L4"
+						},
+						{
+							"name": "L1"
+						},
+						{
+							"name": "H4"
+						},
+						{
+							"name": "L4"
+						}
+					],
+					[
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L3"
+						},
+						{
+							"name": "L2"
+						},
+						{
+							"name": "L4"
+						},
+						{
+							"name": "H4"
+						},
+						{
+							"name": "L1"
+						},
+						{
+							"name": "H1"
+						}
+					],
+					[
+						{
+							"name": "L1"
+						},
+						{
+							"name": "L1"
+						},
+						{
+							"name": "L2"
+						},
+						{
+							"name": "L2"
+						},
+						{
+							"name": "L4"
+						},
+						{
+							"name": "H3"
+						},
+						{
+							"name": "H3"
+						}
+					]
+				],
+				"paddingPositions": [
+					57,
+					248,
+					195,
+					184,
+					234,
+					106
+				],
+				"gameType": "basegame",
+				"anticipation": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				]
+			},
+			{
+				"index": 1,
+				"type": "winInfo",
+				"totalWin": 40,
+				"wins": [
+					{
+						"symbol": "L2",
+						"clusterSize": 5,
+						"win": 40,
+						"positions": [
+							{
+								"reel": 3,
+								"row": 1
+							},
+							{
+								"reel": 3,
+								"row": 2
+							},
+							{
+								"reel": 4,
+								"row": 2
+							},
+							{
+								"reel": 5,
+								"row": 2
+							},
+							{
+								"reel": 5,
+								"row": 3
+							}
+						],
+						"meta": {
+							"globalMult": 1,
+							"clusterMult": 1,
+							"winWithoutMult": 40,
+							"overlay": {
+								"reel": 4,
+								"row": 2
+							}
+						}
+					}
+				]
+			},
+			{
+				"index": 2,
+				"type": "updateTumbleWin",
+				"amount": 40
+			},
+			{
+				"index": 3,
+				"type": "hauntedSpots",
+				"spots": [
+					[
+						0,
+						0,
+						0,
+						0,
+						0
+					],
+					[
+						0,
+						0,
+						0,
+						0,
+						0
+					],
+					[
+						0,
+						0,
+						0,
+						0,
+						0
+					],
+					[
+						1,
+						1,
+						0,
+						0,
+						0
+					],
+					[
+						0,
+						1,
+						0,
+						0,
+						0
+					],
+					[
+						0,
+						1,
+						1,
+						0,
+						0
+					]
+				]
+			},
+			{
+				"index": 4,
+				"type": "tumbleBoard",
+				"newSymbols": [
+					[],
+					[],
+					[],
+					[
+						{
+							"name": "H4"
+						},
+						{
+							"name": "L1"
+						}
+					],
+					[
+						{
+							"name": "H1"
+						}
+					],
+					[
+						{
+							"name": "L4"
+						},
+						{
+							"name": "H3"
+						}
+					]
+				],
+				"explodingSymbols": [
+					{
+						"reel": 3,
+						"row": 1
+					},
+					{
+						"reel": 3,
+						"row": 2
+					},
+					{
+						"reel": 4,
+						"row": 2
+					},
+					{
+						"reel": 5,
+						"row": 2
+					},
+					{
+						"reel": 5,
+						"row": 3
+					}
+				]
+			},
+			{
+				"index": 5,
+				"type": "boardMultiplierInfo",
+				"multInfo": {
+					"positions": [
+						{
+							"reel": 1,
+							"row": 2,
+							"multiplier": 25000
+						}
+					]
+				},
+				"winInfo": {
+					"tumbleWin": 40,
+					"boardMult": 25000,
+					"totalWin": 1000000
 				}
 			},
 			{
@@ -930,14 +958,15 @@ export default [
 			{
 				"index": 7,
 				"type": "maxBoost",
-				"fromWin": 60,
-				"toWin": 400000
+				"fromWin": 40,
+				"toWin": 400000,
+				"maxWin": false
 			},
 			{
 				"index": 8,
 				"type": "setWin",
 				"amount": 400000,
-				"winLevel": 10
+				"winLevel": 9
 			},
 			{
 				"index": 9,
@@ -950,7 +979,7 @@ export default [
 				"amount": 400000
 			}
 		],
-		"criteria": "max",
+		"criteria": "boost",
 		"baseGameWins": 4000.0,
 		"freeGameWins": 0.0
 	},
@@ -1738,7 +1767,7 @@ export default [
 				"winInfo": {
 					"tumbleWin": 480,
 					"boardMult": 25000,
-					"totalWin": 400000
+					"totalWin": 1000000
 				}
 			},
 			{
@@ -1750,13 +1779,14 @@ export default [
 				"index": 19,
 				"type": "maxBoost",
 				"fromWin": 480,
-				"toWin": 400000
+				"toWin": 400000,
+				"maxWin": false
 			},
 			{
 				"index": 20,
 				"type": "setWin",
 				"amount": 400000,
-				"winLevel": 10
+				"winLevel": 9
 			},
 			{
 				"index": 21,
@@ -1769,13 +1799,13 @@ export default [
 				"amount": 400000
 			}
 		],
-		"criteria": "max",
+		"criteria": "boost",
 		"baseGameWins": 4000.0,
 		"freeGameWins": 0.0
 	},
 	{
 		"id": 10455,
-		"payoutMultiplier": 400000,
+		"payoutMultiplier": 1000000,
 		"events": [
 			{
 				"index": 0,
@@ -2811,39 +2841,40 @@ export default [
 				"winInfo": {
 					"tumbleWin": 960,
 					"boardMult": 25000,
-					"totalWin": 400000
+					"totalWin": 1000000
 				}
 			},
 			{
 				"index": 22,
 				"type": "updateTumbleWin",
-				"amount": 400000
+				"amount": 1000000
 			},
 			{
 				"index": 23,
 				"type": "maxBoost",
 				"fromWin": 960,
-				"toWin": 400000
+				"toWin": 1000000,
+				"maxWin": true
 			},
 			{
 				"index": 24,
 				"type": "setWin",
-				"amount": 400000,
+				"amount": 1000000,
 				"winLevel": 10
 			},
 			{
 				"index": 25,
 				"type": "setTotalWin",
-				"amount": 400000
+				"amount": 1000000
 			},
 			{
 				"index": 26,
 				"type": "finalWin",
-				"amount": 400000
+				"amount": 1000000
 			}
 		],
 		"criteria": "max",
-		"baseGameWins": 4000.0,
+		"baseGameWins": 10000.0,
 		"freeGameWins": 0.0
 	},
 	{
@@ -3956,7 +3987,7 @@ export default [
 				"winInfo": {
 					"tumbleWin": 1520,
 					"boardMult": 25000,
-					"totalWin": 400000
+					"totalWin": 1000000
 				}
 			},
 			{
@@ -3968,13 +3999,14 @@ export default [
 				"index": 27,
 				"type": "maxBoost",
 				"fromWin": 1520,
-				"toWin": 400000
+				"toWin": 400000,
+				"maxWin": false
 			},
 			{
 				"index": 28,
 				"type": "setWin",
 				"amount": 400000,
-				"winLevel": 10
+				"winLevel": 9
 			},
 			{
 				"index": 29,
@@ -3987,13 +4019,13 @@ export default [
 				"amount": 400000
 			}
 		],
-		"criteria": "max",
+		"criteria": "boost",
 		"baseGameWins": 4000.0,
 		"freeGameWins": 0.0
 	},
 	{
 		"id": 96184,
-		"payoutMultiplier": 400000,
+		"payoutMultiplier": 1000000,
 		"events": [
 			{
 				"index": 0,
@@ -5119,39 +5151,40 @@ export default [
 				"winInfo": {
 					"tumbleWin": 4160,
 					"boardMult": 25000,
-					"totalWin": 400000
+					"totalWin": 1000000
 				}
 			},
 			{
 				"index": 26,
 				"type": "updateTumbleWin",
-				"amount": 400000
+				"amount": 1000000
 			},
 			{
 				"index": 27,
 				"type": "maxBoost",
 				"fromWin": 4160,
-				"toWin": 400000
+				"toWin": 1000000,
+				"maxWin": true
 			},
 			{
 				"index": 28,
 				"type": "setWin",
-				"amount": 400000,
+				"amount": 1000000,
 				"winLevel": 10
 			},
 			{
 				"index": 29,
 				"type": "setTotalWin",
-				"amount": 400000
+				"amount": 1000000
 			},
 			{
 				"index": 30,
 				"type": "finalWin",
-				"amount": 400000
+				"amount": 1000000
 			}
 		],
 		"criteria": "max",
-		"baseGameWins": 4000.0,
+		"baseGameWins": 10000.0,
 		"freeGameWins": 0.0
 	}
 ];

@@ -52,13 +52,19 @@
 </script>
 
 <App>
-	<EnableSound />
+	<!-- the music file loads behind the loading bar, so hook up sound once it is in -->
+	{#if context.stateApp.loaded}
+		<EnableSound />
+	{/if}
 	<EnableHotkey />
 	<EnableGameActor />
 	<EnablePixiExtension />
 
 	<Background />
-	<HalloweenScene />
+	<!-- fog, bats and embers start once everything has loaded, so the loading bar runs fast on slow devices -->
+	{#if context.stateApp.loaded}
+		<HalloweenScene />
+	{/if}
 
 	{#if context.stateLayout.showLoadingScreen}
 		<LoadingScreen onloaded={() => (context.stateLayout.showLoadingScreen = false)} />

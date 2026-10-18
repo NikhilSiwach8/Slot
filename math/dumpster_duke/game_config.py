@@ -12,9 +12,13 @@ FEATURE_COST = 5.0
 SUPER_COST = 250.0
 MYSTERY_COST = 100.0
 MAX_COST = 200.0
-# Max or Nothing pays this or nothing. Kept under 5,000x so the mode passes Stake's tail
-# checks (P(win >= 5,000x) and the RTP share of 10,000x wins); 1 in 20.7 at 200x.
-MAX_OR_NOTHING_WIN = 4000
+# Max or Nothing: a winning spin is lifted to the full max win (10,000x) or to the MAX BOOST
+# prize (4,000x); a dead spin pays 0. The RTP split keeps it inside Stake's risk limits:
+# 10,000x carries 20% of the RTP (P = 1 in 250 <= 0.005, its tail-liability share 0.2 <= 0.6)
+# and 4,000x the rest (1 in 26.1; under 5,000x and under 40x the 200x cost).
+MAX_OR_NOTHING_WIN = 10000
+MAX_OR_NOTHING_BOOST = 4000
+MAX_OR_NOTHING_RTP_SHARE = {MAX_OR_NOTHING_WIN: 0.2, MAX_OR_NOTHING_BOOST: 0.765}
 # Max or Nothing: every Candy Cap on its spin is a MAX cap. Its value only has to lift the
 # smallest win (0.2x) to the Max or Nothing prize; the client shows it as "MAX".
 MAX_CAP = 25000
@@ -245,8 +249,8 @@ class GameConfig(Config):
                 ],
             ),
             # Max or Nothing: one paid spin, no free spins. Every board shows a MAX cap; if the
-            # spin wins anything at all (with tumbles), the MAX cap lifts it to this mode's max
-            # win (MAX_OR_NOTHING_WIN). A dead spin pays 0.
+            # spin wins anything at all (with tumbles), the MAX cap lifts it to the max win
+            # (MAX_OR_NOTHING_WIN) or the MAX BOOST prize (MAX_OR_NOTHING_BOOST). A dead spin pays 0.
             BetMode(
                 name="max",
                 cost=MAX_COST,
@@ -267,9 +271,14 @@ class GameConfig(Config):
                             "force_freegame": False,
                             "guarantee_cap": [self.basegame_type],
                             "max_or_nothing": True,
+                            "max_prize": win,
                         },
                     )
-                    for criteria, quota, win in (("max", 0.02, float(MAX_OR_NOTHING_WIN)), ("0", 0.98, 0.0))
+                    for criteria, quota, win in (
+                        ("max", 0.01, float(MAX_OR_NOTHING_WIN)),
+                        ("boost", 0.03, float(MAX_OR_NOTHING_BOOST)),
+                        ("0", 0.96, 0.0),
+                    )
                 ],
             ),
         ]

@@ -62,7 +62,7 @@ def main():
             for layer in layers:
                 f.write(f"\t{layer['key']}: {{\n\t\ttype: 'sprite' as const,\n")
                 f.write(f"\t\tsrc: new URL('../../assets/sprites/dukeSplashLayers/{layer['file']}', import.meta.url).href,\n")
-                f.write("\t\tpreload: true,\n\t},\n")
+                f.write("\t\tpreload: false,\n\t},\n")
         f.write("};\n")
 
 if __name__ == "__main__":

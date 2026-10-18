@@ -1,10 +1,11 @@
 <script lang="ts" module>
-	export type EmitterEventMaxBoost = { type: 'maxBoost'; fromWin: number; toWin: number };
+	export type EmitterEventMaxBoost = { type: 'maxBoost'; fromWin: number; toWin: number; maxWin: boolean };
 </script>
 
 <!--
-	Max or Nothing: the spin tumbled to a win and the MAX cap lifted it to the max win.
-	The tumble win x MAX shows first, then "MAX WIN REACHED" slams in with rays and a flash.
+	Max or Nothing: the spin tumbled to a win and the MAX cap lifted it to its prize.
+	The tumble win x MAX shows first, then "MAX WIN REACHED" (the full max win) or
+	"MAX BOOST" (the smaller prize) slams in with rays and a flash.
 -->
 <script lang="ts">
 	import { BitmapText, Container } from 'pixi-svelte';
@@ -26,6 +27,7 @@
 	let show = $state(false);
 	let fromWin = $state(0);
 	let toWin = $state(0);
+	let maxWin = $state(true);
 	let clock = $state<Clock>();
 	let oncomplete = $state(() => {});
 
@@ -38,6 +40,7 @@
 		maxBoost: async (emitterEvent) => {
 			fromWin = emitterEvent.fromWin;
 			toWin = emitterEvent.toWin;
+			maxWin = emitterEvent.maxWin ?? true;
 			show = true;
 			clock?.stop();
 			clock = createClock();
@@ -70,8 +73,8 @@
 			/>
 			{#if t >= SLAM}
 				<Container y={PANEL.height * 0.14} scale={slam}>
-					<BitmapText anchor={0.5} y={-PANEL.height * 0.06} text="MAX WIN" style={{ fontFamily: 'gold', fontSize: PANEL.height * 0.17 }} />
-					<BitmapText anchor={0.5} y={PANEL.height * 0.08} text="REACHED" style={{ fontFamily: 'gold', fontSize: PANEL.height * 0.1 }} />
+					<BitmapText anchor={0.5} y={-PANEL.height * 0.06} text={maxWin ? 'MAX WIN' : 'MAX'} style={{ fontFamily: 'gold', fontSize: PANEL.height * 0.17 }} />
+					<BitmapText anchor={0.5} y={PANEL.height * 0.08} text={maxWin ? 'REACHED' : 'BOOST'} style={{ fontFamily: 'gold', fontSize: PANEL.height * 0.1 }} />
 					<BitmapText anchor={0.5} y={PANEL.height * 0.23} text={bookEventAmountToCurrencyString(toWin)} style={{ fontFamily: 'gold', fontSize: PANEL.height * 0.11 }} />
 				</Container>
 			{/if}

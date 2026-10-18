@@ -49,12 +49,12 @@ class GameExecutables(GameCalculations):
         set_total_event(self)
 
     def apply_max_cap(self, base_tumble_win):
-        """Max or Nothing: after the tumbles, the MAX cap(s) on screen lift any win to the
-        mode's max win (below the game-wide cap, so no wincap event)."""
+        """Max or Nothing: after the tumbles, the MAX cap(s) on screen lift any win to this
+        round's prize: the max win or the MAX BOOST prize."""
         _, mult_info = self.get_board_multipliers()
         if base_tumble_win > 0 and mult_info:
             max_cap = mult_info[0]["value"]
-            prize = self.get_current_betmode().get_wincap()
+            prize = self.get_current_distribution_conditions().get("max_prize") or self.get_current_betmode().get_wincap()
             self.win_manager.set_spin_win(base_tumble_win * max_cap)
             send_mult_info_event(self, max_cap, mult_info, base_tumble_win, self.win_manager.spin_win)
             self.win_manager.set_spin_win(prize)

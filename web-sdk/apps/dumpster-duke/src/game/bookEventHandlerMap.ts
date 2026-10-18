@@ -148,9 +148,14 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		// nothing to show here: the capped win plays through the setWin / finalWin events
 	},
 	maxBoost: async (bookEvent: BookEventOfType<'maxBoost'>) => {
-		// Max or Nothing: the spin won something, so it jumps straight to the max win
+		// Max or Nothing: the spin won something, so it jumps straight to its prize
 		eventEmitter.broadcast({ type: 'tumbleWinAmountHide' });
-		await eventEmitter.broadcastAsync({ type: 'maxBoost', fromWin: bookEvent.fromWin, toWin: bookEvent.toWin });
+		await eventEmitter.broadcastAsync({
+			type: 'maxBoost',
+			fromWin: bookEvent.fromWin,
+			toWin: bookEvent.toWin,
+			maxWin: bookEvent.maxWin,
+		});
 	},
 	freeSpinRetrigger: async (bookEvent: BookEventOfType<'freeSpinRetrigger'>) => {
 		// 3+ Cursed Trash Cans during the Haunted Raid: celebrate them and add the spins

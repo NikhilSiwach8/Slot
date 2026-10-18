@@ -24,7 +24,7 @@ if isinstance(config.get("symbols"), list):
 MATH_SDK = os.environ.get("MATH_SDK", os.path.join(ROOT, "math-sdk"))
 sys.path[:0] = [MATH_SDK, os.path.join(ROOT, "math", "dumpster_duke")]
 os.chdir(MATH_SDK)
-from game_config import MAX_CAP, GameConfig  # noqa: E402
+from game_config import MAX_CAP, MAX_OR_NOTHING_RTP_SHARE, GameConfig  # noqa: E402
 
 gc = GameConfig()
 config["providerName"] = gc.provider_name  # also correct when the books predate a rename
@@ -35,6 +35,8 @@ config["dukeRules"] = {
     "capValues": gc.cap_values,
     "maxCap": MAX_CAP,
     "hauntedSpotMax": gc.haunted_spot_max,
+    # Max or Nothing prizes (largest first) and each one's share of the mode's RTP
+    "maxOrNothingPrizes": [{"prize": p, "rtpShare": s} for p, s in sorted(MAX_OR_NOTHING_RTP_SHARE.items(), reverse=True)],
 }
 
 with open(DST, "w") as f:

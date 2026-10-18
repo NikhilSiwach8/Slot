@@ -9,6 +9,7 @@ export const {
 	capValues: CAP_VALUES,
 	maxCap: MAX_CAP,
 	hauntedSpotMax: HAUNTED_SPOT_MAX,
+	maxOrNothingPrizes: MAX_OR_NOTHING_PRIZES,
 } = config.dukeRules;
 
 /** Text on a Candy Cap: its value, or MAX for the Max or Nothing cap. */

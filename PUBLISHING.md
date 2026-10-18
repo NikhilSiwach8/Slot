@@ -29,7 +29,7 @@ part into one folder to get all 15 math files (index + 7 books + 7 lookup tables
 | bonus (buy Midnight Raid) | 100x | 96.50% | 10,000x | 1 in 100k |
 | super (Super Bonus) | 250x | 96.50% | 10,000x | 1 in 20k |
 | mystery (Mystery Bonus) | 100x | 96.50% | 10,000x | 1 in 100k |
-| max (Max or Nothing) | 200x | 96.50% | 4,000x (mode prize) | 1 in 20.7 |
+| max (Max or Nothing) | 200x | 96.50% | 10,000x | 1 in 250 (4,000x MAX BOOST 1 in 26.1) |
 
 Win style: cluster pays (5+ touching, orthogonal) with Haunted Spots (a spot a win explodes from is
 haunted; each further win there makes it x2, x4, ... x128; cleared each base spin, kept through the raid;
@@ -42,13 +42,16 @@ starting Loot Bag drawn at random (a `mysteryReveal` book event carries both bef
 Max or Nothing: a single base-game spin (no free spins; boards with 4+ Cursed Trash Cans are
 redrawn). Every board carries a MAX Candy Cap (multiplier value 25,000, shown as MAX). A winning
 spin tumbles, then the MAX cap applies through the normal `boardMultiplierInfo` event and the win
-is set to the mode's prize of 4,000x (a `maxBoost` event drives the celebration); a losing spin pays
-0. Only two outcomes, 0 or 4,000x; weights are set exactly by `math/dumpster_duke/fixed_weights.py`
-(P(prize) = RTP x cost / prize = 1 in 20.7). The prize is kept under 5,000x so the mode passes the
-risk checks: every mode has P(win >= 5,000x) <= 0.0001, P(win >= 10,000x) <= 0.00005, expected tail
-liability (10,000x) <= 0.002 and expected tail liability (40x, per cost) <= 0.600 (Double Chance).
-The SDK's own format-check statistics step cannot handle a two-outcome table (it crashes computing the
-gap between payouts); `validate-books-index` passes for all 7 modes. Mention this mode explicitly to reviewers.
+is set to that round's prize (a `maxBoost` event drives the celebration; `maxWin: true` for the
+full max win); a losing spin pays 0. Three outcomes: 10,000x (MAX WIN, 20% of the RTP, 1 in 250),
+4,000x (MAX BOOST, 76.5% of the RTP, 1 in 26.1) or 0. Weights are set exactly by
+`math/dumpster_duke/fixed_weights.py` (P(prize) = RTP share x cost / prize). A single 0-or-10,000x
+outcome would put the whole RTP in 10,000x wins (tail liability 0.965 > 0.6), so the split keeps the
+mode inside the risk checks: P(win >= 5,000x) = P(win >= 10,000x) = 0.004 (limits 0.01 / 0.005),
+expected tail liability (10,000x) 0.2 (limit 0.6) and (40x, per cost) 0.2 (limit 0.8). Every other mode
+has P(win >= 5,000x) <= 0.0002, expected tail liability (10,000x) <= 0.002 and (40x) <= 0.557
+(Double Chance). The SDK's own 3-star warning prints these tail liabilities without dividing by the
+cost, so it overstates them for the buy modes; `validate-books-index` passes for all 7 modes. Mention this mode explicitly to reviewers.
 
 ## 3. What was done to meet the approval checklist
 
@@ -91,7 +94,8 @@ gap between payouts); `validate-books-index` passes for all 7 modes. Mention thi
 | mystery | bonus (every buy) | 0 | 1,358.7x |
 | mystery | win cap | 93 | 10,000x |
 | max | loss | 0 | 0x |
-| max | prize (4,000x) | 124 | 4,000x |
+| max | MAX BOOST | 11 | 4,000x |
+| max | MAX WIN (win cap) | 124 | 10,000x |
 
 Every bonus buy triggers free spins and always pays, so the bonus mode has no loss or normal-win case. To regenerate the table after a math rerun, run `scripts/find_replay_examples.py`.
 
