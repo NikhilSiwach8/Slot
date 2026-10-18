@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { type Snippet } from 'svelte';
+	import { onMount, type Snippet } from 'svelte';
 	import { GlobalStyle } from 'components-ui-html';
-	import { Authenticate, LoaderStakeEngine, LoadI18n } from 'components-shared';
+	import { Authenticate, LoadI18n } from 'components-shared';
 	import Game from '../components/Game.svelte';
 	import { setContext } from '../game/context';
 
@@ -12,7 +12,28 @@
 
 	const props: Props = $props();
 
-	const loaderUrlStakeEngine = new URL('../../stake-engine-loader.gif', import.meta.url).href;
+	// Stake Engine's intro (app.html, re-encoded from the template GIF by scripts/make_loader_webp.py)
+	// stays up for one play of its 2 s animation after the image has loaded, then fades out.
+	const INTRO_MS = 2000;
+	onMount(() => {
+		const intro = document.getElementById('stake-engine-intro');
+		const img = intro?.querySelector('img');
+		if (!intro || !img) return;
+		const hide = () => {
+			intro.style.opacity = '0';
+			setTimeout(() => intro.remove(), 400);
+		};
+		const afterLoad = () => {
+			const entry = performance.getEntriesByName(img.currentSrc || img.src)[0] as PerformanceResourceTiming | undefined;
+			const loadedAt = entry?.responseEnd || performance.now();
+			setTimeout(hide, Math.max(0, loadedAt + INTRO_MS - performance.now()));
+		};
+		if (img.complete && img.naturalWidth > 0) afterLoad();
+		else {
+			img.addEventListener('load', afterLoad, { once: true });
+			img.addEventListener('error', hide, { once: true });
+		}
+	});
 
 	setContext();
 </script>
@@ -24,8 +45,5 @@
 		</LoadI18n>
 	</Authenticate>
 </GlobalStyle>
-
-<!-- Stake Engine's own intro; the game's loading screen is drawn in Pixi (LoadingScreen.svelte) -->
-<LoaderStakeEngine src={loaderUrlStakeEngine} />
 
 {@render props.children()}

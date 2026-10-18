@@ -34,9 +34,8 @@ if [ ! -f "$ROOT/web-sdk/package.json" ]; then
   src="$(fetch https://github.com/StakeEngine/web-sdk.git "$WEB_SDK_COMMIT")"
   # copy upstream around our app without touching it
   (cd "$src" && tar cf - --exclude=./apps/dumpster-duke .) | (cd "$ROOT/web-sdk" && tar xf -)
-  # Stake Engine's intro loader (platform branding) is the only file taken from the
-  # template's static folder; every other asset in the game is our own and tracked.
-  cp -n "$src/apps/scatter/static/stake-engine-loader.gif" "$ROOT/web-sdk/apps/dumpster-duke/static/" 2>/dev/null || true
+  # Stake Engine's intro loader (platform branding) is tracked as static/stake-engine-loader.webp,
+  # re-encoded from the template's GIF by scripts/make_loader_webp.py; every other asset is our own.
   rm -rf "$src"
 fi
 (cd "$ROOT/web-sdk" && pnpm install)

@@ -55,7 +55,7 @@ cost, so it overstates them for the buy modes; `validate-books-index` passes for
 
 ## 3. What was done to meet the approval checklist
 
-- **Original assets only.** All web-sdk sample images, spines, sounds and the sample loader were removed. The only template file left is `stake-engine-loader.gif`, which is platform branding.
+- **Original assets only.** All web-sdk sample images, spines, sounds and the sample loader were removed. The only template file left is Stake Engine's intro loader (platform branding), shipped as `stake-engine-loader.webp`: the template GIF re-encoded at 800x800 (same frames and timing, 395 KB instead of 1.3 MB) by `scripts/make_loader_webp.py` so the intro shows at once.
 - **No external requests.**
   - The Typekit font is replaced by the bundled Lilita One (`src/fonts.css` and the `webfontloader` shim).
   - The production build only calls the RGS.
